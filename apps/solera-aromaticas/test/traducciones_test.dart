@@ -4,6 +4,8 @@
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:solera_aromaticas/modelos/apunte_economico.dart';
+import 'package:solera_aromaticas/modelos/configuracion_fiscal.dart';
 import 'package:solera_aromaticas/modelos/cosecha.dart';
 import 'package:solera_aromaticas/modelos/destilacion.dart';
 import 'package:solera_aromaticas/modelos/lote_producto.dart';
@@ -21,6 +23,8 @@ final Map<String, List<String>> gruposDeValores = {
   'lote': unidadPorTipoLote.keys.toList(),
   'destino': destinosLote,
   'eficacia': eficaciasTratamiento,
+  'categoria': [...categoriasIngreso, ...categoriasGasto],
+  'regimen': regimenesIva,
 };
 
 void main() {

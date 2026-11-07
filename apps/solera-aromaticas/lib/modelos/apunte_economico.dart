@@ -1,21 +1,23 @@
 /// Categorías de ingreso y de gasto (identificadores; el nombre visible
-/// sale de `frut.categoria_<id>`).
+/// sale de `arom.categoria_<id>`). PROVISIONAL hasta el asesor fiscal.
 const List<String> categoriasIngreso = [
-  'venta_cosecha',
+  'venta_planta',
+  'venta_aceite_esencial',
+  'venta_hidrolato',
   'subvenciones',
-  'indemnizacion_seguro',
   'otros_ingresos',
 ];
 const List<String> categoriasGasto = [
-  'fitosanitarios',
+  'plantones',
   'abonos',
-  'agua_riego',
-  'polinizacion',
-  'gasoleo',
+  'fitosanitarios',
+  'permisos_tasas',
+  'combustible_alambique',
+  'envases',
+  'analiticas',
   'maquinaria',
   'mano_obra',
   'seguro',
-  'plantones',
   'otros_gastos',
 ];
 

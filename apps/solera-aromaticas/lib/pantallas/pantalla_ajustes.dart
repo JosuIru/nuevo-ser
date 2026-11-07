@@ -6,6 +6,7 @@ import '../datos/base_datos.dart';
 import '../modelos/titular.dart';
 import 'identificar_con_ia.dart';
 import 'pantalla_documentos.dart';
+import 'pantalla_economia.dart';
 
 class PantallaAjustes extends StatefulWidget {
   const PantallaAjustes({super.key});
@@ -105,6 +106,8 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
   List<Widget> _accesos(BuildContext context) => [
         _acceso(context, Icons.picture_as_pdf_outlined, 'arom.documentos',
             () => const PantallaDocumentos()),
+        _acceso(context, Icons.euro_outlined, 'arom.ingresos_y_gastos',
+            () => const PantallaEconomia()),
         _acceso(context, Icons.auto_awesome_outlined,
             'arom.inteligencia_artificial', pantallaClaveAromaticas),
       ];

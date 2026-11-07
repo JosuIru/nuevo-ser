@@ -47,6 +47,12 @@ const List<String> vocabularioProhibido = [
   'calmant',
 ];
 
+/// [texto] contiene [raiz] al principio de una palabra (así «jasanarazia»,
+/// en euskera, no cuenta como «sanar»).
+bool contienePalabra(String texto, String raiz) =>
+    RegExp('(^|[^a-záéíóúüñàèìòùç·])${RegExp.escape(raiz)}')
+        .hasMatch(texto.toLowerCase());
+
 List<File> _ficherosRevisados() {
   final raizApp = Directory.current.path;
   final raizRepo = Directory('$raizApp/../..').absolute.path;
@@ -73,7 +79,7 @@ void main() {
       for (var numero = 0; numero < lineas.length; numero++) {
         final linea = lineas[numero].toLowerCase();
         for (final palabra in vocabularioProhibido) {
-          if (linea.contains(palabra)) {
+          if (contienePalabra(linea, palabra)) {
             hallazgos.add('${fichero.path}:${numero + 1} «$palabra»');
           }
         }

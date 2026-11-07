@@ -24,6 +24,12 @@ y sigue. Lo recoge `scripts/pendientes/`.
   con los catálogos autonómicos de flora amenazada y de recolección regulada;
   revisar la columna de confundibles y la época orientativa (sin fuente).
 
+- **Asesor fiscal**: si la destilación (aceite esencial, hidrolato) y el
+  secado son transformación fuera del REAGP; tipos de IVA de la planta seca
+  según destino (10 % propuesto, Ley 37/1992 art. 91.Uno.1.1.º, por
+  verificar) y de lo destilado (21 % propuesto, por verificar); si hacen
+  falta facturas (Verifactu) para la venta de lo destilado.
+
 ## Revisión nativa eu/ca/gl
 
 - Textos de `content/solera/traducciones/aromaticas.csv` (borrador, 2026-11-07).

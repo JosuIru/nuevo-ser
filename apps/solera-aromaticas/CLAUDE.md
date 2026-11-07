@@ -15,11 +15,11 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 6 Catálogos | ✅ 2026-11-07 (antes que el 3) | `content/aromaticas/`: `especies_pam.csv` (27 especies; nombre científico, familia, parte usada, época orientativa, origen, protección y confundibles; genciana y árnica marcadas con el anexo VI de la Ley 42/2007 y **sin época** a propósito), `rendimientos_orientativos.csv` (29 filas: 15 de aceite en g/kg y 14 de secado en kg/100 kg, todas de las tablas 5 y 8 de la ficha de transformación del CTFC) y `plagas_pam.csv` (10, del BSV PAPAM PACA 2025). Compilador sobre la librería común; consultas en `dominio/catalogos.dart`. Guardarraíl `test/hard_limits_test.dart` (vocabulario de propiedades de salud en lib, catálogos y traducciones). 34 tests |
 | 7 IA visual | ✅ 2026-11-07 | Campo → icono de escáner: **identificar la especie** (foto → hasta 3 especies del catálogo con confianza, motivo y «qué comprobar»; aviso fijo de que **nunca habilita el consumo**, aviso de protección y de confundibles; al elegir se abre el alta de cosecha con la especie) e **identificar una plaga en cultivo** (parcela de una especie con plagas en el catálogo → hasta 3 candidatas; solo informa, nunca abre un tratamiento). Salida estructurada con `enum` de ids + «otra», modelo equilibrado del core, clave BYO (`estado/clave_anthropic_aromaticas.dart`, Ajustes → Inteligencia artificial). La foto se borra siempre. Intérprete genérico testeado y test de que los prompts no llevan vocabulario de salud. 55 tests |
 | 8 Branding + GPS | ✅ 2026-11-07 (placeholder) | Logo ImageMagick (espiga de lavanda y gota sobre crema) en `assets/`, iconos de lanzador (`flutter_launcher_icons`, adaptativo), pantalla de arranque crema con el logo y logo en la cabecera de Hoy. GPS: «Usar mi ubicación» en la ficha de parcela y de zona (geolocator) y mapa OSM de parcelas y zonas desde Campo. Permisos INTERNET y ubicación en el manifiesto, con test. 58 tests |
-| 9 Economía | pendiente | PROVISIONAL |
+| 9 Economía | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Ingresos y gastos: régimen de IVA (REAGP / general / sin elegir); apuntes por categoría propia (venta de planta, de aceite esencial y de hidrolato; permisos y tasas de recolección, combustible del alambique, envases, analíticas…), parcela opcional → margen por parcela; resumen del año y extracto PDF con sello. **Solo la venta de planta lleva compensación REAGP (12 %)**; aceite e hidrolato nunca (la destilación puede ser transformación: aviso «por verificar» en REAGP). En general, 10 % planta y 21 % destilado, por verificar. Importes en céntimos. Guardarraíles fiscales en `test/dominio/economia_test.dart`. 65 tests |
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 9 (economía: REAGP para la planta, la destilación por verificar).
+**Siguiente acción**: bloque 10 (revisión con fuente pública y cotejo de normativa).
 
 ## Encuadre
 
@@ -192,6 +192,11 @@ electrónico desde el 1-1-2027, RD 1039/2025). Fiscalidad en el bloque 9.
   prompts prohíben hablar de si la planta se puede comer, beber, usar o de
   sus propiedades. Modelo equilibrado (como Frutal): confundir especies
   parecidas es el riesgo real.
+- **2026-11-07 — Economía mínima como Frutal** (sin facturas del core): en
+  REAGP no factura el productor sino que el comprador paga la compensación;
+  las facturas quedan para cuando el asesor fije el régimen de lo destilado.
+  Lo conservador en lo dudoso: nunca compensación REAGP en aceite e
+  hidrolato, y aviso en pantalla.
 - **2026-11-07 — Unidades de lote fijas por tipo**: planta en kg, aceite en
   ml, hidrolato en l.
 

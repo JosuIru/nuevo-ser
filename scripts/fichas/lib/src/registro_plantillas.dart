@@ -1,7 +1,9 @@
 import 'ejercicio.dart';
 import 'generadores/decimales.dart';
 import 'generadores/divisibilidad_operaciones.dart';
+import 'generadores/estadistica.dart';
 import 'generadores/fracciones.dart';
+import 'generadores/medida_geometria.dart';
 import 'generadores/proporcionalidad.dart';
 
 /// Todas las plantillas, por id de habilidad. Una habilidad sin plantilla
@@ -13,10 +15,15 @@ final Map<String, PlantillaFicha> plantillasPorHabilidad = {
     ...plantillasDecimales,
     ...plantillasProporcionalidad,
     ...plantillasDivisibilidadOperaciones,
+    ...plantillasMedidaGeometria,
+    ...plantillasEstadistica,
   ])
     plantilla.idHabilidad: plantilla,
 };
 
 /// Habilidades que se saltan a propósito y por qué: necesitan un dibujo
 /// (gráfica, ejes, figura) que en v0.1 no se genera.
-const Map<String, String> motivosSinPlantilla = {};
+const Map<String, String> motivosSinPlantilla = {
+  ...motivosSinPlantillaGeometria,
+  ...motivosSinPlantillaEstadistica,
+};

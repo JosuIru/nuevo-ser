@@ -131,6 +131,15 @@ void main() {
       }
     });
 
+    test('EST.03: la media de los datos es exacta y coincide', () {
+      for (final ejercicio in _muestras('EST.03')) {
+        final datos = ejercicio.destacado!.split(',').map((d) => int.parse(d.trim())).toList();
+        final suma = datos.reduce((a, b) => a + b);
+        expect(suma % datos.length, 0);
+        expect(ejercicio.solucion, '${suma ~/ datos.length}');
+      }
+    });
+
     test('palabras de números y fracciones', () {
       expect(numeroEnPalabras(21, femenino: true), 'veintiuna');
       expect(numeroEnPalabras(31, femenino: true), 'treinta y una');

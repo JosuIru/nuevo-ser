@@ -8,7 +8,7 @@ App de la línea social (`social/`) para que un pueblo, un barrio o un colectivo
 
 ## Estado
 
-**v0.1.0 (2026-11-07): bloques F1C-1 a F1C-7.** Al abrirla se entra en un pueblo con la dirección y el código en papel, o se ve el pueblo de ejemplo (allí, el icono de cambiar de cuenta deja verla como vecina o como mesa). Funciona sin red y se sincroniza con el plugin `social/wp-plugin/concejo/`. 101 tests de Flutter y 121 comprobaciones de PHP en verde, analyze limpio, build web OK; probada contra un WordPress real (SQLite) con `test/servidor/servidor_real_test.dart`.
+**v0.1.0 (2026-11-07): bloques F1C-1 a F1C-7.** Al abrirla se entra en un pueblo con la dirección y el código en papel, o se ve el pueblo de ejemplo (allí, el icono de cambiar de cuenta deja verla como vecina o como mesa). Funciona sin red y se sincroniza con el plugin `social/wp-plugin/concejo/`. 114 tests de Flutter y 149 comprobaciones de PHP en verde, analyze limpio, build web OK; probada contra un WordPress real (SQLite) con `test/servidor/servidor_real_test.dart`.
 
 | Bloque | Contenido | Estado |
 |---|---|---|
@@ -19,7 +19,8 @@ App de la línea social (`social/`) para que un pueblo, un barrio o un colectivo
 | F1C-5 | Acta en PDF con marca BORRADOR hasta que la firme la mesa | ✅ |
 | F1C-6 | Servidor y sincronización: plugin de WordPress **aparte** (`social/wp-plugin/concejo/`, sin tocar Zunbeltz), reglas repetidas en PHP con test de paridad, cola de acciones sin red, entrar con código en papel, la mesa saca códigos e imprime la hoja | ✅ |
 | F1C-7 | Avisos mínimos en la app («Para ti» y etiqueta «Nuevo») y resumen semanal por correo desde el plugin, con baja | ✅ |
-| F1C-8 | APK de release y pueblo piloto | ⏳ |
+| F1C-8 | APK de release y pueblo piloto | APK hecha (firma de pruebas); piloto ⏳ |
+| F1C-9 | Asambleas: convocar (día, hora, lugar, orden del día con asuntos y puntos libres), cambiar o anular con motivo hasta que empieza; asistencia (con app y sin ella) y lo hablado en cada punto; convocatoria en PDF; aviso tres días antes y sección en el correo semanal | ✅ |
 
 ## Estructura
 
@@ -35,6 +36,7 @@ lib/
     compromiso.dart        qué/quién/cuándo y balance para «¿Se ha hecho?»
     persona.dart           roles rotativos con fecha de fin
     acta.dart              firmas del acta (dos de la mesa) y compromisos fijados al firmar
+    sesion.dart            asambleas: convocatoria, orden del día, asistencia y notas
   documentos/   PDF: canal en papel (hoja del asunto, papeletas, recuento) y acta
   datos/        el estado en JSON (caché y servidor)
   estado/       EstadoConcejo, las acciones (AccionConcejo), los avisos y el pueblo de ejemplo
@@ -68,6 +70,8 @@ Probar contra un WordPress: `CONCEJO_SERVIDOR=http://… CONCEJO_CODIGO_MESA=…
 - **Push al móvil**: no hay. Haría falta un servicio externo (FCM) y el criterio es avisar poco; queda para después del piloto si se echa en falta.
 
 ## Decisiones tomadas en el código (revisables con el piloto)
+
+- **Asambleas**: la convocatoria se cambia o se anula (con motivo) solo antes de empezar; asistencia y notas, desde el día de la asamblea. La asistencia es pública para el espacio (como en un acta); la gente sin app se cuenta, no se nombra. Un punto puede enlazar un asunto **abierto**. Aún no hay acta de la sesión en PDF ni firma: lo hablado queda en la app y en la convocatoria.
 
 - **Vale para cualquier grupo**, no solo para pueblos: concejos, asociaciones, colectivos, cooperativas, comunidades de montes. Las palabras visibles son neutras («tu espacio», «participante»; arriba sale siempre el nombre del espacio) y «mesa» se queda. **Los identificadores internos no cambian** (`Rol.vecina`, `'vecina'` en el JSON y en el servidor) para no romper datos ni la paridad. El ejemplo sigue siendo un pueblo.
 

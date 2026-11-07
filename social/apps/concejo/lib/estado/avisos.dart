@@ -1,5 +1,6 @@
 /// Los **avisos mínimos** (`docs/04-concejo.md` §4.7): solo lo que necesita
-/// a esa persona. Asunto nuevo, últimos días para decidir, resultado,
+/// a esa persona. Asunto nuevo, últimos días para decidir, asamblea
+/// próxima o anulada, resultado,
 /// compromiso que vence (a quien lo tiene) y fin de mandato en la mesa.
 /// Nada de «vuelve a la app»: lo demás va al correo semanal.
 ///
@@ -18,6 +19,8 @@ import 'estado_concejo.dart';
 
 enum TipoAviso {
   ultimosDias,
+  asamblea,
+  asambleaAnulada,
   compromisoVence,
   compromisoVencido,
   mandatoAcaba,
@@ -32,6 +35,7 @@ class Aviso {
     required this.fecha,
     this.asuntoUid,
     this.compromisoUid,
+    this.sesionUid,
   });
 
   final TipoAviso tipo;
@@ -44,6 +48,7 @@ class Aviso {
   final DateTime fecha;
   final String? asuntoUid;
   final String? compromisoUid;
+  final String? sesionUid;
 }
 
 /// Un asunto es «nuevo» durante sus primeras dos semanas de debate.
@@ -54,6 +59,9 @@ const diasDeUltimoAviso = 2;
 
 /// Un resultado se avisa durante dos semanas.
 const diasDeResultado = 14;
+
+/// Una asamblea se avisa en los tres días anteriores (también si se anula).
+const diasAntesDeLaAsamblea = 3;
 
 /// Un compromiso se avisa tres días antes de su fecha.
 const diasAntesDelCompromiso = 3;
@@ -121,6 +129,21 @@ List<Aviso> avisosPara(EstadoConcejo estado) {
           ));
         }
     }
+  }
+
+  for (final sesion in estado.sesiones) {
+    if (sesion.empezadaEn(ahora)) continue;
+    if (sesion.inicio.difference(ahora) >
+        const Duration(days: diasAntesDeLaAsamblea)) {
+      continue;
+    }
+    avisos.add(Aviso(
+      tipo: sesion.anulada ? TipoAviso.asambleaAnulada : TipoAviso.asamblea,
+      clave: '${sesion.anulada ? 'anulada' : 'asamblea'}:${sesion.uid}:'
+          '${sesion.inicio.toIso8601String()}',
+      fecha: sesion.inicio,
+      sesionUid: sesion.uid,
+    ));
   }
 
   final miNombre = _normalizar(persona.nombre);

@@ -3,7 +3,8 @@
  * El **resumen semanal por correo** (`docs/04-concejo.md` §4.5 y §4.7),
  * sobre todo para quien no usa la app: qué se decide ahora y hasta
  * cuándo, qué está en debate, qué se ha decidido esta semana y qué
- * compromisos vencen. Cada persona lo puede apagar con un enlace.
+ * compromisos vencen, y las asambleas de las dos próximas semanas. Cada
+ * persona lo puede apagar con un enlace.
  *
  * Arriba, funciones puras (con `tests/test_correo.php`); abajo, el envío
  * con WP-Cron y `wp_mail`. Va en texto plano: se lee en cualquier
@@ -103,6 +104,26 @@ function concejo_resumen_semanal(
 		}
 	}
 
+	$asambleas = array();
+	$sesiones  = array_values( $estado['sesiones'] ?? array() );
+	usort( $sesiones, fn( $a, $b ) => strcmp( (string) $a['inicio'], (string) $b['inicio'] ) );
+	foreach ( $sesiones as $sesion ) {
+		$inicio = concejo_leer_fecha( $sesion['inicio'], $zona );
+		if ( $inicio <= $ahora || $inicio > $ahora->modify( '+14 days' ) ) {
+			continue;
+		}
+		$cuando = concejo_fecha_legible( $inicio ) . ' a las ' . $inicio->format( 'H:i' );
+		if ( ! empty( $sesion['anulada'] ) ) {
+			$asambleas[] = '- ' . $sesion['titulo'] . " ({$cuando}): ANULADA. " . $sesion['motivo_anulacion'];
+			continue;
+		}
+		$puntos = array();
+		foreach ( $sesion['puntos'] as $indice => $punto ) {
+			$puntos[] = '  ' . ( $indice + 1 ) . '. ' . $punto['texto'];
+		}
+		$asambleas[] = '- ' . $sesion['titulo'] . " ({$cuando}, {$sesion['lugar']}). Orden del día:\n" . implode( "\n", $puntos );
+	}
+
 	$compromisos = array();
 	foreach ( $estado['compromisos'] ?? array() as $compromiso ) {
 		if ( in_array( $compromiso['estado'], array( 'hecho', 'noSeHara' ), true ) ) {
@@ -128,7 +149,7 @@ function concejo_resumen_semanal(
 		}
 	}
 
-	if ( array() === $se_decide && array() === $en_debate && array() === $decidido && array() === $compromisos && array() === $mandato ) {
+	if ( array() === $se_decide && array() === $en_debate && array() === $decidido && array() === $compromisos && array() === $mandato && array() === $asambleas ) {
 		return null;
 	}
 
@@ -139,6 +160,7 @@ function concejo_resumen_semanal(
 		}
 	};
 	$seccion( 'PARA TI', $mandato );
+	$seccion( 'PRÓXIMAS ASAMBLEAS', $asambleas );
 	$seccion( 'SE DECIDE AHORA', $se_decide );
 	$seccion( 'EN DEBATE', $en_debate );
 	if ( array() !== $decidido ) {

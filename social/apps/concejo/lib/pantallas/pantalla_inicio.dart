@@ -8,6 +8,7 @@ import '../servidor/almacen_local.dart';
 import '../servidor/sincronizador.dart';
 import 'dialogos.dart';
 import 'ficha_asunto.dart';
+import 'ficha_sesion.dart';
 import 'formulario_asunto.dart';
 import 'formulario_sesion.dart';
 import 'pantalla_asambleas.dart';
@@ -404,6 +405,8 @@ class _TarjetaAviso extends StatelessWidget {
     final asunto = asuntoUid == null ? null : estado.buscarAsunto(asuntoUid);
     final titulo = asunto?.titulo ?? '';
     final fecha = textos.fecha(aviso.fecha);
+    final sesionUid = aviso.sesionUid;
+    final sesion = sesionUid == null ? null : estado.sesion(sesionUid);
     String queDelCompromiso() => estado.compromisos
         .firstWhere((compromiso) => compromiso.uid == aviso.compromisoUid)
         .que;
@@ -419,6 +422,15 @@ class _TarjetaAviso extends StatelessWidget {
       TipoAviso.compromisoVencido => (
           Icons.event_busy_outlined,
           textos.avisoCompromisoVencido(queDelCompromiso(), fecha)
+        ),
+      TipoAviso.asamblea => (
+          Icons.groups_outlined,
+          textos.avisoAsamblea(
+              sesion!.titulo, textos.fechaYHora(sesion.inicio), sesion.lugar)
+        ),
+      TipoAviso.asambleaAnulada => (
+          Icons.event_busy_outlined,
+          textos.avisoAsambleaAnulada(sesion!.titulo, sesion.motivoAnulacion)
         ),
       TipoAviso.mandatoAcaba => (
           Icons.autorenew,
@@ -439,12 +451,17 @@ class _TarjetaAviso extends StatelessWidget {
         leading: Icon(icono, color: colores.onTertiaryContainer),
         title:
             Text(texto, style: TextStyle(color: colores.onTertiaryContainer)),
-        onTap: asunto == null
-            ? null
-            : () => Navigator.of(context).push(MaterialPageRoute(
+        onTap: sesion != null
+            ? () => Navigator.of(context).push(MaterialPageRoute(
                   builder: (_) =>
-                      FichaAsunto(estado: estado, asuntoUid: asunto.uid),
-                )),
+                      FichaSesion(estado: estado, sesionUid: sesion.uid),
+                ))
+            : asunto == null
+                ? null
+                : () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) =>
+                          FichaAsunto(estado: estado, asuntoUid: asunto.uid),
+                    )),
         trailing: IconButton(
           tooltip: textos.quitarAviso,
           icon: const Icon(Icons.close),

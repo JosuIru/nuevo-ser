@@ -27,6 +27,15 @@ comprobar( ! str_contains( $texto, 'Avisar a las cuadrillas' ), 'los compromisos
 comprobar( str_contains( $texto, 'en papel' ), 'recuerda que se puede participar sin la app' );
 comprobar( str_contains( $texto, 'https://ejemplo.org/baja' ), 'lleva el enlace para darse de baja' );
 
+// Las asambleas de las dos próximas semanas, con su orden del día.
+comprobar( str_contains( $texto, 'PRÓXIMAS ASAMBLEAS' ) && str_contains( $texto, 'Asamblea de noviembre (14 de noviembre a las 19:00, Local vecinal)' ), 'sale la próxima asamblea con día, hora y lugar' );
+comprobar( str_contains( $texto, '  4. Ruegos y preguntas' ), 'y su orden del día' );
+comprobar( ! str_contains( $texto, 'Asamblea de octubre' ), 'la ya celebrada no' );
+$anulada                                         = $estado;
+$anulada['sesiones']['noviembre']['anulada']          = true;
+$anulada['sesiones']['noviembre']['motivo_anulacion'] = 'Coincide con el funeral.';
+comprobar( str_contains( concejo_resumen_semanal( $anulada, 'maite', 'X', $ahora, $zona, '' )['texto'], 'ANULADA. Coincide con el funeral.' ), 'una anulada se avisa con su motivo' );
+
 // Los borradores no salen nunca: solo los ve la mesa, y en la app.
 $con_borrador                              = $estado;
 $con_borrador['asuntos']['b1']             = $estado['asuntos']['fiestas'];
@@ -58,7 +67,7 @@ comprobar( str_contains( concejo_resumen_semanal( $estado, 'ane', 'X', $antes_de
 comprobar( ! str_contains( concejo_resumen_semanal( $estado, 'maite', 'X', $antes_del_fin, $zona, '' )['texto'], 'Tu cargo' ), 'a una vecina no' );
 
 // Si no hay nada que contar, no se manda nada.
-$vacio = array_merge( $estado, array( 'asuntos' => array(), 'compromisos' => array() ) );
+$vacio = array_merge( $estado, array( 'asuntos' => array(), 'compromisos' => array(), 'sesiones' => array() ) );
 comprobar( null === concejo_resumen_semanal( $vacio, 'maite', 'X', $ahora, $zona, '' ), 'sin nada que contar no hay correo' );
 comprobar( null === concejo_resumen_semanal( $estado, 'nadie', 'X', $ahora, $zona, '' ), 'ni a quien no existe' );
 

@@ -19,6 +19,7 @@ EstadoConcejo _pueblo(String personaUid, DateTime Function() reloj) {
     consentimientos: ejemplo.consentimientos,
     compromisos: ejemplo.compromisos,
     actas: ejemplo.actas,
+    sesiones: ejemplo.sesiones,
     reloj: reloj,
   );
 }
@@ -104,5 +105,23 @@ void main() {
       expect(
           almacen.leer(AvisosVistos.clave), isNot(contains(antes.first.clave)));
     });
+  });
+
+  test('la asamblea se avisa en los tres días anteriores, y si se anula', () {
+    // «noviembre» es el 14 a las 19:00.
+    expect(
+        _claves(_pueblo('maite', () => _hoy))
+            .where((c) => c.startsWith('asamblea')),
+        isEmpty);
+    final cerca = _pueblo('ane', () => DateTime(2026, 11, 12, 12));
+    expect(
+        _claves(cerca), contains('asamblea:noviembre:2026-11-14T19:00:00.000'));
+    cerca.anularSesion('noviembre', 'Funeral');
+    expect(
+        _claves(cerca), contains('anulada:noviembre:2026-11-14T19:00:00.000'));
+    expect(
+        _claves(_pueblo('maite', () => DateTime(2026, 11, 14, 20)))
+            .where((c) => c.contains('noviembre')),
+        isEmpty);
   });
 }

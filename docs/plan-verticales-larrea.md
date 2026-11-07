@@ -195,8 +195,9 @@ Alternativa más barata: **una sesión interactiva por vertical** (como se hizo 
 | Vertical | Estado |
 |---|---|
 | V1 Obrador | ✅ bloques 1-11 (38 tests, APK release de 65 MB). Release de GitHub pendiente de push |
-| V2 Sidra | bloque 1 (esqueleto) |
-| V3 Frutal | bloque 1 (esqueleto) |
+| V2 Sidra | en curso (agente en worktree) |
+| V4 Ganadera | en curso (agente en worktree) |
+| V3 Frutal | ✅ bloques 1-11, hechos por un agente en worktree e integrados (65 tests, APK release de 67,6 MB) |
 
 ### Presupuesto de tokens (2026-11-07)
 

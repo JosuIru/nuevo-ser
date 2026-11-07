@@ -1,0 +1,24 @@
+# Denominaciones de origen de sidra y txakoli y los límites de cada producto que la app
+# COMPARA con lo medido para avisar. La app NO certifica: califica el órgano de control.
+# Valores copiados de los pliegos (2026-11-07):
+#   Euskal Sagardoa (19/07/2024): ap. C.3 (productos), F.2 (densidad del mosto), F.3
+#     (rendimiento 40-75 %: es el rango que describe el pliego, no un límite).
+#   Sidra de Asturias (asturias.es, DOP-Sidra-Normal25): ap. B.3 y rendimiento máximo 75 %
+#     en prensado rápido (80 % en lento: la app avisa con el 80).
+#   Bizkaiko Txakolina (consolidado 28/11/2024): tabla a.1, tipo Blanco; rendimiento
+#     80,50 hl por 11.500 kg/ha = 70 l/100 kg.
+#   Arabako Txakolina (consolidado 19/12/2024): txakolis blancos; 70 l/100 kg (ap. 5).
+#   Getariako Txakolina (29/06/2011, POR VERIFICAR versión posterior): ap. 2.a y 5
+#     (0,72 l/kg = 72 l/100 kg).
+# Vacío = el pliego no fija ese valor para ese producto.
+# «<» y «>» de los pliegos se tratan como máximo y mínimo.
+# fuente_publica = copiado de un documento público, sin contrastar con un registro.
+id,nombre,dop,producto,grado_min,acidez_volatil_max_g_l,so2_total_max_mg_l,extracto_seco_min_g_l,densidad_mosto_min,rendimiento_min_pct,rendimiento_max_pct,rendimiento_es_limite,revisado_por
+euskal_sagardoa,Euskal Sagardoa / Sidra del País Vasco,euskal_sagardoa,sidra,5,2.2,100,14,1045,40,75,no,"fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.3.1, F.2 y F.3"
+euskal_sagardoa_gazi_gozoa,Euskal Sagardoa «Gazi-gozoa»,euskal_sagardoa,sidra,4.5,1.22,150,16,1045,40,75,no,"fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.3.2, F.2 y F.3"
+euskal_sagardo_aparduna,Euskal Sagardo Aparduna / Sidra Espumosa del País Vasco,euskal_sagardoa,sidra,4.5,2.2,150,14,1045,40,75,no,"fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.3.3, F.2 y F.3"
+sidra_asturias_natural,Sidra de Asturias · sidra natural,sidra_asturias,sidra,5,2.2,150,,,,80,si,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.3 y rendimiento de extracción"
+sidra_asturias_espumosa,Sidra de Asturias · sidra natural espumosa,sidra_asturias,sidra,5.5,2.2,200,,,,80,si,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.3 y rendimiento de extracción"
+bizkaiko_txakolina_blanco,Bizkaiko Txakolina · blanco,bizkaiko_txakolina,txakoli,10.5,0.7,180,,,,70,si,"fuente_publica: pliego Bizkaiko Txakolina consolidado (28/11/2024) ap. 2.a.1 y 5.1"
+arabako_txakolina_blanco,Arabako Txakolina · blanco,arabako_txakolina,txakoli,9.5,0.8,180,,,,70,si,"fuente_publica: pliego Arabako Txakolina consolidado (19/12/2024) ap. 2.a y 5"
+getariako_txakolina_blanco,Getariako Txakolina · blanco,getariako_txakolina,txakoli,9.5,0.8,180,,,,72,si,"fuente_publica: pliego Getariako Txakolina (29/06/2011) ap. 2.a y 5"

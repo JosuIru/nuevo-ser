@@ -1,0 +1,28 @@
+# Plagas y enfermedades del manzano de sidra que usan el cuaderno de la pomarada y
+# la IA de diagnóstico. El nombre común y el científico se contrastaron con los
+# agentes del Registro de Productos Fitosanitarios del MAPA (exportación
+# 06/11/2026, usos en manzano y frutales de pepita): revision-ia en revisado_por.
+# La columna «sintomas» es una descripción orientativa escrita por Claude y SIN
+# contrastar: la revisa el técnico de la pomarada (BLOQUEOS-PENDIENTES.md).
+# tipo: hongo | bacteria | insecto | acaro | oomiceto
+# organismo_regulado: si = organismo regulado en la UE; ante una sospecha, aviso al
+# servicio de sanidad vegetal (la app no diagnostica, solo propone).
+id,nombre,nombre_cientifico,tipo,organismo_regulado,sintomas,revisado_por
+moteado,Moteado o roña del manzano,Venturia inaequalis,hongo,no,"Manchas verde oliva a pardas en hojas; manchas negras con costra y grietas en el fruto","revision-ia: Claude, 2026-11-07, nombre contrastado con el Registro de Productos Fitosanitarios MAPA (06/11/2026)"
+carpocapsa,Carpocapsa,Cydia pomonella,insecto,no,"Fruto agusanado: orificio con serrín pardo; galería hasta las pepitas","revision-ia: Claude, 2026-11-07, nombre contrastado con el Registro de Productos Fitosanitarios MAPA (06/11/2026)"
+pulgon_ceniciento,Pulgón ceniciento,Dysaphis plantaginea,insecto,no,"Colonias gris-rosadas; hojas muy enrolladas y deformadas en primavera; frutos pequeños y deformes","revision-ia: Claude, 2026-11-07, nombre contrastado con el Registro de Productos Fitosanitarios MAPA (06/11/2026)"
+pulgon_verde,Pulgón verde del manzano,Aphis pomi,insecto,no,"Colonias verdes en brotes tiernos; hojas algo rizadas y melaza","revision-ia: Claude, 2026-11-07, nombre contrastado con el Registro de Productos Fitosanitarios MAPA (06/11/2026)"
+pulgon_lanigero,Pulgón lanígero,Eriosoma lanigerum,insecto,no,"Masas algodonosas blancas en ramas, heridas y cuello; agallas en la madera","revision-ia: Claude, 2026-11-07, nombre contrastado con el Registro de Productos Fitosanitarios MAPA (06/11/2026)"
+pulgones,Pulgones (en general),Aphididae,insecto,no,"Insectos pequeños en colonias sobre brotes y hojas; melaza y negrilla. En el registro, muchos productos figuran para «pulgones» sin especie","revision-ia: Claude, 2026-11-07, nombre contrastado con el Registro de Productos Fitosanitarios MAPA (06/11/2026)"
+chancro_europeo,Chancro europeo,Neonectria ditissima,hongo,no,"Heridas hundidas en ramas con la corteza agrietada en anillos; puntos rojos (fructificaciones) en invierno","revision-ia: Claude, 2026-11-07, nombre contrastado con el Registro de Productos Fitosanitarios MAPA (06/11/2026)"
+oidio,Oídio del manzano,Podosphaera leucotricha,hongo,no,"Polvo blanco en brotes y hojas, que quedan estrechas y quebradizas","revision-ia: Claude, 2026-11-07, nombre contrastado con el Registro de Productos Fitosanitarios MAPA (06/11/2026)"
+fuego_bacteriano,Fuego bacteriano,Erwinia amylovora,bacteria,si,"Flores y brotes que se ennegrecen como quemados; punta del brote curvada en cayado; exudado","revision-ia: Claude, 2026-11-07, nombre contrastado con el Registro de Productos Fitosanitarios MAPA (06/11/2026)"
+acaro_rojo,Ácaro rojo de los frutales,Panonychus ulmi,acaro,no,"Hojas bronceadas o plateadas; huevos rojos en la madera en invierno","revision-ia: Claude, 2026-11-07, nombre contrastado con el Registro de Productos Fitosanitarios MAPA (06/11/2026)"
+hoplocampa,Hoplocampa,Hoplocampa spp.,insecto,no,"Frutitos caídos en primavera con galería y olor a chinche; cicatriz en cinta en el fruto","revision-ia: Claude, 2026-11-07, nombre contrastado con el Registro de Productos Fitosanitarios MAPA (06/11/2026)"
+antonomo,Gorgojo de la flor del manzano,Anthonomus pomorum,insecto,no,"Botones florales que no abren y se secan como un clavo pardo","revision-ia: Claude, 2026-11-07, nombre contrastado con el Registro de Productos Fitosanitarios MAPA (06/11/2026)"
+monilia,Monilia,Monilinia spp.,hongo,no,"Podredumbre parda del fruto con anillos de pústulas; frutos momificados en el árbol","revision-ia: Claude, 2026-11-07, nombre contrastado con el Registro de Productos Fitosanitarios MAPA (06/11/2026)"
+gloeosporiosis,Gloeosporiosis o antracnosis de las manzanas,Neofabraea spp.,hongo,no,"Manchas pardas redondas y hundidas en el fruto, sobre todo en almacén","revision-ia: Claude, 2026-11-07, nombre contrastado con el Registro de Productos Fitosanitarios MAPA (06/11/2026)"
+capua,Capua,Adoxophyes orana,insecto,no,"Oruga verde que une hojas con seda y roe la piel del fruto en placas","revision-ia: Claude, 2026-11-07, nombre contrastado con el Registro de Productos Fitosanitarios MAPA (06/11/2026)"
+minadores,Minadores de hoja,Leucoptera malifoliella / Phyllonorycter spp. / Lyonetia clerkella,insecto,no,"Galerías o manchas (minas) dentro de la hoja","revision-ia: Claude, 2026-11-07, nombre contrastado con el Registro de Productos Fitosanitarios MAPA (06/11/2026)"
+piojo_san_jose,Piojo de San José,Quadraspidiotus perniciosus,insecto,no,"Escudos grises diminutos en la corteza; manchas rojas alrededor en el fruto","revision-ia: Claude, 2026-11-07, nombre contrastado con el Registro de Productos Fitosanitarios MAPA (06/11/2026)"
+phytophthora,Podredumbre de cuello,Phytophthora spp.,oomiceto,no,"Corteza del cuello oscura y blanda; árbol que amarillea y decae","revision-ia: Claude, 2026-11-07, nombre contrastado con el Registro de Productos Fitosanitarios MAPA (06/11/2026)"

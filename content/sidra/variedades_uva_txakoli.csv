@@ -1,0 +1,18 @@
+# Variedades de vid de las DO de txakoli, copiadas del apartado 6 de sus pliegos.
+#   bizkaiko:  pliego consolidado 28/11/2024 (grafía «Hondarrabi» de la modificación de 2025)
+#   arabako:   pliego consolidado 19/12/2024
+#   getariako: pliego de 29/06/2011 (grafía «Ondarrabi»; POR VERIFICAR si hay versión posterior)
+# recomendada = «recomendadas o principales»; autorizada = «autorizadas».
+# fuente_publica = copiado de un documento público, sin contrastar con un registro.
+id,nombre,color,bizkaiko,arabako,getariako,revisado_por
+hondarrabi_zuri,Hondarrabi Zuri,blanca,recomendada,recomendada,recomendada,"fuente_publica: pliegos Bizkaiko (2024), Arabako (2024) y Getariako (2011) Txakolina, ap. 6"
+hondarrabi_beltza,Hondarrabi Beltza,tinta,recomendada,recomendada,recomendada,"fuente_publica: pliegos Bizkaiko (2024), Arabako (2024) y Getariako (2011) Txakolina, ap. 6"
+hondarrabi_zuri_zerratia,Hondarrabi Zuri Zerratia / Petit Courbu,blanca,recomendada,recomendada,autorizada,"fuente_publica: pliegos Bizkaiko (2024), Arabako (2024) y Getariako (2011) Txakolina, ap. 6"
+izkiriota,Izkiriota / Gros Manseng,blanca,autorizada,autorizada,autorizada,"fuente_publica: pliegos Bizkaiko (2024), Arabako (2024) y Getariako (2011) Txakolina, ap. 6"
+izkiriota_ttipia,Izkiriota Ttipia / Petit Manseng,blanca,autorizada,autorizada,,"fuente_publica: pliegos Bizkaiko (2024) y Arabako (2024) Txakolina, ap. 6"
+mune_mahatsa,Mune Mahatsa / Folle Blanche,blanca,autorizada,,,"fuente_publica: pliego Bizkaiko Txakolina (2024), ap. 6.1"
+sauvignon_blanc,Sauvignon blanc,blanca,autorizada,autorizada,,"fuente_publica: pliegos Bizkaiko (2024) y Arabako (2024) Txakolina, ap. 6"
+riesling,Riesling,blanca,autorizada,autorizada,autorizada,"fuente_publica: pliegos Bizkaiko (2024), Arabako (2024) y Getariako (2011) Txakolina, ap. 6"
+chardonnay,Chardonnay,blanca,autorizada,autorizada,autorizada,"fuente_publica: pliegos Bizkaiko (2024), Arabako (2024) y Getariako (2011) Txakolina, ap. 6"
+pinot_noir,Pinot noir,tinta,autorizada,autorizada,,"fuente_publica: pliegos Bizkaiko (2024) y Arabako (2024) Txakolina, ap. 6"
+cabernet_franc,Cabernet franc,tinta,autorizada,autorizada,,"fuente_publica: pliegos Bizkaiko (2024) y Arabako (2024) Txakolina, ap. 6"

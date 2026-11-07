@@ -1,0 +1,280 @@
+# Variedades de manzana de sidra de los pliegos de condiciones, copiadas de su texto.
+#   euskal_sagardoa: pliego de la DOP Euskal Sagardoa de 19/07/2024, ap. C.2 (las 54
+#     «más abundantes» = principal, y las 139 «restantes» = resto; «Txori Sagarra»
+#     aparece en las dos listas y va una sola vez). El pliego no clasifica cada
+#     variedad como ácida, amarga, etc. El listado de variedades autorizadas que
+#     lleva el órgano de control (ap. F.1) puede incluir más: BLOQUEOS.
+#     https://www.euskadi.eus/contenidos/informacion/calidad_diferenciada_dopigp/es_def/adjuntos/Pliego-de-condiciones-Euskal-Sagardoa_20240719.pdf
+#   sidra_asturias: pliego de la DOP Sidra de Asturias, ap. B.2 «variedades
+#     autorizadas», con su clasificación tecnológica como grupo.
+#     https://www.asturias.es/documents/4911212/4919930/DOP-Sidra-Normal25.pdf/dc24402b-e4a8-ff38-fc8c-24838b3296dd
+# fuente_publica = copiado de un documento público, sin contrastar con un registro.
+id,nombre,dop,grupo,revisado_por
+andere_mari,Andere Mari,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+anisa,Anisa / Apez sagarra,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+arangorri,Arangorri,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+azpeiti_sagarra,Azpeiti Sagarra,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+bengo_gorria,Bengo Gorria,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+bostkantoi,Bostkantoi,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+eliarka,Eliarka,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+elihar,Elihar,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+elihar_kantioi,Elihar kantioi,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+eri_sagarra,Eri sagarra,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+errege,Errege,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+errezila,Errezila,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+ezpal_xuri,Ezpal Xuri,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+eztihotxa_eztihotxuri,"Eztihotxa, Eztihotxuri",euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+eztikahozta,Eztikahozta,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+eztika,Eztika,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+galtxeta_gorri_landaburu,"Galtxeta gorri, Landaburu",euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+gezamina,Gezamina,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+goikoetxe,Goikoetxe,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+gordin_gorri,Gordin gorri,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+gordin_xuria,Gordin Xuria,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+haritza,Haritza,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+hiruadar,Hiruadar,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+ibarra,Ibarra,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+jinko_sagarra,Jinko sagarra,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+jondoni,Jondoni,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+labia,Labia,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+limoi,Limoi,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+mamula,Mamula,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+manttoni,Manttoni,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+merabi,Merabi,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+mikatza,Mikatza,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+minxuri,Minxuri,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+moko,Moko,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+moko_samin,Moko Samin / Mokobeltz,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+mokote,Mokote,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+mozoloa,Mozoloa,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+ondo_motxa,Ondo Motxa,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+orkats,Orkats / Pasko Sagarra,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+patzuloa,Patzuloa,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+muga_gorri,Muga Gorri,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+muga_xuri,Muga xuri,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+musu_xuri,Musu xuri,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+peatxa,Peatxa,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+saltxipi,Saltxipi,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+txalaka,Txalaka,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+txori_sagarra,Txori Sagarra,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+udare_marroi,Udare Marroi,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+urdin,Urdin,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+urthats,Urthats,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+urtebete,Urtebete,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+urtebi_haundi,Urtebi Haundi,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+urtebi_txiki,Urtebi Txiki,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+verde_agria,Verde Agria,euskal_sagardoa,principal,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+aia_sagarra,Aia Sagarra,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+aier_xut,Aier Xut,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+altza,Altza,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+alza_sagarra,Alza sagarra,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+ama_birjina,Ama Birjina,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+amatxo,Amatxo,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+ami_sagarra,Ami Sagarra,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+anarregi,Añarregi,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+andoain,Andoain,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+anarre,Añarre,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+anixa_gorri,Anixa gorri,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+anixa_grisa,Anixa grisa,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+antxobeltza,Antxobeltza,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+antze_sagarra,Antze sagarra,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+aranguren,Aranguren,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+arantzate,Arantzate,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+areso,Areso,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+arimasagasti,Arimasagasti,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+arraneta_xuri,Arraneta Xuri,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+astarbe,Astarbe,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+azaou_sagarra,Azaou sagarra,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+azpuru_garratza,Azpuru Garratza,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+azpuru_sagarra,Azpuru Sagarra,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+berandu_erreineta,Berandu Erreineta,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+berrondo,Berrondo,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+bettiri,Bettiri,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+billafrankie,Billafrankie,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+bizi,Bizi,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+bixi_bixi,Bixi bixi,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+bizkai_sagarra,Bizkai Sagarra,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+bordelesa,Bordelesa,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+bourdin_sagarra,Bourdin sagarra,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+burdin,Burdin,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+burdin_muga_xuri,"Burdin, Muga Xuri",euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+burgo,Burgo,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+buztin,Buztin,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+dominixe,Dominixe,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+enpan,Enpan,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+entzea,Entzea,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+estirochia,Estirochia,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+gaza_gorri,Gaza Gorri,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+gaziloka,Gaziloka,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+gazia,Gazia,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+gazi_zuri,Gazi Zuri,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+gehesia_gorria,Gehesia gorria,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+gezamina_beltza,Gezamina beltza,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+geza,Geza,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+geza_gorri,Geza gorri,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+geza_zuri,Geza Zuri,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+goozti,Goozti,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+gordain_xuria,Gordain xuria,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+gordilun,Gordilun,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+gordin_bixi,Gordin Bixi,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+gordin_etxeri,Gordin Etxeri,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+gordin_gorritxa_nabar,"Gordin Gorritxa, Nabar",euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+gorri,Gorri,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+gorri_txikia,Gorri Txikia,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+gorribeltz,Gorribeltz,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+gorrilodia,Gorrilodia,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+gorriuhalde_miskandi,"Gorriuhalde, Miskandi",euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+grenas,Greñas,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+hazau,Hazau,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+horri_zarratue,Horri Zarratue,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+ilaindei,Ilaindei,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+illunbe,Illunbe,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+iratzesagarra,Iratzesagarra,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+itxausti,Itxausti,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+izur_xuri,Izur xuri,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+kabanagorri,Kabanagorri,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+kabanahori,Kabanahori,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+kalitxa,Kalitxa,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+kanpandoja,Kanpandoja,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+kaxao,Kaxao,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+koko_gorria,Koko gorria,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+koko_xuria,Koko xuria,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+kokua,Kokua,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+landibare,Landibare,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+laketx_haundi,Laketx Haundi,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+legor,Legor,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+manzana_de_quesillo,Manzana de Quesillo,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+martiku,Martiku,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+maximela,Maximela,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+mendiola,Mendiola,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+merkalina,Merkalina,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+mila_sagarra,Mila Sagarra,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+mixalot,Mixalot,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+mocetas,Mocetas,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+moliua,Moliua,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+moskoluzea,Moskoluzea,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+musugorri,Musugorri,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+muxu_zabala,Muxu zabala,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+negu_sagar,Negu (sagar),euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+negugogorra,Negugogorra,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+negukoa,Negukoa,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+negukoxuri,Negukoxuri,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+neguxuria,Neguxuria,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+odixa,Odixa,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+okonize,Okonize,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+orkatx_lodi,Orkatx Lodi,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+orkola,Orkola,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+oru_sagarra,Oru Sagarra,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+ostro_beltza,Ostro Beltza,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+otsanga,Otsanga,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+palancaya,Palancaya,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+palazio,Palazio,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+patzulo_gorria,Patzulo Gorria,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+patzulua,Patzulua,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+paxko,Paxko,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+perran,Perran,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+pelestrina,Pelestrina,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+piku_sagarra,Piku Sagarra,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+potrokilo,Potrokilo,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+sagar_beltza,Sagar Beltza,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+sagar_gorria,Sagar Gorria,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+sagar_txuria,Sagar Txuria,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+saluetia,Saluetia,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+san_francisco,San Francisco,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+santa_ana,Santa Ana,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+sulei,Sulei,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+telleri,Telleri,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+txarbia,Txarbia,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+txistu,Txistu,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+txori_haundia,Txori Haundia,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+txotixe,Txotixe,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+txurten_luze,Txurten Luze,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+udakohoilia,Udakohoilia,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+udare,Udare,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+udare_txuria,Udare Txuria,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+ugarte,Ugarte,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+urdan_iturri,Urdan Iturri,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+urdin_beltz,Urdin Beltz,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+urieta_sagarra,Urieta sagarra,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+urkola,Urkola,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+uzta_gorri,Uzta gorri,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+usta_xuria,Usta xuria,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+zubieta,Zubieta,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+zuri_txikixe,Zuri Txikixe,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+zuzen,Zuzen,euskal_sagardoa,resto,fuente_publica: pliego DOP Euskal Sagardoa (19/07/2024) ap. C.2
+ast_blanquina,Blanquina,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_limon_montes,Limón Montés,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_teorica,Teórica,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_san_roquena,San Roqueña,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_raxao,Raxao,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_fuentes,Fuentes,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_xuanina,Xuanina,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_regona,Regona,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_prieta,Prieta,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_collaos,Collaos,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_josefa,Josefa,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_carrandona,Carrandona,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_raxila_acida,Raxila Ácida,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_collaina,Collaina,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_raxina_marelo,Raxina Marelo,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_perurico_precoz,Perurico Precoz,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_perurico,Perurico,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_raxona_acida,Raxona Ácida,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_raxina_acida,Raxina Ácida,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_arbeya,Arbeya,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_reineta_caravia,Reineta Caravia,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_duron_encarnado,Durón Encarnado,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_fresnosa,Fresnosa,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_penarudes,Peñarudes,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_perracabiella,Perracabiella,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_reineta_encarnada,Reineta Encarnada,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_repinaldo_de_hueso,Repinaldo de Hueso,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_san_justo,San Justo,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_sucu,Sucu,sidra_asturias,acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_beldredo,Beldredo,sidra_asturias,acida_amarga,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_picon,Picón,sidra_asturias,acida_amarga,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_madiedo,Madiedo,sidra_asturias,acida_amarga,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_martina,Martina,sidra_asturias,acida_amarga,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_montoto,Montoto,sidra_asturias,acida_amarga,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_clara,Clara,sidra_asturias,amarga,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_amariega,Amariega,sidra_asturias,amarga,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_cladurina,Cladurina,sidra_asturias,amarga,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_meana,Meana,sidra_asturias,amarga_acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_lin,Lin,sidra_asturias,amarga_acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_cladurina_amargoacida,Cladurina Amargoácida,sidra_asturias,amarga_acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_rosadona,Rosadona,sidra_asturias,amarga_acida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_durcolora,Durcolorá,sidra_asturias,amarga_semiacida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_colora_amarga,Colorá Amarga,sidra_asturias,amarga_semiacida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_solarina,Solarina,sidra_asturias,semiacida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_de_la_riega,De la Riega,sidra_asturias,semiacida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_carrio,Carrió,sidra_asturias,semiacida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_perico,Perico,sidra_asturias,semiacida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_perezosa,Perezosa,sidra_asturias,semiacida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_durona_de_tresali,Durona de Tresali,sidra_asturias,semiacida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_panquerina,Panquerina,sidra_asturias,semiacida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_raxila_rayada,Raxila Rayada,sidra_asturias,semiacida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_antonona,Antonona,sidra_asturias,semiacida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_chata_encarnada,Chata Encarnada,sidra_asturias,semiacida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_duron_darroes,Durón d’Arroes,sidra_asturias,semiacida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_maria_elena,Maria Elena,sidra_asturias,semiacida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_marinana,Mariñana,sidra_asturias,semiacida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_miyeres,Miyeres,sidra_asturias,semiacida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_repinaldo_caravia,Repinaldo Caravia,sidra_asturias,semiacida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_reineta_pinta,Reineta Pinta,sidra_asturias,semiacida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_celso,Celso,sidra_asturias,semiacida,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_montes_de_llamera,Montes de Llamera,sidra_asturias,semiacida_amarga,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_corchu,Corchu,sidra_asturias,semiacida_amarga,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_ernestina,Ernestina,sidra_asturias,dulce,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_verdialona,Verdialona,sidra_asturias,dulce,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_raxila_dulce,Raxila Dulce,sidra_asturias,dulce,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_raxina_dulce,Raxina Dulce,sidra_asturias,dulce,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_raxona_dulce,Raxona Dulce,sidra_asturias,dulce,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_chata_blanca,Chata Blanca,sidra_asturias,dulce,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_cristalina,Cristalina,sidra_asturias,dulce,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_dura,Dura,sidra_asturias,dulce,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_montes_de_flor,Montés de Flor,sidra_asturias,dulce,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_paraguas,Paraguas,sidra_asturias,dulce,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_verdosa,Verdosa,sidra_asturias,dulce,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_coloradona,Coloradona,sidra_asturias,dulce_amarga,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_raxina_amarga,Raxina Amarga,sidra_asturias,dulce_amarga,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"
+ast_raxarega,Raxarega,sidra_asturias,dulce_amarga,"fuente_publica: pliego DOP Sidra de Asturias (asturias.es, DOP-Sidra-Normal25) ap. B.2"

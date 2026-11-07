@@ -1,0 +1,30 @@
+# Familias botánicas para la rotación de bancales — datos PROVISIONALES y ORIENTATIVOS.
+# anios_minimos = años que deben pasar entre dos cultivos de la familia en el mismo bancal: con 4,
+#   lo plantado en abril de 2026 no vuelve antes de abril de 2030 (así lo aplica dominio/rotacion.dart).
+# Fuentes públicas leídas el 2026-11-07:
+#   [MHU] Ayuntamiento de Madrid, Departamento de Educación Ambiental, «Curso Huerto urbano
+#     ecológico», 4.ª ed., 2023, p. III-15 («plan de rotaciones de cultivos a cuatro años vista»: ejemplo de
+#     cuatro parcelas y cuatro ciclos en el que cada grupo vuelve a su parcela al quinto ciclo):
+#     https://bibliotecas.madrid.es/UnidadesDescentralizadas/Educacion_Ambiental/ContenidosBasicos/Publicaciones/HuertoJardineria/Manual_Huerto_Urbano_2023.pdf
+#   [GAR] Ayuntamiento de Madrid, «Guía de métodos de asociación y rotación de cultivos», p. 3 del PDF
+#     (grupos por familia; plurianuales en parcela aparte, a rotar «al cabo de 4 o 5 años»):
+#     https://www.madrid.es/UnidadesDescentralizadas/Educacion_Ambiental/ContenidosBasicos/Publicaciones/HuertoJardineria/Guia_Asociaciones_y_Rotaciones_cultivos.pdf
+#   Guías GIP del MAPA (copias de la Wayback Machine, URL en plagas_huerta.csv): años de rotación que
+#     dan para enfermedades o plagas concretas de la familia (página impresa).
+# Criterio: el plan de 4 años de [MHU] es un EJEMPLO general, no una regla por familia; donde una guía
+#   GIP da una cifra para la familia se cita, y se toma el valor MÁS ALTO de los dos. Las familias que
+#   ninguna fuente leída recoge llevan un valor conservador propio (4) y revisado_por vacío.
+# fuente_publica = revisión documental, NO firma: solo asesor:/persona: retiran el banner.
+familia_id,nombre,anios_minimos,ejemplos,revisado_por,notas
+solanaceas,Solanáceas,4,tomate|pimiento|berenjena|patata,"fuente_publica: Ayto. Madrid, Curso Huerto urbano ecológico 2023, p. III-15 (plan a cuatro años)","Las guías GIP de solanáceas (2021) y de patata (2015) piden rotar pero no dan años para la familia (patata: «rotación amplia», CE p. 33)"
+cucurbitaceas,Cucurbitáceas,4,calabacín|pepino|calabaza|melón|sandía,"fuente_publica: Ayto. Madrid, Curso Huerto urbano ecológico 2023, p. III-15 (plan a cuatro años); Guía GIP cucurbitáceas MAPA 2023, F p. 142 (chancro gomoso: rotaciones de mínimo 2 años)","La guía GIP da 2 años como mínimo para el chancro gomoso; se toma el plan de 4"
+asteraceas,Asteráceas (compuestas),4,lechuga|escarola|alcachofa,"fuente_publica: Ayto. Madrid, Curso Huerto urbano ecológico 2023, p. III-15 (plan a cuatro años)","La alcachofa es plurianual: va en parcela aparte ([GAR] p. 3). La guía GIP de hortícolas de hoja no da años para la lechuga"
+amarantaceas,Amarantáceas (quenopodiáceas),4,acelga|espinaca|remolacha,"fuente_publica: Guía GIP hortícolas de hoja MAPA 2017, F p. 108 (mildiu: rotación de mínimo 3 años) y F p. 116 (cercospora: más de 3 años sin acelga, remolacha ni espinaca); Ayto. Madrid, Curso Huerto urbano ecológico 2023, p. III-15","«Más de 3 años» se redondea a 4"
+apiaceas,Apiáceas (umbelíferas),4,zanahoria|chirivía|apio|perejil,"fuente_publica: Ayto. Madrid, Curso Huerto urbano ecológico 2023, p. III-15 (plan a cuatro años: zanahoria)",No se ha leído ninguna guía GIP de umbelíferas
+amarilidaceas,Amarilidáceas (liliáceas),4,cebolla|ajo|puerro|cebolleta,"fuente_publica: Guía GIP liliáceas MAPA 2017, F p. 46 (mosca de la cebolla: al menos dos años sin liliáceas) y F p. 98 (roya: al menos 3 años); Ayto. Madrid, Curso Huerto urbano ecológico 2023, p. III-15","La guía GIP da 2-3 años según el problema; se toma el plan de 4. Con podredumbre blanca, la guía avisa de que ni rotaciones de 4 a 10 años bastan (los esclerocios duran hasta 18 años en el suelo, F p. 89-90)"
+fabaceas,Fabáceas (leguminosas),4,judía verde|haba|guisante|tirabeque,"fuente_publica: Guía GIP leguminosas MAPA 2021, F p. 118 (antracnosis: no volver a la judía en al menos 4 años) y F p. 165 (rabia del haba y el guisante: 3 años con cultivos no susceptibles); Ayto. Madrid, Curso Huerto urbano ecológico 2023, p. III-15",
+brasicaceas,Brasicáceas (crucíferas),4,col|coliflor|brócoli|repollo|kale|rábano|nabo|rúcula,"fuente_publica: Guía GIP brásicas MAPA 2016, F p. 161 (nerviación negra: con daños previos, al menos 3 campañas sin crucíferas); Ayto. Madrid, Curso Huerto urbano ecológico 2023, p. III-15 (plan a cuatro años: coles, nabo, rabanito)","La guía GIP da 3 campañas; se toma el plan de 4. Con hernia de la col la guía pide quitar restos de crucíferas y corregir la acidez, sin cifra de años (F p. 152)"
+poaceas,Poáceas (gramíneas),4,maíz dulce,"fuente_publica: Ayto. Madrid, Curso Huerto urbano ecológico 2023, p. III-15 (plan a cuatro años: maíz)",
+rosaceas,Rosáceas,4,fresa,"fuente_publica: Ayto. Madrid, Guía de métodos de asociación y rotación de cultivos, p. 3 del PDF (plurianuales como la fresa: rotar al cabo de 4 o 5 años)","Plurianual: mejor en parcela aparte, fuera de la rotación anual. La guía GIP de fresa no da años"
+valerianaceas,Valerianáceas,4,canónigo,,"Sin fuente leída: valor conservador propio. (En la clasificación actual el canónigo está en Caprifoliáceas)"
+boraginaceas,Boragináceas,4,borraja,,Sin fuente leída: valor conservador propio

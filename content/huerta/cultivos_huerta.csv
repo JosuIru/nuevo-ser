@@ -1,0 +1,58 @@
+# Hortalizas habituales de cesta en España — datos PROVISIONALES y ORIENTATIVOS.
+# Fuente pública leída el 2026-11-07 (solo para ciclo_dias y marco):
+#   Ayuntamiento de Zaragoza, Red de Huertos Escolares Agroecológicos (RHEAZ), «Los cultivos del
+#   huerto escolar. Consejos y calendario para la siembra, plantación y cosecha de frutas y
+#   hortalizas» (PDF de 8 páginas, 2026): https://www.zaragoza.es/cont/paginas/catalogopublicaciones/doc/12470.pdf
+#   Se cita la página del PDF (sin numeración impresa).
+# ciclo_dias = días hasta la PRIMERA cosecha: se toma el valor bajo del rango de la ficha; si la
+#   ficha cuenta desde el trasplante (no desde la siembra) se dice en notas.
+# marco = «entre plantas x entre líneas», como lo explica la guía (p. 7 del PDF).
+# semanas_cosecha NO sale de ninguna fuente leída (salvo tomate): es una estimación propia para
+#   que la previsión de cosecha funcione; está por revisar en TODAS las filas.
+# Las filas sin ficha en la guía (chirivía, perejil, rúcula, nabo, canónigo, kale, col de Bruselas,
+#   guisante de grano…) van sin revisar: revisado_por vacío y todos sus datos son estimación propia.
+# Clima de referencia de la guía: Zaragoza (valle del Ebro). En otras zonas los ciclos cambian.
+# fuente_publica = revisión documental, NO firma: solo asesor:/persona: retiran el banner.
+id,nombre,nombre_cientifico,familia_id,ciclo_dias,semanas_cosecha,marco,por_unidades,revisado_por,notas
+tomate,Tomate,Solanum lycopersicum,solanaceas,60,10,30 x 80 cm,no,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 6 del PDF","Ciclo desde el trasplante (60-70 días; algo menos el cherry). La guía dice que se recogen frutos 1-3 meses: semanas_cosecha de ahí"
+pimiento,Pimiento,Capsicum annuum,solanaceas,50,10,60 x 80 cm,no,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 5 del PDF","50-60 días tipo padrón; 80-120 los cosechados en rojo (desde el trasplante, se entiende). semanas_cosecha sin fuente"
+berenjena,Berenjena,Solanum melongena,solanaceas,60,8,60 x 80 cm,no,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 2 del PDF","Unos 2 meses desde el trasplante. semanas_cosecha sin fuente"
+patata,Patata,Solanum tuberosum,solanaceas,70,3,30 x 50 cm,no,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 5 del PDF","70-120 días desde la plantación según sean tempranas o tardías. semanas_cosecha sin fuente"
+calabacin,Calabacín,Cucurbita pepo,cucurbitaceas,30,10,100 x 100 cm,si,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF","A partir de un mes desde el trasplante. semanas_cosecha sin fuente"
+pepino,Pepino,Cucumis sativus,cucurbitaceas,50,8,80 x 80 cm,si,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 5 del PDF","Unos 50 días desde la siembra. Marco en rastrera; entutorado 40 x 80 cm. semanas_cosecha sin fuente"
+calabaza,Calabaza,Cucurbita maxima|Cucurbita moschata,cucurbitaceas,60,4,120 x 120 cm,si,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF","2-4 meses desde el trasplante según variedad. semanas_cosecha sin fuente"
+melon,Melón,Cucumis melo,cucurbitaceas,90,4,100 x 100 cm,si,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 5 del PDF","90-120 días desde la siembra según variedad. semanas_cosecha sin fuente"
+sandia,Sandía,Citrullus lanatus,cucurbitaceas,100,4,100 x 100 cm,si,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 6 del PDF","100-140 días desde la siembra. semanas_cosecha sin fuente"
+lechuga,Lechuga,Lactuca sativa,asteraceas,40,2,25 x 40 cm,si,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 5 del PDF","Desde 40 hasta 60-70 días desde el trasplante, según la época. semanas_cosecha sin fuente"
+escarola,Escarola,Cichorium endivia,asteraceas,70,3,25 x 40 cm,si,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 4 del PDF","A partir de 70-80 días desde el trasplante; aguanta el invierno en tierra. semanas_cosecha sin fuente"
+alcachofa,Alcachofa,Cynara cardunculus var. scolymus,asteraceas,,8,100 x 100 cm,si,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 2 del PDF (solo marco)","Plurianual: se planta en verano y se cosecha en primavera; la guía no da días (ciclo vacío). Mejor fuera de la rotación anual. semanas_cosecha sin fuente"
+acelga,Acelga,Beta vulgaris var. cicla,amarantaceas,60,8,30 x 40 cm,si,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 2 del PDF","60-90 días desde el trasplante; se cosecha por hojas o la planta entera. semanas_cosecha sin fuente"
+espinaca,Espinaca,Spinacia oleracea,amarantaceas,50,3,20 x 40 cm,no,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 4 del PDF","50-80 días desde la siembra (planta entera o por hojas). semanas_cosecha sin fuente"
+remolacha,Remolacha,Beta vulgaris,amarantaceas,60,6,30 x 40 cm,si,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 6 del PDF","Desde 60 días del trasplante; con más de 120 días en tierra pierde calidad. semanas_cosecha sin fuente"
+zanahoria,Zanahoria,Daucus carota,apiaceas,70,6,15 x 20 cm,si,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 6 del PDF","70-120 días según variedad y ciclo; se reparte en manojos. semanas_cosecha sin fuente"
+apio,Apio,Apium graveolens,apiaceas,60,6,30 x 40 cm,si,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 2 del PDF","A partir de 2-3 meses desde el trasplante. semanas_cosecha sin fuente"
+chirivia,Chirivía,Pastinaca sativa,apiaceas,120,6,10 x 30 cm,no,,Sin fuente leída: estimación propia
+perejil,Perejil,Petroselinum crispum,apiaceas,70,12,15 x 25 cm,si,,"Sin fuente leída: estimación propia; se reparte en manojos"
+cebolla,Cebolla,Allium cepa,amarilidaceas,75,4,15 x 20 cm,no,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF","2,5-5 meses según variedad y ciclo; antes, como cebolleta. semanas_cosecha sin fuente"
+cebolleta,Cebolleta,Allium cepa,amarilidaceas,,3,15 x 20 cm,si,,"Sin fuente propia de días: la guía de Zaragoza solo dice que la cebolla se puede coger antes como cebolleta (p. 3 del PDF). Se reparte en manojos"
+ajo,Ajo,Allium sativum,amarilidaceas,,3,10 x 20 cm,no,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 2 del PDF (solo marco)","La guía no da días a cabeza seca (en junio, con las hojas secas): ciclo vacío. Ajetes a los 2-3 meses. semanas_cosecha sin fuente"
+puerro,Puerro,Allium porrum,amarilidaceas,90,8,15 x 20 cm,si,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 6 del PDF","Desde 90 días (variedades de primavera) hasta 180 (de invierno). semanas_cosecha sin fuente"
+judia_verde,Judía verde,Phaseolus vulgaris,fabaceas,40,6,20 x 50 cm,no,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 4 del PDF","40-60 días desde la siembra. Marco de mata baja; de enrame 50 x 100 cm. semanas_cosecha sin fuente"
+haba,Haba,Vicia faba,fabaceas,,4,20 x 50 cm,no,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 4 del PDF (solo marco)","Siembra de otoño y cosecha en primavera; la guía no da días: ciclo vacío. semanas_cosecha sin fuente"
+tirabeque,Tirabeque (bisalto),Pisum sativum var. saccharatum,fabaceas,,4,20 x 80 cm,no,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 2 del PDF (solo marco)","Siembra de otoño y cosecha en primavera; la guía no da días: ciclo vacío. semanas_cosecha sin fuente"
+guisante,Guisante,Pisum sativum,fabaceas,90,4,5 x 60 cm,no,,Sin fuente leída: estimación propia
+coliflor,Coliflor,Brassica oleracea var. botrytis,brasicaceas,90,2,60 x 80 cm,si,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF","Unos 90 días (mejor variedades tempranas). semanas_cosecha sin fuente"
+brocoli,Brócoli,Brassica oleracea var. italica,brasicaceas,90,4,60 x 80 cm,si,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF","Unos 90 días; antes de que abran las flores. semanas_cosecha sin fuente (incluye los brotes laterales)"
+romanesco,Romanesco,Brassica oleracea var. botrytis,brasicaceas,90,2,60 x 80 cm,si,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF","Unos 90 días. semanas_cosecha sin fuente"
+repollo,Repollo,Brassica oleracea var. capitata,brasicaceas,60,3,50 x 80 cm,si,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF","60-120 días según variedad. semanas_cosecha sin fuente"
+col_lombarda,Col lombarda,Brassica oleracea var. capitata f. rubra,brasicaceas,60,3,50 x 80 cm,si,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF","60-120 días según variedad. semanas_cosecha sin fuente"
+col_rizada,Col rizada (de Milán),Brassica oleracea var. sabauda,brasicaceas,60,3,50 x 80 cm,si,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF","60-120 días según variedad. semanas_cosecha sin fuente"
+kale,Kale,Brassica oleracea var. sabellica,brasicaceas,60,12,40 x 60 cm,si,,"Sin fuente leída: estimación propia; se cosecha por hojas"
+col_bruselas,Col de Bruselas,Brassica oleracea var. gemmifera,brasicaceas,120,8,50 x 80 cm,no,,Sin fuente leída: estimación propia
+rabano,Rábano,Raphanus sativus,brasicaceas,45,2,15 x 20 cm,si,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 6 del PDF","A partir de 45-50 días desde la siembra; escalonar siembras. Marco tal como lo da la guía. semanas_cosecha sin fuente"
+nabo,Nabo,Brassica rapa subsp. rapa,brasicaceas,60,4,10 x 30 cm,si,,Sin fuente leída: estimación propia
+rucula,Rúcula,Eruca vesicaria subsp. sativa,brasicaceas,30,3,5 x 20 cm,si,,"Sin fuente leída: estimación propia; se reparte en manojos o bolsas"
+maiz_dulce,Maíz dulce,Zea mays var. saccharata,poaceas,70,2,20 x 40 cm,si,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 5 del PDF","Para consumo tierno, unos 70-90 días (cuando las barbas cambian de color). semanas_cosecha sin fuente"
+fresa,Fresa,Fragaria × ananassa,rosaceas,,8,30 x 40 cm,no,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 4 del PDF (solo marco)","Cosecha en primavera; la guía no da días: ciclo vacío. Plurianual, mejor fuera de la rotación anual. semanas_cosecha sin fuente"
+canonigo,Canónigo,Valerianella locusta,valerianaceas,60,4,10 x 15 cm,no,,Sin fuente leída: estimación propia
+borraja,Borraja,Borago officinalis,boraginaceas,45,4,30 x 40 cm,si,"fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF","Entre 1,5 meses (primavera) y 3 (invierno) desde el trasplante. semanas_cosecha sin fuente"

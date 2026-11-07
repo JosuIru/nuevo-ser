@@ -9,7 +9,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | Bloque | Estado | Notas |
 |---|---|---|
 | 1 Esqueleto | ✅ 2026-11-07 | Generado con `scripts/nueva_vertical.sh vivero "Larrea Vivero" 3F6B4A F5EFE2 vive Vivero`. Encuadre y normativa verificada abajo. 3 tests |
-| 2 Modelos + BD | pendiente | |
+| 2 Modelos + BD | ✅ 2026-11-07 | 11 modelos (vivero, zona de cultivo, lote de material, bandeja con QR, siembra, partida de planta, repicado, salida, pasaporte emitido, tratamiento, inspección de plagas), 11 tablas en la v1 (`sentenciasEsquemaViveroV1`). Dominio puro: `stock.dart` (disponibles y resumen por especie/variedad/formato), `trazabilidad.dart` (de la partida al lote, con repicados), `pasaporte.dart` (necesidad de pasaporte por salida y datos A-D con lo que falta). 34 tests |
 | 3 Pantallas | pendiente | |
 | 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
 | 6 Catálogos | pendiente | |
@@ -19,7 +19,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 2.
+**Siguiente acción**: bloque 3 (pantallas).
 
 ## Encuadre
 
@@ -61,6 +61,32 @@ con bandejas identificadas por QR. Ficha completa: `docs/plan-verticales/vivero.
 
 - **2026-11-07 — Fuente del formato del pasaporte**: el Reglamento de Ejecución
   (UE) 2017/2313 (13/12/2017). Es el que pide la ficha («diciembre de 2017»).
+
+- **2026-11-07 — `Vivero` hace de `Titular`** (tabla `viveros`, una fila): una
+  instalación = un vivero, con el ROPVEG, la autorización de pasaporte y la
+  persona de contacto fitosanitaria (RD 1054/2021, art. 22.1.d).
+- **2026-11-07 — Se añadió `ZonaCultivo`** (nave, invernadero, umbráculo o
+  parcela exterior con GPS): la ficha pide ubicación de bandejas y GPS de las
+  parcelas exteriores.
+- **2026-11-07 — Repicar crea una partida nueva** (otro formato, otro código)
+  y un `Repicado` que la enlaza con la de origen; el stock se calcula
+  (inicial − mermas − repicadas − salidas), no se guarda. Así la cadena hasta
+  el lote no se pierde.
+- **2026-11-07 — Integridad = trazabilidad**: lotes, bandejas, siembras,
+  partidas y salidas con algo colgando no se borran (`RESTRICT`); las bandejas
+  se retiran (`activa`) y los pasaportes se **anulan**, nunca se borran (art. 20
+  del RD 1054/2021: tres años).
+- **2026-11-07 — El pasaporte guardado es una foto** de las letras A-D en el
+  momento de prepararlo; es borrador si el vivero no tiene la autorización
+  apuntada o faltan datos.
+- **2026-11-07 — Necesidad de pasaporte, conservadora**: zona protegida → «ZP»;
+  traslado propio en la misma comunidad → no; usuario final en persona → no
+  (art. 81.1); a distancia → sí; si el catálogo no lo dice → «por verificar»,
+  nunca «no hace falta». La decisión es del operador.
+- **2026-11-07 — QR de la etiqueta del pasaporte** con las letras A-D separadas
+  por «|» (formato propio): **por verificar** si sirve de soporte oficial.
+- **2026-11-07 — Códigos propios**: bandejas `VIV-B-0001…` (el QR lleva el
+  código tal cual, como Arbolado) y partidas `P26-0001…` por año.
 
 ## Datos técnicos
 

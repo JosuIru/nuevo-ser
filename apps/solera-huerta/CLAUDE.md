@@ -16,10 +16,14 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 7 IA visual | ✅ 2026-11-07 | Ficha de bancal → icono de escáner: elige cultivo (de lo que hay en el bancal), foto (cámara o galería) → hasta 3 candidatos del catálogo de **esa familia** (salida estructurada con `enum` de ids + «otra») → la persona elige y se abre una **observación** (nuevo modelo `ObservacionPlaga`, tabla `observaciones_plaga`). Nunca propone tratamientos. Modelo equilibrado del core, clave BYO en `estado/clave_anthropic_huerta.dart` (Ajustes → Inteligencia artificial). La foto se borra al terminar. Las observaciones salen en el cuaderno PDF como prueba de necesidad (anexo II, 1.10.2). 111 tests |
 | 8 Branding + GPS | ✅ 2026-11-07 (placeholder) | Logo ImageMagick (brote de dos hojas sobre tres bancales, verde hoja y tierra sobre crema) en `assets/`, iconos de lanzador (`flutter_launcher_icons`, adaptativo con fondo crema), pantalla de arranque crema con el logo y logo en la cabecera de Hoy. GPS: «Usar mi ubicación» en el formulario de parcela (geolocator) y mapa de parcelas (OSM) desde Parcelas. Permisos INTERNET y ubicación en el manifiesto (con test). 94 tests |
 | 9 Economía | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Ingresos y gastos: régimen de IVA (REAGP / general / sin elegir), apuntes en céntimos con **ventas por canal** (cestas, mercado, restaurantes y tiendas, otras), interruptor «comprador empresario o profesional» (en REAGP solo entonces hay compensación del 12 %), parcela opcional → margen por parcela; resumen del año y extracto PDF con sello. Guardarraíles fiscales en `test/dominio/economia_test.dart`. 91 tests |
-| 10 Revisión con fuente pública | pendiente | |
-| 11 APK + ayuda | pendiente | |
+| 10 Revisión con fuente pública | ✅ en parte (2026-11-07) | Revisión en `content/huerta/revision-2026-11-07.md`: insumos 68/68, rotación 10/12, cultivos 33/42 y plagas 27/32 con `fuente_publica:` (ninguna `revision-ia:`: no hay sustancias por cultivo que contrastar con un registro). **`catalogosCompletamenteRevisados` sigue en `false`** a propósito y el banner se ve en Hoy. Documentos cotejados: el cuaderno cita los puntos 1.8.5, 1.9.2, 1.9.3, 1.10.2 y 1.12 del anexo II, parte I, del Reglamento 2018/848 (texto original en EUR-Lex; el consolidado no abrió) y las columnas del RD 1311/2012; el extracto, la Ley 37/1992 consolidada (07/10/2026). **No hecho**: `scripts/auditoria` y `scripts/pendientes` aún no conocen la vertical huerta (su lista de verticales está fuera de esta calle: pedirlo a la calle N) |
+| 11 APK + ayuda | ✅ 2026-11-07 | Ayuda in-app (Ajustes → Ayuda, 10 apartados en 4 idiomas, con «lo que la app no hace»), README, APK release de **66,1 MB** firmada con la clave de depuración (como el resto de la suite; copia en `~/larrea-apks/solera-huerta-release.apk`) y `flutter clean` después. 113 tests. **Sin build Linux** (como Frutal; ahorra disco). **Release de GitHub sin publicar** (la publica la integración). Revisión nativa: el propio `content/solera/traducciones/huerta.csv` (es/eu/ca/gl) es la hoja; no se exportó ARB porque las apps Larrea no usan ARB |
 
-**Siguiente acción**: bloques 10 y 11.
+**Siguiente acción**: F1 completa salvo lo humano (`BLOQUEOS-PENDIENTES.md`).
+Pendientes técnicos: subir las cestas al módulo T2 del core cuando exista
+(sustituir `lib/provisional_core/venta_directa/`); que `scripts/auditoria` y
+`scripts/pendientes` incluyan huerta (calle N); exportar al SIEX (módulo T4)
+antes del 1-1-2027; verificar el Reglamento 2018/848 consolidado.
 
 ## Encuadre
 

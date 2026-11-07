@@ -52,3 +52,12 @@ y sigue. Lo recoge `scripts/pendientes/`.
 - Textos de `content/solera/traducciones/huerta.csv` (borrador, 2026-11-07).
 
 ## Bloqueos técnicos
+
+- `scripts/auditoria` y `scripts/pendientes` no tienen a huerta en su lista de
+  verticales (está en `scripts/`, fuera de esta calle): pedir a la calle N que
+  la añada para sacar la lista de comprobación por asesor y el tablero.
+- La versión consolidada del Reglamento (UE) 2018/848 dio 404 en EUR-Lex; se
+  leyó el original. Verificar que los puntos citados no han cambiado.
+- El registro de tratamientos es electrónico desde el 1-1-2027 (RD 1311/2012
+  art. 16.1, mod. RD 1039/2025, según Frutal): la app no exporta al SIEX
+  (módulo transversal T4).

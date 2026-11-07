@@ -5,6 +5,8 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
 import '../datos/base_datos.dart';
 import '../modelos/titular.dart';
 import 'hoja_formulario.dart';
+import 'identificar_plaga.dart';
+import 'pantalla_ayuda.dart';
 import 'pantalla_documentos.dart';
 import 'pantalla_economia.dart';
 
@@ -115,6 +117,9 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
               const PantallaDocumentos()),
           _acceso(Icons.euro_outlined, 'huer.ingresos_y_gastos',
               const PantallaEconomia()),
+          _acceso(Icons.auto_awesome_outlined, 'huer.inteligencia_artificial',
+              pantallaClaveHuerta()),
+          _acceso(Icons.help_outline, 'huer.ayuda', const PantallaAyuda()),
           const SelectorIdioma(),
           const SizedBox(height: 24),
           Text(SoleraL10n.t('huer.datos_huerta'), style: estilo),

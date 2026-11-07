@@ -8,6 +8,7 @@ import 'package:solera_huerta/modelos/cosecha.dart';
 import 'package:solera_huerta/modelos/cultivo.dart';
 import 'package:solera_huerta/modelos/parcela.dart';
 import 'package:solera_huerta/modelos/siembra.dart';
+import 'package:solera_huerta/pantallas/pantalla_ayuda.dart';
 import 'package:solera_huerta/pantallas/pantalla_cestas.dart';
 import 'package:solera_huerta/pantallas/pantalla_cuaderno.dart';
 import 'package:solera_huerta/pantallas/pantalla_ficha_bancal.dart';
@@ -171,5 +172,14 @@ void main() {
     });
     final lineas = (await tester.runAsync(baseDatos.listarLineasCesta))!;
     expect(lineas.map((linea) => linea.kg).toList()..sort(), [2.0, 4.0]);
+  });
+
+  testWidgets('ayuda: todos los apartados, con lo que la app no hace',
+      (tester) async {
+    await tester.pumpWidget(const MaterialApp(home: PantallaAyuda()));
+    expect(
+        find.byType(ExpansionTile), findsNWidgets(apartadosAyudaHuerta.length));
+    expect(
+        find.text(SoleraL10n.t('huer.ayuda_limites_titulo')), findsOneWidget);
   });
 }

@@ -5,7 +5,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite_common/sqlite_api.dart';
 
 /// Paso de migración de la versión `n - 1` a la `n`.
-typedef PasoMigracionSolera = Future<void> Function(DatabaseExecutor db);
+typedef PasoMigracionSolera = Future<void> Function(Database db);
 
 /// Plantilla común de la base de datos local de las apps Larrea (agro y
 /// verticales `solera-*`). Resuelve lo que antes se copiaba a mano en cada
@@ -41,7 +41,7 @@ abstract class BaseDatosSolera {
   DatabaseFactory get fabricaBaseDatos;
 
   /// Esquema de la versión 1, tal y como se publicó.
-  Future<void> crearEsquemaInicial(DatabaseExecutor db);
+  Future<void> crearEsquemaInicial(Database db);
 
   /// Pasos de migración: la clave es la versión a la que lleva el paso.
   /// Deben ser consecutivos desde 2 hasta [versionEsquema].
@@ -66,8 +66,12 @@ abstract class BaseDatosSolera {
   Future<Database> _abrir() async {
     try {
       _comprobarPasos();
+      // Primero la ruta y después la fábrica, como hacían las apps: en los
+      // tests de pantallas sin path_provider falla antes la ruta, y las
+      // pantallas ya capturan ese error.
+      final ruta = await rutaFichero();
       final baseDatos = await fabricaBaseDatos.openDatabase(
-        await rutaFichero(),
+        ruta,
         options: OpenDatabaseOptions(
           version: versionEsquema,
           onConfigure: (db) async {
@@ -91,7 +95,7 @@ abstract class BaseDatosSolera {
   }
 
   Future<void> _aplicarPasos(
-    DatabaseExecutor db, {
+    Database db, {
     required int desde,
     required int hasta,
   }) async {

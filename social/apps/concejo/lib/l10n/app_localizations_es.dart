@@ -1049,4 +1049,125 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get etiquetaResultado => 'Hay resultado';
+
+  @override
+  String get pestanaAsambleas => 'Asambleas';
+
+  @override
+  String get proximasAsambleas => 'Próximas';
+
+  @override
+  String get asambleasPasadas => 'Ya celebradas';
+
+  @override
+  String get sinAsambleas => 'No hay ninguna.';
+
+  @override
+  String get convocarAsamblea => 'Convocar asamblea';
+
+  @override
+  String get convocar => 'Convocar';
+
+  @override
+  String get cambiarConvocatoria => 'Cambiar la convocatoria';
+
+  @override
+  String get anularAsamblea => 'Anular la asamblea';
+
+  @override
+  String get motivoAnulacion => '¿Por qué se anula?';
+
+  @override
+  String get etiquetaAnulada => 'Anulada';
+
+  @override
+  String asambleaAnulada(String motivo) {
+    return 'Anulada: $motivo';
+  }
+
+  @override
+  String get ordenDelDia => 'Orden del día';
+
+  @override
+  String get asistencia => 'Asistencia';
+
+  @override
+  String asistentesResumen(int total, int conApp, int sinApp) {
+    return 'Vinieron $total personas: $conApp con la app y $sinApp sin ella.';
+  }
+
+  @override
+  String get asistenciaDesdeElDia =>
+      'La asistencia se apunta desde el día de la asamblea.';
+
+  @override
+  String get asistentesSinApp => 'Gente sin app';
+
+  @override
+  String get apuntarNotas => 'Apuntar lo hablado';
+
+  @override
+  String get notasDelPunto => 'Lo que se habló';
+
+  @override
+  String get campoLugar => 'Lugar';
+
+  @override
+  String get campoDia => 'Día';
+
+  @override
+  String get campoHora => 'Hora';
+
+  @override
+  String get anadirPunto => 'Añadir punto';
+
+  @override
+  String get anadirAsunto => 'Añadir un asunto';
+
+  @override
+  String get textoDelPunto => 'Punto del orden del día';
+
+  @override
+  String get ruegosYPreguntas => 'Ruegos y preguntas';
+
+  @override
+  String get tituloAsambleaInicial => 'Asamblea';
+
+  @override
+  String get quitarPunto => 'Quitar el punto';
+
+  @override
+  String get sesionFaltaTitulo => 'Falta el título.';
+
+  @override
+  String get sesionFaltaLugar => 'Falta el lugar.';
+
+  @override
+  String get sesionSinPuntos => 'El orden del día necesita algún punto.';
+
+  @override
+  String get sesionPuntoVacio => 'Hay un punto vacío.';
+
+  @override
+  String get sesionPuntoRepetido => 'Hay puntos repetidos.';
+
+  @override
+  String get pdfConvocatoria => 'Convocatoria';
+
+  @override
+  String get pdfConvocatoriaPie =>
+      'Si no puedes venir, también puedes opinar y votar los asuntos en la app o en papel: habla con la mesa.';
+
+  @override
+  String get verAsunto => 'Ver el asunto';
+
+  @override
+  String avisoAsamblea(String titulo, String fecha, String lugar) {
+    return '$titulo: $fecha, en $lugar.';
+  }
+
+  @override
+  String avisoAsambleaAnulada(String titulo, String motivo) {
+    return 'Se anula «$titulo»: $motivo';
+  }
 }

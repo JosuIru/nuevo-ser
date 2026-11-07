@@ -599,5 +599,85 @@
     }
   },
   "etiquetaNuevo": "Nuevo",
-  "etiquetaResultado": "Hay resultado"
+  "etiquetaResultado": "Hay resultado",
+  "pestanaAsambleas": "Asambleas",
+  "proximasAsambleas": "Próximas",
+  "asambleasPasadas": "Ya celebradas",
+  "sinAsambleas": "No hay ninguna.",
+  "convocarAsamblea": "Convocar asamblea",
+  "convocar": "Convocar",
+  "cambiarConvocatoria": "Cambiar la convocatoria",
+  "anularAsamblea": "Anular la asamblea",
+  "motivoAnulacion": "¿Por qué se anula?",
+  "etiquetaAnulada": "Anulada",
+  "asambleaAnulada": "Anulada: {motivo}",
+  "@asambleaAnulada": {
+    "placeholders": {
+      "motivo": {
+        "type": "String"
+      }
+    }
+  },
+  "ordenDelDia": "Orden del día",
+  "asistencia": "Asistencia",
+  "asistentesResumen": "Vinieron {total} personas: {conApp} con la app y {sinApp} sin ella.",
+  "@asistentesResumen": {
+    "placeholders": {
+      "total": {
+        "type": "int"
+      },
+      "conApp": {
+        "type": "int"
+      },
+      "sinApp": {
+        "type": "int"
+      }
+    }
+  },
+  "asistenciaDesdeElDia": "La asistencia se apunta desde el día de la asamblea.",
+  "asistentesSinApp": "Gente sin app",
+  "apuntarNotas": "Apuntar lo hablado",
+  "notasDelPunto": "Lo que se habló",
+  "campoLugar": "Lugar",
+  "campoDia": "Día",
+  "campoHora": "Hora",
+  "anadirPunto": "Añadir punto",
+  "anadirAsunto": "Añadir un asunto",
+  "textoDelPunto": "Punto del orden del día",
+  "ruegosYPreguntas": "Ruegos y preguntas",
+  "tituloAsambleaInicial": "Asamblea",
+  "quitarPunto": "Quitar el punto",
+  "sesionFaltaTitulo": "Falta el título.",
+  "sesionFaltaLugar": "Falta el lugar.",
+  "sesionSinPuntos": "El orden del día necesita algún punto.",
+  "sesionPuntoVacio": "Hay un punto vacío.",
+  "sesionPuntoRepetido": "Hay puntos repetidos.",
+  "pdfConvocatoria": "Convocatoria",
+  "pdfConvocatoriaPie": "Si no puedes venir, también puedes opinar y votar los asuntos en la app o en papel: habla con la mesa.",
+  "verAsunto": "Ver el asunto",
+  "avisoAsamblea": "{titulo}: {fecha}, en {lugar}.",
+  "@avisoAsamblea": {
+    "placeholders": {
+      "titulo": {
+        "type": "String"
+      },
+      "fecha": {
+        "type": "String"
+      },
+      "lugar": {
+        "type": "String"
+      }
+    }
+  },
+  "avisoAsambleaAnulada": "Se anula «{titulo}»: {motivo}",
+  "@avisoAsambleaAnulada": {
+    "placeholders": {
+      "titulo": {
+        "type": "String"
+      },
+      "motivo": {
+        "type": "String"
+      }
+    }
+  }
 }

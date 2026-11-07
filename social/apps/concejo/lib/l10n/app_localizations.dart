@@ -1819,6 +1819,228 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Hay resultado'**
   String get etiquetaResultado;
+
+  /// No description provided for @pestanaAsambleas.
+  ///
+  /// In es, this message translates to:
+  /// **'Asambleas'**
+  String get pestanaAsambleas;
+
+  /// No description provided for @proximasAsambleas.
+  ///
+  /// In es, this message translates to:
+  /// **'Próximas'**
+  String get proximasAsambleas;
+
+  /// No description provided for @asambleasPasadas.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya celebradas'**
+  String get asambleasPasadas;
+
+  /// No description provided for @sinAsambleas.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay ninguna.'**
+  String get sinAsambleas;
+
+  /// No description provided for @convocarAsamblea.
+  ///
+  /// In es, this message translates to:
+  /// **'Convocar asamblea'**
+  String get convocarAsamblea;
+
+  /// No description provided for @convocar.
+  ///
+  /// In es, this message translates to:
+  /// **'Convocar'**
+  String get convocar;
+
+  /// No description provided for @cambiarConvocatoria.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambiar la convocatoria'**
+  String get cambiarConvocatoria;
+
+  /// No description provided for @anularAsamblea.
+  ///
+  /// In es, this message translates to:
+  /// **'Anular la asamblea'**
+  String get anularAsamblea;
+
+  /// No description provided for @motivoAnulacion.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Por qué se anula?'**
+  String get motivoAnulacion;
+
+  /// No description provided for @etiquetaAnulada.
+  ///
+  /// In es, this message translates to:
+  /// **'Anulada'**
+  String get etiquetaAnulada;
+
+  /// No description provided for @asambleaAnulada.
+  ///
+  /// In es, this message translates to:
+  /// **'Anulada: {motivo}'**
+  String asambleaAnulada(String motivo);
+
+  /// No description provided for @ordenDelDia.
+  ///
+  /// In es, this message translates to:
+  /// **'Orden del día'**
+  String get ordenDelDia;
+
+  /// No description provided for @asistencia.
+  ///
+  /// In es, this message translates to:
+  /// **'Asistencia'**
+  String get asistencia;
+
+  /// No description provided for @asistentesResumen.
+  ///
+  /// In es, this message translates to:
+  /// **'Vinieron {total} personas: {conApp} con la app y {sinApp} sin ella.'**
+  String asistentesResumen(int total, int conApp, int sinApp);
+
+  /// No description provided for @asistenciaDesdeElDia.
+  ///
+  /// In es, this message translates to:
+  /// **'La asistencia se apunta desde el día de la asamblea.'**
+  String get asistenciaDesdeElDia;
+
+  /// No description provided for @asistentesSinApp.
+  ///
+  /// In es, this message translates to:
+  /// **'Gente sin app'**
+  String get asistentesSinApp;
+
+  /// No description provided for @apuntarNotas.
+  ///
+  /// In es, this message translates to:
+  /// **'Apuntar lo hablado'**
+  String get apuntarNotas;
+
+  /// No description provided for @notasDelPunto.
+  ///
+  /// In es, this message translates to:
+  /// **'Lo que se habló'**
+  String get notasDelPunto;
+
+  /// No description provided for @campoLugar.
+  ///
+  /// In es, this message translates to:
+  /// **'Lugar'**
+  String get campoLugar;
+
+  /// No description provided for @campoDia.
+  ///
+  /// In es, this message translates to:
+  /// **'Día'**
+  String get campoDia;
+
+  /// No description provided for @campoHora.
+  ///
+  /// In es, this message translates to:
+  /// **'Hora'**
+  String get campoHora;
+
+  /// No description provided for @anadirPunto.
+  ///
+  /// In es, this message translates to:
+  /// **'Añadir punto'**
+  String get anadirPunto;
+
+  /// No description provided for @anadirAsunto.
+  ///
+  /// In es, this message translates to:
+  /// **'Añadir un asunto'**
+  String get anadirAsunto;
+
+  /// No description provided for @textoDelPunto.
+  ///
+  /// In es, this message translates to:
+  /// **'Punto del orden del día'**
+  String get textoDelPunto;
+
+  /// No description provided for @ruegosYPreguntas.
+  ///
+  /// In es, this message translates to:
+  /// **'Ruegos y preguntas'**
+  String get ruegosYPreguntas;
+
+  /// No description provided for @tituloAsambleaInicial.
+  ///
+  /// In es, this message translates to:
+  /// **'Asamblea'**
+  String get tituloAsambleaInicial;
+
+  /// No description provided for @quitarPunto.
+  ///
+  /// In es, this message translates to:
+  /// **'Quitar el punto'**
+  String get quitarPunto;
+
+  /// No description provided for @sesionFaltaTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Falta el título.'**
+  String get sesionFaltaTitulo;
+
+  /// No description provided for @sesionFaltaLugar.
+  ///
+  /// In es, this message translates to:
+  /// **'Falta el lugar.'**
+  String get sesionFaltaLugar;
+
+  /// No description provided for @sesionSinPuntos.
+  ///
+  /// In es, this message translates to:
+  /// **'El orden del día necesita algún punto.'**
+  String get sesionSinPuntos;
+
+  /// No description provided for @sesionPuntoVacio.
+  ///
+  /// In es, this message translates to:
+  /// **'Hay un punto vacío.'**
+  String get sesionPuntoVacio;
+
+  /// No description provided for @sesionPuntoRepetido.
+  ///
+  /// In es, this message translates to:
+  /// **'Hay puntos repetidos.'**
+  String get sesionPuntoRepetido;
+
+  /// No description provided for @pdfConvocatoria.
+  ///
+  /// In es, this message translates to:
+  /// **'Convocatoria'**
+  String get pdfConvocatoria;
+
+  /// No description provided for @pdfConvocatoriaPie.
+  ///
+  /// In es, this message translates to:
+  /// **'Si no puedes venir, también puedes opinar y votar los asuntos en la app o en papel: habla con la mesa.'**
+  String get pdfConvocatoriaPie;
+
+  /// No description provided for @verAsunto.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver el asunto'**
+  String get verAsunto;
+
+  /// No description provided for @avisoAsamblea.
+  ///
+  /// In es, this message translates to:
+  /// **'{titulo}: {fecha}, en {lugar}.'**
+  String avisoAsamblea(String titulo, String fecha, String lugar);
+
+  /// No description provided for @avisoAsambleaAnulada.
+  ///
+  /// In es, this message translates to:
+  /// **'Se anula «{titulo}»: {motivo}'**
+  String avisoAsambleaAnulada(String titulo, String motivo);
 }
 
 class _AppLocalizationsDelegate

@@ -1048,4 +1048,125 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get etiquetaResultado => 'Emaitza badago';
+
+  @override
+  String get pestanaAsambleas => 'Batzarrak';
+
+  @override
+  String get proximasAsambleas => 'Hurrengoak';
+
+  @override
+  String get asambleasPasadas => 'Eginak';
+
+  @override
+  String get sinAsambleas => 'Ez dago bat ere.';
+
+  @override
+  String get convocarAsamblea => 'Batzarra deitu';
+
+  @override
+  String get convocar => 'Deitu';
+
+  @override
+  String get cambiarConvocatoria => 'Deialdia aldatu';
+
+  @override
+  String get anularAsamblea => 'Batzarra bertan behera utzi';
+
+  @override
+  String get motivoAnulacion => 'Zergatik uzten da bertan behera?';
+
+  @override
+  String get etiquetaAnulada => 'Bertan behera';
+
+  @override
+  String asambleaAnulada(String motivo) {
+    return 'Bertan behera: $motivo';
+  }
+
+  @override
+  String get ordenDelDia => 'Gai-zerrenda';
+
+  @override
+  String get asistencia => 'Asistentzia';
+
+  @override
+  String asistentesResumen(int total, int conApp, int sinApp) {
+    return '$total pertsona etorri ziren: $conApp aplikazioarekin eta $sinApp gabe.';
+  }
+
+  @override
+  String get asistenciaDesdeElDia =>
+      'Asistentzia batzarraren egunetik idazten da.';
+
+  @override
+  String get asistentesSinApp => 'Aplikaziorik gabeko jendea';
+
+  @override
+  String get apuntarNotas => 'Esandakoa idatzi';
+
+  @override
+  String get notasDelPunto => 'Esandakoa';
+
+  @override
+  String get campoLugar => 'Lekua';
+
+  @override
+  String get campoDia => 'Eguna';
+
+  @override
+  String get campoHora => 'Ordua';
+
+  @override
+  String get anadirPunto => 'Puntua gehitu';
+
+  @override
+  String get anadirAsunto => 'Gai bat gehitu';
+
+  @override
+  String get textoDelPunto => 'Gai-zerrendako puntua';
+
+  @override
+  String get ruegosYPreguntas => 'Galde-eskeak';
+
+  @override
+  String get tituloAsambleaInicial => 'Batzarra';
+
+  @override
+  String get quitarPunto => 'Puntua kendu';
+
+  @override
+  String get sesionFaltaTitulo => 'Izenburua falta da.';
+
+  @override
+  String get sesionFaltaLugar => 'Lekua falta da.';
+
+  @override
+  String get sesionSinPuntos => 'Gai-zerrendak puntu bat behar du gutxienez.';
+
+  @override
+  String get sesionPuntoVacio => 'Puntu bat hutsik dago.';
+
+  @override
+  String get sesionPuntoRepetido => 'Puntu errepikatuak daude.';
+
+  @override
+  String get pdfConvocatoria => 'Deialdia';
+
+  @override
+  String get pdfConvocatoriaPie =>
+      'Ezin baduzu etorri, gaiei buruz iritzia eman eta bozkatu dezakezu aplikazioan edo paperean ere: hitz egin mahaiarekin.';
+
+  @override
+  String get verAsunto => 'Gaia ikusi';
+
+  @override
+  String avisoAsamblea(String titulo, String fecha, String lugar) {
+    return '$titulo: $fecha, $lugar.';
+  }
+
+  @override
+  String avisoAsambleaAnulada(String titulo, String motivo) {
+    return '«$titulo» bertan behera: $motivo';
+  }
 }

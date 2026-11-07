@@ -8,6 +8,7 @@ import '../dominio/compromiso.dart';
 import '../dominio/consentimiento.dart';
 import '../dominio/debate.dart';
 import '../dominio/reglas_decision.dart';
+import '../dominio/sesion.dart';
 import '../l10n/app_localizations.dart';
 
 extension TextosDominio on AppLocalizations {
@@ -87,6 +88,19 @@ extension TextosDominio on AppLocalizations {
   /// «5 de noviembre».
   String fecha(DateTime momento) =>
       DateFormat.MMMMd(localeName).format(momento);
+
+  /// «jueves, 14 de noviembre, 19:00»: día y hora de una asamblea.
+  String fechaYHora(DateTime momento) =>
+      '${DateFormat.MMMMEEEEd(localeName).format(momento)}, '
+      '${DateFormat.Hm(localeName).format(momento)}';
+
+  String problemaSesion(ProblemaSesion problema) => switch (problema) {
+        ProblemaSesion.faltaTitulo => sesionFaltaTitulo,
+        ProblemaSesion.faltaLugar => sesionFaltaLugar,
+        ProblemaSesion.sinPuntos => sesionSinPuntos,
+        ProblemaSesion.puntoVacio => sesionPuntoVacio,
+        ProblemaSesion.puntoRepetido => sesionPuntoRepetido,
+      };
 
   /// «5 de noviembre de 2026»: para el acta, que se lee años después.
   String fechaConAnio(DateTime momento) =>

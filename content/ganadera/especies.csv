@@ -1,0 +1,9 @@
+# Especies que lleva Larrea Ganadera. El id es el código que se guarda en la BD (no cambiarlo);
+# el nombre visible está en las traducciones (gana.especie_<id>). Sin fuente: es la lista de la propia app.
+# dispositivo_habitual: el que la app propone al dar de alta un animal (la persona lo cambia si es otro).
+id,nombre_cientifico,dispositivo_habitual,revisado_por
+ovino,Ovis aries,crotal_electronico,
+caprino,Capra hircus,crotal_electronico,
+vacuno,Bos taurus,crotal,
+porcino,Sus scrofa domesticus,crotal,
+equino,Equus caballus,otro,

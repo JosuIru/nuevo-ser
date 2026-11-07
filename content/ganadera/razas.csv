@@ -1,0 +1,76 @@
+# Razas para autocompletar (la persona puede escribir otra). Fuente: Catálogo Oficial de Razas de Ganado de España,
+# RD 45/2019 anexo I, texto consolidado del BOE (BOE-A-2019-2859, actualización 21/06/2023), consultado el 2026-11-07.
+# Solo los nombres, sin la clasificación (de fomento, amenazada, integrada): la lectura del anexo se hizo con un
+# resumen automático y la clasificación salió dudosa. El anexo se actualiza por orden ministerial: comprobar la versión
+# vigente (BLOQUEOS). Las filas sin revisado_por se han añadido sin verlas en ese texto.
+especie,nombre,revisado_por
+vacuno,Asturiana de los Valles,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Asturiana de la Montaña,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Avileña-Negra Ibérica,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Betizu,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Blonda de Aquitania,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Bruna dels Pirineus,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Cachena,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Charolesa,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Frieiresa,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Lidia,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Limiá,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Limusina,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Monchina,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Morucha,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Parda,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Parda de Montaña,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Pasiega,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Pirenaica,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Retinta,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Rubia Gallega,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Sayaguesa,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Serrana Negra,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Terreña,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Tudanca,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Vianesa,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+vacuno,Cruce,
+ovino,Ansotana,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+ovino,Aranesa,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+ovino,Assaf,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+ovino,Carranzana,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+ovino,Castellana,
+ovino,Churra,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+ovino,Churra Tensina,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+ovino,Lacaune,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+ovino,Latxa,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+ovino,Manchega,
+ovino,Merina,
+ovino,Navarra,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+ovino,Ojinegra de Teruel,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+ovino,Ovella Galega,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+ovino,Rasa Aragonesa,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+ovino,Ripollesa,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+ovino,Sasi Ardi,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+ovino,Segureña,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+ovino,Xalda,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+ovino,Xisqueta,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+ovino,Cruce,
+caprino,Azpi Gorri,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+caprino,Bermeya,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+caprino,Blanca Celtibérica,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+caprino,Cabra Galega,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+caprino,Florida,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+caprino,Majorera,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+caprino,Malagueña,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+caprino,Moncaína,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+caprino,Murciano-Granadina,
+caprino,Payoya,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+caprino,Pirenaica,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+caprino,Retinta,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+caprino,Verata,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+caprino,Cruce,
+porcino,Chato Murciano,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+porcino,Duroc,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+porcino,Euskal Txerria,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+porcino,Gochu Asturcelta,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+porcino,Ibérico,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+porcino,Negra Canaria,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+porcino,Porc Negre Mallorquí,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+porcino,Porco Celta,fuente_publica: RD 45/2019 anexo I (consolidado 21/06/2023) consultado 2026-11-07
+porcino,Cruce,

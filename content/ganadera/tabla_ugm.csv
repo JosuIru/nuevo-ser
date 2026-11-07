@@ -1,0 +1,36 @@
+# Coeficientes de conversión a UGM, POR TRÁMITE: manda la tabla del trámite que se hace.
+# Una cabeza toma la PRIMERA fila de su trámite y especie que encaja (sexos vacío = cualquiera; edad en meses en [min, max)).
+# Sin fecha de nacimiento, la app la toma como adulta.
+# pac: RD 1048/2022, anexo V «Número de animales y conversión a UGM» (el art. 30.2.b remite a él), texto consolidado del BOE.
+#   - Vacuno de dos años o más: «Machos» 1,000; «Novillas» y «Otras vacas» 0,800; «Vacas de aptitud láctea» 1,000.
+#     La app es de vacuno de carne: hembra adulta = 0,800. Una vaca de leche cuenta 1,000 y la app no la distingue: por verificar.
+#   - Porcino: «Cerdas de cría>50 Kg» 0,500 (la app lo aplica a toda hembra adulta: aproximación sin revisar) y «Otros cerdos» 0,300.
+#     La fila «Lechones>20 Kg de peso vivo» 0,027 (así en el consolidado; parece «<20 kg»: por verificar) no se usa: la app no lleva pesos por cabeza.
+# andalucia: la tabla que usaba Zunbeltz (registro de explotaciones de la Junta de Andalucía, comprobada por Zunbeltz el 2026-10-22).
+#   No se ha consultado en esta sesión: queda sin revisar.
+tramite,especie,sexos,edad_min_meses,edad_max_meses,ugm,categoria,revisado_por
+pac,vacuno,,0,12,0.4,De menos de 1 año,fuente_publica: RD 1048/2022 anexo V (BOE-A-2022-23048 consolidado 08/07/2026) consultado 2026-11-07
+pac,vacuno,,12,24,0.7,De un año a menos de dos años,fuente_publica: RD 1048/2022 anexo V (BOE-A-2022-23048 consolidado 08/07/2026) consultado 2026-11-07
+pac,vacuno,macho|castrado,24,,1.0,"Machos, de dos años o más",fuente_publica: RD 1048/2022 anexo V (BOE-A-2022-23048 consolidado 08/07/2026) consultado 2026-11-07
+pac,vacuno,,24,,0.8,"Novillas y otras vacas, de dos años o más",fuente_publica: RD 1048/2022 anexo V (BOE-A-2022-23048 consolidado 08/07/2026) consultado 2026-11-07
+pac,ovino,,0,,0.1,Ovinos y caprinos,fuente_publica: RD 1048/2022 anexo V (BOE-A-2022-23048 consolidado 08/07/2026) consultado 2026-11-07
+pac,caprino,,0,,0.1,Ovinos y caprinos,fuente_publica: RD 1048/2022 anexo V (BOE-A-2022-23048 consolidado 08/07/2026) consultado 2026-11-07
+pac,equino,,0,,0.8,Equinos,fuente_publica: RD 1048/2022 anexo V (BOE-A-2022-23048 consolidado 08/07/2026) consultado 2026-11-07
+pac,porcino,hembra,12,,0.5,Cerdas de cría>50 Kg (aproximación: hembra adulta),
+pac,porcino,,0,,0.3,Otros cerdos,fuente_publica: RD 1048/2022 anexo V (BOE-A-2022-23048 consolidado 08/07/2026) consultado 2026-11-07
+andalucia,vacuno,,0,6,0.2,Vacuno de menos de 6 meses,
+andalucia,vacuno,,6,24,0.6,Vacuno de 6 a 24 meses,
+andalucia,vacuno,,24,,1.0,Vacuno de 24 meses o más,
+andalucia,ovino,,0,4,0.05,Ovino de menos de 4 meses,
+andalucia,ovino,,4,12,0.1,Ovino de 4 a 12 meses,
+andalucia,ovino,macho|castrado,12,,0.12,Morueco,
+andalucia,ovino,,12,,0.15,Oveja,
+andalucia,caprino,,0,4,0.05,Caprino de menos de 4 meses,
+andalucia,caprino,,4,12,0.1,Caprino de 4 a 12 meses,
+andalucia,caprino,macho|castrado,12,,0.12,Macho cabrío,
+andalucia,caprino,,12,,0.15,Cabra,
+andalucia,equino,,0,6,0.2,Équido de menos de 6 meses,
+andalucia,equino,,6,12,0.5,Équido de 6 a 12 meses,
+andalucia,equino,,12,,1.0,Équido adulto,
+andalucia,porcino,macho,12,,0.3,Verraco (extensivo),
+andalucia,porcino,,0,,0.25,Cerdo de 20 a 150 kg (extensivo),

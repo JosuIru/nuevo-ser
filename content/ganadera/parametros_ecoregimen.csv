@@ -1,0 +1,11 @@
+# Eco-régimen de pastoreo extensivo (agroecología en pastos): RD 1048/2022, art. 30.2, texto consolidado del BOE
+# (BOE-A-2022-23048, última actualización 08/07/2026), consultado el 2026-11-07.
+# - 30.2.a: pastoreo con animales de la explotación «durante un período mínimo de 120 días al año de manera continua o
+#   discontinua»; la autoridad competente puede reducirlo «hasta los 90 días».
+# - 30.2.b: carga durante el periodo de pastoreo entre 0,4 y 2 UGM/ha (pastos húmedos) y entre 0,2 y 1,2 (mediterráneos);
+#   en circunstancias justificadas la autoridad puede bajar el mínimo a 0,2 (húmedos) y 0,1 (mediterráneos).
+#   La conversión a UGM, con el anexo V; las UGM las toma la comunidad autónoma de SITRAN.
+# Lo que aplica cada comunidad en cada campaña (reducciones, fechas de cómputo) lo dice su convocatoria: por verificar.
+tipo_pasto,carga_minima,carga_maxima,carga_minima_reducida,dias_minimos,dias_minimos_reducidos,articulo,revisado_por
+humedo,0.4,2.0,0.2,120,90,RD 1048/2022 art. 30.2,fuente_publica: RD 1048/2022 art. 30.2 (BOE-A-2022-23048 consolidado 08/07/2026) consultado 2026-11-07
+mediterraneo,0.2,1.2,0.1,120,90,RD 1048/2022 art. 30.2,fuente_publica: RD 1048/2022 art. 30.2 (BOE-A-2022-23048 consolidado 08/07/2026) consultado 2026-11-07

@@ -1,0 +1,33 @@
+# Sustancias activas veterinarias para AUTOCOMPLETAR el campo «sustancia activa» de un tratamiento.
+# Hard limit: sin marcas, sin dosis y SIN tiempos de espera: el plazo de supresión es el que pone la receta del veterinario.
+# La app no recomienda ninguna: solo ayuda a escribir lo que dice la receta.
+# Contrastadas con CIMA Vet (AEMPS), API REST pública https://cimavet.aemps.es/cimavet/rest/medicamentos?practiv1=<sustancia>,
+# el 2026-11-07: se cuenta, en la primera página de resultados (25), cuántos medicamentos están autorizados (sin revocar ni
+# suspender) y cuántos de ellos nombran bovino, ovino, caprino o porcino. Se han quitado las que no daban ninguno
+# (oxfendazol, netobimina, praziquantel, diazinón, oxitocina, selenio).
+# clase: la de ganado_ecologico.dart (alopatico | antiparasitario | vacuna | natural); decide el plazo doble en ecológico.
+id,nombre,clase,grupo,revisado_por
+ivermectina,Ivermectina,antiparasitario,Endectocida (lactona macrocíclica),revision-ia: CIMA Vet (AEMPS) API REST consultada 2026-11-07; 24 medicamentos autorizados en la 1.ª página (15 para bovino/ovino/caprino/porcino)
+doramectina,Doramectina,antiparasitario,Endectocida (lactona macrocíclica),revision-ia: CIMA Vet (AEMPS) API REST consultada 2026-11-07; 4 medicamentos autorizados en la 1.ª página (4 para bovino/ovino/caprino/porcino)
+moxidectina,Moxidectina,antiparasitario,Endectocida (lactona macrocíclica),revision-ia: CIMA Vet (AEMPS) API REST consultada 2026-11-07; 23 medicamentos autorizados en la 1.ª página (7 para bovino/ovino/caprino/porcino)
+eprinomectina,Eprinomectina,antiparasitario,Endectocida (lactona macrocíclica),revision-ia: CIMA Vet (AEMPS) API REST consultada 2026-11-07; 19 medicamentos autorizados en la 1.ª página (13 para bovino/ovino/caprino/porcino)
+albendazol,Albendazol,antiparasitario,Antihelmíntico (bencimidazol),revision-ia: CIMA Vet (AEMPS) API REST consultada 2026-11-07; 12 medicamentos autorizados en la 1.ª página (6 para bovino/ovino/caprino/porcino)
+fenbendazol,Fenbendazol,antiparasitario,Antihelmíntico (bencimidazol),revision-ia: CIMA Vet (AEMPS) API REST consultada 2026-11-07; 16 medicamentos autorizados en la 1.ª página (7 para bovino/ovino/caprino/porcino)
+closantel,Closantel,antiparasitario,Antihelmíntico (fasciolicida),revision-ia: CIMA Vet (AEMPS) API REST consultada 2026-11-07; 6 medicamentos autorizados en la 1.ª página (2 para bovino/ovino/caprino/porcino)
+triclabendazol,Triclabendazol,antiparasitario,Antihelmíntico (fasciolicida),revision-ia: CIMA Vet (AEMPS) API REST consultada 2026-11-07; 2 medicamentos autorizados en la 1.ª página (2 para bovino/ovino/caprino/porcino)
+levamisol,Levamisol,antiparasitario,Antihelmíntico,revision-ia: CIMA Vet (AEMPS) API REST consultada 2026-11-07; 7 medicamentos autorizados en la 1.ª página (2 para bovino/ovino/caprino/porcino)
+deltametrina,Deltametrina,antiparasitario,Ectoparasiticida (piretroide),revision-ia: CIMA Vet (AEMPS) API REST consultada 2026-11-07; 22 medicamentos autorizados en la 1.ª página (2 para bovino/ovino/caprino/porcino)
+cipermetrina,Cipermetrina,antiparasitario,Ectoparasiticida (piretroide),revision-ia: CIMA Vet (AEMPS) API REST consultada 2026-11-07; 6 medicamentos autorizados en la 1.ª página (2 para bovino/ovino/caprino/porcino)
+toltrazurilo,Toltrazurilo,antiparasitario,Anticoccidiósico,revision-ia: CIMA Vet (AEMPS) API REST consultada 2026-11-07; 18 medicamentos autorizados en la 1.ª página (9 para bovino/ovino/caprino/porcino)
+diclazurilo,Diclazurilo,antiparasitario,Anticoccidiósico,revision-ia: CIMA Vet (AEMPS) API REST consultada 2026-11-07; 6 medicamentos autorizados en la 1.ª página (5 para bovino/ovino/caprino/porcino)
+oxitetraciclina,Oxitetraciclina,alopatico,Antibiótico (tetraciclina),revision-ia: CIMA Vet (AEMPS) API REST consultada 2026-11-07; 18 medicamentos autorizados en la 1.ª página (6 para bovino/ovino/caprino/porcino)
+amoxicilina,Amoxicilina,alopatico,Antibiótico (penicilina),revision-ia: CIMA Vet (AEMPS) API REST consultada 2026-11-07; 23 medicamentos autorizados en la 1.ª página (9 para bovino/ovino/caprino/porcino)
+bencilpenicilina,Bencilpenicilina,alopatico,Antibiótico (penicilina),revision-ia: CIMA Vet (AEMPS) API REST consultada 2026-11-07; 16 medicamentos autorizados en la 1.ª página (11 para bovino/ovino/caprino/porcino)
+enrofloxacino,Enrofloxacino,alopatico,Antibiótico (fluoroquinolona),revision-ia: CIMA Vet (AEMPS) API REST consultada 2026-11-07; 17 medicamentos autorizados en la 1.ª página (4 para bovino/ovino/caprino/porcino)
+florfenicol,Florfenicol,alopatico,Antibiótico (anfenicol),revision-ia: CIMA Vet (AEMPS) API REST consultada 2026-11-07; 23 medicamentos autorizados en la 1.ª página (21 para bovino/ovino/caprino/porcino)
+tulatromicina,Tulatromicina,alopatico,Antibiótico (macrólido),revision-ia: CIMA Vet (AEMPS) API REST consultada 2026-11-07; 22 medicamentos autorizados en la 1.ª página (21 para bovino/ovino/caprino/porcino)
+tilosina,Tilosina,alopatico,Antibiótico (macrólido),revision-ia: CIMA Vet (AEMPS) API REST consultada 2026-11-07; 20 medicamentos autorizados en la 1.ª página (10 para bovino/ovino/caprino/porcino)
+sulfadiazina,Sulfadiazina,alopatico,Antibiótico (sulfamida),revision-ia: CIMA Vet (AEMPS) API REST consultada 2026-11-07; 20 medicamentos autorizados en la 1.ª página (3 para bovino/ovino/caprino/porcino)
+meloxicam,Meloxicam,alopatico,Antiinflamatorio no esteroideo,revision-ia: CIMA Vet (AEMPS) API REST consultada 2026-11-07; 23 medicamentos autorizados en la 1.ª página (6 para bovino/ovino/caprino/porcino)
+ketoprofeno,Ketoprofeno,alopatico,Antiinflamatorio no esteroideo,revision-ia: CIMA Vet (AEMPS) API REST consultada 2026-11-07; 20 medicamentos autorizados en la 1.ª página (19 para bovino/ovino/caprino/porcino)
+flunixino,Flunixino,alopatico,Antiinflamatorio no esteroideo,revision-ia: CIMA Vet (AEMPS) API REST consultada 2026-11-07; 23 medicamentos autorizados en la 1.ª página (14 para bovino/ovino/caprino/porcino)

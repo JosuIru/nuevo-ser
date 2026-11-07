@@ -11,7 +11,7 @@ List<Ejercicio> _muestras(String id, {int semilla = 7, int cantidad = 40}) {
 
 /// Dominios ya revisados (revisión pedagógica 2026-11-07): las reglas
 /// comunes se exigen solo a estos mientras se aplica la revisión.
-const _dominiosRevisados = {'FR', 'DEC', 'PROP', 'DIV', 'OP', 'MED', 'GEO', 'EST', 'ARI'};
+const _dominiosRevisados = {'FR', 'DEC', 'PROP', 'DIV', 'OP', 'MED', 'GEO', 'EST', 'ARI', 'ALG', 'FUN'};
 
 bool _revisada(String id) => _dominiosRevisados.contains(id.split('.').first);
 
@@ -379,6 +379,32 @@ void main() {
         expect(ejercicio.solucion, '1/${math.pow(base, exponente)}', reason: ejercicio.destacado);
       }
       expect(negativas, greaterThan(600));
+    });
+
+    test('ALG.05: la expresión siempre lleva x^{2}', () {
+      for (final ejercicio in _muestras('ALG.05', semilla: 3, cantidad: 3000)) {
+        expect(ejercicio.destacado, contains('x^{2}'), reason: ejercicio.destacado);
+      }
+    });
+
+    test('ALG.09: ecuaciones con dos denominadores distintos, bien resueltas', () {
+      final patron = RegExp(r'^x/(\d) ([+−]) x/(\d) = (−?\d+)$');
+      var conDenominadores = 0;
+      for (final ejercicio in _muestras('ALG.09', semilla: 3, cantidad: 3000)) {
+        final datos = patron.firstMatch(ejercicio.destacado!);
+        if (datos == null) {
+          expect(ejercicio.destacado, contains('('), reason: ejercicio.destacado);
+          continue;
+        }
+        conDenominadores++;
+        final p = int.parse(datos[1]!), q = int.parse(datos[3]!);
+        final resultado = int.parse(datos[4]!.replaceAll('−', '-'));
+        final x = int.parse(ejercicio.solucion.replaceAll('x = ', '').replaceAll('−', '-'));
+        expect(p, isNot(q));
+        final izquierda = datos[2] == '+' ? Fraccion(x, p) + Fraccion(x, q) : Fraccion(x, p) - Fraccion(x, q);
+        expect(izquierda, Fraccion(resultado, 1), reason: ejercicio.destacado);
+      }
+      expect(conDenominadores, greaterThan(1000));
     });
 
     test('FR.01: la pregunta dice de qué se pide la fracción', () {

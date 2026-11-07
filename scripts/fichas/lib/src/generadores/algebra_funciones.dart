@@ -41,7 +41,8 @@ final List<PlantillaFicha> plantillasAlgebraFunciones = [
     idHabilidad: 'ALG.01',
     descripcion:
         'Una ecuación es una igualdad con un número escondido (la incógnita, x). Para encontrarlo, '
-        'se hace lo mismo a los dos lados hasta dejar la x sola: si 3x + 2 = 14, entonces 3x = 12 y x = 4.',
+        'se hace lo mismo a los dos lados hasta dejar la x sola.\n'
+        'Ejemplo: si 3x + 2 = 14, entonces 3x = 12 y x = 4.',
     preguntaExplicalo: '¿Por qué hay que hacer lo mismo a los dos lados de una ecuación? Piensa en una balanza.',
     generar: (azar) {
       final a = azar.entre(2, 9);
@@ -58,8 +59,8 @@ final List<PlantillaFicha> plantillasAlgebraFunciones = [
   PlantillaFicha(
     idHabilidad: 'ALG.02',
     descripcion:
-        'Si la x aparece a los dos lados, primero se juntan las x en un lado y los números en el otro. '
-        'Si 5x − 3 = 2x + 9, entonces 3x = 12 y x = 4.',
+        'Si la x aparece a los dos lados, primero se juntan las x en un lado y los números en el otro.\n'
+        'Ejemplo: si 5x − 3 = 2x + 9, entonces 5x − 2x = 9 + 3, 3x = 12 y x = 4.',
     preguntaExplicalo: '¿Cómo compruebas que la solución de una ecuación es correcta?',
     generar: (azar) {
       late int a, c;
@@ -82,7 +83,8 @@ final List<PlantillaFicha> plantillasAlgebraFunciones = [
     idHabilidad: 'ALG.03',
     descripcion:
         'Un sistema son dos ecuaciones con dos incógnitas (x e y) que se cumplen a la vez. Se '
-        'resuelve por sustitución, igualación o reducción, y la solución es una pareja de números.',
+        'resuelve por sustitución, igualación o reducción, y la solución es una pareja de números.\n'
+        'Ejemplo: con x + y = 5 y x − y = 1, sumando las dos sale 2x = 6; así que x = 3 e y = 2.',
     preguntaExplicalo: '¿Por qué hacen falta dos ecuaciones para encontrar dos incógnitas?',
     generar: (azar) {
       final x = azar.entre(-4, 8);
@@ -108,8 +110,8 @@ final List<PlantillaFicha> plantillasAlgebraFunciones = [
   PlantillaFicha(
     idHabilidad: 'ALG.04',
     descripcion:
-        'El lenguaje algebraico usa letras para números que no conocemos. «El doble de un número '
-        'más 3» se escribe 2x + 3; «la mitad de un número», x/2.',
+        'El lenguaje algebraico usa letras para números que no conocemos.\n'
+        'Ejemplo: «el doble de un número más 3» se escribe 2x + 3, y «la mitad de un número», x/2.',
     preguntaExplicalo:
         '¿Es lo mismo «el doble de un número más 3» que «el doble de la suma de un número y 3»? '
         'Escribe las dos y compáralas con un ejemplo.',
@@ -124,7 +126,7 @@ final List<PlantillaFicha> plantillasAlgebraFunciones = [
         ('un número más su ${_palabrasMultiplo[k]}', 'x + ${k}x = ${k + 1}x'),
         ('el cuadrado de un número menos $b', '${potencia('x', 2)} − $b'),
         ('dos números consecutivos', 'x  y  x + 1'),
-        ('la edad de una persona dentro de $b años', 'x + $b'),
+        ('la edad dentro de $b años de alguien que ahora tiene x años', 'x + $b'),
         ('el precio de $k cuadernos a x euros cada uno', '${k}x'),
       ];
       final (frase, expresion) = azar.elegir(opciones);
@@ -139,11 +141,12 @@ final List<PlantillaFicha> plantillasAlgebraFunciones = [
   PlantillaFicha(
     idHabilidad: 'ALG.05',
     descripcion:
-        'El valor numérico de una expresión es lo que vale cuando cambias la letra por un número. '
-        'Si x = 2, entonces 3x + 1 = 3 · 2 + 1 = 7.',
+        'El valor numérico de una expresión es lo que vale cuando cambias la letra por un número.\n'
+        'Ejemplo: si x = 2, 3x + 1 = 3 · 2 + 1 = 7; si x = −2, x^{2} = (−2)^{2} = 4.',
     preguntaExplicalo: '¿Por qué al sustituir un número negativo conviene ponerlo entre paréntesis?',
     generar: (azar) {
-      final coeficientes = {2: azar.entre(-3, 3), 1: azar.conSignoNoNulo(5), 0: azar.entre(-9, 9)};
+      // Siempre con x^{2}: sin él salían expresiones como «x» a secas.
+      final coeficientes = {2: azar.conSignoNoNulo(3), 1: azar.conSignoNoNulo(5), 0: azar.entre(-9, 9)};
       final x = azar.conSignoNoNulo(4);
       final valor = coeficientes.entries
           .map((e) => e.value * _potenciaEntera(x, e.key))
@@ -160,8 +163,8 @@ final List<PlantillaFicha> plantillasAlgebraFunciones = [
     idHabilidad: 'ALG.06',
     descripcion:
         'Un monomio es un número por letras, como 5x^{2}. Solo se pueden sumar monomios semejantes '
-        '(misma parte de letras): 3x^{2} + 5x^{2} = 8x^{2}. Al multiplicar, se multiplican los números '
-        'y se suman los exponentes.',
+        '(misma parte de letras). Al multiplicar, se multiplican los números y se suman los exponentes.\n'
+        'Ejemplo: 3x^{2} + 5x^{2} = 8x^{2}, y (2x) · (4x^{3}) = 8x^{4}.',
     preguntaExplicalo: '¿Por qué 3x + 2x^{2} no se puede juntar en un solo monomio?',
     generar: (azar) {
       final a = azar.conSignoNoNulo(7);
@@ -188,7 +191,8 @@ final List<PlantillaFicha> plantillasAlgebraFunciones = [
     idHabilidad: 'ALG.07',
     descripcion:
         'Un polinomio es una suma de monomios, como 2x^{2} − 3x + 1. Para sumar o restar polinomios '
-        'se juntan los términos del mismo grado.',
+        'se juntan los términos del mismo grado.\n'
+        'Ejemplo: (2x^{2} − 3x + 1) + (x^{2} + 5x) = 3x^{2} + 2x + 1.',
     preguntaExplicalo: 'Al restar un polinomio, ¿qué pasa con los signos de todos sus términos? ¿Por qué?',
     generar: (azar) {
       Map<int, int> polinomio() =>
@@ -211,7 +215,8 @@ final List<PlantillaFicha> plantillasAlgebraFunciones = [
     idHabilidad: 'ALG.08',
     descripcion:
         'Las identidades notables ahorran cuentas: (a + b)^{2} = a^{2} + 2ab + b^{2}; '
-        '(a − b)^{2} = a^{2} − 2ab + b^{2}; (a + b)(a − b) = a^{2} − b^{2}.',
+        '(a − b)^{2} = a^{2} − 2ab + b^{2}; (a + b)(a − b) = a^{2} − b^{2}.\n'
+        'Ejemplo: (x + 4)^{2} = x^{2} + 2 · 4 · x + 16 = x^{2} + 8x + 16.',
     preguntaExplicalo: '¿Por qué (x + 3)^{2} no es x^{2} + 9? Dibuja un cuadrado de lado x + 3.',
     generar: (azar) {
       final a = azar.entre(1, 9);
@@ -233,7 +238,8 @@ final List<PlantillaFicha> plantillasAlgebraFunciones = [
     idHabilidad: 'ALG.09',
     descripcion:
         'Con paréntesis, primero se quitan multiplicando. Con denominadores, se multiplica toda la '
-        'ecuación por el m.c.m. para que desaparezcan. Después, se resuelve como siempre.',
+        'ecuación por el m.c.m. para que desaparezcan. Después, se resuelve como siempre.\n'
+        'Ejemplo: x/2 + x/3 = 5; por 6 (el m.c.m.): 3x + 2x = 30, 5x = 30 y x = 6.',
     preguntaExplicalo: 'Al quitar denominadores, ¿por qué hay que multiplicar todos los términos, también los que no tienen?',
     generar: (azar) {
       final x = azar.entre(-5, 10);
@@ -248,13 +254,19 @@ final List<PlantillaFicha> plantillasAlgebraFunciones = [
           renglones: 4,
         );
       }
-      final denominador = azar.entre(2, 5);
-      final xMultiplo = denominador * azar.entre(-2, 4);
-      final b = azar.conSignoNoNulo(6);
+      // Dos denominadores distintos: así hace falta el m.c.m. de verdad.
+      final denominador = azar.entre(2, 4);
+      var otroDenominador = azar.entre(2, 6);
+      if (otroDenominador == denominador) otroDenominador++;
+      final solucionX = mcm(denominador, otroDenominador) * azar.elegir<int>([-2, -1, 1, 2, 3]);
+      final restar = otroDenominador > denominador && azar.nextBool();
+      final resultado = restar
+          ? solucionX ~/ denominador - solucionX ~/ otroDenominador
+          : solucionX ~/ denominador + solucionX ~/ otroDenominador;
       return Ejercicio(
         enunciado: 'Resuelve:',
-        destacado: 'x/$denominador ${b < 0 ? '−' : '+'} ${b.abs()} = ${formatearEntero(xMultiplo ~/ denominador + b)}',
-        solucion: 'x = ${formatearEntero(xMultiplo)}',
+        destacado: 'x/$denominador ${restar ? '−' : '+'} x/$otroDenominador = ${formatearEntero(resultado)}',
+        solucion: 'x = ${formatearEntero(solucionX)}',
         renglones: 4,
       );
     },
@@ -263,7 +275,8 @@ final List<PlantillaFicha> plantillasAlgebraFunciones = [
     idHabilidad: 'ALG.10',
     descripcion:
         'Una ecuación de segundo grado tiene x^{2}. Puede tener dos, una o ninguna solución. Se '
-        'resuelve con la fórmula x = (−b ± √(b^{2} − 4ac)) / 2a, o sacando factor común si falta un término.',
+        'resuelve con la fórmula x = (−b ± √(b^{2} − 4ac)) / (2a), o sacando factor común si falta un término.\n'
+        'Ejemplo: x^{2} − 5x + 6 = 0 da x = (5 ± √(25 − 24)) / 2 = (5 ± 1) / 2, así que x = 3 o x = 2.',
     preguntaExplicalo: '¿Por qué una ecuación de segundo grado puede tener dos soluciones? Comprueba con x^{2} = 9.',
     generar: (azar) {
       final r1 = azar.entre(-6, 6);
@@ -285,7 +298,8 @@ final List<PlantillaFicha> plantillasAlgebraFunciones = [
     idHabilidad: 'ALG.11',
     descripcion:
         'Para resolver un problema con ecuaciones: elige qué es la x, escribe la ecuación con los '
-        'datos, resuélvela y comprueba que la respuesta tiene sentido en el problema.',
+        'datos, resuélvela y comprueba que la respuesta tiene sentido en el problema.\n'
+        'Ejemplo: «un número más su doble es 18»: x + 2x = 18, 3x = 18, x = 6 (y 6 + 12 = 18).',
     preguntaExplicalo: '¿Qué es lo más difícil de pasar un problema a ecuación? ¿Cómo lo haces tú?',
     generar: (azar) {
       final tipo = azar.nextInt(3);
@@ -323,7 +337,9 @@ final List<PlantillaFicha> plantillasAlgebraFunciones = [
     idHabilidad: 'ALG.12',
     descripcion:
         'Si un problema tiene dos cantidades desconocidas, llama x a una e y a la otra, escribe '
-        'dos ecuaciones con los datos y resuelve el sistema.',
+        'dos ecuaciones con los datos y resuelve el sistema.\n'
+        'Ejemplo: 2 lápices y 1 goma cuestan 5 €, y 1 lápiz y 1 goma, 3 €: 2x + y = 5 y x + y = 3; '
+        'restando, x = 2 € e y = 1 €.',
     preguntaExplicalo: '¿Cómo sabes qué dos ecuaciones escribir en un problema con dos incógnitas?',
     generar: (azar) {
       if (azar.nextBool()) {
@@ -356,7 +372,8 @@ final List<PlantillaFicha> plantillasAlgebraFunciones = [
     idHabilidad: 'FUN.01',
     descripcion:
         'Una tabla corresponde a una función lineal (y = mx) si y es siempre el mismo múltiplo de x: '
-        'al dividir y entre x sale siempre el mismo número, m.',
+        'al dividir y entre x sale siempre el mismo número, m.\n'
+        'Ejemplo: si x vale 1, 2, 3 e y vale 4, 8, 12, entonces 4 : 1 = 8 : 2 = 12 : 3 = 4, así que y = 4x.',
     preguntaExplicalo: '¿En qué se parece una función lineal a una tabla de proporcionalidad directa?',
     generar: (azar) {
       final m = azar.conSignoNoNulo(5);
@@ -378,7 +395,9 @@ final List<PlantillaFicha> plantillasAlgebraFunciones = [
     idHabilidad: 'FUN.04',
     descripcion:
         'En una función afín y = mx + n, m es la pendiente (cuánto sube y cuando x aumenta 1) y n '
-        'es la ordenada en el origen (el valor de y cuando x = 0). Si n = 0, es lineal.',
+        'es la ordenada en el origen (el valor de y cuando x = 0). Si n = 0, es lineal.\n'
+        'Ejemplo: en y = 2x + 1, la pendiente es 2 y la ordenada en el origen, 1: si x = 0, y = 1; '
+        'si x = 1, y = 3.',
     preguntaExplicalo: '¿Qué significa que la pendiente sea negativa? Pon un ejemplo de la vida.',
     generar: (azar) {
       final m = azar.conSignoNoNulo(4);

@@ -40,6 +40,10 @@ export 'src/pdf/guardar_pdf.dart';
 export 'src/pdf/informe_periodico.dart';
 export 'src/pdf/widgets_pdf.dart';
 export 'src/pdf/tema_pdf.dart';
+// Calendario de obligaciones legales de la suite Larrea (datos en
+// content/solera/plazos.csv, PROVISIONAL).
+export 'src/plazos/calendario_plazos.dart';
+export 'src/plazos/plazo_legal.dart';
 export 'src/utiles/numeros.dart';
 export 'src/mapa/buscador_lugares.dart';
 export 'src/utiles/validadores_numero.dart';

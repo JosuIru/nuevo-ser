@@ -61,6 +61,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  # sqlite de escritorio para los tests de la BD (sqflite no tiene
+  # plugin nativo en `flutter test`).
+  sqflite_common_ffi: ^2.3.3
   # Generador de iconos Android (mipmap-*) a partir del PNG fuente.
   # Sólo se invoca con `dart run flutter_launcher_icons` cuando cambia
   # el logo — no es runtime dep.

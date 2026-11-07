@@ -13,13 +13,13 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 3 Pantallas | ✅ 2026-11-07 | Pestañas: Hoy, Recetas, Ingredientes (con lotes recibidos), Autocontrol, Ajustes. Desde la cabecera de Hoy: Hornadas (propone las piezas pedidas y el código de lote; marca los lotes usados de los ingredientes directos), Pedidos fijos y Masa madre. 19 tests, 3 de pantalla |
 | 4-5 Documentos oficiales PDF | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Documentos: cuaderno de autocontrol del mes (una tabla por tipo + incidencias y acciones correctoras) y cartel de alérgenos del mostrador. Ficha técnica desde cada receta (ingredientes por peso con los de alérgeno en MAYÚSCULAS, %, sal estimada). Datos en funciones puras con test; PDF con `informe_periodico` del core. 25 tests |
 | 6 Catálogos | ✅ 2026-11-07 | `content/obrador/`: alérgenos (Reglamento 1169/2011 anexo II), denominaciones del pan (RD 308/2019 consolidado, con artículo y sal máxima), ingredientes base y controles tipo (sin revisar). Autocompletado de ingredientes, denominación en la receta con aviso de sal, sugerencias de control y banner en Hoy. 30 tests |
-| 7 IA visual | pendiente | |
+| 7 IA visual | ✅ 2026-11-07 | Ingrediente → «Leer etiqueta con IA»: foto de la etiqueta o ficha del proveedor → propuesta (ingredientes, alérgenos, trazas) con salida estructurada limitada a los 14; la persona la ve y decide. Modelo equilibrado del core (`modeloClaudeEquilibrado`), clave BYO en `estado/clave_anthropic_obrador.dart`. La foto se borra al terminar. 33 tests |
 | 8 Branding + GPS | pendiente | |
 | 9 Economía | pendiente | PROVISIONAL |
 | 10 Revisión con fuente pública | ✅ en parte (2026-11-07) | Alérgenos y denominaciones ya citan su norma (`fuente_publica`). Ingredientes base y controles tipo quedan sin revisar a propósito: el alérgeno real es el de la ficha del proveedor y los límites, los del plan de cada obrador. El banner sigue hasta la firma humana |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 7 (IA: leer con el cliente del core la foto de la etiqueta o la ficha del proveedor → ingredientes y alérgenos propuestos, que la persona confirma), bloque 8 (logo placeholder) y bloque 9 (libro de ingresos y gastos, no REAGP).
+**Siguiente acción**: bloque 8 (logo placeholder e iconos), bloque 9 (libro de ingresos y gastos con IVA, PROVISIONAL; precio de venta y margen por receta) y bloque 11 (ayuda in-app, README, APK release).
 
 ## Encuadre
 
@@ -42,6 +42,7 @@ un producto apto** para alérgicos ni celíacos, y la sal y los nutrientes son
   uso (`ON DELETE RESTRICT`); borrar una receta se lleva sus líneas.
 - **2026-11-07 — Lotes en la hornada**: solo se ofrecen los de los ingredientes *directos* de la receta; los de una base se apuntan al hacer la base (pendiente: hornada de subreceta).
 - **2026-11-07 — Alérgenos destacados en MAYÚSCULAS** en la lista de ingredientes de la ficha: la tabla del `informe_periodico` no admite negrita. Comprobar con el técnico si basta.
+- **2026-11-07 — IA con el modelo equilibrado** y no el rápido: un error de lectura de alérgenos tiene consecuencias para una persona alérgica.
 - **2026-11-07 — Importes en céntimos** (como aceitera), no en REAL como la quesera.
 
 ## Datos técnicos

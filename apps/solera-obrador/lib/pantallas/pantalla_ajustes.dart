@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
-    show SelectorIdioma, SoleraL10n;
+    show PantallaClaveAnthropic, SelectorIdioma, SoleraL10n;
 
 import '../datos/base_datos.dart';
+import '../estado/clave_anthropic_obrador.dart';
 import '../modelos/titular.dart';
 import 'pantalla_documentos.dart';
 
@@ -69,6 +70,20 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
             trailing: const Icon(Icons.chevron_right),
             onTap: () => Navigator.push(context,
                 MaterialPageRoute(builder: (_) => const PantallaDocumentos())),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.auto_awesome_outlined),
+            title: Text(SoleraL10n.t('obra.inteligencia_artificial')),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => PantallaClaveAnthropic(
+                          estado: estadoClaveObrador,
+                          nombreApp: 'Larrea Obrador',
+                          queIdentifica: SoleraL10n.t('obra.ia_que_hace'),
+                        ))),
           ),
           const SelectorIdioma(),
           const SizedBox(height: 24),

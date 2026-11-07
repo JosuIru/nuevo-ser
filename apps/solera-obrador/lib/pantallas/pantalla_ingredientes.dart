@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show
+        FuenteFoto,
+        GestorFotos,
+        ImagenClaude,
+        PantallaClaveAnthropic,
+        SoleraL10n;
 
 import '../datos/base_datos.dart';
 import '../datos/catalogos_generados/catalogo_ingredientes_base.dart';
 import '../estado/cambios_datos.dart';
+import '../estado/clave_anthropic_obrador.dart';
 import '../modelos/alergenos.dart';
 import '../modelos/ingrediente.dart';
 import '../modelos/lote_ingrediente.dart';
+import '../servicios/lector_etiquetas_ia.dart';
 import '../utiles/textos_obrador.dart';
 import 'hoja_formulario.dart';
 
@@ -115,6 +123,7 @@ class _PantallaEditarIngredienteState extends State<PantallaEditarIngrediente> {
   late final Set<String> _trazas = {...?widget.ingrediente?.trazas};
   bool _guardando = false;
   bool _desdeCatalogo = false;
+  bool _leyendo = false;
   bool _escuchandoNombre = false;
 
   void _usarIngredienteBase(IngredienteBase base) => setState(() {
@@ -129,6 +138,97 @@ class _PantallaEditarIngredienteState extends State<PantallaEditarIngrediente> {
         if (base.salGramosPor100g > 0)
           _sal.text = formatearNumero(base.salGramosPor100g);
       });
+
+  Future<void> _leerEtiqueta() async {
+    final mensajero = ScaffoldMessenger.of(context);
+    final clave = await estadoClaveObrador.cargar();
+    if (!mounted) return;
+    if (clave == null || !estadoClaveObrador.hayClave.value) {
+      await Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (_) => PantallaClaveAnthropic(
+                    estado: estadoClaveObrador,
+                    nombreApp: 'Larrea Obrador',
+                    queIdentifica: SoleraL10n.t('obra.ia_que_hace'),
+                  )));
+      return;
+    }
+    final fuente = await showModalBottomSheet<FuenteFoto>(
+      context: context,
+      builder: (contexto) => SafeArea(
+        child: Wrap(children: [
+          ListTile(
+              leading: const Icon(Icons.photo_camera_outlined),
+              title: Text(SoleraL10n.t('obra.hacer_foto')),
+              onTap: () => Navigator.pop(contexto, FuenteFoto.camara)),
+          ListTile(
+              leading: const Icon(Icons.photo_library_outlined),
+              title: Text(SoleraL10n.t('obra.elegir_foto')),
+              onTap: () => Navigator.pop(contexto, FuenteFoto.galeria)),
+        ]),
+      ),
+    );
+    if (fuente == null) return;
+    final rutas = await GestorFotos.tomarOSeleccionar(
+        fuente: fuente, permitirVarias: false);
+    if (rutas.isEmpty || !mounted) return;
+    setState(() => _leyendo = true);
+    try {
+      final lectura = await leerEtiquetaConIa(
+          claveApi: clave, foto: await ImagenClaude.desdeFichero(rutas.first));
+      if (!mounted) return;
+      await _mostrarLectura(lectura);
+    } catch (error) {
+      debugPrint('Lectura de etiqueta fallida: $error');
+      mensajero
+          .showSnackBar(SnackBar(content: Text(SoleraL10n.t('obra.ia_error'))));
+    } finally {
+      await GestorFotos.borrarSiExiste(rutas.first);
+      if (mounted) setState(() => _leyendo = false);
+    }
+  }
+
+  Future<void> _mostrarLectura(LecturaEtiqueta lectura) async {
+    final usar = await showDialog<bool>(
+      context: context,
+      builder: (contexto) => AlertDialog(
+        title: Text(SoleraL10n.t('obra.ia_propuesta')),
+        content: SingleChildScrollView(
+          child: Text([
+            if (!lectura.legible) SoleraL10n.t('obra.ia_no_legible'),
+            if (lectura.nombreProducto.isNotEmpty) lectura.nombreProducto,
+            if (lectura.ingredientes.isNotEmpty)
+              lectura.ingredientes.join(', '),
+            '${SoleraL10n.t('obra.alergenos')}: ${lectura.alergenos.isEmpty ? '—' : lectura.alergenos.map(nombreAlergeno).join(', ')}',
+            if (lectura.trazas.isNotEmpty)
+              '${SoleraL10n.t('obra.trazas')}: ${lectura.trazas.map(nombreAlergeno).join(', ')}',
+            if (lectura.observaciones.isNotEmpty) lectura.observaciones,
+            SoleraL10n.t('obra.ia_revisa'),
+          ].join('\n\n')),
+        ),
+        actions: [
+          TextButton(
+              onPressed: () => Navigator.pop(contexto, false),
+              child: Text(SoleraL10n.t('cancelar'))),
+          FilledButton(
+              onPressed: () => Navigator.pop(contexto, true),
+              child: Text(SoleraL10n.t('obra.ia_usar'))),
+        ],
+      ),
+    );
+    if (usar != true) return;
+    setState(() {
+      _desdeCatalogo = true;
+      if (_nombre.text.trim().isEmpty) _nombre.text = lectura.nombreProducto;
+      _alergenos
+        ..clear()
+        ..addAll(lectura.alergenos);
+      _trazas
+        ..clear()
+        ..addAll(lectura.trazas);
+    });
+  }
 
   @override
   void dispose() {
@@ -183,6 +283,20 @@ class _PantallaEditarIngredienteState extends State<PantallaEditarIngrediente> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          _leyendo
+              ? const Padding(
+                  padding: EdgeInsets.all(14),
+                  child: SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(strokeWidth: 2)))
+              : IconButton(
+                  tooltip: SoleraL10n.t('obra.ia_leer_etiqueta'),
+                  icon: const Icon(Icons.document_scanner_outlined),
+                  onPressed: _leerEtiqueta,
+                ),
+        ],
         title: Text(widget.ingrediente == null
             ? SoleraL10n.t('obra.nuevo_ingrediente')
             : widget.ingrediente!.nombre),

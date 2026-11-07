@@ -120,12 +120,13 @@ void main() {
 
   test('cuaderno: tablas, orden y contenidos', () {
     final tablas = tablasCuadernoEcologico(entrada);
-    expect(tablas, hasLength(8));
+    expect(tablas, hasLength(9));
     final [
       parcelas,
       rotacion,
       siembras,
       semillas,
+      observaciones,
       insumos,
       fitos,
       cosechas,
@@ -135,7 +136,7 @@ void main() {
     expect(parcelas.filas.single[5], '01/03/2025');
     expect(rotacion.headers.skip(1), ['2023', '2024', '2025', '2026']);
     expect(rotacion.filas.first.first, '1 · Vega · B1');
-    expect(rotacion.filas.first.last, 'solanaceas');
+    expect(rotacion.filas.first.last, 'Solanáceas');
     expect(rotacion.filas.last.last, '—',
         reason: 'la siembra solo planificada no cuenta');
     expect(siembras.filas, hasLength(1), reason: 'solo las hechas en 2026');
@@ -144,6 +145,9 @@ void main() {
         reason: 'tomate tras tomate al año siguiente');
     expect(semillas.filas.single.first, 'TOM-1');
     expect(semillas.filas.single.last, SoleraL10n.t('huer.falta_autorizacion'));
+    expect(observaciones.filas, isEmpty);
+    expect(observaciones.mensajeSiVacia, isNull,
+        reason: 'sin muestreos no sale');
     expect(insumos.filas.first[2], 'Compost', reason: 'por fecha');
     expect(insumos.filas.first[1], '1 · Vega', reason: 'toda la parcela');
     expect(insumos.filas.last[5], SoleraL10n.t('huer.pdf_no_marcado'));
@@ -156,8 +160,8 @@ void main() {
   test('sin fitosanitarios su tabla no sale', () {
     final sinFitos = tablasCuadernoEcologico(
         DatosCuadernoEcologico(anyo: 2026, titular: titular, datos: datos));
-    expect(sinFitos[5].filas, isEmpty);
-    expect(sinFitos[5].mensajeSiVacia, isNull);
+    expect(sinFitos[6].filas, isEmpty);
+    expect(sinFitos[6].mensajeSiVacia, isNull);
   });
 
   SemanaCestas semana() {

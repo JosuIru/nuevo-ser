@@ -12,14 +12,14 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 2 Modelos + BD | ✅ 2026-11-07 | 14 modelos (titular-huerta, parcela, bancal, cultivo, lote de semilla, siembra/plantación, cosecha, insumo, tratamiento; y en `lib/provisional_core/venta_directa/` socio, suscripción, cesta, línea de cesta, entrega), 14 tablas en la v1. Lógica pura: `dominio/rotacion.dart` (aviso por familia y años mínimos, familias bloqueadas por bancal), `dominio/siembras_escalonadas.dart`, `dominio/prevision_cosecha.dart` (cosecha prevista y real de la semana) y `provisional_core/venta_directa/reparto_cestas.dart` (reparto por partes con mayor resto, pasos de 50 g o piezas, turno rotatorio en empates). 65 tests |
 | 3 Pantallas | ✅ 2026-11-07 | Pestañas: Hoy (primeros pasos sin parcelas o cultivos, siembras planificadas de los próximos 14 días o atrasadas con aviso de rotación, cestas de la semana, plazos de seguridad abiertos, pendientes para el certificador: semilla no ecológica sin autorización e insumo sin justificante), Parcelas → ficha de parcela con bancales y lo que tienen → ficha de bancal (plan de rotación: familias bloqueadas y hasta cuándo, siembras con acciones hecha/cosechar/levantar, cosechas), Cuaderno del año (siembras, cosechas, aplicaciones de insumos; menú con cultivos, banco de semillas e insumos), Cestas (semana, cosecha real y prevista, **proponer reparto**, cesta editable, entrega) y socios con suscripciones, Ajustes (datos de la huerta, organismo de control, asesor). Altas en hojas inferiores (`formularios_huerta.dart`), siembra con serie escalonada y aviso de rotación en vivo. 75 tests, 7 de pantalla |
 | 4-5 Documentos oficiales PDF | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Documentos: **cuaderno de campo para el certificador ecológico** (año en curso y anterior: parcelas con situación y conversión, rotación por bancal en 4 años, siembras y plantaciones con su lote y el aviso de rotación, semillas usadas con la autorización si es no ecológica, insumos aplicados con su categoría y el justificante de «permitido», tratamientos fitosanitarios con las columnas del RD 1311/2012, cosechas y totales por cultivo) y **hoja de cestas y reparto** (esta semana y la siguiente: preparar por cultivo con cosechado/en cestas/sobra, y cesta por socio con punto de entrega, contenido, notas y casilla de entrega). Tablas puras con test. Recordatorio de leguminosas en la ficha del bancal (Reglamento 2018/848, anexo II, parte I, 1.9.2). 82 tests |
-| 6 Catálogos | pendiente | |
-| 7 IA visual | pendiente | |
+| 6 Catálogos | ✅ 2026-11-07 | `content/huerta/`: cultivos (42; ciclo, semanas de cosecha, marco, por piezas), rotación (12 familias con años mínimos), categorías de insumos de los anexos I y II del Reglamento de Ejecución (UE) 2021/1165 (68, leídas en EUR-Lex, consolidado a 01/01/2026) y plagas, enfermedades y carencias (32, guías GIP del MAPA). Compilador sobre la librería común del core. En la app: especie del catálogo con familia automática, rotación con los años del catálogo, ciclo para prever la cosecha, piezas en el reparto, categoría del anexo en los insumos, plagas por familia, banner de catálogos provisionales en Hoy. Tests de integridad referencial y de que no hay firma humana fingida |
+| 7 IA visual | ✅ 2026-11-07 | Ficha de bancal → icono de escáner: elige cultivo (de lo que hay en el bancal), foto (cámara o galería) → hasta 3 candidatos del catálogo de **esa familia** (salida estructurada con `enum` de ids + «otra») → la persona elige y se abre una **observación** (nuevo modelo `ObservacionPlaga`, tabla `observaciones_plaga`). Nunca propone tratamientos. Modelo equilibrado del core, clave BYO en `estado/clave_anthropic_huerta.dart` (Ajustes → Inteligencia artificial). La foto se borra al terminar. Las observaciones salen en el cuaderno PDF como prueba de necesidad (anexo II, 1.10.2). 111 tests |
 | 8 Branding + GPS | ✅ 2026-11-07 (placeholder) | Logo ImageMagick (brote de dos hojas sobre tres bancales, verde hoja y tierra sobre crema) en `assets/`, iconos de lanzador (`flutter_launcher_icons`, adaptativo con fondo crema), pantalla de arranque crema con el logo y logo en la cabecera de Hoy. GPS: «Usar mi ubicación» en el formulario de parcela (geolocator) y mapa de parcelas (OSM) desde Parcelas. Permisos INTERNET y ubicación en el manifiesto (con test). 94 tests |
 | 9 Economía | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Ingresos y gastos: régimen de IVA (REAGP / general / sin elegir), apuntes en céntimos con **ventas por canal** (cestas, mercado, restaurantes y tiendas, otras), interruptor «comprador empresario o profesional» (en REAGP solo entonces hay compensación del 12 %), parcela opcional → margen por parcela; resumen del año y extracto PDF con sello. Guardarraíles fiscales en `test/dominio/economia_test.dart`. 91 tests |
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 6 (catálogos: los CSV de `content/huerta/` y regenerar `lib/datos/catalogos_generados/`, que ahora son marcadores vacíos).
+**Siguiente acción**: bloques 10 y 11.
 
 ## Encuadre
 
@@ -112,6 +112,26 @@ Lo esencial que no se toca (hard limits):
   actividad del REAGP queda para el asesor fiscal.
 - **2026-11-07 — Economía mínima, sin facturas del core** (como Frutal y
   Obrador): el régimen lo fija antes el asesor fiscal.
+- **2026-11-07 — Rotación a 4 años en casi todas las familias**: ninguna
+  fuente pública leída da una tabla oficial; el 4 sale del plan de ejemplo del
+  Ayto. de Madrid y las guías GIP dan cifras menores para problemas concretos
+  (se toma el mayor). Es lo más conservador: avisa de más, no de menos.
+- **2026-11-07 — `semanas_cosecha` es estimación propia** (salvo tomate) aunque
+  la fila tenga `fuente_publica`: la cita respalda ciclo y marco. Sin ella no
+  hay previsión de cestas; queda para el asesor.
+- **2026-11-07 — Categorías de insumo, no productos**: 68 filas resumidas de
+  los anexos I y II del Reglamento de Ejecución 2021/1165 con sus condiciones
+  legales (p. ej. cobre 28 kg/ha en 7 años); no se cruzaron con el Registro
+  del MAPA porque el catálogo no lleva sustancias por cultivo ni plazos.
+- **2026-11-07 — Se añadió `ObservacionPlaga`** (no estaba en la ficha): la IA
+  propone una observación y no un tratamiento, y el Reglamento pide registros
+  que acrediten la necesidad de los fitosanitarios (anexo II, parte I, 1.10.2).
+- **2026-11-07 — La IA ofrece solo las plagas de la familia del cultivo**
+  (más «otra» y las que no indican familia), con el modelo equilibrado como
+  Frutal y Obrador: un mal diagnóstico lleva a tratar mal.
+- **2026-11-07 — Catálogos preparados por un subagente** con las mismas
+  reglas (`revisado_por` solo `fuente_publica:` o vacío) y revisados por el
+  test de integridad; la nota de revisión está en `content/huerta/revision-2026-11-07.md`.
 - **2026-11-07 — La v1 se amplía durante la F1** (como en Frutal): no hay
   ninguna instalación publicada.
 
@@ -138,3 +158,4 @@ Lo esencial que no se toca (hard limits):
   regenerar con `cd packages/nuevo_ser_core && dart run tool/compilar_traducciones_solera.dart`.
   eu/ca/gl son **borrador** hasta la revisión nativa (`scripts/traducciones/`).
 - Catálogos: `content/huerta/` → `dart run tool/compilar_catalogos.dart`.
+  Revisión: `content/huerta/revision-2026-11-07.md`.

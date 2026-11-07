@@ -4,6 +4,7 @@ import 'package:solera_huerta/modelos/cosecha.dart';
 import 'package:solera_huerta/modelos/cultivo.dart';
 import 'package:solera_huerta/modelos/insumo.dart';
 import 'package:solera_huerta/modelos/lote_semilla.dart';
+import 'package:solera_huerta/modelos/observacion_plaga.dart';
 import 'package:solera_huerta/modelos/parcela.dart';
 import 'package:solera_huerta/modelos/siembra.dart';
 import 'package:solera_huerta/modelos/titular.dart';
@@ -161,6 +162,13 @@ void main() {
       Entrega(id: 14, cestaId: 12, fechaMs: 8, resultado: 'no_recogida'),
       (modelo) => modelo.toMap(),
       Entrega.fromMap);
+
+  idaYVuelta(
+      'ObservacionPlaga',
+      ObservacionPlaga(
+          id: 15, bancalId: 3, cultivoId: 4, fechaMs: 9, plagaId: 'trips'),
+      (modelo) => modelo.toMap(),
+      ObservacionPlaga.fromMap);
 
   test('mapas vacíos dan valores por defecto, no nulos', () {
     expect(Titular.fromMap(const {}).nombre, '');

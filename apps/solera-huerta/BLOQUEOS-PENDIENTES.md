@@ -22,6 +22,25 @@ y sigue. Lo recoge `scripts/pendientes/`.
   las cuotas de las cestas pagadas por adelantado se apuntan al cobro o a la
   entrega, las categorías y si hace falta emitir facturas a restaurantes
   (`generador_extracto_economico_pdf.dart`, `modelos/configuracion_fiscal.dart`).
+- **Técnico hortícola o asesor del organismo de control**: revisar y firmar
+  los catálogos (`content/huerta/`, con `scripts/auditoria`): años mínimos de
+  rotación por familia (hoy 4 en casi todas; ¿más con hernia de la col?),
+  `semanas_cosecha` de todos los cultivos (estimación propia), ciclos para
+  climas distintos del valle del Ebro, las 9 hortalizas y las 5 plagas o
+  carencias sin fuente, y si el resumen de condiciones de los anexos I y II
+  del Reglamento de Ejecución 2021/1165 es fiel y suficiente.
+
+## Catálogos: lo que no se pudo contrastar
+
+- Sin fuente leída: cultivos chirivía, perejil, cebolleta, guisante, kale, col
+  de Bruselas, nabo, rúcula y canónigo; años de rotación de valerianáceas y
+  boragináceas; mosca de la zanahoria (no hay guía GIP de umbelíferas) y las
+  cuatro carencias (las hojas divulgadoras del MAPA no abrieron).
+- www.mapa.gob.es falla el certificado: las guías GIP se leyeron en la Wayback
+  Machine (enlaces en la nota de revisión).
+- Las categorías del anexo I no se cruzaron con el Registro de Productos
+  Fitosanitarios del MAPA (cada producto necesita además autorización en
+  España para el cultivo): la app no lo comprueba y lo dice.
 
 ## Pilotos
 

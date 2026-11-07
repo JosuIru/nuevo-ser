@@ -7,10 +7,12 @@ import '../dominio/rotacion.dart';
 import '../estado/cambios_datos.dart';
 import '../estado/datos_huerta.dart';
 import '../modelos/cosecha.dart';
+import '../modelos/observacion_plaga.dart';
 import '../modelos/siembra.dart';
 import '../utiles/textos_huerta.dart';
 import 'formularios_huerta.dart';
 import 'hoja_formulario.dart';
+import 'identificar_plaga.dart';
 
 /// Ficha de un bancal: el plan de rotación (qué familias no pueden volver
 /// todavía), sus siembras planificadas y hechas, y sus cosechas.
@@ -24,7 +26,7 @@ class PantallaFichaBancal extends StatefulWidget {
 }
 
 class _PantallaFichaBancalState extends State<PantallaFichaBancal> {
-  late Future<(DatosHuerta, List<Cosecha>)> _datos;
+  late Future<(DatosHuerta, List<Cosecha>, List<ObservacionPlaga>)> _datos;
 
   @override
   void initState() {
@@ -39,11 +41,14 @@ class _PantallaFichaBancalState extends State<PantallaFichaBancal> {
     super.dispose();
   }
 
-  Future<(DatosHuerta, List<Cosecha>)> _cargar() async => (
-        await DatosHuerta.cargar(),
-        await BaseDatosSoleraHuerta.instancia
-            .listarCosechas(bancalId: widget.bancalId),
-      );
+  Future<(DatosHuerta, List<Cosecha>, List<ObservacionPlaga>)>
+      _cargar() async => (
+            await DatosHuerta.cargar(),
+            await BaseDatosSoleraHuerta.instancia
+                .listarCosechas(bancalId: widget.bancalId),
+            await BaseDatosSoleraHuerta.instancia
+                .listarObservacionesPlaga(bancalId: widget.bancalId),
+          );
 
   void _recargar() {
     if (!mounted) return;
@@ -114,11 +119,13 @@ class _PantallaFichaBancalState extends State<PantallaFichaBancal> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<(DatosHuerta, List<Cosecha>)>(
+    return FutureBuilder<(DatosHuerta, List<Cosecha>, List<ObservacionPlaga>)>(
       future: _datos,
       builder: (context, instantanea) {
         final datos = instantanea.data?.$1;
         final cosechas = instantanea.data?.$2 ?? const <Cosecha>[];
+        final observaciones =
+            instantanea.data?.$3 ?? const <ObservacionPlaga>[];
         final bancal = datos?.bancal(widget.bancalId);
         if (datos == null || bancal == null) {
           return Scaffold(appBar: AppBar(), body: const SizedBox.shrink());
@@ -141,6 +148,12 @@ class _PantallaFichaBancalState extends State<PantallaFichaBancal> {
           appBar: AppBar(
             title: Text(datos.nombreDeBancal(bancal.id!)),
             actions: [
+              IconButton(
+                tooltip: SoleraL10n.t('huer.identificar_con_foto'),
+                icon: const Icon(Icons.document_scanner_outlined),
+                onPressed: () => identificarPlagaConFoto(context,
+                    datos: datos, bancalId: bancal.id!),
+              ),
               IconButton(
                 tooltip: SoleraL10n.t('editar'),
                 icon: const Icon(Icons.edit_outlined),
@@ -225,6 +238,45 @@ class _PantallaFichaBancalState extends State<PantallaFichaBancal> {
                       SoleraL10n.t('huer.rotacion_corta'),
                   ].join(' · ')),
                   onTap: () => _accionesSiembra(datos, siembra),
+                ),
+              const Divider(),
+              ListTile(
+                title: Text(SoleraL10n.t('huer.observaciones_plagas'),
+                    style: Theme.of(context).textTheme.titleMedium),
+                subtitle: Text(SoleraL10n.t('huer.observaciones_plagas_ayuda')),
+                trailing: IconButton(
+                  tooltip: SoleraL10n.t('huer.nueva_observacion'),
+                  icon: const Icon(Icons.add),
+                  onPressed: () => mostrarAltaObservacion(context,
+                      datos: datos,
+                      bancalId: bancal.id!,
+                      cultivoId:
+                          datos.ocupacionDe(bancal.id!).firstOrNull?.cultivoId),
+                ),
+              ),
+              for (final observacion in observaciones)
+                ListTile(
+                  leading: const Icon(Icons.bug_report_outlined),
+                  title: Text(nombrePlaga(observacion.plagaId)),
+                  subtitle: Text([
+                    formatearFecha(observacion.fechaMs),
+                    if (observacion.cultivoId != null)
+                      datos.nombreDeCultivo(observacion.cultivoId!),
+                    if (observacion.notas.isNotEmpty) observacion.notas,
+                  ].join(' · ')),
+                  onTap: () => mostrarAltaObservacion(context,
+                      datos: datos,
+                      bancalId: bancal.id!,
+                      observacion: observacion),
+                  onLongPress: () async {
+                    if (!await confirmarBorrado(
+                        context, SoleraL10n.t('huer.borrar_registro'))) {
+                      return;
+                    }
+                    await BaseDatosSoleraHuerta.instancia
+                        .borrarObservacionPlaga(observacion.id!);
+                    avisarCambioDatos();
+                  },
                 ),
               const Divider(),
               ListTile(

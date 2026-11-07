@@ -9,6 +9,7 @@ import '../modelos/cosecha.dart';
 import '../modelos/cultivo.dart';
 import '../modelos/insumo.dart';
 import '../modelos/lote_semilla.dart';
+import '../modelos/observacion_plaga.dart';
 import '../modelos/parcela.dart';
 import '../modelos/siembra.dart';
 import '../modelos/titular.dart';
@@ -189,6 +190,14 @@ const List<String> sentenciasEsquemaHuertaV1 = [
     recogida_por TEXT NOT NULL DEFAULT '',
     notas TEXT NOT NULL DEFAULT ''
   )''',
+  '''CREATE TABLE observaciones_plaga (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    bancal_id INTEGER NOT NULL REFERENCES bancales(id) ON DELETE RESTRICT,
+    cultivo_id INTEGER REFERENCES cultivos(id) ON DELETE SET NULL,
+    fecha_ms INTEGER NOT NULL,
+    plaga_id TEXT NOT NULL,
+    notas TEXT NOT NULL DEFAULT ''
+  )''',
   '''CREATE TABLE apuntes_economicos (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     es_ingreso INTEGER NOT NULL,
@@ -207,6 +216,7 @@ const List<String> sentenciasEsquemaHuertaV1 = [
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     regimen_iva TEXT NOT NULL DEFAULT 'sin_elegir'
   )''',
+  'CREATE INDEX idx_observaciones_fecha ON observaciones_plaga(bancal_id, fecha_ms)',
   'CREATE INDEX idx_apuntes_fecha ON apuntes_economicos(fecha_ms)',
   'CREATE INDEX idx_bancales_parcela ON bancales(parcela_id)',
   'CREATE INDEX idx_siembras_bancal ON siembras(bancal_id, fecha_prevista_ms)',
@@ -442,6 +452,22 @@ class BaseDatosSoleraHuerta extends BaseDatosSolera {
               desdeMs: desdeMs,
               hastaMs: hastaMs))
           .map(Tratamiento.fromMap)
+          .toList();
+
+  Future<int> guardarObservacionPlaga(ObservacionPlaga observacion) =>
+      _guardar('observaciones_plaga', observacion.toMap());
+
+  Future<void> borrarObservacionPlaga(int observacionId) =>
+      _borrar('observaciones_plaga', observacionId);
+
+  Future<List<ObservacionPlaga>> listarObservacionesPlaga(
+          {int? bancalId, int? desdeMs, int? hastaMs}) async =>
+      (await _listarRegistros('observaciones_plaga',
+              columnaFiltro: 'bancal_id',
+              valorFiltro: bancalId,
+              desdeMs: desdeMs,
+              hastaMs: hastaMs))
+          .map(ObservacionPlaga.fromMap)
           .toList();
 
   // ─── Cestas (venta directa, provisional_core) ────────────────────

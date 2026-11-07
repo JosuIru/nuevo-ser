@@ -8,6 +8,7 @@ import '../dominio/catalogos.dart';
 import '../dominio/rotacion.dart';
 import '../estado/datos_huerta.dart';
 import '../modelos/cosecha.dart';
+import '../modelos/observacion_plaga.dart';
 import '../modelos/titular.dart';
 import '../modelos/tratamiento.dart';
 import '../utiles/textos_huerta.dart';
@@ -32,6 +33,7 @@ class DatosCuadernoEcologico {
     required this.datos,
     this.cosechas = const [],
     this.aplicaciones = const [],
+    this.observaciones = const [],
   });
 
   final int anyo;
@@ -42,11 +44,14 @@ class DatosCuadernoEcologico {
   final DatosHuerta datos;
   final List<Cosecha> cosechas;
   final List<Tratamiento> aplicaciones;
+
+  /// Muestreos de plagas: acreditan la necesidad de los fitosanitarios.
+  final List<ObservacionPlaga> observaciones;
 }
 
 /// Tablas del cuaderno de campo para el certificador ecológico, en este
 /// orden: parcelas, rotación por bancal, siembras y plantaciones, semillas
-/// usadas, insumos aplicados, tratamientos fitosanitarios (RD 1311/2012),
+/// usadas, observaciones de plagas, insumos aplicados, tratamientos fitosanitarios (RD 1311/2012),
 /// cosechas y totales por cultivo. Funciones puras: se prueban sin PDF.
 List<TablaInforme> tablasCuadernoEcologico(DatosCuadernoEcologico entrada) {
   final datos = entrada.datos;
@@ -232,6 +237,31 @@ List<TablaInforme> tablasCuadernoEcologico(DatosCuadernoEcologico entrada) {
             ],
       ],
       mensajeSiVacia: SoleraL10n.t('huer.pdf_sin_semillas'),
+    ),
+    TablaInforme(
+      titulo: SoleraL10n.t('huer.pdf_observaciones'),
+      headers: [
+        SoleraL10n.t('huer.fecha'),
+        SoleraL10n.t('huer.bancal'),
+        SoleraL10n.t('huer.cultivo'),
+        SoleraL10n.t('huer.problema'),
+        SoleraL10n.t('huer.notas'),
+      ],
+      filas: [
+        for (final observacion in [
+          ...entrada.observaciones
+        ]..sort((a, b) => a.fechaMs.compareTo(b.fechaMs)))
+          [
+            formatearFecha(observacion.fechaMs),
+            lugarBancal(observacion.bancalId),
+            observacion.cultivoId == null
+                ? '—'
+                : datos.nombreDeCultivo(observacion.cultivoId!),
+            nombrePlaga(observacion.plagaId),
+            _o(observacion.notas),
+          ],
+      ],
+      // Sin observaciones la sección no aparece.
     ),
     TablaInforme(
       titulo: SoleraL10n.t('huer.pdf_insumos'),

@@ -30,6 +30,8 @@ class PantallaDocumentos extends StatelessWidget {
           cosechas: await bd.listarCosechas(desdeMs: desde, hastaMs: hasta),
           aplicaciones:
               await bd.listarTratamientos(desdeMs: desde, hastaMs: hasta),
+          observaciones:
+              await bd.listarObservacionesPlaga(desdeMs: desde, hastaMs: hasta),
         ),
         tema: tema,
       ),

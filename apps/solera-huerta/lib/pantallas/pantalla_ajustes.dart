@@ -5,6 +5,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
 import '../datos/base_datos.dart';
 import '../modelos/titular.dart';
 import 'hoja_formulario.dart';
+import 'pantalla_documentos.dart';
 
 /// Ajustes: idioma, datos de la huerta para los cuadernos y accesos.
 class PantallaAjustes extends StatefulWidget {
@@ -92,6 +93,15 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
     super.dispose();
   }
 
+  Widget _acceso(IconData icono, String clave, Widget pantalla) => ListTile(
+        contentPadding: EdgeInsets.zero,
+        leading: Icon(icono),
+        title: Text(SoleraL10n.t(clave)),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: () => Navigator.push(
+            context, MaterialPageRoute(builder: (_) => pantalla)),
+      );
+
   @override
   Widget build(BuildContext context) {
     final estilo = Theme.of(context).textTheme.titleMedium;
@@ -100,6 +110,8 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
+          _acceso(Icons.picture_as_pdf_outlined, 'huer.documentos',
+              const PantallaDocumentos()),
           const SelectorIdioma(),
           const SizedBox(height: 24),
           Text(SoleraL10n.t('huer.datos_huerta'), style: estilo),

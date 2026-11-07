@@ -11,7 +11,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 1 Esqueleto | ✅ 2026-11-07 | Generado con `scripts/nueva_vertical.sh` |
 | 2 Modelos + BD | ✅ 2026-11-07 | 14 modelos (titular-huerta, parcela, bancal, cultivo, lote de semilla, siembra/plantación, cosecha, insumo, tratamiento; y en `lib/provisional_core/venta_directa/` socio, suscripción, cesta, línea de cesta, entrega), 14 tablas en la v1. Lógica pura: `dominio/rotacion.dart` (aviso por familia y años mínimos, familias bloqueadas por bancal), `dominio/siembras_escalonadas.dart`, `dominio/prevision_cosecha.dart` (cosecha prevista y real de la semana) y `provisional_core/venta_directa/reparto_cestas.dart` (reparto por partes con mayor resto, pasos de 50 g o piezas, turno rotatorio en empates). 65 tests |
 | 3 Pantallas | ✅ 2026-11-07 | Pestañas: Hoy (primeros pasos sin parcelas o cultivos, siembras planificadas de los próximos 14 días o atrasadas con aviso de rotación, cestas de la semana, plazos de seguridad abiertos, pendientes para el certificador: semilla no ecológica sin autorización e insumo sin justificante), Parcelas → ficha de parcela con bancales y lo que tienen → ficha de bancal (plan de rotación: familias bloqueadas y hasta cuándo, siembras con acciones hecha/cosechar/levantar, cosechas), Cuaderno del año (siembras, cosechas, aplicaciones de insumos; menú con cultivos, banco de semillas e insumos), Cestas (semana, cosecha real y prevista, **proponer reparto**, cesta editable, entrega) y socios con suscripciones, Ajustes (datos de la huerta, organismo de control, asesor). Altas en hojas inferiores (`formularios_huerta.dart`), siembra con serie escalonada y aviso de rotación en vivo. 75 tests, 7 de pantalla |
-| 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
+| 4-5 Documentos oficiales PDF | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Documentos: **cuaderno de campo para el certificador ecológico** (año en curso y anterior: parcelas con situación y conversión, rotación por bancal en 4 años, siembras y plantaciones con su lote y el aviso de rotación, semillas usadas con la autorización si es no ecológica, insumos aplicados con su categoría y el justificante de «permitido», tratamientos fitosanitarios con las columnas del RD 1311/2012, cosechas y totales por cultivo) y **hoja de cestas y reparto** (esta semana y la siguiente: preparar por cultivo con cosechado/en cestas/sobra, y cesta por socio con punto de entrega, contenido, notas y casilla de entrega). Tablas puras con test. Recordatorio de leguminosas en la ficha del bancal (Reglamento 2018/848, anexo II, parte I, 1.9.2). 82 tests |
 | 6 Catálogos | pendiente | |
 | 7 IA visual | pendiente | |
 | 8 Branding + GPS | pendiente | |
@@ -19,7 +19,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloques 4-5 (PDF) y 6 (catálogos: los CSV de `content/huerta/` y regenerar `lib/datos/catalogos_generados/`, que ahora son marcadores vacíos).
+**Siguiente acción**: bloque 6 (catálogos: los CSV de `content/huerta/` y regenerar `lib/datos/catalogos_generados/`, que ahora son marcadores vacíos).
 
 ## Encuadre
 
@@ -97,8 +97,26 @@ Lo esencial que no se toca (hard limits):
   los productos de las cestas de la semana (con confirmación).
 - **2026-11-07 — Sin indicador de carga**: SQLite local responde al momento y
   la rueda animada bloqueaba `pumpAndSettle` en los tests de pantalla.
+- **2026-11-07 — El cuaderno de tratamientos del RD 1311/2012 va dentro del
+  cuaderno ecológico** (tabla propia, solo si hay fitosanitarios), no como un
+  tercer PDF: la huerta ecológica trata poco y el certificador pide los dos.
+- **2026-11-07 — El cuaderno solo recoge siembras hechas** (con fecha real):
+  lo planificado no es un registro.
+- **2026-11-07 — La hoja de cestas no dice «ecológico»** ni pone sello de
+  certificación: solo el nombre de la huerta, porque la app no certifica.
 - **2026-11-07 — La v1 se amplía durante la F1** (como en Frutal): no hay
   ninguna instalación publicada.
+
+## Normativa y fuentes consultadas (2026-11-07)
+
+- **Reglamento (UE) 2018/848**, texto en EUR-Lex
+  (https://eur-lex.europa.eu/legal-content/ES/TXT/HTML/?uri=CELEX:32018R0848),
+  anexo II, parte I: 1.8.5 (material de reproducción no ecológico: autorización
+  antes de sembrar, 1.8.5.4), 1.9.2.a (rotación plurianual con leguminosas),
+  1.9.3 (registro del uso de fertilizantes y acondicionadores), 1.10.2
+  (registros que acrediten la necesidad de fitosanitarios) y 1.12 (registros
+  de parcelas y cantidad de cosecha). Leído el texto original; la versión
+  consolidada no abrió (404) y queda **por verificar** si hay cambios.
 
 ## Datos técnicos
 

@@ -8,7 +8,7 @@ import '../modelos/tratamiento.dart';
 import '../provisional_core/venta_directa/semanas.dart';
 import '../utiles/textos_huerta.dart';
 import 'formularios_huerta.dart';
-import 'pantalla_cestas.dart';
+import '../estado/semana_cestas.dart';
 
 typedef _DatosHoy = ({
   DatosHuerta datos,

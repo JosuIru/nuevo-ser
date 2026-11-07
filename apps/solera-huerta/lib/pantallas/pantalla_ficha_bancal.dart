@@ -180,6 +180,14 @@ class _PantallaFichaBancalState extends State<PantallaFichaBancal> {
                   title: Text(SoleraL10n.tf('huer.familias_sin_regla',
                       {'familias': sinRegla.map(nombreFamilia).join(', ')})),
                 ),
+              if (!tuvoLeguminosas(
+                  bancalId: bancal.id!,
+                  fecha: DateTime.now(),
+                  historial: historial))
+                ListTile(
+                  leading: const Icon(Icons.eco_outlined),
+                  title: Text(SoleraL10n.t('huer.recordatorio_leguminosas')),
+                ),
               const Divider(),
               ListTile(
                 title: Text(SoleraL10n.t('huer.siembras'),

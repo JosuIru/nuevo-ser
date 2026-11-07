@@ -124,6 +124,27 @@ List<({String familiaId, DateTime fechaLibre})> familiasBloqueadas({
   return bloqueadas;
 }
 
+/// Id de la familia de las leguminosas en `rotacion.csv`.
+const String familiaLeguminosas = 'fabaceas';
+
+/// Si el bancal ha tenido leguminosas en los [anios] años anteriores a
+/// [fecha]. El Reglamento (UE) 2018/848, anexo II, parte I, punto 1.9.2.a),
+/// pide una rotación plurianual que incluya leguminosas (como cultivo
+/// principal o de cobertura); la app solo lo recuerda, no lo evalúa.
+bool tuvoLeguminosas({
+  required int bancalId,
+  required DateTime fecha,
+  required List<PasoPorBancal> historial,
+  int anios = 3,
+}) {
+  final desde = sumarAnios(fecha, -anios);
+  return historial.any((paso) =>
+      paso.bancalId == bancalId &&
+      normalizarFamilia(paso.familiaId) == familiaLeguminosas &&
+      !paso.fecha.isBefore(desde) &&
+      !paso.fecha.isAfter(fecha));
+}
+
 /// Familias del historial de un bancal sin regla en el catálogo: la app no
 /// puede avisar de ellas y lo dice.
 Set<String> familiasSinRegla({

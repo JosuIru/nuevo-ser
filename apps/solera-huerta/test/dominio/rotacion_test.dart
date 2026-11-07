@@ -86,6 +86,25 @@ void main() {
     expect(aviso.siembraAnteriorId, 13);
   });
 
+  test('leguminosas en los últimos años del bancal', () {
+    final conHabas = [
+      PasoPorBancal(
+          bancalId: 1, familiaId: 'Fabaceas', fecha: DateTime(2024, 11, 1)),
+    ];
+    expect(
+        tuvoLeguminosas(
+            bancalId: 1, fecha: DateTime(2026, 6, 1), historial: conHabas),
+        isTrue);
+    expect(
+        tuvoLeguminosas(
+            bancalId: 1, fecha: DateTime(2028, 6, 1), historial: conHabas),
+        isFalse);
+    expect(
+        tuvoLeguminosas(
+            bancalId: 2, fecha: DateTime(2026, 6, 1), historial: conHabas),
+        isFalse);
+  });
+
   test('29 de febrero más un año cae en 1 de marzo', () {
     expect(sumarAnios(DateTime(2024, 2, 29), 1), DateTime(2025, 3, 1));
   });

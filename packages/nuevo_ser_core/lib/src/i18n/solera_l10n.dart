@@ -4408,14 +4408,17 @@ class SoleraL10n {
     'sidr.abrir_kupela',
     'sidr.aceptar',
     'sidr.acidez_volatil',
+    'sidr.actividad_agraria',
     'sidr.anio_plantacion',
     'sidr.aplicador',
+    'sidr.apuntes',
     'sidr.arboles_por_ha',
     'sidr.av',
     'sidr.aviso_acidez_volatil_alta',
     'sidr.aviso_densidad_mosto_baja',
     'sidr.aviso_documento_provisional',
     'sidr.aviso_etiquetas_descuadradas',
+    'sidr.aviso_fiscal_provisional',
     'sidr.aviso_grado_bajo',
     'sidr.aviso_negativo',
     'sidr.aviso_no_certifica',
@@ -4425,10 +4428,13 @@ class SoleraL10n {
     'sidr.aviso_rendimiento_bajo',
     'sidr.aviso_sulfuroso_alto',
     'sidr.aviso_supera_capacidad',
+    'sidr.base',
+    'sidr.base_sin_iva',
     'sidr.bienvenida_explicacion',
     'sidr.bienvenida_texto',
     'sidr.bienvenida_titulo',
     'sidr.bodega',
+    'sidr.borrar_apunte',
     'sidr.botellas',
     'sidr.buscar',
     'sidr.calificacion',
@@ -4441,13 +4447,34 @@ class SoleraL10n {
     'sidr.capacidad',
     'sidr.carnet_aplicador',
     'sidr.catalogos_provisionales',
+    'sidr.categoria',
+    'sidr.categoria_compra_manzana',
+    'sidr.categoria_contraetiquetas_dop',
+    'sidr.categoria_cuotas',
+    'sidr.categoria_energia',
+    'sidr.categoria_envases',
+    'sidr.categoria_fitosanitarios',
+    'sidr.categoria_maquinaria',
+    'sidr.categoria_otros_gastos',
+    'sidr.categoria_otros_ingresos',
+    'sidr.categoria_personal',
+    'sidr.categoria_venta_manzana',
+    'sidr.categoria_venta_sidra_botella',
+    'sidr.categoria_venta_sidra_hosteleria',
+    'sidr.categoria_venta_txakoli',
+    'sidr.categoria_venta_txotx',
     'sidr.codigo_kupela',
     'sidr.codigo_kupela_ayuda',
     'sidr.codigo_lote',
     'sidr.codigo_repetido',
     'sidr.comensales',
     'sidr.comparado_con',
+    'sidr.compensacion_corto',
+    'sidr.compensaciones_reagp',
+    'sidr.con_compensacion_reagp',
+    'sidr.con_compensacion_reagp_ayuda',
     'sidr.con_contraetiqueta_dop',
+    'sidr.concepto',
     'sidr.confianza_alta',
     'sidr.confianza_baja',
     'sidr.confianza_media',
@@ -4493,6 +4520,7 @@ class SoleraL10n {
     'sidr.etiqueta_hasta',
     'sidr.etiqueta_manzano',
     'sidr.etiqueta_manzano_ayuda',
+    'sidr.extracto_pdf',
     'sidr.falta_kilos_origen',
     'sidr.falta_nombre',
     'sidr.fecha',
@@ -4502,6 +4530,7 @@ class SoleraL10n {
     'sidr.fruta_manzana',
     'sidr.fruta_propia',
     'sidr.fruta_uva',
+    'sidr.gasto',
     'sidr.grado_alcoholico',
     'sidr.guardado',
     'sidr.hacer_foto',
@@ -4516,8 +4545,13 @@ class SoleraL10n {
     'sidr.ia_que_hace',
     'sidr.ia_revisa',
     'sidr.ia_sin_plaga',
+    'sidr.ingreso',
+    'sidr.ingresos_y_gastos',
     'sidr.inscripcion_dop',
     'sidr.inteligencia_artificial',
+    'sidr.iva',
+    'sidr.iva_repercutido',
+    'sidr.iva_soportado',
     'sidr.kilos',
     'sidr.kupela',
     'sidr.kupela_activa',
@@ -4564,6 +4598,7 @@ class SoleraL10n {
     'sidr.nueva_kupela',
     'sidr.nueva_medicion',
     'sidr.nueva_pomarada',
+    'sidr.nuevo_apunte',
     'sidr.nuevo_manzano',
     'sidr.nuevo_prensado',
     'sidr.nuevo_tratamiento',
@@ -4621,6 +4656,7 @@ class SoleraL10n {
     'sidr.poligono',
     'sidr.pomarada',
     'sidr.pomaradas',
+    'sidr.por_categoria',
     'sidr.por_revisar',
     'sidr.precio_kg',
     'sidr.prensada',
@@ -4644,11 +4680,13 @@ class SoleraL10n {
     'sidr.registrada_dop',
     'sidr.registrada_dop_ayuda',
     'sidr.registro_sanitario',
+    'sidr.resultado',
     'sidr.resumen_txotx',
     'sidr.retirada',
     'sidr.retirada_lias',
     'sidr.si',
     'sidr.sigpac',
+    'sidr.sin_apuntes',
     'sidr.sin_dop',
     'sidr.sin_embotellados',
     'sidr.sin_entradas',
@@ -4672,8 +4710,12 @@ class SoleraL10n {
     'sidr.sustancia_resumen',
     'sidr.temperatura',
     'sidr.temporada',
+    'sidr.tercero',
     'sidr.territorio',
+    'sidr.tipo_iva',
     'sidr.titular',
+    'sidr.total',
+    'sidr.transformacion',
     'sidr.trasegar',
     'sidr.trasiego',
     'sidr.tratamiento_incompleto',
@@ -9614,14 +9656,17 @@ class SoleraL10n {
           'sidr.abrir_kupela',
           'sidr.aceptar',
           'sidr.acidez_volatil',
+          'sidr.actividad_agraria',
           'sidr.anio_plantacion',
           'sidr.aplicador',
+          'sidr.apuntes',
           'sidr.arboles_por_ha',
           'sidr.av',
           'sidr.aviso_acidez_volatil_alta',
           'sidr.aviso_densidad_mosto_baja',
           'sidr.aviso_documento_provisional',
           'sidr.aviso_etiquetas_descuadradas',
+          'sidr.aviso_fiscal_provisional',
           'sidr.aviso_grado_bajo',
           'sidr.aviso_negativo',
           'sidr.aviso_no_certifica',
@@ -9631,10 +9676,13 @@ class SoleraL10n {
           'sidr.aviso_rendimiento_bajo',
           'sidr.aviso_sulfuroso_alto',
           'sidr.aviso_supera_capacidad',
+          'sidr.base',
+          'sidr.base_sin_iva',
           'sidr.bienvenida_explicacion',
           'sidr.bienvenida_texto',
           'sidr.bienvenida_titulo',
           'sidr.bodega',
+          'sidr.borrar_apunte',
           'sidr.botellas',
           'sidr.buscar',
           'sidr.calificacion',
@@ -9647,13 +9695,34 @@ class SoleraL10n {
           'sidr.capacidad',
           'sidr.carnet_aplicador',
           'sidr.catalogos_provisionales',
+          'sidr.categoria',
+          'sidr.categoria_compra_manzana',
+          'sidr.categoria_contraetiquetas_dop',
+          'sidr.categoria_cuotas',
+          'sidr.categoria_energia',
+          'sidr.categoria_envases',
+          'sidr.categoria_fitosanitarios',
+          'sidr.categoria_maquinaria',
+          'sidr.categoria_otros_gastos',
+          'sidr.categoria_otros_ingresos',
+          'sidr.categoria_personal',
+          'sidr.categoria_venta_manzana',
+          'sidr.categoria_venta_sidra_botella',
+          'sidr.categoria_venta_sidra_hosteleria',
+          'sidr.categoria_venta_txakoli',
+          'sidr.categoria_venta_txotx',
           'sidr.codigo_kupela',
           'sidr.codigo_kupela_ayuda',
           'sidr.codigo_lote',
           'sidr.codigo_repetido',
           'sidr.comensales',
           'sidr.comparado_con',
+          'sidr.compensacion_corto',
+          'sidr.compensaciones_reagp',
+          'sidr.con_compensacion_reagp',
+          'sidr.con_compensacion_reagp_ayuda',
           'sidr.con_contraetiqueta_dop',
+          'sidr.concepto',
           'sidr.confianza_alta',
           'sidr.confianza_baja',
           'sidr.confianza_media',
@@ -9699,6 +9768,7 @@ class SoleraL10n {
           'sidr.etiqueta_hasta',
           'sidr.etiqueta_manzano',
           'sidr.etiqueta_manzano_ayuda',
+          'sidr.extracto_pdf',
           'sidr.falta_kilos_origen',
           'sidr.falta_nombre',
           'sidr.fecha',
@@ -9708,6 +9778,7 @@ class SoleraL10n {
           'sidr.fruta_manzana',
           'sidr.fruta_propia',
           'sidr.fruta_uva',
+          'sidr.gasto',
           'sidr.grado_alcoholico',
           'sidr.guardado',
           'sidr.hacer_foto',
@@ -9722,8 +9793,13 @@ class SoleraL10n {
           'sidr.ia_que_hace',
           'sidr.ia_revisa',
           'sidr.ia_sin_plaga',
+          'sidr.ingreso',
+          'sidr.ingresos_y_gastos',
           'sidr.inscripcion_dop',
           'sidr.inteligencia_artificial',
+          'sidr.iva',
+          'sidr.iva_repercutido',
+          'sidr.iva_soportado',
           'sidr.kilos',
           'sidr.kupela',
           'sidr.kupela_activa',
@@ -9770,6 +9846,7 @@ class SoleraL10n {
           'sidr.nueva_kupela',
           'sidr.nueva_medicion',
           'sidr.nueva_pomarada',
+          'sidr.nuevo_apunte',
           'sidr.nuevo_manzano',
           'sidr.nuevo_prensado',
           'sidr.nuevo_tratamiento',
@@ -9827,6 +9904,7 @@ class SoleraL10n {
           'sidr.poligono',
           'sidr.pomarada',
           'sidr.pomaradas',
+          'sidr.por_categoria',
           'sidr.por_revisar',
           'sidr.precio_kg',
           'sidr.prensada',
@@ -9850,11 +9928,13 @@ class SoleraL10n {
           'sidr.registrada_dop',
           'sidr.registrada_dop_ayuda',
           'sidr.registro_sanitario',
+          'sidr.resultado',
           'sidr.resumen_txotx',
           'sidr.retirada',
           'sidr.retirada_lias',
           'sidr.si',
           'sidr.sigpac',
+          'sidr.sin_apuntes',
           'sidr.sin_dop',
           'sidr.sin_embotellados',
           'sidr.sin_entradas',
@@ -9878,8 +9958,12 @@ class SoleraL10n {
           'sidr.sustancia_resumen',
           'sidr.temperatura',
           'sidr.temporada',
+          'sidr.tercero',
           'sidr.territorio',
+          'sidr.tipo_iva',
           'sidr.titular',
+          'sidr.total',
+          'sidr.transformacion',
           'sidr.trasegar',
           'sidr.trasiego',
           'sidr.tratamiento_incompleto',
@@ -14817,14 +14901,17 @@ class SoleraL10n {
           'sidr.abrir_kupela',
           'sidr.aceptar',
           'sidr.acidez_volatil',
+          'sidr.actividad_agraria',
           'sidr.anio_plantacion',
           'sidr.aplicador',
+          'sidr.apuntes',
           'sidr.arboles_por_ha',
           'sidr.av',
           'sidr.aviso_acidez_volatil_alta',
           'sidr.aviso_densidad_mosto_baja',
           'sidr.aviso_documento_provisional',
           'sidr.aviso_etiquetas_descuadradas',
+          'sidr.aviso_fiscal_provisional',
           'sidr.aviso_grado_bajo',
           'sidr.aviso_negativo',
           'sidr.aviso_no_certifica',
@@ -14834,10 +14921,13 @@ class SoleraL10n {
           'sidr.aviso_rendimiento_bajo',
           'sidr.aviso_sulfuroso_alto',
           'sidr.aviso_supera_capacidad',
+          'sidr.base',
+          'sidr.base_sin_iva',
           'sidr.bienvenida_explicacion',
           'sidr.bienvenida_texto',
           'sidr.bienvenida_titulo',
           'sidr.bodega',
+          'sidr.borrar_apunte',
           'sidr.botellas',
           'sidr.buscar',
           'sidr.calificacion',
@@ -14850,13 +14940,34 @@ class SoleraL10n {
           'sidr.capacidad',
           'sidr.carnet_aplicador',
           'sidr.catalogos_provisionales',
+          'sidr.categoria',
+          'sidr.categoria_compra_manzana',
+          'sidr.categoria_contraetiquetas_dop',
+          'sidr.categoria_cuotas',
+          'sidr.categoria_energia',
+          'sidr.categoria_envases',
+          'sidr.categoria_fitosanitarios',
+          'sidr.categoria_maquinaria',
+          'sidr.categoria_otros_gastos',
+          'sidr.categoria_otros_ingresos',
+          'sidr.categoria_personal',
+          'sidr.categoria_venta_manzana',
+          'sidr.categoria_venta_sidra_botella',
+          'sidr.categoria_venta_sidra_hosteleria',
+          'sidr.categoria_venta_txakoli',
+          'sidr.categoria_venta_txotx',
           'sidr.codigo_kupela',
           'sidr.codigo_kupela_ayuda',
           'sidr.codigo_lote',
           'sidr.codigo_repetido',
           'sidr.comensales',
           'sidr.comparado_con',
+          'sidr.compensacion_corto',
+          'sidr.compensaciones_reagp',
+          'sidr.con_compensacion_reagp',
+          'sidr.con_compensacion_reagp_ayuda',
           'sidr.con_contraetiqueta_dop',
+          'sidr.concepto',
           'sidr.confianza_alta',
           'sidr.confianza_baja',
           'sidr.confianza_media',
@@ -14902,6 +15013,7 @@ class SoleraL10n {
           'sidr.etiqueta_hasta',
           'sidr.etiqueta_manzano',
           'sidr.etiqueta_manzano_ayuda',
+          'sidr.extracto_pdf',
           'sidr.falta_kilos_origen',
           'sidr.falta_nombre',
           'sidr.fecha',
@@ -14911,6 +15023,7 @@ class SoleraL10n {
           'sidr.fruta_manzana',
           'sidr.fruta_propia',
           'sidr.fruta_uva',
+          'sidr.gasto',
           'sidr.grado_alcoholico',
           'sidr.guardado',
           'sidr.hacer_foto',
@@ -14925,8 +15038,13 @@ class SoleraL10n {
           'sidr.ia_que_hace',
           'sidr.ia_revisa',
           'sidr.ia_sin_plaga',
+          'sidr.ingreso',
+          'sidr.ingresos_y_gastos',
           'sidr.inscripcion_dop',
           'sidr.inteligencia_artificial',
+          'sidr.iva',
+          'sidr.iva_repercutido',
+          'sidr.iva_soportado',
           'sidr.kilos',
           'sidr.kupela',
           'sidr.kupela_activa',
@@ -14973,6 +15091,7 @@ class SoleraL10n {
           'sidr.nueva_kupela',
           'sidr.nueva_medicion',
           'sidr.nueva_pomarada',
+          'sidr.nuevo_apunte',
           'sidr.nuevo_manzano',
           'sidr.nuevo_prensado',
           'sidr.nuevo_tratamiento',
@@ -15030,6 +15149,7 @@ class SoleraL10n {
           'sidr.poligono',
           'sidr.pomarada',
           'sidr.pomaradas',
+          'sidr.por_categoria',
           'sidr.por_revisar',
           'sidr.precio_kg',
           'sidr.prensada',
@@ -15053,11 +15173,13 @@ class SoleraL10n {
           'sidr.registrada_dop',
           'sidr.registrada_dop_ayuda',
           'sidr.registro_sanitario',
+          'sidr.resultado',
           'sidr.resumen_txotx',
           'sidr.retirada',
           'sidr.retirada_lias',
           'sidr.si',
           'sidr.sigpac',
+          'sidr.sin_apuntes',
           'sidr.sin_dop',
           'sidr.sin_embotellados',
           'sidr.sin_entradas',
@@ -15081,8 +15203,12 @@ class SoleraL10n {
           'sidr.sustancia_resumen',
           'sidr.temperatura',
           'sidr.temporada',
+          'sidr.tercero',
           'sidr.territorio',
+          'sidr.tipo_iva',
           'sidr.titular',
+          'sidr.total',
+          'sidr.transformacion',
           'sidr.trasegar',
           'sidr.trasiego',
           'sidr.tratamiento_incompleto',
@@ -20020,14 +20146,17 @@ class SoleraL10n {
           'sidr.abrir_kupela',
           'sidr.aceptar',
           'sidr.acidez_volatil',
+          'sidr.actividad_agraria',
           'sidr.anio_plantacion',
           'sidr.aplicador',
+          'sidr.apuntes',
           'sidr.arboles_por_ha',
           'sidr.av',
           'sidr.aviso_acidez_volatil_alta',
           'sidr.aviso_densidad_mosto_baja',
           'sidr.aviso_documento_provisional',
           'sidr.aviso_etiquetas_descuadradas',
+          'sidr.aviso_fiscal_provisional',
           'sidr.aviso_grado_bajo',
           'sidr.aviso_negativo',
           'sidr.aviso_no_certifica',
@@ -20037,10 +20166,13 @@ class SoleraL10n {
           'sidr.aviso_rendimiento_bajo',
           'sidr.aviso_sulfuroso_alto',
           'sidr.aviso_supera_capacidad',
+          'sidr.base',
+          'sidr.base_sin_iva',
           'sidr.bienvenida_explicacion',
           'sidr.bienvenida_texto',
           'sidr.bienvenida_titulo',
           'sidr.bodega',
+          'sidr.borrar_apunte',
           'sidr.botellas',
           'sidr.buscar',
           'sidr.calificacion',
@@ -20053,13 +20185,34 @@ class SoleraL10n {
           'sidr.capacidad',
           'sidr.carnet_aplicador',
           'sidr.catalogos_provisionales',
+          'sidr.categoria',
+          'sidr.categoria_compra_manzana',
+          'sidr.categoria_contraetiquetas_dop',
+          'sidr.categoria_cuotas',
+          'sidr.categoria_energia',
+          'sidr.categoria_envases',
+          'sidr.categoria_fitosanitarios',
+          'sidr.categoria_maquinaria',
+          'sidr.categoria_otros_gastos',
+          'sidr.categoria_otros_ingresos',
+          'sidr.categoria_personal',
+          'sidr.categoria_venta_manzana',
+          'sidr.categoria_venta_sidra_botella',
+          'sidr.categoria_venta_sidra_hosteleria',
+          'sidr.categoria_venta_txakoli',
+          'sidr.categoria_venta_txotx',
           'sidr.codigo_kupela',
           'sidr.codigo_kupela_ayuda',
           'sidr.codigo_lote',
           'sidr.codigo_repetido',
           'sidr.comensales',
           'sidr.comparado_con',
+          'sidr.compensacion_corto',
+          'sidr.compensaciones_reagp',
+          'sidr.con_compensacion_reagp',
+          'sidr.con_compensacion_reagp_ayuda',
           'sidr.con_contraetiqueta_dop',
+          'sidr.concepto',
           'sidr.confianza_alta',
           'sidr.confianza_baja',
           'sidr.confianza_media',
@@ -20105,6 +20258,7 @@ class SoleraL10n {
           'sidr.etiqueta_hasta',
           'sidr.etiqueta_manzano',
           'sidr.etiqueta_manzano_ayuda',
+          'sidr.extracto_pdf',
           'sidr.falta_kilos_origen',
           'sidr.falta_nombre',
           'sidr.fecha',
@@ -20114,6 +20268,7 @@ class SoleraL10n {
           'sidr.fruta_manzana',
           'sidr.fruta_propia',
           'sidr.fruta_uva',
+          'sidr.gasto',
           'sidr.grado_alcoholico',
           'sidr.guardado',
           'sidr.hacer_foto',
@@ -20128,8 +20283,13 @@ class SoleraL10n {
           'sidr.ia_que_hace',
           'sidr.ia_revisa',
           'sidr.ia_sin_plaga',
+          'sidr.ingreso',
+          'sidr.ingresos_y_gastos',
           'sidr.inscripcion_dop',
           'sidr.inteligencia_artificial',
+          'sidr.iva',
+          'sidr.iva_repercutido',
+          'sidr.iva_soportado',
           'sidr.kilos',
           'sidr.kupela',
           'sidr.kupela_activa',
@@ -20176,6 +20336,7 @@ class SoleraL10n {
           'sidr.nueva_kupela',
           'sidr.nueva_medicion',
           'sidr.nueva_pomarada',
+          'sidr.nuevo_apunte',
           'sidr.nuevo_manzano',
           'sidr.nuevo_prensado',
           'sidr.nuevo_tratamiento',
@@ -20233,6 +20394,7 @@ class SoleraL10n {
           'sidr.poligono',
           'sidr.pomarada',
           'sidr.pomaradas',
+          'sidr.por_categoria',
           'sidr.por_revisar',
           'sidr.precio_kg',
           'sidr.prensada',
@@ -20256,11 +20418,13 @@ class SoleraL10n {
           'sidr.registrada_dop',
           'sidr.registrada_dop_ayuda',
           'sidr.registro_sanitario',
+          'sidr.resultado',
           'sidr.resumen_txotx',
           'sidr.retirada',
           'sidr.retirada_lias',
           'sidr.si',
           'sidr.sigpac',
+          'sidr.sin_apuntes',
           'sidr.sin_dop',
           'sidr.sin_embotellados',
           'sidr.sin_entradas',
@@ -20284,8 +20448,12 @@ class SoleraL10n {
           'sidr.sustancia_resumen',
           'sidr.temperatura',
           'sidr.temporada',
+          'sidr.tercero',
           'sidr.territorio',
+          'sidr.tipo_iva',
           'sidr.titular',
+          'sidr.total',
+          'sidr.transformacion',
           'sidr.trasegar',
           'sidr.trasiego',
           'sidr.tratamiento_incompleto',
@@ -25246,14 +25414,17 @@ class SoleraL10n {
       case 'sidr.abrir_kupela': return 'Abrir kupela';
       case 'sidr.aceptar': return 'Aceptar';
       case 'sidr.acidez_volatil': return 'Acidez volátil';
+      case 'sidr.actividad_agraria': return 'Venta de manzana';
       case 'sidr.anio_plantacion': return 'Año de plantación';
       case 'sidr.aplicador': return 'Quién aplicó';
+      case 'sidr.apuntes': return 'Apuntes';
       case 'sidr.arboles_por_ha': return '{n} árboles/ha';
       case 'sidr.av': return 'AV';
       case 'sidr.aviso_acidez_volatil_alta': return 'Acidez volátil {valor} g/l: el pliego pide menos de {limite}';
       case 'sidr.aviso_densidad_mosto_baja': return 'Densidad del mosto {valor}: el pliego pide al menos {limite}';
       case 'sidr.aviso_documento_provisional': return 'Documento PROVISIONAL: formato pendiente de revisión por la entidad de control y el técnico. No sustituye a los registros oficiales.';
       case 'sidr.aviso_etiquetas_descuadradas': return 'Las contraetiquetas del rango no coinciden con las botellas';
+      case 'sidr.aviso_fiscal_provisional': return 'PROVISIONAL: orientativo, no es una liquidación de impuestos. Régimen y tipos, con tu asesor fiscal.';
       case 'sidr.aviso_grado_bajo': return 'Grado {valor} % vol: el pliego pide más de {limite}';
       case 'sidr.aviso_negativo': return 'Lo apuntado deja esta kupela en negativo: falta una entrada o sobra una salida.';
       case 'sidr.aviso_no_certifica': return 'La app compara lo que apuntas con el pliego y avisa, pero no certifica nada: califica el órgano de control de la DOP.';
@@ -25263,10 +25434,13 @@ class SoleraL10n {
       case 'sidr.aviso_rendimiento_bajo': return 'Rendimiento {valor} %: por debajo de {limite} %, el mínimo habitual del pliego';
       case 'sidr.aviso_sulfuroso_alto': return 'Sulfuroso total {valor} mg/l: el pliego pide menos de {limite}';
       case 'sidr.aviso_supera_capacidad': return 'Lo apuntado supera la capacidad de la kupela.';
+      case 'sidr.base': return 'Base';
+      case 'sidr.base_sin_iva': return 'Base sin IVA';
       case 'sidr.bienvenida_explicacion': return 'Unos datos para empezar. Puedes cambiarlos cuando quieras en Ajustes.';
       case 'sidr.bienvenida_texto': return 'Di cómo se llama tu sagardotegi y qué elaboras.';
       case 'sidr.bienvenida_titulo': return 'Ongi etorri';
       case 'sidr.bodega': return 'Bodega';
+      case 'sidr.borrar_apunte': return '¿Borrar este apunte?';
       case 'sidr.botellas': return 'Botellas';
       case 'sidr.buscar': return 'Buscar';
       case 'sidr.calificacion': return 'Calificación';
@@ -25279,13 +25453,34 @@ class SoleraL10n {
       case 'sidr.capacidad': return 'Capacidad';
       case 'sidr.carnet_aplicador': return 'N.º de carné de aplicador';
       case 'sidr.catalogos_provisionales': return 'Catálogos provisionales: copiados de fuentes públicas, pendientes de revisión por una persona experta.';
+      case 'sidr.categoria': return 'Categoría';
+      case 'sidr.categoria_compra_manzana': return 'Compra de manzana';
+      case 'sidr.categoria_contraetiquetas_dop': return 'Contraetiquetas de la DOP';
+      case 'sidr.categoria_cuotas': return 'Cuotas (DOP, asociaciones)';
+      case 'sidr.categoria_energia': return 'Energía';
+      case 'sidr.categoria_envases': return 'Botellas, tapones y envases';
+      case 'sidr.categoria_fitosanitarios': return 'Fitosanitarios';
+      case 'sidr.categoria_maquinaria': return 'Maquinaria y kupelas';
+      case 'sidr.categoria_otros_gastos': return 'Otros gastos';
+      case 'sidr.categoria_otros_ingresos': return 'Otros ingresos';
+      case 'sidr.categoria_personal': return 'Personal';
+      case 'sidr.categoria_venta_manzana': return 'Venta de manzana';
+      case 'sidr.categoria_venta_sidra_botella': return 'Venta de sidra en botella';
+      case 'sidr.categoria_venta_sidra_hosteleria': return 'Venta de sidra a hostelería';
+      case 'sidr.categoria_venta_txakoli': return 'Venta de txakoli';
+      case 'sidr.categoria_venta_txotx': return 'Txotx (comidas y servicio)';
       case 'sidr.codigo_kupela': return 'Código de la kupela';
       case 'sidr.codigo_kupela_ayuda': return 'El que tiene pintado: K-7, 3…';
       case 'sidr.codigo_lote': return 'Código de lote';
       case 'sidr.codigo_repetido': return 'Ya hay una kupela con ese código.';
       case 'sidr.comensales': return 'Comensales';
       case 'sidr.comparado_con': return 'Comparado con: {producto}';
+      case 'sidr.compensacion_corto': return 'Comp. REAGP';
+      case 'sidr.compensaciones_reagp': return 'Compensaciones REAGP cobradas / pagadas';
+      case 'sidr.con_compensacion_reagp': return 'Con compensación del REAGP (12 %)';
+      case 'sidr.con_compensacion_reagp_ayuda': return 'Venta de manzana propia sin transformar estando en el REAGP, o compra a un agricultor que lo está. En vez de IVA.';
       case 'sidr.con_contraetiqueta_dop': return 'Con contraetiqueta numerada de la DOP';
+      case 'sidr.concepto': return 'Concepto';
       case 'sidr.confianza_alta': return 'alta';
       case 'sidr.confianza_baja': return 'baja';
       case 'sidr.confianza_media': return 'media';
@@ -25331,6 +25526,7 @@ class SoleraL10n {
       case 'sidr.etiqueta_hasta': return 'Hasta n.º';
       case 'sidr.etiqueta_manzano': return 'Cómo lo reconoces';
       case 'sidr.etiqueta_manzano_ayuda': return 'Fila 3, n.º 12; el viejo del borde…';
+      case 'sidr.extracto_pdf': return 'Extracto en PDF';
       case 'sidr.falta_kilos_origen': return 'Faltan los kilos o de dónde viene la fruta.';
       case 'sidr.falta_nombre': return 'Falta el nombre.';
       case 'sidr.fecha': return 'Fecha';
@@ -25340,6 +25536,7 @@ class SoleraL10n {
       case 'sidr.fruta_manzana': return 'Manzana';
       case 'sidr.fruta_propia': return 'Fruta propia';
       case 'sidr.fruta_uva': return 'Uva';
+      case 'sidr.gasto': return 'Gasto';
       case 'sidr.grado_alcoholico': return 'Grado alcohólico';
       case 'sidr.guardado': return 'Guardado';
       case 'sidr.hacer_foto': return 'Hacer una foto';
@@ -25354,8 +25551,13 @@ class SoleraL10n {
       case 'sidr.ia_que_hace': return 'Mira la foto de una hoja, un fruto o una rama del manzano y propone qué plaga o enfermedad puede ser. No recomienda productos ni dosis.';
       case 'sidr.ia_revisa': return 'Es una propuesta: compruébala tú o con tu técnico antes de tratar.';
       case 'sidr.ia_sin_plaga': return 'No se ve ninguna plaga ni enfermedad de la lista.';
+      case 'sidr.ingreso': return 'Ingreso';
+      case 'sidr.ingresos_y_gastos': return 'Ingresos y gastos';
       case 'sidr.inscripcion_dop': return 'N.º de inscripción en la DOP';
       case 'sidr.inteligencia_artificial': return 'Inteligencia artificial';
+      case 'sidr.iva': return 'IVA';
+      case 'sidr.iva_repercutido': return 'IVA repercutido';
+      case 'sidr.iva_soportado': return 'IVA soportado';
       case 'sidr.kilos': return 'Kilos';
       case 'sidr.kupela': return 'Kupela';
       case 'sidr.kupela_activa': return 'En uso';
@@ -25402,6 +25604,7 @@ class SoleraL10n {
       case 'sidr.nueva_kupela': return 'Nueva kupela';
       case 'sidr.nueva_medicion': return 'Nueva medición';
       case 'sidr.nueva_pomarada': return 'Nueva pomarada';
+      case 'sidr.nuevo_apunte': return 'Nuevo apunte';
       case 'sidr.nuevo_manzano': return 'Marcar un manzano';
       case 'sidr.nuevo_prensado': return 'Nuevo prensado';
       case 'sidr.nuevo_tratamiento': return 'Apuntar tratamiento';
@@ -25459,6 +25662,7 @@ class SoleraL10n {
       case 'sidr.poligono': return 'Polígono';
       case 'sidr.pomarada': return 'Pomarada';
       case 'sidr.pomaradas': return 'Pomaradas';
+      case 'sidr.por_categoria': return 'Por categoría';
       case 'sidr.por_revisar': return 'Por revisar';
       case 'sidr.precio_kg': return 'Precio por kilo';
       case 'sidr.prensada': return 'prensada';
@@ -25482,11 +25686,13 @@ class SoleraL10n {
       case 'sidr.registrada_dop': return 'Registrada en la DOP';
       case 'sidr.registrada_dop_ayuda': return 'Lo marcas tú: la app no consulta el registro.';
       case 'sidr.registro_sanitario': return 'Registro sanitario (RGSEAA)';
+      case 'sidr.resultado': return 'Resultado (sin IVA)';
       case 'sidr.resumen_txotx': return '{dias} días de txotx · {litros} servidos';
       case 'sidr.retirada': return 'retirada';
       case 'sidr.retirada_lias': return 'Ninguna: se retira (lías, merma)';
       case 'sidr.si': return 'Sí';
       case 'sidr.sigpac': return 'SIGPAC';
+      case 'sidr.sin_apuntes': return 'Sin apuntes este mes.';
       case 'sidr.sin_dop': return 'Sin DOP';
       case 'sidr.sin_embotellados': return 'Todavía no hay lotes embotellados. Se embotella desde la ficha de cada kupela.';
       case 'sidr.sin_entradas': return 'Todavía no hay entradas de fruta.';
@@ -25510,8 +25716,12 @@ class SoleraL10n {
       case 'sidr.sustancia_resumen': return 'Plazo de seguridad máximo en el registro: {ps} días (manda la etiqueta). Aprobada en la UE hasta {ue}.';
       case 'sidr.temperatura': return 'Temperatura';
       case 'sidr.temporada': return 'Temporada {campania}';
+      case 'sidr.tercero': return 'Cliente o proveedor';
       case 'sidr.territorio': return 'Territorio o provincia';
+      case 'sidr.tipo_iva': return 'Tipo de IVA';
       case 'sidr.titular': return 'Titular';
+      case 'sidr.total': return 'Total';
+      case 'sidr.transformacion': return 'Sidra, txakoli y txotx';
       case 'sidr.trasegar': return 'Trasegar';
       case 'sidr.trasiego': return 'Trasiego';
       case 'sidr.tratamiento_incompleto': return 'faltan datos del cuaderno';
@@ -30453,14 +30663,17 @@ class SoleraL10n {
       case 'sidr.abrir_kupela': return 'Kupela ireki';
       case 'sidr.aceptar': return 'Ados';
       case 'sidr.acidez_volatil': return 'Azidotasun lurrunkorra';
+      case 'sidr.actividad_agraria': return 'Sagar salmenta';
       case 'sidr.anio_plantacion': return 'Landaketa urtea';
       case 'sidr.aplicador': return 'Nork aplikatu zuen';
+      case 'sidr.apuntes': return 'Idazpenak';
       case 'sidr.arboles_por_ha': return '{n} zuhaitz/ha';
       case 'sidr.av': return 'AL';
       case 'sidr.aviso_acidez_volatil_alta': return 'Azidotasun lurrunkorra {valor} g/l: pleguak {limite} baino gutxiago eskatzen du';
       case 'sidr.aviso_densidad_mosto_baja': return 'Muztioaren dentsitatea {valor}: pleguak gutxienez {limite} eskatzen du';
       case 'sidr.aviso_documento_provisional': return 'BEHIN-BEHINEKO dokumentua: formatua kontrol-erakundeak eta teknikariak berrikusteko zain. Ez ditu erregistro ofizialak ordezten.';
       case 'sidr.aviso_etiquetas_descuadradas': return 'Tarteko kontraetiketak ez datoz bat botilekin';
+      case 'sidr.aviso_fiscal_provisional': return 'BEHIN-BEHINEKOA: orientagarria, ez da zerga-likidazio bat. Araubidea eta tasak, zure zerga-aholkulariarekin.';
       case 'sidr.aviso_grado_bajo': return 'Gradua {valor} % vol: pleguak {limite} baino gehiago eskatzen du';
       case 'sidr.aviso_negativo': return 'Idatzitakoaren arabera kupela hau negatiboan dago: sarrera bat falta da edo irteera bat soberan dago.';
       case 'sidr.aviso_no_certifica': return 'Aplikazioak idazten duzuna pleguarekin alderatzen du eta abisatzen du, baina ez du ezer ziurtatzen: JDBko kontrol-organoak kalifikatzen du.';
@@ -30470,10 +30683,13 @@ class SoleraL10n {
       case 'sidr.aviso_rendimiento_bajo': return 'Etekina % {valor}: % {limite}-tik behera, pleguko ohiko gutxienekoa';
       case 'sidr.aviso_sulfuroso_alto': return 'Sulfuroso osoa {valor} mg/l: pleguak {limite} baino gutxiago eskatzen du';
       case 'sidr.aviso_supera_capacidad': return 'Idatzitakoak kupelaren edukiera gainditzen du.';
+      case 'sidr.base': return 'Oinarria';
+      case 'sidr.base_sin_iva': return 'Oinarria BEZik gabe';
       case 'sidr.bienvenida_explicacion': return 'Hasteko datu batzuk. Nahi duzunean alda ditzakezu Ezarpenetan.';
       case 'sidr.bienvenida_texto': return 'Esan zure sagardotegiaren izena eta zer egiten duzun.';
       case 'sidr.bienvenida_titulo': return 'Ongi etorri';
       case 'sidr.bodega': return 'Upategia';
+      case 'sidr.borrar_apunte': return 'Idazpen hau ezabatu?';
       case 'sidr.botellas': return 'Botilak';
       case 'sidr.buscar': return 'Bilatu';
       case 'sidr.calificacion': return 'Kalifikazioa';
@@ -30486,13 +30702,34 @@ class SoleraL10n {
       case 'sidr.capacidad': return 'Edukiera';
       case 'sidr.carnet_aplicador': return 'Aplikatzaile-txartelaren zk.';
       case 'sidr.catalogos_provisionales': return 'Behin-behineko katalogoak: iturri publikoetatik kopiatuak, aditu batek berrikusteko zain.';
+      case 'sidr.categoria': return 'Kategoria';
+      case 'sidr.categoria_compra_manzana': return 'Sagar erosketa';
+      case 'sidr.categoria_contraetiquetas_dop': return 'JDBko kontraetiketak';
+      case 'sidr.categoria_cuotas': return 'Kuotak (JDB, elkarteak)';
+      case 'sidr.categoria_energia': return 'Energia';
+      case 'sidr.categoria_envases': return 'Botilak, tapoiak eta ontziak';
+      case 'sidr.categoria_fitosanitarios': return 'Fitosanitarioak';
+      case 'sidr.categoria_maquinaria': return 'Makineria eta kupelak';
+      case 'sidr.categoria_otros_gastos': return 'Beste gastu batzuk';
+      case 'sidr.categoria_otros_ingresos': return 'Beste diru-sarrera batzuk';
+      case 'sidr.categoria_personal': return 'Langileak';
+      case 'sidr.categoria_venta_manzana': return 'Sagar salmenta';
+      case 'sidr.categoria_venta_sidra_botella': return 'Sagardo botilaren salmenta';
+      case 'sidr.categoria_venta_sidra_hosteleria': return 'Sagardo salmenta ostalaritzari';
+      case 'sidr.categoria_venta_txakoli': return 'Txakolin salmenta';
+      case 'sidr.categoria_venta_txotx': return 'Txotxa (otorduak eta zerbitzua)';
       case 'sidr.codigo_kupela': return 'Kupelaren kodea';
       case 'sidr.codigo_kupela_ayuda': return 'Margotuta duena: K-7, 3…';
       case 'sidr.codigo_lote': return 'Lote-kodea';
       case 'sidr.codigo_repetido': return 'Badago kode hori duen kupela bat.';
       case 'sidr.comensales': return 'Mahaikideak';
       case 'sidr.comparado_con': return 'Honekin alderatuta: {producto}';
+      case 'sidr.compensacion_corto': return 'NANAB konp.';
+      case 'sidr.compensaciones_reagp': return 'NANAB konpentsazioak kobratuak / ordainduak';
+      case 'sidr.con_compensacion_reagp': return 'NANABen konpentsazioarekin (% 12)';
+      case 'sidr.con_compensacion_reagp_ayuda': return 'Eraldatu gabeko sagar propioaren salmenta NANABen egonda, edo hartan dagoen nekazari bati erosketa. BEZaren ordez.';
       case 'sidr.con_contraetiqueta_dop': return 'JDBko kontraetiketa zenbakidunarekin';
+      case 'sidr.concepto': return 'Kontzeptua';
       case 'sidr.confianza_alta': return 'handia';
       case 'sidr.confianza_baja': return 'txikia';
       case 'sidr.confianza_media': return 'ertaina';
@@ -30538,6 +30775,7 @@ class SoleraL10n {
       case 'sidr.etiqueta_hasta': return 'Zk. honetara';
       case 'sidr.etiqueta_manzano': return 'Nola ezagutzen duzun';
       case 'sidr.etiqueta_manzano_ayuda': return '3. ilara, 12. zk.; ertzeko zaharra…';
+      case 'sidr.extracto_pdf': return 'Laburpena PDFn';
       case 'sidr.falta_kilos_origen': return 'Kiloak edo fruta nondik datorren falta da.';
       case 'sidr.falta_nombre': return 'Izena falta da.';
       case 'sidr.fecha': return 'Data';
@@ -30547,6 +30785,7 @@ class SoleraL10n {
       case 'sidr.fruta_manzana': return 'Sagarra';
       case 'sidr.fruta_propia': return 'Fruta propioa';
       case 'sidr.fruta_uva': return 'Mahatsa';
+      case 'sidr.gasto': return 'Gastua';
       case 'sidr.grado_alcoholico': return 'Alkohol-gradua';
       case 'sidr.guardado': return 'Gordeta';
       case 'sidr.hacer_foto': return 'Argazki bat atera';
@@ -30561,8 +30800,13 @@ class SoleraL10n {
       case 'sidr.ia_que_hace': return 'Sagarrondoaren hosto, fruitu edo adar baten argazkia aztertzen du eta zer izurrite edo gaixotasun izan daitekeen proposatzen du. Ez du produkturik ez dosirik gomendatzen.';
       case 'sidr.ia_revisa': return 'Proposamen bat da: egiaztatu zuk edo zure teknikariarekin tratatu aurretik.';
       case 'sidr.ia_sin_plaga': return 'Ez da zerrendako izurrite edo gaixotasunik ikusten.';
+      case 'sidr.ingreso': return 'Diru-sarrera';
+      case 'sidr.ingresos_y_gastos': return 'Diru-sarrerak eta gastuak';
       case 'sidr.inscripcion_dop': return 'JDBko inskripzio-zk.';
       case 'sidr.inteligencia_artificial': return 'Adimen artifiziala';
+      case 'sidr.iva': return 'BEZ';
+      case 'sidr.iva_repercutido': return 'BEZ jasanarazia';
+      case 'sidr.iva_soportado': return 'BEZ jasana';
       case 'sidr.kilos': return 'Kiloak';
       case 'sidr.kupela': return 'Kupela';
       case 'sidr.kupela_activa': return 'Erabilian';
@@ -30609,6 +30853,7 @@ class SoleraL10n {
       case 'sidr.nueva_kupela': return 'Kupela berria';
       case 'sidr.nueva_medicion': return 'Neurketa berria';
       case 'sidr.nueva_pomarada': return 'Sagasti berria';
+      case 'sidr.nuevo_apunte': return 'Idazpen berria';
       case 'sidr.nuevo_manzano': return 'Sagarrondo bat markatu';
       case 'sidr.nuevo_prensado': return 'Prentsaketa berria';
       case 'sidr.nuevo_tratamiento': return 'Tratamendua idatzi';
@@ -30666,6 +30911,7 @@ class SoleraL10n {
       case 'sidr.poligono': return 'Poligonoa';
       case 'sidr.pomarada': return 'Sagastia';
       case 'sidr.pomaradas': return 'Sagastiak';
+      case 'sidr.por_categoria': return 'Kategoriaka';
       case 'sidr.por_revisar': return 'Berrikusteko';
       case 'sidr.precio_kg': return 'Kiloko prezioa';
       case 'sidr.prensada': return 'prentsatuta';
@@ -30689,11 +30935,13 @@ class SoleraL10n {
       case 'sidr.registrada_dop': return 'JDBn erregistratuta';
       case 'sidr.registrada_dop_ayuda': return 'Zuk markatzen duzu: aplikazioak ez du erregistroa kontsultatzen.';
       case 'sidr.registro_sanitario': return 'Osasun-erregistroa (RGSEAA)';
+      case 'sidr.resultado': return 'Emaitza (BEZik gabe)';
       case 'sidr.resumen_txotx': return '{dias} txotx egun · {litros} zerbitzatuta';
       case 'sidr.retirada': return 'kenduta';
       case 'sidr.retirada_lias': return 'Bat ere ez: kendu egiten da (hondarrak, galera)';
       case 'sidr.si': return 'Bai';
       case 'sidr.sigpac': return 'SIGPAC';
+      case 'sidr.sin_apuntes': return 'Ez dago idazpenik hilabete honetan.';
       case 'sidr.sin_dop': return 'JDB gabe';
       case 'sidr.sin_embotellados': return 'Oraindik ez dago botilaratutako loterik. Kupela bakoitzaren fitxatik botilaratzen da.';
       case 'sidr.sin_entradas': return 'Oraindik ez dago fruta-sarrerarik.';
@@ -30717,8 +30965,12 @@ class SoleraL10n {
       case 'sidr.sustancia_resumen': return 'Erregistroko gehieneko segurtasun-epea: {ps} egun (etiketak agintzen du). EBn onartua {ue} arte.';
       case 'sidr.temperatura': return 'Tenperatura';
       case 'sidr.temporada': return '{campania} denboraldia';
+      case 'sidr.tercero': return 'Bezeroa edo hornitzailea';
       case 'sidr.territorio': return 'Lurraldea edo probintzia';
+      case 'sidr.tipo_iva': return 'BEZ tasa';
       case 'sidr.titular': return 'Titularra';
+      case 'sidr.total': return 'Guztira';
+      case 'sidr.transformacion': return 'Sagardoa, txakolina eta txotxa';
       case 'sidr.trasegar': return 'Trasegatu';
       case 'sidr.trasiego': return 'Trasegua';
       case 'sidr.tratamiento_incompleto': return 'koadernoko datuak falta dira';
@@ -35660,14 +35912,17 @@ class SoleraL10n {
       case 'sidr.abrir_kupela': return 'Obrir kupela';
       case 'sidr.aceptar': return 'Accepta';
       case 'sidr.acidez_volatil': return 'Acidesa volàtil';
+      case 'sidr.actividad_agraria': return 'Venda de poma';
       case 'sidr.anio_plantacion': return 'Any de plantació';
       case 'sidr.aplicador': return 'Qui ho va aplicar';
+      case 'sidr.apuntes': return 'Apunts';
       case 'sidr.arboles_por_ha': return '{n} arbres/ha';
       case 'sidr.av': return 'AV';
       case 'sidr.aviso_acidez_volatil_alta': return 'Acidesa volàtil {valor} g/l: el plec demana menys de {limite}';
       case 'sidr.aviso_densidad_mosto_baja': return 'Densitat del most {valor}: el plec demana com a mínim {limite}';
       case 'sidr.aviso_documento_provisional': return 'Document PROVISIONAL: format pendent de revisió per l\'entitat de control i el tècnic. No substitueix els registres oficials.';
       case 'sidr.aviso_etiquetas_descuadradas': return 'Les contraetiquetes del rang no coincideixen amb les ampolles';
+      case 'sidr.aviso_fiscal_provisional': return 'PROVISIONAL: orientatiu, no és una liquidació d\'impostos. Règim i tipus, amb el teu assessor fiscal.';
       case 'sidr.aviso_grado_bajo': return 'Grau {valor} % vol: el plec demana més de {limite}';
       case 'sidr.aviso_negativo': return 'El que s\'ha anotat deixa aquesta kupela en negatiu: falta una entrada o sobra una sortida.';
       case 'sidr.aviso_no_certifica': return 'L\'app compara el que anotes amb el plec i avisa, però no certifica res: qualifica l\'òrgan de control de la DOP.';
@@ -35677,10 +35932,13 @@ class SoleraL10n {
       case 'sidr.aviso_rendimiento_bajo': return 'Rendiment {valor} %: per sota del {limite} %, el mínim habitual del plec';
       case 'sidr.aviso_sulfuroso_alto': return 'Sulfurós total {valor} mg/l: el plec demana menys de {limite}';
       case 'sidr.aviso_supera_capacidad': return 'El que s\'ha anotat supera la capacitat de la kupela.';
+      case 'sidr.base': return 'Base';
+      case 'sidr.base_sin_iva': return 'Base sense IVA';
       case 'sidr.bienvenida_explicacion': return 'Unes dades per començar. Les pots canviar quan vulguis a Configuració.';
       case 'sidr.bienvenida_texto': return 'Digues com es diu la teva sagardotegi i què elabores.';
       case 'sidr.bienvenida_titulo': return 'Benvinguda';
       case 'sidr.bodega': return 'Celler';
+      case 'sidr.borrar_apunte': return 'Esborrar aquest apunt?';
       case 'sidr.botellas': return 'Ampolles';
       case 'sidr.buscar': return 'Cerca';
       case 'sidr.calificacion': return 'Qualificació';
@@ -35693,13 +35951,34 @@ class SoleraL10n {
       case 'sidr.capacidad': return 'Capacitat';
       case 'sidr.carnet_aplicador': return 'Núm. de carnet d\'aplicador';
       case 'sidr.catalogos_provisionales': return 'Catàlegs provisionals: copiats de fonts públiques, pendents de revisió per una persona experta.';
+      case 'sidr.categoria': return 'Categoria';
+      case 'sidr.categoria_compra_manzana': return 'Compra de poma';
+      case 'sidr.categoria_contraetiquetas_dop': return 'Contraetiquetes de la DOP';
+      case 'sidr.categoria_cuotas': return 'Quotes (DOP, associacions)';
+      case 'sidr.categoria_energia': return 'Energia';
+      case 'sidr.categoria_envases': return 'Ampolles, taps i envasos';
+      case 'sidr.categoria_fitosanitarios': return 'Fitosanitaris';
+      case 'sidr.categoria_maquinaria': return 'Maquinària i kupeles';
+      case 'sidr.categoria_otros_gastos': return 'Altres despeses';
+      case 'sidr.categoria_otros_ingresos': return 'Altres ingressos';
+      case 'sidr.categoria_personal': return 'Personal';
+      case 'sidr.categoria_venta_manzana': return 'Venda de poma';
+      case 'sidr.categoria_venta_sidra_botella': return 'Venda de sidra en ampolla';
+      case 'sidr.categoria_venta_sidra_hosteleria': return 'Venda de sidra a hostaleria';
+      case 'sidr.categoria_venta_txakoli': return 'Venda de txakoli';
+      case 'sidr.categoria_venta_txotx': return 'Txotx (àpats i servei)';
       case 'sidr.codigo_kupela': return 'Codi de la kupela';
       case 'sidr.codigo_kupela_ayuda': return 'El que té pintat: K-7, 3…';
       case 'sidr.codigo_lote': return 'Codi de lot';
       case 'sidr.codigo_repetido': return 'Ja hi ha una kupela amb aquest codi.';
       case 'sidr.comensales': return 'Comensals';
       case 'sidr.comparado_con': return 'Comparat amb: {producto}';
+      case 'sidr.compensacion_corto': return 'Comp. REAGP';
+      case 'sidr.compensaciones_reagp': return 'Compensacions REAGP cobrades / pagades';
+      case 'sidr.con_compensacion_reagp': return 'Amb compensació del REAGP (12 %)';
+      case 'sidr.con_compensacion_reagp_ayuda': return 'Venda de poma pròpia sense transformar estant al REAGP, o compra a un agricultor que hi és. En lloc d\'IVA.';
       case 'sidr.con_contraetiqueta_dop': return 'Amb contraetiqueta numerada de la DOP';
+      case 'sidr.concepto': return 'Concepte';
       case 'sidr.confianza_alta': return 'alta';
       case 'sidr.confianza_baja': return 'baixa';
       case 'sidr.confianza_media': return 'mitjana';
@@ -35745,6 +36024,7 @@ class SoleraL10n {
       case 'sidr.etiqueta_hasta': return 'Fins al núm.';
       case 'sidr.etiqueta_manzano': return 'Com el reconeixes';
       case 'sidr.etiqueta_manzano_ayuda': return 'Fila 3, núm. 12; el vell del marge…';
+      case 'sidr.extracto_pdf': return 'Extracte en PDF';
       case 'sidr.falta_kilos_origen': return 'Falten els quilos o d\'on ve la fruita.';
       case 'sidr.falta_nombre': return 'Falta el nom.';
       case 'sidr.fecha': return 'Data';
@@ -35754,6 +36034,7 @@ class SoleraL10n {
       case 'sidr.fruta_manzana': return 'Poma';
       case 'sidr.fruta_propia': return 'Fruita pròpia';
       case 'sidr.fruta_uva': return 'Raïm';
+      case 'sidr.gasto': return 'Despesa';
       case 'sidr.grado_alcoholico': return 'Grau alcohòlic';
       case 'sidr.guardado': return 'Desat';
       case 'sidr.hacer_foto': return 'Fes una foto';
@@ -35768,8 +36049,13 @@ class SoleraL10n {
       case 'sidr.ia_que_hace': return 'Mira la foto d\'una fulla, un fruit o una branca de la pomera i proposa quina plaga o malaltia pot ser. No recomana productes ni dosis.';
       case 'sidr.ia_revisa': return 'És una proposta: comprova-la tu o amb el teu tècnic abans de tractar.';
       case 'sidr.ia_sin_plaga': return 'No es veu cap plaga ni malaltia de la llista.';
+      case 'sidr.ingreso': return 'Ingrés';
+      case 'sidr.ingresos_y_gastos': return 'Ingressos i despeses';
       case 'sidr.inscripcion_dop': return 'Núm. d\'inscripció a la DOP';
       case 'sidr.inteligencia_artificial': return 'Intel·ligència artificial';
+      case 'sidr.iva': return 'IVA';
+      case 'sidr.iva_repercutido': return 'IVA repercutit';
+      case 'sidr.iva_soportado': return 'IVA suportat';
       case 'sidr.kilos': return 'Quilos';
       case 'sidr.kupela': return 'Kupela';
       case 'sidr.kupela_activa': return 'En ús';
@@ -35816,6 +36102,7 @@ class SoleraL10n {
       case 'sidr.nueva_kupela': return 'Nova kupela';
       case 'sidr.nueva_medicion': return 'Nova mesura';
       case 'sidr.nueva_pomarada': return 'Nova pomereda';
+      case 'sidr.nuevo_apunte': return 'Nou apunt';
       case 'sidr.nuevo_manzano': return 'Marca una pomera';
       case 'sidr.nuevo_prensado': return 'Nou premsat';
       case 'sidr.nuevo_tratamiento': return 'Anota un tractament';
@@ -35873,6 +36160,7 @@ class SoleraL10n {
       case 'sidr.poligono': return 'Polígon';
       case 'sidr.pomarada': return 'Pomereda';
       case 'sidr.pomaradas': return 'Pomeredes';
+      case 'sidr.por_categoria': return 'Per categoria';
       case 'sidr.por_revisar': return 'Per revisar';
       case 'sidr.precio_kg': return 'Preu per quilo';
       case 'sidr.prensada': return 'premsada';
@@ -35896,11 +36184,13 @@ class SoleraL10n {
       case 'sidr.registrada_dop': return 'Registrada a la DOP';
       case 'sidr.registrada_dop_ayuda': return 'Ho marques tu: l\'app no consulta el registre.';
       case 'sidr.registro_sanitario': return 'Registre sanitari (RGSEAA)';
+      case 'sidr.resultado': return 'Resultat (sense IVA)';
       case 'sidr.resumen_txotx': return '{dias} dies de txotx · {litros} servits';
       case 'sidr.retirada': return 'retirada';
       case 'sidr.retirada_lias': return 'Cap: es retira (mares, minva)';
       case 'sidr.si': return 'Sí';
       case 'sidr.sigpac': return 'SIGPAC';
+      case 'sidr.sin_apuntes': return 'Sense apunts aquest mes.';
       case 'sidr.sin_dop': return 'Sense DOP';
       case 'sidr.sin_embotellados': return 'Encara no hi ha lots embotellats. S\'embotella des de la fitxa de cada kupela.';
       case 'sidr.sin_entradas': return 'Encara no hi ha entrades de fruita.';
@@ -35924,8 +36214,12 @@ class SoleraL10n {
       case 'sidr.sustancia_resumen': return 'Termini de seguretat màxim al registre: {ps} dies (mana l\'etiqueta). Aprovada a la UE fins al {ue}.';
       case 'sidr.temperatura': return 'Temperatura';
       case 'sidr.temporada': return 'Temporada {campania}';
+      case 'sidr.tercero': return 'Client o proveïdor';
       case 'sidr.territorio': return 'Territori o província';
+      case 'sidr.tipo_iva': return 'Tipus d\'IVA';
       case 'sidr.titular': return 'Titular';
+      case 'sidr.total': return 'Total';
+      case 'sidr.transformacion': return 'Sidra, txakoli i txotx';
       case 'sidr.trasegar': return 'Trasbalsa';
       case 'sidr.trasiego': return 'Trasbals';
       case 'sidr.tratamiento_incompleto': return 'falten dades del quadern';
@@ -40867,14 +41161,17 @@ class SoleraL10n {
       case 'sidr.abrir_kupela': return 'Abrir kupela';
       case 'sidr.aceptar': return 'Aceptar';
       case 'sidr.acidez_volatil': return 'Acidez volátil';
+      case 'sidr.actividad_agraria': return 'Venda de mazá';
       case 'sidr.anio_plantacion': return 'Ano de plantación';
       case 'sidr.aplicador': return 'Quen aplicou';
+      case 'sidr.apuntes': return 'Apuntamentos';
       case 'sidr.arboles_por_ha': return '{n} árbores/ha';
       case 'sidr.av': return 'AV';
       case 'sidr.aviso_acidez_volatil_alta': return 'Acidez volátil {valor} g/l: o prego pide menos de {limite}';
       case 'sidr.aviso_densidad_mosto_baja': return 'Densidade do mosto {valor}: o prego pide polo menos {limite}';
       case 'sidr.aviso_documento_provisional': return 'Documento PROVISIONAL: formato pendente de revisión pola entidade de control e o técnico. Non substitúe os rexistros oficiais.';
       case 'sidr.aviso_etiquetas_descuadradas': return 'As contraetiquetas do rango non coinciden coas botellas';
+      case 'sidr.aviso_fiscal_provisional': return 'PROVISIONAL: orientativo, non é unha liquidación de impostos. Réxime e tipos, co teu asesor fiscal.';
       case 'sidr.aviso_grado_bajo': return 'Grao {valor} % vol: o prego pide máis de {limite}';
       case 'sidr.aviso_negativo': return 'O anotado deixa esta kupela en negativo: falta unha entrada ou sobra unha saída.';
       case 'sidr.aviso_no_certifica': return 'A app compara o que anotas co prego e avisa, pero non certifica nada: cualifica o órgano de control da DOP.';
@@ -40884,10 +41181,13 @@ class SoleraL10n {
       case 'sidr.aviso_rendimiento_bajo': return 'Rendemento {valor} %: por baixo do {limite} %, o mínimo habitual do prego';
       case 'sidr.aviso_sulfuroso_alto': return 'Sulfuroso total {valor} mg/l: o prego pide menos de {limite}';
       case 'sidr.aviso_supera_capacidad': return 'O anotado supera a capacidade da kupela.';
+      case 'sidr.base': return 'Base';
+      case 'sidr.base_sin_iva': return 'Base sen IVE';
       case 'sidr.bienvenida_explicacion': return 'Uns datos para comezar. Podes cambialos cando queiras en Axustes.';
       case 'sidr.bienvenida_texto': return 'Di como se chama a túa sagardotegi e que elaboras.';
       case 'sidr.bienvenida_titulo': return 'Benvida';
       case 'sidr.bodega': return 'Adega';
+      case 'sidr.borrar_apunte': return 'Borrar este apuntamento?';
       case 'sidr.botellas': return 'Botellas';
       case 'sidr.buscar': return 'Buscar';
       case 'sidr.calificacion': return 'Cualificación';
@@ -40900,13 +41200,34 @@ class SoleraL10n {
       case 'sidr.capacidad': return 'Capacidade';
       case 'sidr.carnet_aplicador': return 'N.º de carné de aplicador';
       case 'sidr.catalogos_provisionales': return 'Catálogos provisionais: copiados de fontes públicas, pendentes de revisión por unha persoa experta.';
+      case 'sidr.categoria': return 'Categoría';
+      case 'sidr.categoria_compra_manzana': return 'Compra de mazá';
+      case 'sidr.categoria_contraetiquetas_dop': return 'Contraetiquetas da DOP';
+      case 'sidr.categoria_cuotas': return 'Cotas (DOP, asociacións)';
+      case 'sidr.categoria_energia': return 'Enerxía';
+      case 'sidr.categoria_envases': return 'Botellas, tapóns e envases';
+      case 'sidr.categoria_fitosanitarios': return 'Fitosanitarios';
+      case 'sidr.categoria_maquinaria': return 'Maquinaria e kupelas';
+      case 'sidr.categoria_otros_gastos': return 'Outros gastos';
+      case 'sidr.categoria_otros_ingresos': return 'Outros ingresos';
+      case 'sidr.categoria_personal': return 'Persoal';
+      case 'sidr.categoria_venta_manzana': return 'Venda de mazá';
+      case 'sidr.categoria_venta_sidra_botella': return 'Venda de sidra en botella';
+      case 'sidr.categoria_venta_sidra_hosteleria': return 'Venda de sidra á hostalaría';
+      case 'sidr.categoria_venta_txakoli': return 'Venda de txakoli';
+      case 'sidr.categoria_venta_txotx': return 'Txotx (comidas e servizo)';
       case 'sidr.codigo_kupela': return 'Código da kupela';
       case 'sidr.codigo_kupela_ayuda': return 'O que ten pintado: K-7, 3…';
       case 'sidr.codigo_lote': return 'Código de lote';
       case 'sidr.codigo_repetido': return 'Xa hai unha kupela con ese código.';
       case 'sidr.comensales': return 'Comensais';
       case 'sidr.comparado_con': return 'Comparado con: {producto}';
+      case 'sidr.compensacion_corto': return 'Comp. REAGP';
+      case 'sidr.compensaciones_reagp': return 'Compensacións REAGP cobradas / pagadas';
+      case 'sidr.con_compensacion_reagp': return 'Con compensación do REAGP (12 %)';
+      case 'sidr.con_compensacion_reagp_ayuda': return 'Venda de mazá propia sen transformar estando no REAGP, ou compra a un agricultor que o está. En vez de IVE.';
       case 'sidr.con_contraetiqueta_dop': return 'Con contraetiqueta numerada da DOP';
+      case 'sidr.concepto': return 'Concepto';
       case 'sidr.confianza_alta': return 'alta';
       case 'sidr.confianza_baja': return 'baixa';
       case 'sidr.confianza_media': return 'media';
@@ -40952,6 +41273,7 @@ class SoleraL10n {
       case 'sidr.etiqueta_hasta': return 'Ata o n.º';
       case 'sidr.etiqueta_manzano': return 'Como o recoñeces';
       case 'sidr.etiqueta_manzano_ayuda': return 'Fila 3, n.º 12; o vello do bordo…';
+      case 'sidr.extracto_pdf': return 'Extracto en PDF';
       case 'sidr.falta_kilos_origen': return 'Faltan os quilos ou de onde vén a froita.';
       case 'sidr.falta_nombre': return 'Falta o nome.';
       case 'sidr.fecha': return 'Data';
@@ -40961,6 +41283,7 @@ class SoleraL10n {
       case 'sidr.fruta_manzana': return 'Mazá';
       case 'sidr.fruta_propia': return 'Froita propia';
       case 'sidr.fruta_uva': return 'Uva';
+      case 'sidr.gasto': return 'Gasto';
       case 'sidr.grado_alcoholico': return 'Grao alcohólico';
       case 'sidr.guardado': return 'Gardado';
       case 'sidr.hacer_foto': return 'Facer unha foto';
@@ -40975,8 +41298,13 @@ class SoleraL10n {
       case 'sidr.ia_que_hace': return 'Mira a foto dunha folla, un froito ou unha póla da maceira e propón que praga ou enfermidade pode ser. Non recomenda produtos nin doses.';
       case 'sidr.ia_revisa': return 'É unha proposta: compróbaa ti ou co teu técnico antes de tratar.';
       case 'sidr.ia_sin_plaga': return 'Non se ve ningunha praga nin enfermidade da lista.';
+      case 'sidr.ingreso': return 'Ingreso';
+      case 'sidr.ingresos_y_gastos': return 'Ingresos e gastos';
       case 'sidr.inscripcion_dop': return 'N.º de inscrición na DOP';
       case 'sidr.inteligencia_artificial': return 'Intelixencia artificial';
+      case 'sidr.iva': return 'IVE';
+      case 'sidr.iva_repercutido': return 'IVE repercutido';
+      case 'sidr.iva_soportado': return 'IVE soportado';
       case 'sidr.kilos': return 'Quilos';
       case 'sidr.kupela': return 'Kupela';
       case 'sidr.kupela_activa': return 'En uso';
@@ -41023,6 +41351,7 @@ class SoleraL10n {
       case 'sidr.nueva_kupela': return 'Nova kupela';
       case 'sidr.nueva_medicion': return 'Nova medición';
       case 'sidr.nueva_pomarada': return 'Novo pomar';
+      case 'sidr.nuevo_apunte': return 'Novo apuntamento';
       case 'sidr.nuevo_manzano': return 'Marcar unha maceira';
       case 'sidr.nuevo_prensado': return 'Novo prensado';
       case 'sidr.nuevo_tratamiento': return 'Anotar tratamento';
@@ -41080,6 +41409,7 @@ class SoleraL10n {
       case 'sidr.poligono': return 'Polígono';
       case 'sidr.pomarada': return 'Pomar';
       case 'sidr.pomaradas': return 'Pomares';
+      case 'sidr.por_categoria': return 'Por categoría';
       case 'sidr.por_revisar': return 'Por revisar';
       case 'sidr.precio_kg': return 'Prezo por quilo';
       case 'sidr.prensada': return 'prensada';
@@ -41103,11 +41433,13 @@ class SoleraL10n {
       case 'sidr.registrada_dop': return 'Rexistrada na DOP';
       case 'sidr.registrada_dop_ayuda': return 'Márcalo ti: a app non consulta o rexistro.';
       case 'sidr.registro_sanitario': return 'Rexistro sanitario (RXSEAA)';
+      case 'sidr.resultado': return 'Resultado (sen IVE)';
       case 'sidr.resumen_txotx': return '{dias} días de txotx · {litros} servidos';
       case 'sidr.retirada': return 'retirada';
       case 'sidr.retirada_lias': return 'Ningunha: retírase (borras, mingua)';
       case 'sidr.si': return 'Si';
       case 'sidr.sigpac': return 'SIXPAC';
+      case 'sidr.sin_apuntes': return 'Sen apuntamentos este mes.';
       case 'sidr.sin_dop': return 'Sen DOP';
       case 'sidr.sin_embotellados': return 'Aínda non hai lotes embotellados. Embotéllase desde a ficha de cada kupela.';
       case 'sidr.sin_entradas': return 'Aínda non hai entradas de froita.';
@@ -41131,8 +41463,12 @@ class SoleraL10n {
       case 'sidr.sustancia_resumen': return 'Prazo de seguridade máximo no rexistro: {ps} días (manda a etiqueta). Aprobada na UE ata o {ue}.';
       case 'sidr.temperatura': return 'Temperatura';
       case 'sidr.temporada': return 'Tempada {campania}';
+      case 'sidr.tercero': return 'Cliente ou provedor';
       case 'sidr.territorio': return 'Territorio ou provincia';
+      case 'sidr.tipo_iva': return 'Tipo de IVE';
       case 'sidr.titular': return 'Titular';
+      case 'sidr.total': return 'Total';
+      case 'sidr.transformacion': return 'Sidra, txakoli e txotx';
       case 'sidr.trasegar': return 'Trasfegar';
       case 'sidr.trasiego': return 'Trasfega';
       case 'sidr.tratamiento_incompleto': return 'faltan datos do caderno';

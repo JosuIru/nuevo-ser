@@ -9,7 +9,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | Bloque | Estado | Notas |
 |---|---|---|
 | 1 Esqueleto | ✅ 2026-11-07 | Generado con `scripts/nueva_vertical.sh`; normativa resuelta abajo (Ley 43/2003, Ley 55/1980 y TRRL art. 75 leídos en el BOE; lo autonómico, por verificar) |
-| 2 Modelos + BD | pendiente | |
+| 2 Modelos + BD | ✅ 2026-11-07 | 10 modelos (`Monte` de una fila con figura, CA, instrumento de gestión, certificación y época de peligro; `Rodal` con contorno; `ActuacionPlan`; `Ejecucion`; `Aprovechamiento`; `SorteoLena` + `LoteLena`; `InfraestructuraIncendios` + `RevisionIncendios`; `ArbolSingular`; `ApunteEconomico`), 12 tablas en la v1 (`sentenciasEsquemaMonteV1`). Geodesia copiada de Ganadera. Dominio puro: `sorteo_lena.dart` (SHA-256 de «semilla\|participante», orden de menor a mayor, huella de la lista, verificación), `superficies.dart` (por especie, total, dibujada frente a declarada), `plan_gestion.dart` (estado de cada actuación, previsto frente a ejecutado por año, volumen del plan frente a lo aprovechado), `aprovechamientos.dart` (menor cuantía y plazo de un mes del art. 37) e `incendios.dart` (estado de la campaña y aviso antes de la época de peligro). 43 tests |
 | 3 Pantallas | pendiente | |
 | 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
 | 6 Catálogos | pendiente | |
@@ -19,7 +19,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 2.
+**Siguiente acción**: bloque 6 (catálogos: las pantallas necesitan los nombres de las especies y la conversión de estéreos), después el 3.
 
 ## Encuadre
 
@@ -124,6 +124,37 @@ publicados por cada sistema; **por verificar** contra el estándar vigente.
 - **2026-11-07 — Umbral de menor cuantía del art. 37.2 como aviso, no como
   regla**: la app avisa si un aprovechamiento de madera o leña pasa de
   10 m³ / 20 estéreos, pero recuerda que la CA puede fijar cuantías menores.
+  Los no maderables (pastos, setas, caza…) no llevan avisos estatales: los
+  regula la CA (art. 36.3).
+- **2026-11-07 — `Monte` sustituye a `Titular`** (tabla de una fila): una
+  instalación = un monte, como en el resto de la suite una explotación. Una
+  junta con varios montes usa los rodales para separarlos (código «A-1»,
+  «B-1») o una instalación por monte. Es lo más sencillo; si un piloto pide
+  varios montes, migración aditiva.
+- **2026-11-07 — Sorteo con SHA-256, no con `Random`**: `Random(semilla)` de
+  Dart no está documentado como estable entre versiones ni se puede repetir
+  fuera de la app. Con `SHA-256("semilla|participante")` y orden de menor a
+  mayor cualquiera lo comprueba con `sha256sum`. Concejo no tiene sorteo con
+  semilla (lo deja fuera de su F1): de su urna se toma la idea de azar
+  inyectable y comprobado en tests.
+- **2026-11-07 — Procedimiento del sorteo en tres pasos** (lista cerrada con
+  huella → semilla pública posterior → sorteo) y bloqueo después: un sorteo
+  realizado no se edita ni se borra desde la app. Los participantes
+  repetidos (sin distinguir mayúsculas ni espacios) impiden sortear.
+- **2026-11-07 — Lotes iguales, no proporcionales**: la app sortea qué lote
+  toca a quién. El TRRL art. 75.2 habla de lotes «en proporción directa al
+  número de familiares a su cargo e inversa a su situación económica» a
+  falta de costumbre u ordenanza: el tamaño de cada lote lo fija la junta al
+  crearlo (cantidad por lote), y la app no calcula proporciones.
+- **2026-11-07 — Época de peligro sin valor por defecto**: la fija cada CA
+  (art. 48); sin fecha apuntada no hay aviso. El aviso empieza 45 días antes
+  (decisión de la app).
+- **2026-11-07 — Una revisión de incendios cuenta para la campaña de su año
+  natural**, y vale la más reciente. Un estado desconocido se lee como
+  «necesita mantenimiento» (nunca se da por bueno).
+- **2026-11-07 — Economía en la v1 desde el bloque 2** (tablas de apuntes y
+  régimen fiscal), para no migrar antes de publicar; el modelo de régimen
+  llega en el bloque 9.
 
 ## Datos técnicos
 

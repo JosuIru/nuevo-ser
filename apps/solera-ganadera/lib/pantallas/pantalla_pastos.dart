@@ -9,6 +9,7 @@ import '../modelos/pieza_pasto.dart';
 import '../utiles/recinto_sigpac.dart';
 import '../utiles/textos_ganadera.dart';
 import 'hoja_formulario.dart';
+import 'pantalla_mapa_pastos.dart';
 
 /// Las piezas de pasto con lo que tienen ahora: rebaños, cabezas y carga.
 class PantallaPastos extends StatefulWidget {
@@ -42,7 +43,17 @@ class _PantallaPastosState extends State<PantallaPastos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(SoleraL10n.t('gana.pastos'))),
+      appBar: AppBar(
+        title: Text(SoleraL10n.t('gana.pastos')),
+        actions: [
+          IconButton(
+            tooltip: SoleraL10n.t('gana.mapa_pastos'),
+            icon: const Icon(Icons.map_outlined),
+            onPressed: () => Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const PantallaMapaPastos())),
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         tooltip: SoleraL10n.t('gana.nueva_pieza'),
         onPressed: () => mostrarEdicionPieza(context),

@@ -9,6 +9,7 @@ import '../modelos/titular.dart';
 import '../utiles/textos_ganadera.dart';
 import 'lectura_receta.dart';
 import 'pantalla_documentos.dart';
+import 'pantalla_mapa_pastos.dart' show posicionActual;
 
 /// Ajustes: idioma, titular y explotación (los datos de cabecera del libro
 /// de registro) y los accesos al resto.
@@ -83,6 +84,22 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
     } catch (error) {
       debugPrint('No se pudieron leer los ajustes: $error');
     }
+  }
+
+  Future<void> _usarUbicacion() async {
+    final mensajero = ScaffoldMessenger.of(context);
+    final posicion = await posicionActual();
+    if (!mounted) return;
+    if (posicion == null) {
+      mensajero
+          .showSnackBar(SnackBar(content: Text(SoleraL10n.t('gana.sin_gps'))));
+      return;
+    }
+    setState(() {
+      _explotacion = Explotacion.fromMap(_explotacion.toMap()
+        ..['latitud'] = posicion.latitude
+        ..['longitud'] = posicion.longitude);
+    });
   }
 
   Future<void> _guardar() async {
@@ -169,6 +186,19 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
           _campo(_direccionExplotacion, 'gana.direccion'),
           _campo(_municipio, 'gana.municipio'),
           _campo(_provincia, 'gana.provincia'),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.my_location),
+            title: Text(SoleraL10n.t('gana.coordenadas_explotacion')),
+            subtitle: Text(_explotacion.latitud == null
+                ? SoleraL10n.t('gana.sin_indicar')
+                : '${_explotacion.latitud!.toStringAsFixed(5)}, '
+                    '${_explotacion.longitud!.toStringAsFixed(5)}'),
+            trailing: TextButton(
+              onPressed: _usarUbicacion,
+              child: Text(SoleraL10n.t('gana.usar_mi_ubicacion')),
+            ),
+          ),
           _campo(_clasificacion, 'gana.clasificacion'),
           _campo(_capacidad, 'gana.capacidad_maxima',
               teclado: TextInputType.number),

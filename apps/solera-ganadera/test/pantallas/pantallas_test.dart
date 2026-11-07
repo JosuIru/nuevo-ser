@@ -8,6 +8,7 @@ import 'package:solera_ganadera/modelos/tarea_sanitaria.dart';
 import 'package:solera_ganadera/pantallas/pantalla_ficha_lote.dart';
 import 'package:solera_ganadera/pantallas/pantalla_hoy.dart';
 import 'package:solera_ganadera/pantallas/pantalla_manejo.dart';
+import 'package:solera_ganadera/pantallas/pantalla_mapa_pastos.dart';
 import 'package:solera_ganadera/pantallas/pantalla_pastos.dart';
 import 'package:solera_ganadera/pantallas/pantalla_rebanos.dart';
 
@@ -148,5 +149,23 @@ void main() {
     expect(find.text('Miren, veterinaria'), findsOneWidget);
     final visitas = (await tester.runAsync(baseDatos.listarVisitas))!;
     expect(visitas.single.esVeterinaria, isTrue);
+  });
+
+  testWidgets('contorno: superficie y perímetro de los puntos tomados',
+      (tester) async {
+    // Un cuadrado de unos 100 m de lado a la latitud de Navarra.
+    const lado = 100 / 111195.0;
+    final pieza = PiezaPasto(id: 1, nombre: 'Larre', contorno: [
+      (42.8, -1.6),
+      (42.8 + lado, -1.6),
+      (42.8 + lado, -1.6 + lado / 0.7337),
+      (42.8, -1.6 + lado / 0.7337),
+    ]);
+    await tester
+        .pumpWidget(MaterialApp(home: PantallaContornoPieza(pieza: pieza)));
+    expect(find.textContaining('4 puntos · 1,00 ha · 400 m'), findsOneWidget);
+    await tester.tap(find.text('Quitar el último'));
+    await tester.pump();
+    expect(find.textContaining('3 puntos · 0,50 ha'), findsOneWidget);
   });
 }

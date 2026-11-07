@@ -32,9 +32,17 @@ y sigue. Lo recoge `scripts/pendientes/`.
 
 ## Revisión nativa eu/ca/gl
 
-- Textos de `content/solera/traducciones/ganadera.csv` (borrador, 2026-11-07).
+- Textos de `content/solera/traducciones/ganadera.csv` (332 claves; eu/ca/gl
+  borrador, 2026-11-07), con terminología ganadera dudosa: larre-saila,
+  belarritakoa, ALU/UBM por UGM, REAXP, SIXPAC, «parcel·la» por pieza.
 
 ## Bloqueos técnicos
+
+- **Build Linux**: `flutter build linux --release` falla con «Target dart_build
+  failed: Failed to find any of [ld.lld, ld] in LocalDirectory:
+  '/usr/lib/llvm-21/bin'». Hay `/usr/bin/ld`, pero falta `lld` del toolchain
+  LLVM 21 (instalarlo necesita sudo, p. ej. `apt install lld-21`). No es de la
+  app: la APK compila. 2026-11-07.
 
 - `scripts/auditoria` (calle externa apps-3a) no tiene `ganadera` en su lista de
   verticales: `dart run bin/auditoria.dart comprobar ganadera` responde «No

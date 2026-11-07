@@ -17,9 +17,14 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 8 Branding + GPS | ✅ 2026-11-07 (placeholder) | Logo ImageMagick (crotal rojo `#B8402A` sobre pasto, pardo lana y crema) en `assets/`, iconos del lanzador con `flutter_launcher_icons`, logo en la cabecera de Hoy. **GPS**: contorno de cada pieza caminando el linde (superficie y perímetro por exceso esférico, `geodesia.dart` de Zunbeltz) y coordenadas de la explotación; mapa de pastos con `flutter_map` (los contornos se ven sin cobertura). Permisos de Internet y ubicación en el manifiesto. 93 tests |
 | 9 Economía | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Ingresos y gastos: apuntes con fecha, categoría ganadera y, en ingresos, REAGP (compensación editable, 10,5 % por verificar) o IVA; resumen del mes (resultado, compensación cobrada, IVA repercutido y soportado) y extracto PDF con sello. **Exportación completa**: un CSV por tabla desde Ajustes (hard limit 4). 98 tests |
 | 10 Revisión con fuente pública | ✅ en parte (2026-11-07) | Normativa de los PDF cotejada con el texto vigente (lista en Encuadre). Catálogos: tabla UGM de la PAC y eco-régimen con `fuente_publica` (BOE), razas con `fuente_publica` (salvo 4 añadidas y «Cruce»), sustancias con `revision-ia:` (CIMA Vet). Sin revisar a propósito: especies (lista propia), la tabla de Andalucía y la cerda de cría. `catalogosCompletamenteRevisados = false` y el banner se ve. `scripts/auditoria` no conoce todavía `ganadera` (fuera de esta calle) |
-| 11 APK + ayuda | pendiente | |
+| 11 APK + ayuda | ✅ en parte (2026-11-07) | Ayuda in-app (9 apartados, 4 idiomas, con «lo que la app no hace»), README, **APK release de 68,2 MB** firmada con la clave de depuración (copia en `~/larrea-apks/solera-ganadera-release.apk`), `flutter clean` hecho. **Build Linux: falla** por el entorno (`dart_build` no encuentra `ld.lld` en `/usr/lib/llvm-21/bin`; ver BLOQUEOS). 99 tests. Release de GitHub sin publicar (la publica la integración) |
 
-**Siguiente acción**: bloque 11 (ayuda in-app, README, APK release y build Linux).
+**Siguiente acción**: F1 completa salvo lo humano (BLOQUEOS) y el build Linux
+(entorno). Pendientes técnicos para F2: escáner del DIB y lectura RFID, caché de
+teselas, importar desde Zunbeltz, facturas cuando el asesor fije el régimen,
+avisos del calendario como notificaciones locales (hoy se ven en Hoy y Manejo),
+y dar de alta `ganadera` en `scripts/auditoria` y en `scripts/traducciones`
+(calle externa).
 
 ## Encuadre
 
@@ -164,6 +169,9 @@ Para comparar: `git diff 92ade2b -- apps/solera-zunbeltz/lib/modelos/`.
   de la Ley 37/1992): queda editable y marcada «por verificar».
 - **2026-11-07 — Exportación en CSV, no Excel**: un CSV por tabla con la hoja de
   compartir; sin dependencias nuevas. Importar desde Zunbeltz queda para F2.
+- **2026-11-07 — Calendario sanitario sin notificaciones del sistema**: los avisos
+  (tareas y fin de esperas) salen en Hoy (14 días) y en Manejo (60). Las
+  notificaciones locales programadas necesitarían otro plugin y permisos; F2.
 - **2026-11-07 — Fechas con selector** en movimientos, eventos, tareas y visitas
   (en Obrador se apuntaba con la fecha actual).
 

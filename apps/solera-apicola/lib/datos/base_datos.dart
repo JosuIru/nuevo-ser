@@ -1,5 +1,5 @@
-import 'package:path/path.dart' as path_lib;
-import 'package:path_provider/path_provider.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show BaseDatosSolera, PasoMigracionSolera;
 import 'package:sqflite/sqflite.dart';
 
 import '../modelos/apiario.dart';
@@ -42,35 +42,28 @@ const int versionEsquemaBaseDatosApicola = 3;
 /// (pantalla de facturas y `estaVacia()` fallaban). Subir a 3 dispara el
 /// paso; es idempotente (`IF NOT EXISTS`) para las BD v2 creadas de cero,
 /// que ya la tenían por `crearEsquemaCompleto`.
-class BaseDatosSoleraApicola {
+class BaseDatosSoleraApicola extends BaseDatosSolera {
   static final BaseDatosSoleraApicola instancia = BaseDatosSoleraApicola._interno();
   factory BaseDatosSoleraApicola() => instancia;
   BaseDatosSoleraApicola._interno();
 
-  Database? _basedatos;
+  @override
+  String get nombreFichero => nombreFicheroBaseDatosApicola;
 
-  Future<Database> get basedatos async {
-    if (_basedatos != null) return _basedatos!;
-    final directorio = await getApplicationDocumentsDirectory();
-    final ruta = path_lib.join(directorio.path, nombreFicheroBaseDatosApicola);
-    _basedatos = await openDatabase(
-      ruta,
-      version: versionEsquemaBaseDatosApicola,
-      onConfigure: (db) async {
-        await db.execute('PRAGMA foreign_keys = ON');
-      },
-      onCreate: (db, version) => crearEsquemaCompleto(db),
-      onUpgrade: (db, viejaVersion, nuevaVersion) async {
-        if (viejaVersion < 2) {
-          await _crearTablasContabilidadV2(db);
-        }
-        if (viejaVersion < 3) {
-          await _crearTablasFacturasV3(db);
-        }
-      },
-    );
-    return _basedatos!;
-  }
+  @override
+  int get versionEsquema => versionEsquemaBaseDatosApicola;
+
+  @override
+  DatabaseFactory get fabricaBaseDatos => databaseFactory;
+
+  @override
+  Future<void> crearEsquemaInicial(Database db) => _crearEsquemaInicial(db);
+
+  @override
+  Map<int, PasoMigracionSolera> get pasosMigracion => {
+        2: _crearTablasContabilidadV2,
+        3: _crearTablasFacturasV3,
+      };
 
   // ─── Apiarios ───────────────────────────────────────────
 
@@ -444,14 +437,7 @@ class BaseDatosSoleraApicola {
   }
 
   Future<void> guardarApicultor(Apicultor a) async {
-    final db = await basedatos;
-    final actual = await obtenerApicultor();
-    final mapa = a.toMap()..remove('id');
-    if (actual.id != null) {
-      await db.update('apicultores', mapa, where: 'id = ?', whereArgs: [actual.id]);
-    } else {
-      await db.insert('apicultores', mapa);
-    }
+    await guardarFilaUnica('apicultores', a.toMap());
   }
 
   // ─── Terceros (clientes y proveedores) ──────────────────
@@ -506,15 +492,7 @@ class BaseDatosSoleraApicola {
   }
 
   Future<void> guardarConfiguracionFiscal(ConfiguracionFiscal cf) async {
-    final db = await basedatos;
-    final actual = await obtenerConfiguracionFiscal();
-    final mapa = cf.toMap()..remove('id');
-    if (actual.id != null) {
-      await db.update('configuraciones_fiscales', mapa,
-          where: 'id = ?', whereArgs: [actual.id]);
-    } else {
-      await db.insert('configuraciones_fiscales', mapa);
-    }
+    await guardarFilaUnica('configuraciones_fiscales', cf.toMap());
   }
 
   // ─── Apuntes de ingreso ─────────────────────────────────
@@ -627,10 +605,6 @@ class BaseDatosSoleraApicola {
     await db.delete('apuntes_gasto', where: 'id = ?', whereArgs: [id]);
   }
 
-  Future<void> cerrar() async {
-    await _basedatos?.close();
-    _basedatos = null;
-  }
 
   Future<String> rutaBaseDatos() async {
     final db = await basedatos;
@@ -642,10 +616,7 @@ class BaseDatosSoleraApicola {
   /// la consulta fallaba y la restauración no se lanzaba nunca.
   Future<bool> estaVacia() async => baseDatosSinRegistros(await basedatos);
 
-  Future<void> reiniciar() async {
-    await _basedatos?.close();
-    _basedatos = null;
-  }
+  Future<void> reiniciar() => cerrar();
 }
 
 // ─── Esquema inicial v1 ───────────────────────────────────

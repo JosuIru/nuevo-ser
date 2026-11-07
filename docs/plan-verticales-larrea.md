@@ -196,7 +196,8 @@ Alternativa más barata: **una sesión interactiva por vertical** (como se hizo 
 |---|---|
 | V1 Obrador | ✅ bloques 1-11 (38 tests, APK release de 65 MB). Release de GitHub pendiente de push |
 | V2 Sidra | en curso (agente en worktree) |
-| V4 Ganadera | en curso (agente en worktree) |
+| V4 Ganadera | ✅ bloques 1-11, hechos por un agente e integrados (99 tests, APK release de 68,2 MB; build de Linux bloqueado por falta de `lld-21`). Copiado de Zunbeltz 92ade2b sin tocarla |
+| V7 Vivero | en curso (agente en worktree) |
 | V3 Frutal | ✅ bloques 1-11, hechos por un agente en worktree e integrados (65 tests, APK release de 67,6 MB) |
 
 ### Presupuesto de tokens (2026-11-07)

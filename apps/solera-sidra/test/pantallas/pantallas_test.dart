@@ -9,6 +9,8 @@ import 'package:solera_sidra/modelos/partida_manzana.dart';
 import 'package:solera_sidra/modelos/prensado.dart';
 import 'package:solera_sidra/modelos/sagardotegi.dart';
 import 'package:solera_sidra/modelos/sesion_txotx.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:solera_sidra/pantallas/pantalla_ayuda.dart';
 import 'package:solera_sidra/pantallas/pantalla_bodega.dart';
 import 'package:solera_sidra/pantallas/pantalla_embotellados.dart';
 import 'package:solera_sidra/pantallas/pantalla_hoy.dart';
@@ -165,5 +167,16 @@ void main() {
       });
       expect(find.text(esperado), findsWidgets, reason: '$pantalla');
     }
+  });
+
+  test('cada apartado de la ayuda tiene título y texto en los cuatro idiomas',
+      () {
+    for (final (titulo, texto) in apartadosAyudaSidra) {
+      for (final idioma in ['es', 'eu', 'ca', 'gl']) {
+        expect(SoleraL10n.t(titulo, idioma: idioma), isNot(titulo));
+        expect(SoleraL10n.t(texto, idioma: idioma), isNot(texto));
+      }
+    }
+    expect(SoleraL10n.t('sidr.ayuda_limites_texto'), contains('alcohol'));
   });
 }

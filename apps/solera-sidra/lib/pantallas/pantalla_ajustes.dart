@@ -7,6 +7,7 @@ import '../modelos/titular.dart';
 import '../utiles/textos_sidra.dart';
 import 'boton_diagnostico_ia.dart' show pantallaClaveSidra;
 import 'hoja_formulario.dart';
+import 'pantalla_ayuda.dart';
 import 'pantalla_bienvenida.dart';
 import 'pantalla_documentos.dart';
 import 'pantalla_economia.dart';
@@ -101,6 +102,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
               const PantallaEconomia()),
           _apartado(Icons.auto_awesome_outlined, 'sidr.inteligencia_artificial',
               pantallaClaveSidra()),
+          _apartado(Icons.help_outline, 'sidr.ayuda', const PantallaAyuda()),
           const SelectorIdioma(),
           const SizedBox(height: 24),
           Text(SoleraL10n.t('sidr.titular'),

@@ -17,9 +17,9 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 8 Branding + GPS | ✅ 2026-11-07 (placeholder) | Logo ImageMagick (manzana verde `#6B7A2E` con hoja sobre crema `#F5EFE2`) en `assets/`, iconos del lanzador con `flutter_launcher_icons` (adaptativo con fondo crema), logo en la cabecera de Hoy, etiqueta «Larrea Sagardoa» en Android. **GPS**: «Estoy aquí» en la pomarada guarda latitud y longitud (permisos de ubicación e INTERNET añadidos al manifiesto) |
 | 9 Economía | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Ingresos y gastos: apuntes por mes con base, tipo de IVA o **compensación del REAGP (12 %)** en vez de IVA; la app propone tipo y compensación por categoría (`dominio/resumen_economico.dart`, LIVA arts. 91, 126 y 130 leídos en el BOE). El resumen separa venta de manzana (actividad agraria) de sidra, txakoli y txotx (transformación y servicios), con IVA y compensaciones orientativos, y extracto PDF con sello. Régimen fiscal del titular en Ajustes. 52 tests |
 | 10 Revisión con fuente pública | ✅ 2026-11-07 | **Catálogos**: las 366 filas llevan `revisado_por`: variedades, uvas y límites DOP con `fuente_publica:` (copiados de los pliegos), plagas y sustancias con `revision-ia:` (registro del MAPA 06/11/2026 + EU Pesticides DB + Reg. 2021/1165). `catalogosCompletamenteRevisados` **sigue en false** y el banner se ve. **Documentos**: cuaderno cotejado con el anexo III del RD 1311/2012 consolidado (20/11/2025): se añadieron n.º de orden de parcela, cultivo y variedad, equipo de aplicación, asesor y REA del titular; el nombre comercial queda en blanco a propósito (BLOQUEOS). Libro cotejado con el ap. E del pliego. Extracto con la LIVA consolidada. 52 tests |
-| 11 APK + ayuda | pendiente | |
+| 11 APK + ayuda | ✅ 2026-11-07 | Ayuda in-app (Ajustes → Ayuda, 9 apartados en 4 idiomas, con «lo que la app no hace»), README, APK release de **67,4 MB** firmada con la clave de depuración (`com.coleccionnuevoser.solera_sidra`; copia en `~/larrea-apks/solera-sidra-release.apk`) y `flutter clean` después. **Sin build de Linux** (no lo pedía el encargo de este agente). 53 tests. Release de GitHub sin publicar (la publica la integración) |
 
-**Siguiente acción**: bloque 11 (ayuda in-app, README y APK release).
+**Siguiente acción**: F1 completa salvo lo humano (BLOQUEOS). Pendientes técnicos: build de Linux; pasaporte QR del lote (T1, calle N); trazabilidad botella → partidas en pantalla (hoy solo en el dominio, `kupelasDeOrigen`, y en el libro); editar o borrar partidas, prensados, mediciones y lotes (hoy solo se crean); nombres de catálogo en eu/ca/gl; conectar con el registro electrónico de tratamientos (SIEX, T4).
 
 ## Encuadre
 
@@ -128,6 +128,8 @@ ningún texto ni el pasaporte promociona el consumo de alcohol.
   1311/2012 consolidado permite el papel hasta el 31/12/2026; desde 2027 se
   vuelca en la aplicación de la autoridad. La app no se conecta a esa aplicación
   (SIEX, calle N/T4); el PDF es una ayuda, no el registro oficial.
+- **2026-11-07 — Textos de ayuda sin saltos de línea en el CSV**: el
+  compilador de traducciones lee el CSV por líneas; las viñetas van seguidas.
 
 ## Datos técnicos
 

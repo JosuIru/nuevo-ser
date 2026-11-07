@@ -3343,6 +3343,28 @@ class SoleraL10n {
     'obra.sin_pedidos_fijos',
     'obra.temperatura_horno',
     'obra.temperatura_recepcion',
+    'obra.aviso_documento_provisional',
+    'obra.cartel_alergenos',
+    'obra.cartel_alergenos_explicacion',
+    'obra.contiene',
+    'obra.cuaderno_autocontrol',
+    'obra.dato',
+    'obra.datos_producto',
+    'obra.documentos',
+    'obra.elemento_corto',
+    'obra.error_documento',
+    'obra.fecha',
+    'obra.ficha_tecnica',
+    'obra.incidencias_y_acciones',
+    'obra.no',
+    'obra.productos',
+    'obra.resumen_incorrectos',
+    'obra.resumen_registros',
+    'obra.resumen_sin_accion',
+    'obra.si',
+    'obra.sin_incidencias',
+    'obra.tipo',
+    'obra.valor',
     'ques.accion_recomendada',
     'ques.acerca_descripcion',
     'ques.activa_las_do',
@@ -7595,6 +7617,28 @@ class SoleraL10n {
           'obra.sin_pedidos_fijos',
           'obra.temperatura_horno',
           'obra.temperatura_recepcion',
+          'obra.aviso_documento_provisional',
+          'obra.cartel_alergenos',
+          'obra.cartel_alergenos_explicacion',
+          'obra.contiene',
+          'obra.cuaderno_autocontrol',
+          'obra.dato',
+          'obra.datos_producto',
+          'obra.documentos',
+          'obra.elemento_corto',
+          'obra.error_documento',
+          'obra.fecha',
+          'obra.ficha_tecnica',
+          'obra.incidencias_y_acciones',
+          'obra.no',
+          'obra.productos',
+          'obra.resumen_incorrectos',
+          'obra.resumen_registros',
+          'obra.resumen_sin_accion',
+          'obra.si',
+          'obra.sin_incidencias',
+          'obra.tipo',
+          'obra.valor',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -11844,6 +11888,28 @@ class SoleraL10n {
           'obra.sin_pedidos_fijos',
           'obra.temperatura_horno',
           'obra.temperatura_recepcion',
+          'obra.aviso_documento_provisional',
+          'obra.cartel_alergenos',
+          'obra.cartel_alergenos_explicacion',
+          'obra.contiene',
+          'obra.cuaderno_autocontrol',
+          'obra.dato',
+          'obra.datos_producto',
+          'obra.documentos',
+          'obra.elemento_corto',
+          'obra.error_documento',
+          'obra.fecha',
+          'obra.ficha_tecnica',
+          'obra.incidencias_y_acciones',
+          'obra.no',
+          'obra.productos',
+          'obra.resumen_incorrectos',
+          'obra.resumen_registros',
+          'obra.resumen_sin_accion',
+          'obra.si',
+          'obra.sin_incidencias',
+          'obra.tipo',
+          'obra.valor',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -16093,6 +16159,28 @@ class SoleraL10n {
           'obra.sin_pedidos_fijos',
           'obra.temperatura_horno',
           'obra.temperatura_recepcion',
+          'obra.aviso_documento_provisional',
+          'obra.cartel_alergenos',
+          'obra.cartel_alergenos_explicacion',
+          'obra.contiene',
+          'obra.cuaderno_autocontrol',
+          'obra.dato',
+          'obra.datos_producto',
+          'obra.documentos',
+          'obra.elemento_corto',
+          'obra.error_documento',
+          'obra.fecha',
+          'obra.ficha_tecnica',
+          'obra.incidencias_y_acciones',
+          'obra.no',
+          'obra.productos',
+          'obra.resumen_incorrectos',
+          'obra.resumen_registros',
+          'obra.resumen_sin_accion',
+          'obra.si',
+          'obra.sin_incidencias',
+          'obra.tipo',
+          'obra.valor',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -20365,6 +20453,28 @@ class SoleraL10n {
       case 'obra.sin_pedidos_fijos': return 'Aún no hay pedidos fijos.';
       case 'obra.temperatura_horno': return 'Temperatura del horno (°C)';
       case 'obra.temperatura_recepcion': return 'Temperatura al recibir (°C)';
+      case 'obra.aviso_documento_provisional': return 'Documento PROVISIONAL: el formato aún no lo ha validado un técnico de seguridad alimentaria. No sustituye la inspección sanitaria.';
+      case 'obra.cartel_alergenos': return 'Cartel de alérgenos';
+      case 'obra.cartel_alergenos_explicacion': return 'Para el mostrador: qué alérgenos lleva cada producto a la venta.';
+      case 'obra.contiene': return 'Contiene';
+      case 'obra.cuaderno_autocontrol': return 'Cuaderno de autocontrol';
+      case 'obra.dato': return 'Dato';
+      case 'obra.datos_producto': return 'Datos del producto';
+      case 'obra.documentos': return 'Documentos (PDF)';
+      case 'obra.elemento_corto': return 'Elemento';
+      case 'obra.error_documento': return 'No se ha podido generar el documento.';
+      case 'obra.fecha': return 'Fecha';
+      case 'obra.ficha_tecnica': return 'Ficha técnica';
+      case 'obra.incidencias_y_acciones': return 'Incidencias y acciones correctoras';
+      case 'obra.no': return 'No';
+      case 'obra.productos': return 'Productos';
+      case 'obra.resumen_incorrectos': return '{n} controles incorrectos';
+      case 'obra.resumen_registros': return '{n} registros en el mes';
+      case 'obra.resumen_sin_accion': return '{n} sin acción correctora';
+      case 'obra.si': return 'Sí';
+      case 'obra.sin_incidencias': return 'Sin incidencias en el periodo.';
+      case 'obra.tipo': return 'Tipo';
+      case 'obra.valor': return 'Valor';
       case 'ques.accion_recomendada': return 'Acción recomendada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera es un gestor para queserías artesanas: recepción de leche por proveedor, lotes de producción, afinado pieza a pieza en la cava, controles APPCC, perfiles de denominación de origen, identificación de defectos por foto con IA y libro de trazabilidad en PDF.';
       case 'ques.activa_las_do': return 'Activa las DO a las que pertenece tu quesería.';
@@ -24618,6 +24728,28 @@ class SoleraL10n {
       case 'obra.sin_pedidos_fijos': return 'Oraindik ez dago eskaera finkorik.';
       case 'obra.temperatura_horno': return 'Labearen tenperatura (°C)';
       case 'obra.temperatura_recepcion': return 'Jasotzean tenperatura (°C)';
+      case 'obra.aviso_documento_provisional': return 'Behin-behineko dokumentua: elikagai-segurtasuneko teknikari batek ez du formatua oraindik baliozkotu. Ez du osasun-ikuskapena ordezten.';
+      case 'obra.cartel_alergenos': return 'Alergenoen kartela';
+      case 'obra.cartel_alergenos_explicacion': return 'Mostradorerako: salgai dagoen produktu bakoitzak zer alergeno dituen.';
+      case 'obra.contiene': return 'Badauka';
+      case 'obra.cuaderno_autocontrol': return 'Autokontrol-koadernoa';
+      case 'obra.dato': return 'Datua';
+      case 'obra.datos_producto': return 'Produktuaren datuak';
+      case 'obra.documentos': return 'Dokumentuak (PDF)';
+      case 'obra.elemento_corto': return 'Elementua';
+      case 'obra.error_documento': return 'Ezin izan da dokumentua sortu.';
+      case 'obra.fecha': return 'Data';
+      case 'obra.ficha_tecnica': return 'Fitxa teknikoa';
+      case 'obra.incidencias_y_acciones': return 'Gorabeherak eta neurri zuzentzaileak';
+      case 'obra.no': return 'Ez';
+      case 'obra.productos': return 'Produktuak';
+      case 'obra.resumen_incorrectos': return '{n} kontrol oker';
+      case 'obra.resumen_registros': return '{n} erregistro hilabetean';
+      case 'obra.resumen_sin_accion': return '{n} neurri zuzentzailerik gabe';
+      case 'obra.si': return 'Bai';
+      case 'obra.sin_incidencias': return 'Ez dago gorabeherarik aldian.';
+      case 'obra.tipo': return 'Mota';
+      case 'obra.valor': return 'Balioa';
       case 'ques.accion_recomendada': return 'Gomendatutako ekintza';
       case 'ques.acerca_descripcion': return 'Larrea Quesera gaztategi artisauentzako kudeatzailea da: esne-harrera hornitzaileka, ekoizpen-loteak, ontze-gelako ontzea piezaz pieza, APPCC kontrolak, jatorri-deituren profilak, akatsen identifikazioa argazki bidez AArekin eta trazabilitate-liburua PDFan.';
       case 'ques.activa_las_do': return 'Aktibatu zure gaztategia zein JDtakoa den.';
@@ -28871,6 +29003,28 @@ class SoleraL10n {
       case 'obra.sin_pedidos_fijos': return 'Encara no hi ha comandes fixes.';
       case 'obra.temperatura_horno': return 'Temperatura del forn (°C)';
       case 'obra.temperatura_recepcion': return 'Temperatura en rebre (°C)';
+      case 'obra.aviso_documento_provisional': return 'Document PROVISIONAL: el format encara no l\'ha validat un tècnic de seguretat alimentària. No substitueix la inspecció sanitària.';
+      case 'obra.cartel_alergenos': return 'Cartell d\'al·lèrgens';
+      case 'obra.cartel_alergenos_explicacion': return 'Per al taulell: quins al·lèrgens porta cada producte a la venda.';
+      case 'obra.contiene': return 'Conté';
+      case 'obra.cuaderno_autocontrol': return 'Quadern d\'autocontrol';
+      case 'obra.dato': return 'Dada';
+      case 'obra.datos_producto': return 'Dades del producte';
+      case 'obra.documentos': return 'Documents (PDF)';
+      case 'obra.elemento_corto': return 'Element';
+      case 'obra.error_documento': return 'No s\'ha pogut generar el document.';
+      case 'obra.fecha': return 'Data';
+      case 'obra.ficha_tecnica': return 'Fitxa tècnica';
+      case 'obra.incidencias_y_acciones': return 'Incidències i accions correctores';
+      case 'obra.no': return 'No';
+      case 'obra.productos': return 'Productes';
+      case 'obra.resumen_incorrectos': return '{n} controls incorrectes';
+      case 'obra.resumen_registros': return '{n} registres al mes';
+      case 'obra.resumen_sin_accion': return '{n} sense acció correctora';
+      case 'obra.si': return 'Sí';
+      case 'obra.sin_incidencias': return 'Sense incidències en el període.';
+      case 'obra.tipo': return 'Tipus';
+      case 'obra.valor': return 'Valor';
       case 'ques.accion_recomendada': return 'Acció recomanada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera és un gestor per a formatgeries artesanes: recepció de llet per proveïdor, lots de producció, afinament peça a peça a la cava, controls APPCC, perfils de denominació d\'origen, identificació de defectes per foto amb IA i llibre de traçabilitat en PDF.';
       case 'ques.activa_las_do': return 'Activa les DO a les quals pertany la teva formatgeria.';
@@ -33124,6 +33278,28 @@ class SoleraL10n {
       case 'obra.sin_pedidos_fijos': return 'Aínda non hai pedidos fixos.';
       case 'obra.temperatura_horno': return 'Temperatura do forno (°C)';
       case 'obra.temperatura_recepcion': return 'Temperatura ao recibir (°C)';
+      case 'obra.aviso_documento_provisional': return 'Documento PROVISIONAL: o formato aínda non o validou un técnico de seguridade alimentaria. Non substitúe a inspección sanitaria.';
+      case 'obra.cartel_alergenos': return 'Cartel de alérxenos';
+      case 'obra.cartel_alergenos_explicacion': return 'Para o mostrador: que alérxenos leva cada produto á venda.';
+      case 'obra.contiene': return 'Contén';
+      case 'obra.cuaderno_autocontrol': return 'Caderno de autocontrol';
+      case 'obra.dato': return 'Dato';
+      case 'obra.datos_producto': return 'Datos do produto';
+      case 'obra.documentos': return 'Documentos (PDF)';
+      case 'obra.elemento_corto': return 'Elemento';
+      case 'obra.error_documento': return 'Non se puido xerar o documento.';
+      case 'obra.fecha': return 'Data';
+      case 'obra.ficha_tecnica': return 'Ficha técnica';
+      case 'obra.incidencias_y_acciones': return 'Incidencias e accións correctoras';
+      case 'obra.no': return 'Non';
+      case 'obra.productos': return 'Produtos';
+      case 'obra.resumen_incorrectos': return '{n} controis incorrectos';
+      case 'obra.resumen_registros': return '{n} rexistros no mes';
+      case 'obra.resumen_sin_accion': return '{n} sen acción correctora';
+      case 'obra.si': return 'Si';
+      case 'obra.sin_incidencias': return 'Sen incidencias no período.';
+      case 'obra.tipo': return 'Tipo';
+      case 'obra.valor': return 'Valor';
       case 'ques.accion_recomendada': return 'Acción recomendada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera é un xestor para queixarías artesás: recepción de leite por provedor, lotes de produción, afinado peza a peza na cava, controis APPCC, perfís de denominación de orixe, identificación de defectos por foto con IA e libro de rastrexabilidade en PDF.';
       case 'ques.activa_las_do': return 'Activa as DO ás que pertence a túa queixaría.';

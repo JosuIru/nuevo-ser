@@ -99,3 +99,25 @@ obra.sin_masas_madre,Aún no hay masas madre.,Oraindik ez dago ama-orerik.,Encar
 obra.sin_pedidos_fijos,Aún no hay pedidos fijos.,Oraindik ez dago eskaera finkorik.,Encara no hi ha comandes fixes.,Aínda non hai pedidos fixos.
 obra.temperatura_horno,Temperatura del horno (°C),Labearen tenperatura (°C),Temperatura del forn (°C),Temperatura do forno (°C)
 obra.temperatura_recepcion,Temperatura al recibir (°C),Jasotzean tenperatura (°C),Temperatura en rebre (°C),Temperatura ao recibir (°C)
+obra.aviso_documento_provisional,"Documento PROVISIONAL: el formato aún no lo ha validado un técnico de seguridad alimentaria. No sustituye la inspección sanitaria.","Behin-behineko dokumentua: elikagai-segurtasuneko teknikari batek ez du formatua oraindik baliozkotu. Ez du osasun-ikuskapena ordezten.","Document PROVISIONAL: el format encara no l'ha validat un tècnic de seguretat alimentària. No substitueix la inspecció sanitària.","Documento PROVISIONAL: o formato aínda non o validou un técnico de seguridade alimentaria. Non substitúe a inspección sanitaria."
+obra.cartel_alergenos,Cartel de alérgenos,Alergenoen kartela,Cartell d'al·lèrgens,Cartel de alérxenos
+obra.cartel_alergenos_explicacion,Para el mostrador: qué alérgenos lleva cada producto a la venta.,Mostradorerako: salgai dagoen produktu bakoitzak zer alergeno dituen.,Per al taulell: quins al·lèrgens porta cada producte a la venda.,Para o mostrador: que alérxenos leva cada produto á venda.
+obra.contiene,Contiene,Badauka,Conté,Contén
+obra.cuaderno_autocontrol,Cuaderno de autocontrol,Autokontrol-koadernoa,Quadern d'autocontrol,Caderno de autocontrol
+obra.dato,Dato,Datua,Dada,Dato
+obra.datos_producto,Datos del producto,Produktuaren datuak,Dades del producte,Datos do produto
+obra.documentos,Documentos (PDF),Dokumentuak (PDF),Documents (PDF),Documentos (PDF)
+obra.elemento_corto,Elemento,Elementua,Element,Elemento
+obra.error_documento,No se ha podido generar el documento.,Ezin izan da dokumentua sortu.,No s'ha pogut generar el document.,Non se puido xerar o documento.
+obra.fecha,Fecha,Data,Data,Data
+obra.ficha_tecnica,Ficha técnica,Fitxa teknikoa,Fitxa tècnica,Ficha técnica
+obra.incidencias_y_acciones,Incidencias y acciones correctoras,Gorabeherak eta neurri zuzentzaileak,Incidències i accions correctores,Incidencias e accións correctoras
+obra.no,No,Ez,No,Non
+obra.productos,Productos,Produktuak,Productes,Produtos
+obra.resumen_incorrectos,{n} controles incorrectos,{n} kontrol oker,{n} controls incorrectes,{n} controis incorrectos
+obra.resumen_registros,{n} registros en el mes,{n} erregistro hilabetean,{n} registres al mes,{n} rexistros no mes
+obra.resumen_sin_accion,{n} sin acción correctora,{n} neurri zuzentzailerik gabe,{n} sense acció correctora,{n} sen acción correctora
+obra.si,Sí,Bai,Sí,Si
+obra.sin_incidencias,Sin incidencias en el periodo.,Ez dago gorabeherarik aldian.,Sense incidències en el període.,Sen incidencias no período.
+obra.tipo,Tipo,Mota,Tipus,Tipo
+obra.valor,Valor,Balioa,Valor,Valor

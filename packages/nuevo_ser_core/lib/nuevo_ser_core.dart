@@ -57,6 +57,7 @@ export 'src/ia/estado_clave_anthropic.dart';
 export 'src/ia/pantalla_clave_anthropic.dart';
 export 'src/facturacion/factura.dart';
 export 'src/facturacion/generador_factura_pdf.dart';
+export 'src/datos/base_datos_solera.dart';
 export 'src/datos/copia_seguridad.dart';
 // Nota: el módulo `calibration/` se expone por path explícito desde
 // los juegos que lo necesitan, no desde este barrel — `NivelConfianza`

@@ -35,6 +35,9 @@ dependencies:
   image_picker: ^1.1.2
   path: ^1.9.0
   path_provider: ^2.1.4
+  # API pura de sqflite (sin plugin) para BaseDatosSolera: cada app pasa
+  # la fábrica de package:sqflite.
+  sqflite_common: ^2.5.0
 
   # Home screen shortcuts (Android/iOS) para "Nuevo hallazgo" sin abrir la app
   quick_actions: ^1.1.0
@@ -63,8 +66,8 @@ dependencies:
 
 dev_dependencies:
   flutter_lints: ^4.0.0
-  # BD SQLite real en los tests de src/datos/copia_seguridad.dart (el
-  # core no depende de sqflite: cada app abre su BD).
+  # BD SQLite real en los tests de src/datos/ (el core no depende del
+  # plugin sqflite: cada app pasa su fábrica).
   sqflite_common_ffi: ^2.3.3
   flutter_test:
     sdk: flutter

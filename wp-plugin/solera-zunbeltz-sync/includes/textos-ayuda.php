@@ -203,11 +203,11 @@ Un cierre (alambrada, pastor eléctrico) no se dibuja como línea. Se apunta de 
 » En un rebaño marcado como ecológico, indica la clase de medicamento: los alopáticos doblan el plazo de espera (como mínimo 48 horas) y la ficha avisa cuando se acerca o se supera el límite de tratamientos al año. PROVISIONAL hasta que lo revise CPAEN/NNPEK.',
 		'ayudaGrupoProyectos' => 'Tu proyecto de test',
 		'ayudaProyectosT' => 'Crear tu proyecto',
-		'ayudaProyectosB' => 'Los proyectos los crea coordinación, y cada uno es de una persona tester.
+		'ayudaProyectosB' => 'Los proyectos los crea coordinación, y cada uno es de una persona tester o de varias, si el test es compartido.
 1. En Proyectos, pulsa + (solo coordinación).
-2. Pon el nombre, la actividad y elige la persona tester. Si quieres, también la finca y las fechas.
+2. Pon el nombre, la actividad y marca la persona tester (o las dos, si el test es de dos personas). Si quieres, también la finca y las fechas.
 3. Pulsa Guardar.
-» Cada persona tester ve solo su proyecto. Coordinación ve todos y, al terminar el test, lo cierra desde el menú del proyecto (⋮ → Cerrar proyecto).',
+» Cada persona tester ve solo su proyecto; en un test compartido, las dos lo ven y apuntan en él. Coordinación ve todos y, al terminar el test, lo cierra desde el menú del proyecto (⋮ → Cerrar proyecto).',
 		'ayudaApuntarT' => 'Apuntar tu día a día',
 		'ayudaApuntarB' => 'Dentro del proyecto hay cuatro pestañas: Producción, Comercialización, Validación y Económico.
 1. Ve a la pestaña de lo que quieras apuntar.
@@ -463,11 +463,11 @@ Hesi bat (alanbrea, artzain elektrikoa) ezin da lerro gisa marraztu. Bi modu hau
 » Ekologiko gisa markatutako artalde batean, adierazi sendagai mota: alopatikoek itxaronaldia bikoizten dute (gutxienez 48 ordu) eta fitxak abisatzen du urteko tratamendu-mugara hurbiltzen denean edo gainditzen denean. BEHIN-BEHINEKOA CPAEN/NNPEKek berrikusi arte.',
 		'ayudaGrupoProyectos' => 'Zure test-proiektua',
 		'ayudaProyectosT' => 'Zure proiektua sortu',
-		'ayudaProyectosB' => 'Proiektuak koordinazioak sortzen ditu, eta bakoitza pertsona tester batena da.
+		'ayudaProyectosB' => 'Proiektuak koordinazioak sortzen ditu, eta bakoitza pertsona tester batena da, edo gehiagorena, testa partekatua bada.
 1. Proiektuetan, sakatu + (koordinazioak bakarrik).
-2. Jarri izena, jarduera eta aukeratu pertsona testerra. Nahi baduzu, finka eta datak ere bai.
+2. Jarri izena, jarduera eta markatu pertsona testerra (edo biak, testa bi pertsonarena bada). Nahi baduzu, finka eta datak ere bai.
 3. Sakatu Gorde.
-» Pertsona tester bakoitzak bere proiektua bakarrik ikusten du. Koordinazioak denak ikusten ditu eta, testa amaitzean, proiektuaren menutik ixten du (⋮ → Proiektua itxi).',
+» Pertsona tester bakoitzak bere proiektua bakarrik ikusten du; test partekatu batean, biek ikusten dute eta biek idazten dute bertan. Koordinazioak denak ikusten ditu eta, testa amaitzean, proiektuaren menutik ixten du (⋮ → Proiektua itxi).',
 		'ayudaApuntarT' => 'Zure egunerokoa apuntatu',
 		'ayudaApuntarB' => 'Proiektuaren barruan lau fitxa daude: Ekoizpena, Merkaturatzea, Balidazioa eta Ekonomikoa.
 1. Joan apuntatu nahi duzunaren fitxara.

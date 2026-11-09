@@ -1024,7 +1024,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaSyncB =>
-      'Sinkronizazioarekin, talde osoak gune bera partekatzen du: finkak, puntuak, eremuak, zereginak, proiektuak, eskaerak eta abisuak.\n1. Eskatu koordinazioari zure erabiltzaile-gako pertsonala. Zure giltza da: pertsona bakoitzak berea du eta ez da partekatzen.\n2. Ezarpenak → Sinkronizazioa atalean, jarri Zunbeltzen WordPressaren helbidea eta zure erabiltzaile-gakoa.\n3. Aplikazioak berak sinkronizatzen du irekitzean, itzultzean eta 10 minuturo estaldura badago. Gaur pantailako sinkronizazio-botoia ere saka dezakezu.\n» Estaldurarik gabe lanean jarrai dezakezu: egiten duzuna konexioa itzultzean igotzen da. Argazkiak (puntuenak, eremuenak, finkenak eta zereginenak) wifiarekin bakarrik igotzen eta jaisten dira, daturik ez gastatzeko; bitartean, beste norbaiten argazkia «Deskargatu gabe» ageri da eta ukituta jaits daiteke.\n» Urrats hauek koordinazioarekin informazioa partekatzen duten Zunbeltzeko pertsona testerrentzat dira. App-a zure kabuz erabiltzen baduzu, ez duzu sinkronizazioa konfiguratu behar, ezta erabiltzaile-gakorik eskatu ere.';
+      'Sinkronizazioarekin, talde osoak gune bera partekatzen du: finkak, puntuak, eremuak, zereginak, proiektuak, eskaerak eta abisuak.\n1. Eskatu koordinazioari zure erabiltzaile-gako pertsonala. Zure giltza da: pertsona bakoitzak berea du eta ez da partekatzen.\n2. Ezarpenak → Sinkronizazioa atalean, jarri Zunbeltzen WordPressaren helbidea eta zure erabiltzaile-gakoa.\n3. Aplikazioak berak sinkronizatzen du irekitzean, itzultzean eta 10 minuturo estaldura badago. Gaur pantailako sinkronizazio-botoia ere saka dezakezu.\n» Estaldurarik gabe lanean jarrai dezakezu: egiten duzuna konexioa itzultzean igotzen da. Argazkiak (puntuenak, eremuenak, finkenak eta zereginenak) wifiarekin bakarrik igotzen eta jaisten dira, daturik ez gastatzeko; bitartean, beste norbaiten argazkia «Deskargatu gabe» ageri da eta ukituta jaits daiteke.\n» Zure erabiltzaile-gakoa jarri aurretik egiten duzuna gailu horretan bakarrik geratzen da: konektatzean ez da igotzen, baztertu egiten da (app-ak aurretik abisatzen du) eta espazioko datuak geratzen dira.\n» Urrats hauek koordinazioarekin informazioa partekatzen duten Zunbeltzeko pertsona testerrentzat dira. App-a zure kabuz erabiltzen baduzu, ez duzu sinkronizazioa konfiguratu behar, ezta erabiltzaile-gakorik eskatu ere.';
 
   @override
   String get ayudaRolesT => 'Nork zer egin dezakeen';
@@ -4337,4 +4337,23 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get onboardingPie => 'Zunbeltz Nekazaritza Test Gunea · Nafarroa';
+
+  @override
+  String get syncDescartarLocalTitulo =>
+      'Erabiltzailerik gabe egindako aldaketak';
+
+  @override
+  String syncDescartarLocalTexto(int cantidad) {
+    String _temp0 = intl.Intl.pluralLogic(
+      cantidad,
+      locale: localeName,
+      other:
+          'Gailu honetan $cantidad aldaketa daude erabiltzailerik gabe eginak.',
+      one: 'Gailu honetan aldaketa 1 dago erabiltzailerik gabe egina.',
+    );
+    return '$_temp0 Konektatzean ez dira igotzen: baztertu egiten dira, eta espazioko datuak geratzen dira, zerbitzarian dauden bezala.';
+  }
+
+  @override
+  String get syncDescartarLocalBoton => 'Baztertu eta konektatu';
 }

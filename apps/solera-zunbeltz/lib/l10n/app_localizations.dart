@@ -1985,7 +1985,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaSyncB.
   ///
   /// In es, this message translates to:
-  /// **'Con la sincronización, todo el equipo comparte el mismo espacio: fincas, puntos, zonas, tareas, proyectos, peticiones y avisos.\n1. Pide a coordinación tu clave de usuario. Es personal: cada cual tiene la suya y no se comparte.\n2. En Ajustes → Sincronización, pon la dirección del WordPress de Zunbeltz y tu clave de usuario.\n3. La app sincroniza sola al abrirla, al volver a ella y cada 10 minutos si hay cobertura. También puedes pulsar el botón de sincronizar en Hoy.\n» Sin cobertura puedes seguir trabajando: lo que hagas sube en cuanto vuelva la conexión. Las fotos (de puntos, zonas, fincas y tareas) suben y bajan solo con wifi, para no gastar datos; mientras tanto, una foto de otra persona sale como «Sin descargar» y se puede bajar tocándola.\n» Estos pasos son para las personas tester de Zunbeltz que comparten la información con coordinación. Si usas la app por tu cuenta, no necesitas configurar la sincronización ni pedir una clave de usuario.'**
+  /// **'Con la sincronización, todo el equipo comparte el mismo espacio: fincas, puntos, zonas, tareas, proyectos, peticiones y avisos.\n1. Pide a coordinación tu clave de usuario. Es personal: cada cual tiene la suya y no se comparte.\n2. En Ajustes → Sincronización, pon la dirección del WordPress de Zunbeltz y tu clave de usuario.\n3. La app sincroniza sola al abrirla, al volver a ella y cada 10 minutos si hay cobertura. También puedes pulsar el botón de sincronizar en Hoy.\n» Sin cobertura puedes seguir trabajando: lo que hagas sube en cuanto vuelva la conexión. Las fotos (de puntos, zonas, fincas y tareas) suben y bajan solo con wifi, para no gastar datos; mientras tanto, una foto de otra persona sale como «Sin descargar» y se puede bajar tocándola.\n» Lo que hagas antes de poner tu clave de usuario se queda solo en ese dispositivo: al conectar no se sube, se descarta (la app avisa antes) y quedan los datos del espacio.\n» Estos pasos son para las personas tester de Zunbeltz que comparten la información con coordinación. Si usas la app por tu cuenta, no necesitas configurar la sincronización ni pedir una clave de usuario.'**
   String get ayudaSyncB;
 
   /// No description provided for @ayudaRolesT.
@@ -7298,6 +7298,24 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Espacio Test Agrario Zunbeltz · Navarra'**
   String get onboardingPie;
+
+  /// No description provided for @syncDescartarLocalTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambios hechos sin usuario'**
+  String get syncDescartarLocalTitulo;
+
+  /// No description provided for @syncDescartarLocalTexto.
+  ///
+  /// In es, this message translates to:
+  /// **'{cantidad, plural, =1{En este dispositivo hay 1 cambio hecho sin usuario.} other{En este dispositivo hay {cantidad} cambios hechos sin usuario.}} Al conectar no se suben: se descartan y quedan los datos del espacio, tal como están en el servidor.'**
+  String syncDescartarLocalTexto(int cantidad);
+
+  /// No description provided for @syncDescartarLocalBoton.
+  ///
+  /// In es, this message translates to:
+  /// **'Descartar y conectar'**
+  String get syncDescartarLocalBoton;
 }
 
 class _AppLocalizationsDelegate

@@ -137,23 +137,64 @@ class _PantallaSincronizacionState extends State<PantallaSincronizacion> {
     final url = await _pedirTexto(textos.ajustesSyncUrl, _syncUrl,
         teclado: TextInputType.url, pista: 'https://tuwordpress.org');
     if (url == null || url == _syncUrl) return;
+    final descartar = await _confirmarDescarteModoLocal(url, _syncToken);
+    if (descartar == null) return;
     await AjustesSincronizacion.guardarUrl(url);
     if (mounted) setState(() => _syncUrl = url);
-    await _conectar();
+    await _conectar(descartado: descartar);
   }
 
   Future<void> _editarSyncToken() async {
     final textos = AppLocalizations.of(context);
     final token = await _pedirTexto(textos.ajustesSyncToken, _syncToken);
     if (token == null || token == _syncToken) return;
+    final descartar = await _confirmarDescarteModoLocal(_syncUrl, token);
+    if (descartar == null) return;
     await AjustesSincronizacion.guardarToken(token);
     if (mounted) setState(() => _syncToken = token);
-    await _conectar();
+    await _conectar(descartado: descartar);
+  }
+
+  /// Antes de salir del modo local (sin sesión) hacia un servidor: lo hecho
+  /// sin usuario no se sube, se descarta. Si hay algo, se pregunta antes.
+  /// Devuelve `null` si se cancela, `true` si se ha descartado y `false` si
+  /// no había nada que descartar (o no se sale del modo local).
+  Future<bool?> _confirmarDescarteModoLocal(String url, String token) async {
+    if (sesionEspacio.value != null || url.isEmpty || token.isEmpty) {
+      return false;
+    }
+    final bd = BaseDatosSoleraZunbeltz();
+    final cambios = await bd.contarCambiosSinSubir();
+    if (cambios == 0) return false;
+    if (!mounted) return null;
+    final textos = AppLocalizations.of(context);
+    final aceptado = await showDialog<bool>(
+      context: context,
+      builder: (contexto) => AlertDialog(
+        title: Text(textos.syncDescartarLocalTitulo),
+        content: Text(textos.syncDescartarLocalTexto(cambios)),
+        actions: [
+          TextButton(
+              onPressed: () => Navigator.pop(contexto, false),
+              child: Text(textos.comunCancelar)),
+          FilledButton(
+              onPressed: () => Navigator.pop(contexto, true),
+              child: Text(textos.syncDescartarLocalBoton)),
+        ],
+      ),
+    );
+    if (aceptado != true) return null;
+    await bd.descartarCambiosSinSubir();
+    avisarCambioDatos();
+    return true;
   }
 
   /// Tras cambiar de WordPress o de clave, la sesión anterior deja de
   /// valer: se cierra y se pregunta al servidor de quién es la clave nueva.
-  Future<void> _conectar() async {
+  ///
+  /// Con [descartado] (se acaba de vaciar lo hecho en modo local) se
+  /// sincroniza todo al momento, para no dejar la app vacía.
+  Future<void> _conectar({bool descartado = false}) async {
     final textos = AppLocalizations.of(context);
     await cerrarSesionEspacio();
     await reiniciarCursoresSincronizacion();
@@ -163,6 +204,7 @@ class _PantallaSincronizacionState extends State<PantallaSincronizacion> {
     avisarCambioDatos();
     if (!mounted || !_configurado) return;
     setState(() => _sincronizando = true);
+    var conectada = false;
     try {
       final remota =
           await ClienteSyncZunbeltz(urlBase: _syncUrl, token: _syncToken)
@@ -172,6 +214,7 @@ class _PantallaSincronizacionState extends State<PantallaSincronizacion> {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(
               textos.ajustesSesionConectada(remota.sesion.persona.nombre))));
+      conectada = true;
     } catch (error) {
       if (!mounted) return;
       ScaffoldMessenger.of(context)
@@ -183,6 +226,7 @@ class _PantallaSincronizacionState extends State<PantallaSincronizacion> {
       avisarCambioDatos();
       if (mounted) setState(() => _sincronizando = false);
     }
+    if (descartado && conectada && mounted) await _sincronizar(completa: true);
   }
 
   Future<void> _sincronizar({bool completa = false}) async {

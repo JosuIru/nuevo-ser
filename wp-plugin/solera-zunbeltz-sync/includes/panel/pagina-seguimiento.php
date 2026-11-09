@@ -57,9 +57,15 @@ function szs_pagina_proyectos(): void {
 
 	$proyectos = szs_listar_entidades_tipo( 'proyecto' );
 	$bienes    = szs_bienes_por_uid();
-	$personas  = array();
+	// En las casillas, solo quien puede ser tester (coordinación ve todos
+	// los proyectos de todas formas); las ya elegidas salen siempre.
+	$personas = array();
+	$testers  = array();
 	foreach ( szs_listar_personas() as $persona ) {
 		$personas[ $persona['uid'] ] = $persona['nombre'];
+		if ( ! szs_puede( szs_capacidades_de_rol( (string) $persona['rol'] ), SZS_CAPACIDAD_GESTIONAR_PROYECTOS ) ) {
+			$testers[ $persona['uid'] ] = $persona['nombre'];
+		}
 	}
 	?>
 	<div class="wrap">
@@ -86,7 +92,16 @@ function szs_pagina_proyectos(): void {
 							<?php wp_nonce_field( 'szs_proyectos' ); ?>
 							<input type="hidden" name="szs_accion" value="asignar">
 							<input type="hidden" name="szs_uid" value="<?php echo esc_attr( $proyecto['uid'] ); ?>">
-							<?php szs_casillas_personas_proyecto( $personas, szs_personas_proyecto( $datos ), (string) ( $datos['persona'] ?? '' ) ); ?>
+							<?php
+							$elegidas = szs_personas_proyecto( $datos );
+							$opciones = $testers;
+							foreach ( $elegidas as $elegida ) {
+								if ( isset( $personas[ $elegida ] ) ) {
+									$opciones[ $elegida ] = $personas[ $elegida ];
+								}
+							}
+							szs_casillas_personas_proyecto( $opciones, $elegidas, (string) ( $datos['persona'] ?? '' ) );
+							?>
 							<button class="button button-small"><?php echo esc_html( szs_t( 'Asignar' ) ); ?></button>
 						</form>
 					</td>

@@ -21,7 +21,7 @@ import '../modelos/zona_cultivo.dart';
 const String nombreFicheroBaseDatosVivero = 'solera_vivero.db';
 
 /// Versión del esquema: el número del último paso de [pasosMigracion].
-const int versionEsquemaVivero = 1;
+const int versionEsquemaVivero = 2;
 
 /// Sentencias del esquema v1. Públicas para los tests de contrato.
 const List<String> sentenciasEsquemaViveroV1 = [
@@ -233,7 +233,16 @@ class BaseDatosSoleraVivero extends BaseDatosSolera {
   DatabaseFactory get fabricaBaseDatos => databaseFactory;
 
   @override
-  Map<int, PasoMigracionSolera> get pasosMigracion => const {};
+  Map<int, PasoMigracionSolera> get pasosMigracion => {
+        2: _anadirContornoZonasV2,
+      };
+
+  /// v2 (2026-11-09): área de la zona de cultivo marcada en el mapa
+  /// (nuevo_ser_mapa), JSON `[[lat,lng],…]`.
+  static Future<void> _anadirContornoZonasV2(Database db) async {
+    await db.execute("ALTER TABLE zonas_cultivo ADD COLUMN contorno TEXT "
+        "NOT NULL DEFAULT '[]'");
+  }
 
   @override
   Future<void> crearEsquemaInicial(Database db) async {

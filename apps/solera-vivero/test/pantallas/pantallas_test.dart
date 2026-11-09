@@ -91,6 +91,26 @@ void main() {
     ), reason: 'el catálogo convierte el nombre en su id');
   });
 
+  testWidgets('la ficha de zona ofrece marcar el punto y el área',
+      (tester) async {
+    await tester.runAsync(() async {
+      await tester.pumpWidget(const MaterialApp(home: PantallaZonas()));
+      await esperar(tester, 200);
+      await tester.tap(find.byType(FloatingActionButton));
+      await esperar(tester, 200);
+      final marcarArea = find.text(SoleraL10n.t('mapa.marcar_area'));
+      await tester.scrollUntilVisible(marcarArea, 200,
+          scrollable: find
+              .descendant(
+                  of: find.byType(BottomSheet),
+                  matching: find.byType(Scrollable))
+              .first);
+    });
+    expect(find.text(SoleraL10n.t('mapa.marcar_area')), findsOneWidget);
+    expect(find.text(SoleraL10n.t('mapa.sin_area')), findsOneWidget);
+    expect(find.text(SoleraL10n.t('mapa.marcar_punto')), findsOneWidget);
+  });
+
   testWidgets('alta de una bandeja con el siguiente código', (tester) async {
     await tester.runAsync(() async {
       await baseDatos.guardarBandeja(Bandeja(codigoQr: 'VIV-B-0004'));

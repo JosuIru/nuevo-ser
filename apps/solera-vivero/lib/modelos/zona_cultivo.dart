@@ -1,3 +1,7 @@
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart'
+    show contornoVacio, leerContorno;
+
 /// Tipos de zona del vivero.
 const List<String> tiposZonaCultivo = [
   'nave',
@@ -17,6 +21,7 @@ class ZonaCultivo {
     this.codigoSigpac = '',
     this.latitud,
     this.longitud,
+    this.contorno = contornoVacio,
     this.notas = '',
   });
 
@@ -31,6 +36,11 @@ class ZonaCultivo {
   final String codigoSigpac;
   final double? latitud;
   final double? longitud;
+
+  /// Área marcada en el mapa: JSON `[[lat,lng],…]` (nuevo_ser_mapa).
+  final String contorno;
+
+  List<LatLng> get vertices => leerContorno(contorno);
   final String notas;
 
   bool get esExterior => tipo == 'exterior';
@@ -45,6 +55,7 @@ class ZonaCultivo {
         codigoSigpac: codigoSigpac,
         latitud: latitudNueva,
         longitud: longitudNueva,
+        contorno: contorno,
         notas: notas,
       );
 
@@ -56,6 +67,7 @@ class ZonaCultivo {
         'codigo_sigpac': codigoSigpac,
         'latitud': latitud,
         'longitud': longitud,
+        'contorno': contorno,
         'notas': notas,
       };
 
@@ -67,6 +79,7 @@ class ZonaCultivo {
         codigoSigpac: (mapa['codigo_sigpac'] as String?) ?? '',
         latitud: (mapa['latitud'] as num?)?.toDouble(),
         longitud: (mapa['longitud'] as num?)?.toDouble(),
+        contorno: (mapa['contorno'] as String?) ?? contornoVacio,
         notas: (mapa['notas'] as String?) ?? '',
       );
 }

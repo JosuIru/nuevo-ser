@@ -153,6 +153,15 @@ con bandejas identificadas por QR. Ficha completa: `docs/plan-verticales/vivero.
   código**: así sirven etiquetas ya impresas o de otro sistema.
 - **2026-11-07 — GPS en cualquier zona**, no solo en las exteriores: un
   invernadero lejos de la nave también se agradece en el mapa.
+- **2026-11-09 — Área y punto de la zona de cultivo con `nuevo_ser_mapa`**
+  (BD v2: `zonas_cultivo.contorno` TEXT JSON `[[lat,lng],…]`, por defecto
+  `'[]'`). El formulario usa `CampoPunto` y `CampoArea`; «usar la superficie
+  calculada» pasa las ha del paquete a **m²** (× 10 000, entero y sin
+  separador de miles: antes una zona de 1.234 m² se releía como 1,234). Si
+  hay área y no punto, el punto es el centro del área. El mapa de zonas pinta
+  las áreas, cambia callejero/ortofoto y tocar una zona abre su ficha. Fuera
+  `utiles/permisos_gps.dart`. El texto `vive.mapa_sin_ubicaciones` aún habla
+  de «Usar mi ubicación».
 
 - **2026-11-07 — Economía: REAGP o general, PROVISIONAL**. La ficha deja
   abierto si el vivero es agrario (REAGP) o no: la app ofrece los dos y «sin

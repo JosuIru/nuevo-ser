@@ -1,10 +1,15 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart' show codificarContorno;
 import 'package:solera_vivero/modelos/bandeja.dart';
 import 'package:solera_vivero/modelos/zona_cultivo.dart';
+import 'package:solera_vivero/pantallas/formularios.dart'
+    show metrosCuadradosParaCampo;
 import 'package:solera_vivero/pantallas/pantalla_mapa_zonas.dart';
 import 'package:solera_vivero/servicios/etiquetas_qr_bandejas.dart';
+import 'package:solera_vivero/utiles/textos_vivero.dart' show leerNumero;
 
 void main() {
   test('el mapa se centra en las zonas con ubicación', () {
@@ -15,6 +20,27 @@ void main() {
     ]);
     expect((centro.latitude, centro.longitude), (43, -3));
     expect(centroDeZonas([]).latitude, 40.4);
+  });
+
+  test('una zona con área y sin punto sale en el centro del área', () {
+    final zona = ZonaCultivo(
+        nombre: 'Área',
+        tipo: 'exterior',
+        contorno: codificarContorno(const [
+          LatLng(42, -2),
+          LatLng(42, -1.998),
+          LatLng(42.002, -1.998),
+          LatLng(42.002, -2),
+        ]));
+    final punto = puntoDeZona(zona)!;
+    expect(punto.latitude, closeTo(42.001, 1e-6));
+    expect(punto.longitude, closeTo(-1.999, 1e-6));
+    expect(puntoDeZona(ZonaCultivo(nombre: 'Nave')), isNull);
+  });
+
+  test('la superficie del área pasa al campo en m² sin separador de miles', () {
+    expect(metrosCuadradosParaCampo(0.1234 * 10000), '1234');
+    expect(leerNumero(metrosCuadradosParaCampo(12345.6)), 12346);
   });
 
   test('el logo placeholder existe y está declarado; permisos en Android', () {

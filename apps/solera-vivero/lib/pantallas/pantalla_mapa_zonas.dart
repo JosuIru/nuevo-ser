@@ -2,28 +2,46 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart';
 
 import '../datos/base_datos.dart';
 import '../modelos/zona_cultivo.dart';
+import 'formularios.dart' show mostrarFormularioZona, paqueteAppVivero;
 
-/// Centro del mapa: la media de las zonas con ubicación o, si no hay
+/// Punto de la zona en el mapa: el guardado o, si solo tiene área, el
+/// centro del área. Null si no tiene ninguno de los dos.
+LatLng? puntoDeZona(ZonaCultivo zona) => zona.tieneUbicacion
+    ? LatLng(zona.latitud!, zona.longitud!)
+    : centroide(zona.vertices);
+
+/// Centro del mapa: la media de las zonas con punto o área o, si no hay
 /// ninguna, el centro de la península.
 LatLng centroDeZonas(Iterable<ZonaCultivo> zonas) {
-  final conUbicacion = zonas.where((zona) => zona.tieneUbicacion);
-  if (conUbicacion.isEmpty) return const LatLng(40.4, -3.7);
+  final puntos = zonas.map(puntoDeZona).whereType<LatLng>().toList();
+  if (puntos.isEmpty) return const LatLng(40.4, -3.7);
   final latitud =
-      conUbicacion.fold<double>(0, (suma, zona) => suma + zona.latitud!) /
-          conUbicacion.length;
+      puntos.fold<double>(0, (suma, punto) => suma + punto.latitude) /
+          puntos.length;
   final longitud =
-      conUbicacion.fold<double>(0, (suma, zona) => suma + zona.longitud!) /
-          conUbicacion.length;
+      puntos.fold<double>(0, (suma, punto) => suma + punto.longitude) /
+          puntos.length;
   return LatLng(latitud, longitud);
 }
 
-/// Mapa de las zonas con ubicación (parcelas exteriores, sobre todo).
-/// Necesita conexión para las teselas. Copiado de Frutal.
-class PantallaMapaZonas extends StatelessWidget {
-  const PantallaMapaZonas({super.key});
+/// Mapa de las zonas con punto o área (parcelas exteriores, sobre todo).
+/// Necesita conexión para las teselas. Tocar una zona abre su ficha.
+class PantallaMapaZonas extends StatefulWidget {
+  const PantallaMapaZonas({super.key, this.conTeselas = true});
+
+  /// Los tests no bajan teselas.
+  final bool conTeselas;
+
+  @override
+  State<PantallaMapaZonas> createState() => _PantallaMapaZonasState();
+}
+
+class _PantallaMapaZonasState extends State<PantallaMapaZonas> {
+  CapaBase _capa = CapaBase.callejero;
 
   @override
   Widget build(BuildContext context) {
@@ -36,40 +54,60 @@ class PantallaMapaZonas extends StatelessWidget {
           if (zonas == null) {
             return const Center(child: CircularProgressIndicator());
           }
-          final conUbicacion =
-              zonas.where((zona) => zona.tieneUbicacion).toList();
+          final situadas =
+              zonas.where((zona) => puntoDeZona(zona) != null).toList();
+          final colorZona = Theme.of(context).colorScheme.primary;
           return Stack(
             children: [
               FlutterMap(
                 options: MapOptions(
-                  initialCenter: centroDeZonas(zonas),
-                  initialZoom: conUbicacion.isEmpty ? 5 : 15,
+                  initialCenter: centroDeZonas(situadas),
+                  initialZoom: situadas.isEmpty ? 5 : 15,
                 ),
                 children: [
-                  TileLayer(
-                    urlTemplate:
-                        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                    userAgentPackageName: 'com.coleccionnuevoser.solera_vivero',
-                  ),
+                  if (widget.conTeselas)
+                    capaDeTeselas(_capa, paqueteApp: paqueteAppVivero),
+                  capaDeAreas([
+                    for (final zona in situadas)
+                      (nombre: zona.nombre, vertices: zona.vertices),
+                  ], color: colorZona),
                   MarkerLayer(markers: [
-                    for (final zona in conUbicacion)
+                    for (final zona in situadas)
                       Marker(
-                        point: LatLng(zona.latitud!, zona.longitud!),
+                        point: puntoDeZona(zona)!,
                         width: 44,
                         height: 44,
-                        child: Tooltip(
-                          message: zona.nombre,
-                          child: Icon(Icons.location_on,
-                              size: 40,
-                              color: Theme.of(context).colorScheme.primary),
+                        child: GestureDetector(
+                          onTap: () async {
+                            final guardado = await mostrarFormularioZona(
+                                context,
+                                existente: zona);
+                            if (guardado && mounted) setState(() {});
+                          },
+                          child: Tooltip(
+                            message: zona.nombre,
+                            child: Icon(Icons.location_on,
+                                size: 40, color: colorZona),
+                          ),
                         ),
                       ),
                   ]),
-                  const SimpleAttributionWidget(
-                      source: Text('OpenStreetMap contributors')),
+                  AtribucionCapa(_capa),
                 ],
               ),
-              if (conUbicacion.isEmpty)
+              Positioned(
+                top: 12,
+                right: 12,
+                child: FloatingActionButton.small(
+                  heroTag: 'vive.mapa.capa',
+                  tooltip: SoleraL10n.t('mapa.cambiar_capa'),
+                  onPressed: () => setState(() => _capa = _capa.otra),
+                  child: Icon(_capa == CapaBase.ortofoto
+                      ? Icons.map_outlined
+                      : Icons.satellite_alt_outlined),
+                ),
+              ),
+              if (situadas.isEmpty)
                 Align(
                   alignment: Alignment.topCenter,
                   child: Card(

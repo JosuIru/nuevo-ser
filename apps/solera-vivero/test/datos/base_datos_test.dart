@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart' show codificarContorno;
 import 'package:sqflite/sqflite.dart';
 import 'package:solera_vivero/datos/base_datos.dart';
 import 'package:solera_vivero/modelos/bandeja.dart';
@@ -15,6 +17,13 @@ import 'package:solera_vivero/modelos/vivero.dart';
 import 'package:solera_vivero/modelos/zona_cultivo.dart';
 
 import 'soporte_contrato_base_datos.dart';
+
+/// Cambios de esquema desde la v1, para los tests de contrato.
+const Map<int, CambioEsquema> historialMigracionesVivero = {
+  2: CambioEsquema(columnasNuevas: {
+    'zonas_cultivo': ['contorno'],
+  }),
+};
 
 void main() {
   final entorno = EntornoBaseDatosTemporal();
@@ -51,10 +60,52 @@ void main() {
         File(entorno.ruta(nombreFicheroBaseDatosVivero)).existsSync(), isTrue);
   });
 
-  test('el esquema creado coincide con las sentencias v1', () async {
+  test('el esquema creado es el v1 más el historial de migraciones', () async {
     final db = await baseDatos.basedatos;
-    expect(await leerColumnasPorTabla(db),
-        await columnasDeEsquemaV1(sentenciasEsquemaViveroV1));
+    final actuales = await leerColumnasPorTabla(db);
+    expect(
+        actuales,
+        columnasDeclaradasEnVersion(
+          columnasV1: await columnasDeEsquemaV1(sentenciasEsquemaViveroV1),
+          historial: historialMigracionesVivero,
+          columnasActuales: actuales,
+          version: versionEsquemaVivero,
+        ));
+    expect(historialMigracionesVivero.keys.reduce((a, b) => a > b ? a : b),
+        versionEsquemaVivero);
+  });
+
+  test('migra desde la v1 sin perder filas y con el contorno vacío', () async {
+    final filas = {
+      'zonas_cultivo': {'nombre': 'Parcela del río', 'tipo': 'exterior'},
+    };
+    await crearBaseDatosHistorica(
+      ruta: entorno.ruta(nombreFicheroBaseDatosVivero),
+      version: 1,
+      sentenciasEsquemaV1: sentenciasEsquemaViveroV1,
+      historial: historialMigracionesVivero,
+      columnasActuales: const {},
+      filasPorTabla: filas,
+    );
+    final db = await baseDatos.basedatos;
+    expect(await db.getVersion(), versionEsquemaVivero);
+    await comprobarFilasConservadas(db, filas);
+    final zona = (await baseDatos.listarZonas()).single;
+    expect(zona.contorno, '[]');
+    expect(zona.vertices, isEmpty);
+  });
+
+  test('el área de una zona de cultivo se guarda y se lee', () async {
+    const area = [
+      LatLng(42.0, -1.0),
+      LatLng(42.0, -0.999),
+      LatLng(42.001, -0.999),
+    ];
+    await baseDatos.guardarZona(ZonaCultivo(
+        nombre: 'Parcela del río',
+        tipo: 'exterior',
+        contorno: codificarContorno(area)));
+    expect((await baseDatos.listarZonas()).single.vertices, area);
   });
 
   test('el vivero se guarda en una sola fila', () async {

@@ -25,6 +25,8 @@ dependencies:
   pdf: ^3.11.1
   printing: ^5.13.4
   mobile_scanner: ^5.2.3
+  nuevo_ser_mapa:
+    path: ../../packages/nuevo_ser_mapa
   nuevo_ser_core:
     path: ../../packages/nuevo_ser_core
 

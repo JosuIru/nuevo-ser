@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart';
 
 import '../datos/base_datos.dart';
 import '../dominio/catalogos.dart' show exigeAvisoAutoridad;
@@ -12,7 +14,6 @@ import '../modelos/salida.dart';
 import '../modelos/siembra.dart';
 import '../modelos/tratamiento.dart';
 import '../modelos/zona_cultivo.dart';
-import '../utiles/permisos_gps.dart';
 import '../utiles/textos_vivero.dart';
 import 'campos_especie.dart';
 import 'hoja_formulario.dart';
@@ -30,6 +31,23 @@ Future<bool> _terminar(Future<void> Function() accion) async {
 
 // ─── Zonas ─────────────────────────────────────────────────────────
 
+/// Paquete de la app, para identificarse ante OpenStreetMap.
+const String paqueteAppVivero = 'com.coleccionnuevoser.solera_vivero';
+
+/// Si hay área y no punto, el punto es el centro del área (el mapa usa el
+/// punto).
+(double?, double?) puntoOCentroDelArea(
+    double? latitud, double? longitud, List<LatLng> area) {
+  if (latitud != null && longitud != null) return (latitud, longitud);
+  final centro = centroide(area);
+  return (centro?.latitude, centro?.longitude);
+}
+
+/// Metros cuadrados enteros para el campo de superficie de la zona, sin
+/// separador de miles: «1.234» se leería como 1,234 m².
+String metrosCuadradosParaCampo(double metrosCuadrados) =>
+    metrosCuadrados.round().toString();
+
 Future<bool> mostrarFormularioZona(BuildContext context,
     {ZonaCultivo? existente}) async {
   var tipo = existente?.tipo ?? 'nave';
@@ -37,12 +55,12 @@ Future<bool> mostrarFormularioZona(BuildContext context,
   final superficie = TextEditingController(
       text: existente?.superficieM2 == null
           ? ''
-          : formatearNumero(existente!.superficieM2!, decimales: 0));
+          : metrosCuadradosParaCampo(existente!.superficieM2!));
   final sigpac = TextEditingController(text: existente?.codigoSigpac ?? '');
   final notas = TextEditingController(text: existente?.notas ?? '');
   var latitud = existente?.latitud;
   var longitud = existente?.longitud;
-  var localizando = false;
+  var area = existente?.vertices ?? const <LatLng>[];
   final guardado = await mostrarHojaFormulario(
     context,
     titulo: SoleraL10n.t(
@@ -58,44 +76,46 @@ Future<bool> mostrarFormularioZona(BuildContext context,
       campoNumero(superficie, SoleraL10n.t('vive.superficie_m2')),
       if (tipo == 'exterior')
         campoTexto(sigpac, SoleraL10n.t('vive.codigo_sigpac')),
-      ListTile(
-        contentPadding: EdgeInsets.zero,
-        leading: const Icon(Icons.my_location_outlined),
-        title: Text(SoleraL10n.t('vive.ubicacion_gps')),
-        subtitle: Text(latitud == null || longitud == null
-            ? SoleraL10n.t('vive.sin_ubicacion')
-            : '${latitud!.toStringAsFixed(5)}, ${longitud!.toStringAsFixed(5)}'),
-        trailing: localizando
-            ? const SizedBox(
-                width: 20,
-                height: 20,
-                child: CircularProgressIndicator(strokeWidth: 2))
-            : TextButton(
-                onPressed: () async {
-                  refrescar(() => localizando = true);
-                  final posicion = await leerPosicionActual(context);
-                  refrescar(() {
-                    localizando = false;
-                    if (posicion != null) {
-                      latitud = posicion.$1;
-                      longitud = posicion.$2;
-                    }
-                  });
-                },
-                child: Text(SoleraL10n.t('vive.usar_mi_ubicacion'))),
+      CampoPunto(
+        latitud: latitud,
+        longitud: longitud,
+        titulo: SoleraL10n.t('vive.ubicacion_gps'),
+        centro: centroide(area),
+        areasDeFondo: [(nombre: '', vertices: area)],
+        paqueteApp: paqueteAppVivero,
+        alCambiar: (nuevaLatitud, nuevaLongitud) => refrescar(() {
+          latitud = nuevaLatitud;
+          longitud = nuevaLongitud;
+        }),
       ),
+      const SizedBox(height: 8),
+      CampoArea(
+        vertices: area,
+        centro: latitud == null || longitud == null
+            ? null
+            : LatLng(latitud!, longitud!),
+        paqueteApp: paqueteAppVivero,
+        alCambiar: (vertices) => refrescar(() => area = vertices),
+        // nuevo_ser_mapa da hectáreas; la zona va en m².
+        alUsarSuperficie: (hectareas) => refrescar(() =>
+            superficie.text = metrosCuadradosParaCampo(hectareas * 10000)),
+      ),
+      const SizedBox(height: 8),
       campoTexto(notas, SoleraL10n.t('vive.notas')),
     ],
     guardar: () async {
       if (nombre.text.trim().isEmpty) return false;
+      final (latitudGuardada, longitudGuardada) =
+          puntoOCentroDelArea(latitud, longitud, area);
       return _terminar(() => _bd.guardarZona(ZonaCultivo(
             id: existente?.id,
             nombre: nombre.text.trim(),
             tipo: tipo,
             superficieM2: leerNumero(superficie.text),
             codigoSigpac: tipo == 'exterior' ? sigpac.text.trim() : '',
-            latitud: latitud,
-            longitud: longitud,
+            latitud: latitudGuardada,
+            longitud: longitudGuardada,
+            contorno: codificarContorno(area),
             notas: notas.text.trim(),
           )));
     },

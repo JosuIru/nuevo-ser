@@ -47,7 +47,7 @@ dependencies:
   crypto: ^3.0.7
 
   # Selector de ficheros (backup/restore, importar CSV)
-  file_picker: ^8.1.4
+  file_picker: ^10.2.4
 
   # Generación de PDF (libro PAC, informes de campaña). El paquete
   # `pdf` viene transitivo via nuevo_ser_core; `printing` se queda
@@ -59,6 +59,9 @@ dependencies:
   # informe_periodico_pdf y resto de servicios reutilizables.
   nuevo_ser_core:
     path: ../../packages/nuevo_ser_core
+  # Marcar puntos y áreas en el mapa (común a la suite Larrea).
+  nuevo_ser_mapa:
+    path: ../../packages/nuevo_ser_mapa
 
 dev_dependencies:
   flutter_test:

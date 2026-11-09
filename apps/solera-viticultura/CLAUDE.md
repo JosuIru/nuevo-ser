@@ -86,6 +86,7 @@ Forkeado de agro con renombrados:
 - `cepas` (era `plantas`) — entidad central. `variedadId`, `portainjertoId`, `latitud/longitud`, `etiqueta` (ej. F3-12 = fila 3, planta 12), `fechaPlantacion`.
 - `cosechas`, `observaciones`, `incidencias`, `tratamientos` — eventos hijo de cepa.
 - `tratamientos` lleva campos PAC obligatorios: `numeroRegistroFito`, `nifAplicador`, `superficieTratada`, `materiaActiva`, `dosisHa`, `motivo` (plaga/enfermedad detectada).
+- **Área del viñedo en el mapa (2026-11-09)**: BD v4 con `vinedos.contorno` (TEXT JSON `[[lat,lng],…]`, formato de `nuevo_ser_mapa`). Hasta ahora no había forma de dar de alta ni editar un viñedo desde la app: se añade `pantalla_editar_vinedo.dart` (nombre, SIGPAC, superficie, notas, `CampoPunto` para el centroide y `CampoArea` dibujada/caminada/importada con «usar la superficie calculada», que solo copia al pulsar), abierta desde la hoja de viñedos del mapa (lápiz en cada viñedo y «Nuevo»). Si hay área y no punto, el centroide = `centroide` del área. El mapa pinta las áreas con `capaDeAreas` (color de cada viñedo) bajo las cepas, sin tocar su cluster ni sus capas. Las cepas siguen siendo puntos. Los rótulos SIGPAC/superficie de la ficha usan las claves `agro.*` (tabla de textos común); faltan `viti.nuevo_vinedo` / `viti.editar_vinedo` propias. `file_picker` sube a ^10.2.4 (lo pide el paquete).
 
 ## Roadmap
 

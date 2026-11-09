@@ -20,8 +20,9 @@ void main() {
     });
 
     test('el esquema es el que abre la BD', () {
-      expect(configuracion.versionEsquemaActual, versionEsquemaBaseDatosViticultura);
-      expect(versionEsquemaBaseDatosViticultura, 3);
+      expect(configuracion.versionEsquemaActual,
+          versionEsquemaBaseDatosViticultura);
+      expect(versionEsquemaBaseDatosViticultura, 4);
     });
 
     test('no copia preferencias (la clave de Anthropic no viaja)', () {
@@ -43,13 +44,15 @@ void main() {
       // La frase sale de las traducciones (en castellano por defecto:
       // «Tus datos no se han tocado.»).
       final avisoDatosIntactos = SoleraL10n.t('viti.backup_datos_intactos');
-      const rechazada = ErrorCopiaSeguridad(MotivoErrorCopiaSeguridad.deOtraApp, 'x');
+      const rechazada =
+          ErrorCopiaSeguridad(MotivoErrorCopiaSeguridad.deOtraApp, 'x');
       expect(textoErrorCopiaSeguridad(rechazada), contains(avisoDatosIntactos));
 
       final fallidaSinVuelta = ErrorCopiaSeguridad(
         MotivoErrorCopiaSeguridad.reversionFallida,
         'x',
-        respaldoPrevio: File('/datos/copias_automaticas/antes-de-restaurar.zip'),
+        respaldoPrevio:
+            File('/datos/copias_automaticas/antes-de-restaurar.zip'),
       );
       final texto = textoErrorCopiaSeguridad(fallidaSinVuelta);
       expect(texto, isNot(contains(avisoDatosIntactos)));
@@ -58,7 +61,8 @@ void main() {
 
     test('todos los motivos tienen texto', () {
       for (final motivo in MotivoErrorCopiaSeguridad.values) {
-        expect(textoErrorCopiaSeguridad(ErrorCopiaSeguridad(motivo, 'x')), isNotEmpty);
+        expect(textoErrorCopiaSeguridad(ErrorCopiaSeguridad(motivo, 'x')),
+            isNotEmpty);
       }
     });
   });
@@ -82,7 +86,8 @@ void main() {
     });
 
     test('tolera campos ausentes o raros', () {
-      final resultado = ResultadoAnalisisIA.desdeJson({'severidad': 9, 'confianza': 1.7});
+      final resultado =
+          ResultadoAnalisisIA.desdeJson({'severidad': 9, 'confianza': 1.7});
       expect(resultado.nombreComun, 'Sin diagnóstico');
       expect(resultado.tipo, 'indeterminado');
       expect(resultado.severidad, 5);
@@ -100,7 +105,8 @@ void main() {
     });
 
     test('el prompt incluye las observaciones', () {
-      expect(construirPromptAnalisisVid('manchas aceitosas'), contains('manchas aceitosas'));
+      expect(construirPromptAnalisisVid('manchas aceitosas'),
+          contains('manchas aceitosas'));
     });
   });
 }

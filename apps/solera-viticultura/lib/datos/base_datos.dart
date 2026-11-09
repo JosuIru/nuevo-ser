@@ -20,7 +20,8 @@ const String nombreFicheroBaseDatosViticultura = 'solera_viticultura.db';
 
 /// Versión del esquema (`version:` de `openDatabase`). Súbela con cada
 /// migración: la copia de seguridad rechaza copias más nuevas que esto.
-const int versionEsquemaBaseDatosViticultura = 3;
+/// v4 (2026-11-09): `vinedos.contorno`, el área marcada en el mapa.
+const int versionEsquemaBaseDatosViticultura = 4;
 
 /// Acceso a la base de datos local de Larrea Viticultura. Singleton
 /// con inicialización perezosa: la primera lectura crea la BD.
@@ -56,6 +57,7 @@ class BaseDatosSoleraViticultura extends BaseDatosSolera {
   Map<int, PasoMigracionSolera> get pasosMigracion => {
         2: _crearTablasContabilidadV2,
         3: _crearTablasFacturasV3,
+        4: _anadirContornoVinedosV4,
       };
 
   // ─── Viñedos ────────────────────────────────────────────
@@ -78,7 +80,8 @@ class BaseDatosSoleraViticultura extends BaseDatosSolera {
 
   Future<Vinedo?> obtenerVinedo(int id) async {
     final db = await basedatos;
-    final filas = await db.query('vinedos', where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas =
+        await db.query('vinedos', where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return Vinedo.fromMap(filas.first);
   }
@@ -89,7 +92,8 @@ class BaseDatosSoleraViticultura extends BaseDatosSolera {
   Future<void> borrarVinedo(int id) async {
     final db = await basedatos;
     await db.transaction((txn) async {
-      await txn.update('cepas', {'vinedo_id': null}, where: 'vinedo_id = ?', whereArgs: [id]);
+      await txn.update('cepas', {'vinedo_id': null},
+          where: 'vinedo_id = ?', whereArgs: [id]);
       await txn.delete('vinedos', where: 'id = ?', whereArgs: [id]);
     });
   }
@@ -113,19 +117,24 @@ class BaseDatosSoleraViticultura extends BaseDatosSolera {
     final db = await basedatos;
     final filas = vinedoId == null
         ? await db.query('cepas', orderBy: 'fecha_creacion_ms DESC')
-        : await db.query('cepas', where: 'vinedo_id = ?', whereArgs: [vinedoId], orderBy: 'fecha_creacion_ms DESC');
+        : await db.query('cepas',
+            where: 'vinedo_id = ?',
+            whereArgs: [vinedoId],
+            orderBy: 'fecha_creacion_ms DESC');
     return filas.map(Cepa.fromMap).toList();
   }
 
   Future<List<Cepa>> listarPuntosSueltos() async {
     final db = await basedatos;
-    final filas = await db.query('cepas', where: 'vinedo_id IS NULL', orderBy: 'fecha_creacion_ms DESC');
+    final filas = await db.query('cepas',
+        where: 'vinedo_id IS NULL', orderBy: 'fecha_creacion_ms DESC');
     return filas.map(Cepa.fromMap).toList();
   }
 
   Future<Cepa?> obtenerCepa(int id) async {
     final db = await basedatos;
-    final filas = await db.query('cepas', where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas =
+        await db.query('cepas', where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return Cepa.fromMap(filas.first);
   }
@@ -148,7 +157,9 @@ class BaseDatosSoleraViticultura extends BaseDatosSolera {
       ' GROUP BY variedad_id',
       whereArgs,
     );
-    return {for (final f in filas) (f['variedad_id'] as String): (f['n'] as int)};
+    return {
+      for (final f in filas) (f['variedad_id'] as String): (f['n'] as int)
+    };
   }
 
   // ─── Cosechas ───────────────────────────────────────────
@@ -165,14 +176,16 @@ class BaseDatosSoleraViticultura extends BaseDatosSolera {
 
   Future<Cosecha?> obtenerCosecha(int id) async {
     final db = await basedatos;
-    final filas = await db.query('cosechas', where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas =
+        await db.query('cosechas', where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return Cosecha.fromMap(filas.first);
   }
 
   Future<List<Cosecha>> listarCosechasDeCepa(int cepaId) async {
     final db = await basedatos;
-    final filas = await db.query('cosechas', where: 'cepa_id = ?', whereArgs: [cepaId], orderBy: 'fecha_ms DESC');
+    final filas = await db.query('cosechas',
+        where: 'cepa_id = ?', whereArgs: [cepaId], orderBy: 'fecha_ms DESC');
     return filas.map(Cosecha.fromMap).toList();
   }
 
@@ -188,21 +201,24 @@ class BaseDatosSoleraViticultura extends BaseDatosSolera {
     return db.insert('observaciones', observacion.toMap()..remove('id'));
   }
 
-  Future<void> actualizarObservacion(int id, Map<String, Object?> cambios) async {
+  Future<void> actualizarObservacion(
+      int id, Map<String, Object?> cambios) async {
     final db = await basedatos;
     await db.update('observaciones', cambios, where: 'id = ?', whereArgs: [id]);
   }
 
   Future<Observacion?> obtenerObservacion(int id) async {
     final db = await basedatos;
-    final filas = await db.query('observaciones', where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas = await db.query('observaciones',
+        where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return Observacion.fromMap(filas.first);
   }
 
   Future<List<Observacion>> listarObservacionesDeCepa(int cepaId) async {
     final db = await basedatos;
-    final filas = await db.query('observaciones', where: 'cepa_id = ?', whereArgs: [cepaId], orderBy: 'fecha_ms DESC');
+    final filas = await db.query('observaciones',
+        where: 'cepa_id = ?', whereArgs: [cepaId], orderBy: 'fecha_ms DESC');
     return filas.map(Observacion.fromMap).toList();
   }
 
@@ -218,21 +234,24 @@ class BaseDatosSoleraViticultura extends BaseDatosSolera {
     return db.insert('incidencias', incidencia.toMap()..remove('id'));
   }
 
-  Future<void> actualizarIncidencia(int id, Map<String, Object?> cambios) async {
+  Future<void> actualizarIncidencia(
+      int id, Map<String, Object?> cambios) async {
     final db = await basedatos;
     await db.update('incidencias', cambios, where: 'id = ?', whereArgs: [id]);
   }
 
   Future<Incidencia?> obtenerIncidencia(int id) async {
     final db = await basedatos;
-    final filas = await db.query('incidencias', where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas = await db.query('incidencias',
+        where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return Incidencia.fromMap(filas.first);
   }
 
   Future<List<Incidencia>> listarIncidenciasDeCepa(int cepaId) async {
     final db = await basedatos;
-    final filas = await db.query('incidencias', where: 'cepa_id = ?', whereArgs: [cepaId], orderBy: 'fecha_ms DESC');
+    final filas = await db.query('incidencias',
+        where: 'cepa_id = ?', whereArgs: [cepaId], orderBy: 'fecha_ms DESC');
     return filas.map(Incidencia.fromMap).toList();
   }
 
@@ -242,7 +261,8 @@ class BaseDatosSoleraViticultura extends BaseDatosSolera {
         'SELECT i.* FROM incidencias i INNER JOIN cepas c ON i.cepa_id = c.id WHERE i.resuelta = 0';
     final filas = vinedoId == null
         ? await db.rawQuery('$base ORDER BY i.fecha_ms DESC')
-        : await db.rawQuery('$base AND c.vinedo_id = ? ORDER BY i.fecha_ms DESC', [vinedoId]);
+        : await db.rawQuery(
+            '$base AND c.vinedo_id = ? ORDER BY i.fecha_ms DESC', [vinedoId]);
     return filas.map(Incidencia.fromMap).toList();
   }
 
@@ -258,21 +278,24 @@ class BaseDatosSoleraViticultura extends BaseDatosSolera {
     return db.insert('tratamientos', tratamiento.toMap()..remove('id'));
   }
 
-  Future<void> actualizarTratamiento(int id, Map<String, Object?> cambios) async {
+  Future<void> actualizarTratamiento(
+      int id, Map<String, Object?> cambios) async {
     final db = await basedatos;
     await db.update('tratamientos', cambios, where: 'id = ?', whereArgs: [id]);
   }
 
   Future<Tratamiento?> obtenerTratamiento(int id) async {
     final db = await basedatos;
-    final filas = await db.query('tratamientos', where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas = await db.query('tratamientos',
+        where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return Tratamiento.fromMap(filas.first);
   }
 
   Future<List<Tratamiento>> listarTratamientosDeCepa(int cepaId) async {
     final db = await basedatos;
-    final filas = await db.query('tratamientos', where: 'cepa_id = ?', whereArgs: [cepaId], orderBy: 'fecha_ms DESC');
+    final filas = await db.query('tratamientos',
+        where: 'cepa_id = ?', whereArgs: [cepaId], orderBy: 'fecha_ms DESC');
     return filas.map(Tratamiento.fromMap).toList();
   }
 
@@ -350,7 +373,8 @@ class BaseDatosSoleraViticultura extends BaseDatosSolera {
 
   Future<Tercero?> obtenerTercero(int id) async {
     final db = await basedatos;
-    final filas = await db.query('terceros', where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas =
+        await db.query('terceros', where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return Tercero.fromMap(filas.first);
   }
@@ -380,14 +404,17 @@ class BaseDatosSoleraViticultura extends BaseDatosSolera {
     return db.insert('apuntes_ingreso', a.toMap()..remove('id'));
   }
 
-  Future<void> actualizarApunteIngreso(int id, Map<String, Object?> cambios) async {
+  Future<void> actualizarApunteIngreso(
+      int id, Map<String, Object?> cambios) async {
     final db = await basedatos;
-    await db.update('apuntes_ingreso', cambios, where: 'id = ?', whereArgs: [id]);
+    await db
+        .update('apuntes_ingreso', cambios, where: 'id = ?', whereArgs: [id]);
   }
 
   Future<ApunteIngreso?> obtenerApunteIngreso(int id) async {
     final db = await basedatos;
-    final filas = await db.query('apuntes_ingreso', where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas = await db.query('apuntes_ingreso',
+        where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return ApunteIngreso.fromMap(filas.first);
   }
@@ -424,14 +451,16 @@ class BaseDatosSoleraViticultura extends BaseDatosSolera {
     return db.insert('apuntes_gasto', a.toMap()..remove('id'));
   }
 
-  Future<void> actualizarApunteGasto(int id, Map<String, Object?> cambios) async {
+  Future<void> actualizarApunteGasto(
+      int id, Map<String, Object?> cambios) async {
     final db = await basedatos;
     await db.update('apuntes_gasto', cambios, where: 'id = ?', whereArgs: [id]);
   }
 
   Future<ApunteGasto?> obtenerApunteGasto(int id) async {
     final db = await basedatos;
-    final filas = await db.query('apuntes_gasto', where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas = await db.query('apuntes_gasto',
+        where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return ApunteGasto.fromMap(filas.first);
   }
@@ -460,7 +489,6 @@ class BaseDatosSoleraViticultura extends BaseDatosSolera {
     final db = await basedatos;
     await db.delete('apuntes_gasto', where: 'id = ?', whereArgs: [id]);
   }
-
 
   Future<String> rutaBaseDatos() async {
     final db = await basedatos;
@@ -515,7 +543,8 @@ Future<void> _crearEsquemaInicial(Database db) async {
   ''');
   await db.execute('CREATE INDEX idx_cepas_vinedo ON cepas (vinedo_id)');
   await db.execute('CREATE INDEX idx_cepas_variedad ON cepas (variedad_id)');
-  await db.execute('CREATE INDEX idx_cepas_creacion ON cepas (fecha_creacion_ms DESC)');
+  await db.execute(
+      'CREATE INDEX idx_cepas_creacion ON cepas (fecha_creacion_ms DESC)');
 
   await db.execute('''
     CREATE TABLE cosechas (
@@ -530,7 +559,8 @@ Future<void> _crearEsquemaInicial(Database db) async {
       FOREIGN KEY (cepa_id) REFERENCES cepas(id) ON DELETE CASCADE
     )
   ''');
-  await db.execute('CREATE INDEX idx_cosechas_cepa_fecha ON cosechas (cepa_id, fecha_ms DESC)');
+  await db.execute(
+      'CREATE INDEX idx_cosechas_cepa_fecha ON cosechas (cepa_id, fecha_ms DESC)');
 
   await db.execute('''
     CREATE TABLE observaciones (
@@ -544,7 +574,8 @@ Future<void> _crearEsquemaInicial(Database db) async {
       FOREIGN KEY (cepa_id) REFERENCES cepas(id) ON DELETE CASCADE
     )
   ''');
-  await db.execute('CREATE INDEX idx_observaciones_cepa_fecha ON observaciones (cepa_id, fecha_ms DESC)');
+  await db.execute(
+      'CREATE INDEX idx_observaciones_cepa_fecha ON observaciones (cepa_id, fecha_ms DESC)');
 
   await db.execute('''
     CREATE TABLE incidencias (
@@ -561,8 +592,10 @@ Future<void> _crearEsquemaInicial(Database db) async {
       FOREIGN KEY (cepa_id) REFERENCES cepas(id) ON DELETE CASCADE
     )
   ''');
-  await db.execute('CREATE INDEX idx_incidencias_cepa_fecha ON incidencias (cepa_id, fecha_ms DESC)');
-  await db.execute('CREATE INDEX idx_incidencias_abiertas ON incidencias (resuelta, fecha_ms DESC)');
+  await db.execute(
+      'CREATE INDEX idx_incidencias_cepa_fecha ON incidencias (cepa_id, fecha_ms DESC)');
+  await db.execute(
+      'CREATE INDEX idx_incidencias_abiertas ON incidencias (resuelta, fecha_ms DESC)');
 
   await db.execute('''
     CREATE TABLE tratamientos (
@@ -583,7 +616,8 @@ Future<void> _crearEsquemaInicial(Database db) async {
       FOREIGN KEY (incidencia_id) REFERENCES incidencias(id) ON DELETE SET NULL
     )
   ''');
-  await db.execute('CREATE INDEX idx_tratamientos_cepa_fecha ON tratamientos (cepa_id, fecha_ms DESC)');
+  await db.execute(
+      'CREATE INDEX idx_tratamientos_cepa_fecha ON tratamientos (cepa_id, fecha_ms DESC)');
 
   await db.execute('''
     CREATE TABLE titulares (
@@ -654,10 +688,14 @@ Future<void> _crearTablasContabilidadV2(Database db) async {
       FOREIGN KEY (vinedo_id) REFERENCES vinedos(id) ON DELETE SET NULL
     )
   ''');
-  await db.execute('CREATE INDEX idx_ingresos_fecha ON apuntes_ingreso (fecha_ms DESC)');
-  await db.execute('CREATE INDEX idx_ingresos_tipo ON apuntes_ingreso (tipo_ingreso)');
-  await db.execute('CREATE INDEX idx_ingresos_tercero ON apuntes_ingreso (tercero_id)');
-  await db.execute('CREATE INDEX idx_ingresos_variedad ON apuntes_ingreso (variedad_id)');
+  await db.execute(
+      'CREATE INDEX idx_ingresos_fecha ON apuntes_ingreso (fecha_ms DESC)');
+  await db.execute(
+      'CREATE INDEX idx_ingresos_tipo ON apuntes_ingreso (tipo_ingreso)');
+  await db.execute(
+      'CREATE INDEX idx_ingresos_tercero ON apuntes_ingreso (tercero_id)');
+  await db.execute(
+      'CREATE INDEX idx_ingresos_variedad ON apuntes_ingreso (variedad_id)');
 
   await db.execute('''
     CREATE TABLE apuntes_gasto (
@@ -680,33 +718,41 @@ Future<void> _crearTablasContabilidadV2(Database db) async {
       FOREIGN KEY (tratamiento_id) REFERENCES tratamientos(id) ON DELETE SET NULL
     )
   ''');
-  await db.execute('CREATE INDEX idx_gastos_fecha ON apuntes_gasto (fecha_ms DESC)');
-  await db.execute('CREATE INDEX idx_gastos_tipo ON apuntes_gasto (tipo_gasto)');
-  await db.execute('CREATE INDEX idx_gastos_tercero ON apuntes_gasto (tercero_id)');
-  await db.execute('CREATE INDEX idx_gastos_variedad ON apuntes_gasto (variedad_id)');
+  await db.execute(
+      'CREATE INDEX idx_gastos_fecha ON apuntes_gasto (fecha_ms DESC)');
+  await db
+      .execute('CREATE INDEX idx_gastos_tipo ON apuntes_gasto (tipo_gasto)');
+  await db
+      .execute('CREATE INDEX idx_gastos_tercero ON apuntes_gasto (tercero_id)');
+  await db.execute(
+      'CREATE INDEX idx_gastos_variedad ON apuntes_gasto (variedad_id)');
 }
-
 
 /// Esquema v3 — tabla de facturas (aditivo).
 Future<void> _crearTablasFacturasV3(Database db) async {
   await db.execute("CREATE TABLE IF NOT EXISTS facturas (" +
-    "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-    "numero_factura TEXT NOT NULL," +
-    "fecha_emision_ms INTEGER NOT NULL," +
-    "fecha_vencimiento_ms INTEGER," +
-    "fecha_pago_ms INTEGER," +
-    "cliente_nombre TEXT NOT NULL DEFAULT ''," +
-    "cliente_nif TEXT NOT NULL DEFAULT ''," +
-    "cliente_direccion TEXT NOT NULL DEFAULT ''," +
-    "lineas_json TEXT NOT NULL DEFAULT '[]'," +
-    "base_imponible REAL NOT NULL DEFAULT 0," +
-    "iva_porcentaje REAL NOT NULL DEFAULT 10," +
-    "total REAL NOT NULL DEFAULT 0," +
-    "estado TEXT NOT NULL DEFAULT 'emitida'," +
-    "notas TEXT NOT NULL DEFAULT ''," +
-    "fecha_creacion_ms INTEGER NOT NULL" +
-  ")");
+      "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+      "numero_factura TEXT NOT NULL," +
+      "fecha_emision_ms INTEGER NOT NULL," +
+      "fecha_vencimiento_ms INTEGER," +
+      "fecha_pago_ms INTEGER," +
+      "cliente_nombre TEXT NOT NULL DEFAULT ''," +
+      "cliente_nif TEXT NOT NULL DEFAULT ''," +
+      "cliente_direccion TEXT NOT NULL DEFAULT ''," +
+      "lineas_json TEXT NOT NULL DEFAULT '[]'," +
+      "base_imponible REAL NOT NULL DEFAULT 0," +
+      "iva_porcentaje REAL NOT NULL DEFAULT 10," +
+      "total REAL NOT NULL DEFAULT 0," +
+      "estado TEXT NOT NULL DEFAULT 'emitida'," +
+      "notas TEXT NOT NULL DEFAULT ''," +
+      "fecha_creacion_ms INTEGER NOT NULL" +
+      ")");
 }
+
+/// Esquema v4 — área del viñedo dibujada, caminada o importada en el
+/// mapa (nuevo_ser_mapa): JSON `[[lat,lng],…]` (aditivo).
+Future<void> _anadirContornoVinedosV4(Database db) => db.execute(
+    "ALTER TABLE vinedos ADD COLUMN contorno TEXT NOT NULL DEFAULT '[]'");
 
 /// Tablas con datos de quien usa la app. Quedan fuera titular y
 /// configuración fiscal, que pueden existir en una instalación sin datos.
@@ -736,4 +782,5 @@ Future<void> crearEsquemaCompleto(Database db) async {
   await _crearEsquemaInicial(db);
   await _crearTablasContabilidadV2(db);
   await _crearTablasFacturasV3(db);
+  await _anadirContornoVinedosV4(db);
 }

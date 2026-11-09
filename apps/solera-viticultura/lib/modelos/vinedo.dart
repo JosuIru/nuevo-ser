@@ -1,3 +1,7 @@
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart'
+    show contornoVacio, leerContorno;
+
 /// Un viñedo: parcela vitícola con un nombre, una localización
 /// aproximada (centroide para centrar el mapa al abrirla) y un color
 /// de identificación. Las cepas pueden estar asociadas a un viñedo o
@@ -27,6 +31,11 @@ class Vinedo {
   final String sigpacRecinto;
   final double? superficieHectareas;
 
+  /// Área marcada en el mapa: JSON `[[lat,lng],…]` (nuevo_ser_mapa).
+  final String contorno;
+
+  List<LatLng> get vertices => leerContorno(contorno);
+
   Vinedo({
     this.id,
     required this.nombre,
@@ -41,6 +50,7 @@ class Vinedo {
     this.sigpacParcela = '',
     this.sigpacRecinto = '',
     this.superficieHectareas,
+    this.contorno = contornoVacio,
   });
 
   /// Devuelve la referencia SIGPAC formateada o cadena vacía si el
@@ -77,6 +87,7 @@ class Vinedo {
         'sigpac_parcela': sigpacParcela,
         'sigpac_recinto': sigpacRecinto,
         'superficie_hectareas': superficieHectareas,
+        'contorno': contorno,
       };
 
   factory Vinedo.fromMap(Map<String, Object?> mapa) => Vinedo(
@@ -93,5 +104,6 @@ class Vinedo {
         sigpacParcela: (mapa['sigpac_parcela'] as String?) ?? '',
         sigpacRecinto: (mapa['sigpac_recinto'] as String?) ?? '',
         superficieHectareas: (mapa['superficie_hectareas'] as num?)?.toDouble(),
+        contorno: (mapa['contorno'] as String?) ?? contornoVacio,
       );
 }

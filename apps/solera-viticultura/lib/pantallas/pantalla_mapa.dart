@@ -4,12 +4,14 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart' show capaDeAreas;
 
 import '../datos/base_datos.dart';
 import '../estado/vinedo_activo.dart';
 import '../modelos/cepa.dart';
 import '../modelos/vinedo.dart';
 import '../utiles/permisos_gps.dart';
+import 'pantalla_editar_vinedo.dart';
 import 'pantalla_ficha_cepa.dart';
 import 'pantalla_libro_pac.dart';
 import 'pantalla_nueva_cepa.dart';
@@ -19,6 +21,10 @@ enum _AccionMenu { libroPac }
 enum _EstiloMapa { calle, satelite }
 
 enum _OrigenAltaMapa { gps, centroMapa }
+
+/// Lo que se elige en la hoja de viñedos: el viñedo activo (null = todas
+/// las cepas), la ficha de un viñedo o dar de alta uno nuevo.
+typedef _EleccionVinedo = ({int? activo, Vinedo? editar, bool nuevo});
 
 /// Pantalla principal de Larrea Viticultura — el viticultor abre la
 /// app y ve sus cepas sobre el mapa. Tap en una cepa → ficha. FAB →
@@ -204,7 +210,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
     if (!mounted) return;
     if (latitud == null || longitud == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(SoleraL10n.t('viti.gps_no_disponible_formulario'))),
+        SnackBar(
+            content: Text(SoleraL10n.t('viti.gps_no_disponible_formulario'))),
       );
     }
     await _abrirNuevaCepa(latitud: latitud, longitud: longitud);
@@ -223,7 +230,9 @@ class _PantallaMapaState extends State<PantallaMapa> {
     if (!permitido) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(SoleraL10n.t('viti.falta_permiso_ubicacion_corto'))),
+          SnackBar(
+              content:
+                  Text(SoleraL10n.t('viti.falta_permiso_ubicacion_corto'))),
         );
       }
       return;
@@ -249,36 +258,73 @@ class _PantallaMapaState extends State<PantallaMapa> {
 
   Future<void> _abrirSelectorVinedo() async {
     final activo = _vinedoActivoId;
-    final elegido = await showModalBottomSheet<int?>(
+    final eleccion = await showModalBottomSheet<_EleccionVinedo>(
       context: context,
+      isScrollControlled: true,
       builder: (_) => SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              leading: const Icon(Icons.public),
-              title: Text(SoleraL10n.t('viti.todas_las_cepas')),
-              trailing: activo == null ? const Icon(Icons.check) : null,
-              onTap: () => Navigator.pop(context, null),
-            ),
-            const Divider(height: 1),
-            for (final v in _vinedos)
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
               ListTile(
-                leading: Icon(Icons.location_on, color: Color(v.colorEntero)),
-                title: Text(v.nombre),
-                subtitle: v.referenciaSigpac.isEmpty
-                    ? null
-                    : Text(v.referenciaSigpac),
-                trailing: activo == v.id ? const Icon(Icons.check) : null,
-                onTap: () => Navigator.pop(context, v.id),
+                leading: const Icon(Icons.public),
+                title: Text(SoleraL10n.t('viti.todas_las_cepas')),
+                trailing: activo == null ? const Icon(Icons.check) : null,
+                onTap: () => Navigator.pop(
+                    context, (activo: null, editar: null, nuevo: false)),
               ),
-          ],
+              const Divider(height: 1),
+              for (final v in _vinedos)
+                ListTile(
+                  leading: Icon(Icons.location_on, color: Color(v.colorEntero)),
+                  title: Text(v.nombre),
+                  subtitle: v.referenciaSigpac.isEmpty
+                      ? null
+                      : Text(v.referenciaSigpac),
+                  onTap: () => Navigator.pop(
+                      context, (activo: v.id, editar: null, nuevo: false)),
+                  // Ficha del viñedo: SIGPAC, superficie, punto y área.
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (activo == v.id) const Icon(Icons.check),
+                      IconButton(
+                        icon: const Icon(Icons.edit_location_alt_outlined),
+                        tooltip: SoleraL10n.t('mapa.editar_area'),
+                        onPressed: () => Navigator.pop(
+                            context, (activo: activo, editar: v, nuevo: false)),
+                      ),
+                    ],
+                  ),
+                ),
+              const Divider(height: 1),
+              ListTile(
+                leading: const Icon(Icons.add),
+                title: Text(SoleraL10n.t('viti.nuevo')),
+                subtitle: Text(SoleraL10n.t('viti.vinedo')),
+                onTap: () => Navigator.pop(
+                    context, (activo: activo, editar: null, nuevo: true)),
+              ),
+            ],
+          ),
         ),
       ),
     );
     // Si el usuario cierra sin elegir, no cambiar nada.
-    if (!mounted) return;
-    if (elegido != activo) await _cambiarVinedoActivo(elegido);
+    if (!mounted || eleccion == null) return;
+    if (eleccion.nuevo || eleccion.editar != null) {
+      await _abrirFichaVinedo(eleccion.editar);
+      return;
+    }
+    if (eleccion.activo != activo) await _cambiarVinedoActivo(eleccion.activo);
+  }
+
+  /// Alta (null) o edición de un viñedo; al volver, recarga el mapa.
+  Future<void> _abrirFichaVinedo(Vinedo? vinedo) async {
+    final guardado = await Navigator.of(context).push<bool>(
+      MaterialPageRoute(builder: (_) => PantallaEditarVinedo(vinedo: vinedo)),
+    );
+    if (guardado == true) await _cargarTodo();
   }
 
   List<Marker> _marcadores() {
@@ -408,8 +454,17 @@ class _PantallaMapaState extends State<PantallaMapa> {
                 maxZoom: 22,
                 maxNativeZoom: 19,
               ),
+              // Áreas de los viñedos (marcadas en su ficha), bajo las
+              // cepas; cada uno con su color.
+              for (final vinedo in _vinedos)
+                capaDeAreas([
+                  (nombre: vinedo.nombre, vertices: vinedo.vertices),
+                ], color: Color(vinedo.colorEntero)),
               // Las condiciones de uso de OSM y Esri piden citarlos.
-              SimpleAttributionWidget(source: Text(_estiloMapa == _EstiloMapa.calle ? 'OpenStreetMap' : 'Esri')),
+              SimpleAttributionWidget(
+                  source: Text(_estiloMapa == _EstiloMapa.calle
+                      ? 'OpenStreetMap'
+                      : 'Esri')),
               MarkerClusterLayerWidget(
                 options: MarkerClusterLayerOptions(
                   maxClusterRadius: 42,
@@ -472,7 +527,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                   child: Text(
                     SoleraL10n.t('viti.esri_satelite'),
                     style: const TextStyle(color: Colors.white, fontSize: 11),
@@ -515,7 +571,9 @@ class _PantallaMapaState extends State<PantallaMapa> {
                             : Icons.map_outlined,
                       ),
                       label: Text(
-                        _estiloMapa == _EstiloMapa.calle ? SoleraL10n.t('viti.capas') : SoleraL10n.t('mapa'),
+                        _estiloMapa == _EstiloMapa.calle
+                            ? SoleraL10n.t('viti.capas')
+                            : SoleraL10n.t('mapa'),
                       ),
                     ),
                   ),
@@ -539,7 +597,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
                           horizontal: 12, vertical: 10),
                       child: Text(_altitudGps == null
                           ? SoleraL10n.tf('viti.altitud_gps', {'valor': '--'})
-                          : SoleraL10n.tf('viti.altitud_gps', {'valor': '${formatearNumero(_altitudGps!)} m'})),
+                          : SoleraL10n.tf('viti.altitud_gps',
+                              {'valor': '${formatearNumero(_altitudGps!)} m'})),
                     ),
                   ),
                 ],

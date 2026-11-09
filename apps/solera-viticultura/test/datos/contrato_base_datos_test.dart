@@ -22,6 +22,8 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart' show codificarContorno;
 import 'package:solera_viticultura/datos/base_datos.dart';
 import 'package:solera_viticultura/modelos/apunte_ingreso.dart';
 import 'package:solera_viticultura/modelos/cepa.dart';
@@ -153,7 +155,8 @@ const List<String> sentenciasEsquemaV1Viticultura = [
     )''',
 ];
 
-/// Historial del `onUpgrade` (v2 contabilidad, v3 facturas).
+/// Historial del `onUpgrade` (v2 contabilidad, v3 facturas, v4 área del
+/// viñedo).
 const Map<int, CambioEsquema> historialMigracionesViticultura = {
   2: CambioEsquema(tablasNuevas: [
     'terceros',
@@ -162,9 +165,12 @@ const Map<int, CambioEsquema> historialMigracionesViticultura = {
     'apuntes_gasto',
   ]),
   3: CambioEsquema(tablasNuevas: ['facturas']),
+  4: CambioEsquema(columnasNuevas: {
+    'vinedos': ['contorno'],
+  }),
 };
 
-/// Esquema esperado en la versión actual (v3).
+/// Esquema esperado en la versión actual (v4).
 const Map<String, Set<String>> columnasEsperadasViticultura = {
   'vinedos': {
     'id',
@@ -179,7 +185,8 @@ const Map<String, Set<String>> columnasEsperadasViticultura = {
     'sigpac_poligono',
     'sigpac_parcela',
     'sigpac_recinto',
-    'superficie_hectareas'
+    'superficie_hectareas',
+    'contorno',
   },
   'cepas': {
     'id',
@@ -401,7 +408,7 @@ void main() {
     test('llega a la versión actual con todas las tablas y columnas', () async {
       final baseDatos = await baseDatosViticultura.basedatos;
       expect(await baseDatos.getVersion(), versionEsquemaBaseDatosViticultura);
-      expect(versionEsquemaBaseDatosViticultura, 3);
+      expect(versionEsquemaBaseDatosViticultura, 4);
       expect(
           await leerColumnasPorTabla(baseDatos), columnasEsperadasViticultura);
     });
@@ -456,6 +463,9 @@ void main() {
         expect((await baseDatosViticultura.obtenerCepa(1))!.variedadId,
             'tempranillo');
         expect(await baseDatosViticultura.estaVacia(), isFalse);
+        // El área llega vacía a los viñedos de antes de la v4.
+        expect(
+            (await baseDatosViticultura.listarVinedos()).single.contorno, '[]');
       });
     }
 
@@ -515,6 +525,25 @@ void main() {
           (await baseDatosViticultura.obtenerCepa(idCepa))!.vinedoId, isNull);
       expect(
           (await baseDatosViticultura.listarPuntosSueltos()).single.id, idCepa);
+    });
+
+    test('viñedos: el área marcada en el mapa se guarda y se lee', () async {
+      const area = [
+        LatLng(42.0, -1.0),
+        LatLng(42.0, -0.999),
+        LatLng(42.001, -0.999),
+      ];
+      final idVinedo = await baseDatosViticultura.guardarVinedo(Vinedo(
+          nombre: 'La Solana',
+          colorEntero: 5,
+          fechaCreacionMs: 10,
+          contorno: codificarContorno(area)));
+      expect(
+          (await baseDatosViticultura.obtenerVinedo(idVinedo))!.vertices, area);
+      await baseDatosViticultura
+          .actualizarVinedo(idVinedo, {'contorno': codificarContorno([])});
+      expect((await baseDatosViticultura.obtenerVinedo(idVinedo))!.vertices,
+          isEmpty);
     });
 
     test('cepas y eventos: borrar la cepa arrastra sus eventos (CASCADE)',

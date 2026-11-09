@@ -296,6 +296,8 @@ Propuesta de diseño recibida el 2026-11-03 (borrador para revisión interna): *
 
 - **Entrega final (2026-11-06)** en `~/Documentos/zunbeltz-app/zunbeltz_rediseno_2026-11-06/` (DESIGN.md con los tokens, PNG de las 27 pantallas, símbolo y logos oficiales). Colores y pantallas iguales a lo ya aplicado; ajustado lo que difería: **tema claro de partida** (`temaDesdeCodigo`: solo «system» o «dark» guardados cambian eso), escala del DESIGN.md (titleMedium **Poppins 18**, labelLarge 15, labelMedium 13, labelSmall 12; display y headline a −0,02 em; displaySmall 40), filas de lista en labelLarge, FAB en labelLarge, chips con borde `outlineVariant` y texto 13, botones de 48 dp y 20 de relleno (tonales en tarjetas, 40 dp con `estiloBotonTonalZunbeltz`), sombras en verde casi negro (`colorSombraZunbeltz`, también el `shadow` del esquema) y el **símbolo oficial monocromo** (`SimboloZunbeltz`, `assets/simbolo-zunbeltz-mono.png`, SVG en `assets/marca/`): pino sobre claro, claro sobre la cabecera. Sin hacer: iconos Material Symbols Rounded (usamos `_outlined`) y la lista de cambios pendientes de subir.
 
+**Publicado el 2026-11-09** como **app 0.9.0+44** (APK de 105 MB) y **plugin 1.1.0** (app web con el rediseño y textos de la ayuda al día; sin cambio de esquema). Tema sin cambios (sigue la 0.2.1).
+
 **Pendiente**: Actualizaciones (25), si se quiere tocar la pantalla común del core; probar el rediseño entero en un móvil (sobre todo: hoja de la pieza en el mapa real, «Mapa» del tablero, vista previa del informe en PDF, tema claro/oscuro elegido a mano).
 
 ## Hard limits (heredados de la Suite Solera)

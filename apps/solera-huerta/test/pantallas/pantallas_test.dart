@@ -41,11 +41,11 @@ void main() {
 
   Future<void> pulsarGuardar(WidgetTester tester) async {
     final boton = find.widgetWithText(FilledButton, SoleraL10n.t('guardar'));
-    await tester.scrollUntilVisible(boton, 300,
-        scrollable: find
-            .descendant(
-                of: find.byType(BottomSheet), matching: find.byType(Scrollable))
-            .first);
+    final hoja = find
+        .descendant(
+            of: find.byType(BottomSheet), matching: find.byType(Scrollable))
+        .first;
+    await tester.scrollUntilVisible(boton, 300, scrollable: hoja);
     await tester.pumpAndSettle();
     await tester.tap(boton);
     await esperar(tester);
@@ -61,9 +61,14 @@ void main() {
   }
 
   testWidgets('alta de una parcela desde la lista', (tester) async {
+    // La hoja de parcela, con el punto y el área, no cabe en 800 × 600.
+    tester.view.physicalSize = const Size(1080, 2400);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.reset);
     await tester.runAsync(() async {
       await tester.pumpWidget(const MaterialApp(home: PantallaParcelas()));
-      await esperar(tester, 200);
+      // Primera apertura de la BD del fichero: con la máquina cargada tarda.
+      await esperar(tester, 800);
       expect(find.text(SoleraL10n.t('huer.sin_parcelas')), findsOneWidget);
       await tester.tap(find.byType(FloatingActionButton));
       await tester.pumpAndSettle();
@@ -75,6 +80,26 @@ void main() {
     expect(find.text('La Vega'), findsOneWidget);
     final parcela = (await tester.runAsync(baseDatos.listarParcelas))!.single;
     expect((parcela.superficieHa, parcela.estadoEcologico), (0.8, 'ecologica'));
+  });
+
+  testWidgets('la ficha de parcela ofrece marcar el punto y el área',
+      (tester) async {
+    await tester.runAsync(() async {
+      await tester.pumpWidget(const MaterialApp(home: PantallaParcelas()));
+      await esperar(tester, 200);
+      await tester.tap(find.byType(FloatingActionButton));
+      await tester.pumpAndSettle();
+      await tester.scrollUntilVisible(
+          find.text(SoleraL10n.t('mapa.marcar_area')), 200,
+          scrollable: find
+              .descendant(
+                  of: find.byType(BottomSheet),
+                  matching: find.byType(Scrollable))
+              .first);
+    });
+    expect(find.text(SoleraL10n.t('mapa.marcar_area')), findsOneWidget);
+    expect(find.text(SoleraL10n.t('mapa.sin_area')), findsOneWidget);
+    expect(find.text(SoleraL10n.t('mapa.marcar_punto')), findsOneWidget);
   });
 
   testWidgets('Hoy: primeros pasos sin parcelas', (tester) async {

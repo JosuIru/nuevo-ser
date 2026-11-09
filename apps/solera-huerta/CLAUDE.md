@@ -138,6 +138,15 @@ Lo esencial que no se toca (hard limits):
   test de integridad; la nota de revisión está en `content/huerta/revision-2026-11-07.md`.
 - **2026-11-07 — La v1 se amplía durante la F1** (como en Frutal): no hay
   ninguna instalación publicada.
+- **2026-11-09 — Área y punto de la parcela con `nuevo_ser_mapa`** (BD v2:
+  `parcelas.contorno` TEXT JSON `[[lat,lng],…]`, por defecto `'[]'`). El
+  formulario usa `CampoPunto` (GPS o marcar en el mapa) y `CampoArea`
+  (dibujar, caminar o importar KML/GeoJSON/GPX/Shapefile), con «usar la
+  superficie calculada» que rellena las ha solo si se pulsa. Si hay área y no
+  punto, se guarda como punto el centro del área. El mapa pinta las áreas y
+  cambia entre callejero y ortofoto. Fuera `utiles/permisos_gps.dart`.
+  Bancales y siembras, sin área. El texto `huer.mapa_sin_ubicaciones` aún
+  habla de «Usar mi ubicación» (pendiente de retocar en las traducciones).
 
 ## Normativa y fuentes consultadas (2026-11-07)
 

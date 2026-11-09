@@ -3,7 +3,9 @@
 // cosecha y aplicación de insumo. Cada una devuelve true si guardó.
 
 import 'package:flutter/material.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart';
 
 import '../datos/base_datos.dart';
 import '../dominio/catalogos.dart';
@@ -19,7 +21,6 @@ import '../modelos/lote_semilla.dart';
 import '../modelos/parcela.dart';
 import '../modelos/siembra.dart';
 import '../modelos/tratamiento.dart';
-import '../utiles/permisos_gps.dart';
 import '../utiles/textos_huerta.dart';
 import 'campo_catalogo.dart';
 import 'hoja_formulario.dart';
@@ -48,6 +49,18 @@ Widget _tarjetaAviso(BuildContext context, String texto) => Card(
 
 // ─── Parcela ─────────────────────────────────────────────────────────
 
+/// Paquete de la app, para identificarse ante OpenStreetMap.
+const String paqueteAppHuerta = 'com.coleccionnuevoser.solera_huerta';
+
+/// Si hay área y no punto, el punto es el centro del área (el mapa usa el
+/// punto).
+(double?, double?) puntoOCentroDelArea(
+    double? latitud, double? longitud, List<LatLng> area) {
+  if (latitud != null && longitud != null) return (latitud, longitud);
+  final centro = centroide(area);
+  return (centro?.latitude, centro?.longitude);
+}
+
 Future<bool> mostrarFormularioParcela(BuildContext context,
     {Parcela? parcela}) async {
   final nombre = TextEditingController(text: parcela?.nombre);
@@ -67,7 +80,7 @@ Future<bool> mostrarFormularioParcela(BuildContext context,
       : sistemasRiego.first;
   var latitud = parcela?.latitud;
   var longitud = parcela?.longitud;
-  var localizando = false;
+  var area = parcela?.vertices ?? const <LatLng>[];
   final guardado = await mostrarHojaFormulario(
     context,
     titulo: SoleraL10n.t(
@@ -104,33 +117,35 @@ Future<bool> mostrarFormularioParcela(BuildContext context,
           nombre: nombreSistemaRiego,
           alCambiar: (valor) => refrescar(() => riego = valor ?? riego),
         ),
-      ListTile(
-        contentPadding: EdgeInsets.zero,
-        leading: localizando
-            ? const SizedBox.square(
-                dimension: 24, child: CircularProgressIndicator())
-            : const Icon(Icons.my_location),
-        title: Text(SoleraL10n.t('huer.usar_mi_ubicacion')),
-        subtitle: Text(latitud == null
-            ? SoleraL10n.t('huer.sin_ubicacion')
-            : '${latitud!.toStringAsFixed(5)}, ${longitud!.toStringAsFixed(5)}'),
-        onTap: localizando
-            ? null
-            : () async {
-                refrescar(() => localizando = true);
-                final posicion = await leerUbicacionActual(context);
-                refrescar(() {
-                  localizando = false;
-                  if (posicion != null) {
-                    (latitud, longitud) = posicion;
-                  }
-                });
-              },
+      CampoPunto(
+        latitud: latitud,
+        longitud: longitud,
+        centro: centroide(area),
+        areasDeFondo: [(nombre: '', vertices: area)],
+        paqueteApp: paqueteAppHuerta,
+        alCambiar: (nuevaLatitud, nuevaLongitud) => refrescar(() {
+          latitud = nuevaLatitud;
+          longitud = nuevaLongitud;
+        }),
       ),
+      const SizedBox(height: 8),
+      CampoArea(
+        vertices: area,
+        centro: latitud == null || longitud == null
+            ? null
+            : LatLng(latitud!, longitud!),
+        paqueteApp: paqueteAppHuerta,
+        alCambiar: (vertices) => refrescar(() => area = vertices),
+        alUsarSuperficie: (hectareas) => refrescar(
+            () => superficie.text = numeroParaCampo(hectareas, decimales: 4)),
+      ),
+      const SizedBox(height: 8),
       campoTexto(notas, SoleraL10n.t('huer.notas')),
     ],
     guardar: () async {
       if (nombre.text.trim().isEmpty) return false;
+      final (latitudGuardada, longitudGuardada) =
+          puntoOCentroDelArea(latitud, longitud, area);
       await _bd.guardarParcela(Parcela(
         id: parcela?.id,
         nombre: nombre.text.trim(),
@@ -141,8 +156,9 @@ Future<bool> mostrarFormularioParcela(BuildContext context,
             estado == 'conversion' ? _ms(inicioConversion) : null,
         regadio: regadio,
         sistemaRiego: riego,
-        latitud: latitud,
-        longitud: longitud,
+        latitud: latitudGuardada,
+        longitud: longitudGuardada,
+        contorno: codificarContorno(area),
         notas: notas.text.trim(),
         fechaCreacionMs: parcela?.fechaCreacionMs ?? _ms(DateTime.now()),
       ));

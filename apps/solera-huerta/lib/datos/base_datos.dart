@@ -24,7 +24,7 @@ import '../provisional_core/venta_directa/suscripcion.dart';
 const String nombreFicheroBaseDatosHuerta = 'solera_huerta.db';
 
 /// Versión del esquema: el número del último paso de [pasosMigracion].
-const int versionEsquemaHuerta = 1;
+const int versionEsquemaHuerta = 2;
 
 /// Sentencias del esquema v1. Públicas para los tests de contrato.
 const List<String> sentenciasEsquemaHuertaV1 = [
@@ -251,7 +251,16 @@ class BaseDatosSoleraHuerta extends BaseDatosSolera {
   DatabaseFactory get fabricaBaseDatos => databaseFactory;
 
   @override
-  Map<int, PasoMigracionSolera> get pasosMigracion => const {};
+  Map<int, PasoMigracionSolera> get pasosMigracion => {
+        2: _anadirContornoParcelasV2,
+      };
+
+  /// v2 (2026-11-09): área de la parcela marcada en el mapa
+  /// (nuevo_ser_mapa), JSON `[[lat,lng],…]`.
+  static Future<void> _anadirContornoParcelasV2(Database db) async {
+    await db.execute(
+        "ALTER TABLE parcelas ADD COLUMN contorno TEXT NOT NULL DEFAULT '[]'");
+  }
 
   @override
   Future<void> crearEsquemaInicial(Database db) async {

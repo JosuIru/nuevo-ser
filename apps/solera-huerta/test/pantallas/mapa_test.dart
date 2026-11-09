@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart' show codificarContorno;
 import 'package:solera_huerta/modelos/parcela.dart';
 import 'package:solera_huerta/pantallas/pantalla_mapa.dart';
 
@@ -13,6 +15,21 @@ void main() {
     ]);
     expect((centro.latitude, centro.longitude), (43, -3));
     expect(centroDeParcelas([]).latitude, 40.4);
+  });
+
+  test('una parcela con área y sin punto sale en el centro del área', () {
+    final parcela = Parcela(
+        nombre: 'Área',
+        contorno: codificarContorno(const [
+          LatLng(42, -2),
+          LatLng(42, -1.998),
+          LatLng(42.002, -1.998),
+          LatLng(42.002, -2),
+        ]));
+    final punto = puntoDeParcela(parcela)!;
+    expect(punto.latitude, closeTo(42.001, 1e-6));
+    expect(punto.longitude, closeTo(-1.999, 1e-6));
+    expect(puntoDeParcela(Parcela(nombre: 'Sin')), isNull);
   });
 
   test('el logo placeholder existe y está declarado', () {

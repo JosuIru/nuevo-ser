@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart' show codificarContorno;
 import 'package:sqflite/sqflite.dart';
 import 'package:solera_huerta/datos/base_datos.dart';
 import 'package:solera_huerta/modelos/bancal.dart';
@@ -18,6 +20,13 @@ import 'package:solera_huerta/provisional_core/venta_directa/socio.dart';
 import 'package:solera_huerta/provisional_core/venta_directa/suscripcion.dart';
 
 import 'soporte_contrato_base_datos.dart';
+
+/// Cambios de esquema desde la v1, para los tests de contrato.
+const Map<int, CambioEsquema> historialMigracionesHuerta = {
+  2: CambioEsquema(columnasNuevas: {
+    'parcelas': ['contorno'],
+  }),
+};
 
 void main() {
   final entorno = EntornoBaseDatosTemporal();
@@ -45,10 +54,50 @@ void main() {
         File(entorno.ruta(nombreFicheroBaseDatosHuerta)).existsSync(), isTrue);
   });
 
-  test('el esquema creado coincide con las sentencias v1', () async {
+  test('el esquema creado es el v1 más el historial de migraciones', () async {
     final db = await baseDatos.basedatos;
-    expect(await leerColumnasPorTabla(db),
-        await columnasDeEsquemaV1(sentenciasEsquemaHuertaV1));
+    final actuales = await leerColumnasPorTabla(db);
+    expect(
+        actuales,
+        columnasDeclaradasEnVersion(
+          columnasV1: await columnasDeEsquemaV1(sentenciasEsquemaHuertaV1),
+          historial: historialMigracionesHuerta,
+          columnasActuales: actuales,
+          version: versionEsquemaHuerta,
+        ));
+    expect(historialMigracionesHuerta.keys.reduce((a, b) => a > b ? a : b),
+        versionEsquemaHuerta);
+  });
+
+  test('migra desde la v1 sin perder filas y con el contorno vacío', () async {
+    final filas = {
+      'parcelas': {'nombre': 'La Vega'},
+    };
+    await crearBaseDatosHistorica(
+      ruta: entorno.ruta(nombreFicheroBaseDatosHuerta),
+      version: 1,
+      sentenciasEsquemaV1: sentenciasEsquemaHuertaV1,
+      historial: historialMigracionesHuerta,
+      columnasActuales: const {},
+      filasPorTabla: filas,
+    );
+    final db = await baseDatos.basedatos;
+    expect(await db.getVersion(), versionEsquemaHuerta);
+    await comprobarFilasConservadas(db, filas);
+    final parcela = (await baseDatos.listarParcelas()).single;
+    expect(parcela.contorno, '[]');
+    expect(parcela.vertices, isEmpty);
+  });
+
+  test('el área de una parcela se guarda y se lee', () async {
+    const area = [
+      LatLng(42.0, -1.0),
+      LatLng(42.0, -0.999),
+      LatLng(42.001, -0.999),
+    ];
+    await baseDatos.guardarParcela(
+        Parcela(nombre: 'La Vega', contorno: codificarContorno(area)));
+    expect((await baseDatos.listarParcelas()).single.vertices, area);
   });
 
   test('el titular se guarda en una sola fila', () async {

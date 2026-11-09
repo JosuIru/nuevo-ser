@@ -1,3 +1,7 @@
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart'
+    show contornoVacio, leerContorno;
+
 /// Situación de la parcela frente a la producción ecológica. La app no
 /// certifica nada: es lo que dice el certificado del organismo de control.
 const List<String> estadosEcologicos = [
@@ -22,6 +26,7 @@ class Parcela {
     this.sistemaRiego = '',
     this.latitud,
     this.longitud,
+    this.contorno = contornoVacio,
     this.notas = '',
     this.fechaCreacionMs = 0,
   });
@@ -44,6 +49,11 @@ class Parcela {
   final String sistemaRiego;
   final double? latitud;
   final double? longitud;
+
+  /// Área marcada en el mapa: JSON `[[lat,lng],…]` (nuevo_ser_mapa).
+  final String contorno;
+
+  List<LatLng> get vertices => leerContorno(contorno);
   final String notas;
   final int fechaCreacionMs;
 
@@ -60,6 +70,7 @@ class Parcela {
         sistemaRiego: sistemaRiego,
         latitud: latitud,
         longitud: longitud,
+        contorno: contorno,
         notas: notas,
         fechaCreacionMs: fechaCreacionMs,
       );
@@ -75,6 +86,7 @@ class Parcela {
         'sistema_riego': regadio ? sistemaRiego : '',
         'latitud': latitud,
         'longitud': longitud,
+        'contorno': contorno,
         'notas': notas,
         'fecha_creacion_ms': fechaCreacionMs,
       };
@@ -90,6 +102,7 @@ class Parcela {
         sistemaRiego: (mapa['sistema_riego'] as String?) ?? '',
         latitud: (mapa['latitud'] as num?)?.toDouble(),
         longitud: (mapa['longitud'] as num?)?.toDouble(),
+        contorno: (mapa['contorno'] as String?) ?? contornoVacio,
         notas: (mapa['notas'] as String?) ?? '',
         fechaCreacionMs: (mapa['fecha_creacion_ms'] as int?) ?? 0,
       );

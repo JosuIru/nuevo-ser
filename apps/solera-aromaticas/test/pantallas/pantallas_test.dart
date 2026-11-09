@@ -13,6 +13,7 @@ import 'package:solera_aromaticas/pantallas/pantalla_editar_origen.dart';
 import 'package:solera_aromaticas/pantallas/pantalla_hoy.dart';
 import 'package:solera_aromaticas/pantallas/pantalla_lotes.dart';
 import 'package:solera_aromaticas/pantallas/pantalla_taller.dart';
+import 'package:solera_aromaticas/servicios/fotos_wikipedia.dart';
 
 import '../datos/soporte_contrato_base_datos.dart';
 
@@ -20,7 +21,11 @@ void main() {
   final entorno = EntornoBaseDatosTemporal();
   final baseDatos = BaseDatosSoleraAromaticas.instancia;
 
-  setUpAll(initializeDateFormatting);
+  setUpAll(() async {
+    await initializeDateFormatting();
+    // Sin red en los tests: la guía abre sin fotos.
+    buscadorFotosGuia = (_) async => const [];
+  });
   setUp(entorno.preparar);
   tearDown(() async {
     await baseDatos.cerrar();
@@ -43,6 +48,24 @@ void main() {
     expect(find.text(SoleraL10n.t('arom.primeros_pasos')), findsOneWidget);
     expect(find.text(SoleraL10n.t('arom.catalogos_provisionales')),
         findsOneWidget);
+  });
+
+  testWidgets('Hoy: una especie en temporada abre su ficha de la guía',
+      (tester) async {
+    await tester.runAsync(() async {
+      await baseDatos.guardarParcela(
+          Parcela(nombre: 'Bancal', especieId: 'lavanda', superficieHa: 1));
+      await tester.pumpWidget(MaterialApp(
+          home: PantallaHoy(fechaParaPruebas: DateTime(2026, 8, 10))));
+      await esperar(tester);
+    });
+    final enTemporada = find.widgetWithText(ListTile, 'Lavanda');
+    await tester.ensureVisible(enTemporada);
+    await tester.tap(enTemporada);
+    await tester.pumpAndSettle();
+    expect(find.text('Lavandula angustifolia'), findsWidgets);
+    expect(find.text(SoleraL10n.t('arom.guia_rasgos')), findsOneWidget);
+    expect(find.text(SoleraL10n.t('arom.guia_aviso')), findsOneWidget);
   });
 
   testWidgets('Hoy: zona sin permiso y permiso que vence', (tester) async {

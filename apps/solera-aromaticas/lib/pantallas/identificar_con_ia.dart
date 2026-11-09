@@ -10,10 +10,12 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
 import '../datos/base_datos.dart';
 import '../datos/catalogos_generados/catalogo_especies.dart';
 import '../dominio/catalogos.dart';
+import '../dominio/guia.dart';
 import '../estado/clave_anthropic_aromaticas.dart';
 import '../modelos/parcela.dart';
 import '../servicios/identificador_ia.dart';
 import 'formularios.dart';
+import 'pantalla_guia.dart';
 
 /// Pantalla de la clave de IA de Larrea Aromáticas.
 Widget pantallaClaveAromaticas() => PantallaClaveAnthropic(
@@ -124,7 +126,25 @@ Future<void> identificarEspecieConFoto(BuildContext context) async {
                           .join(', ')
                     }),
                 ].join('\n')),
+                trailing: IconButton(
+                  tooltip: SoleraL10n.t('arom.guia_ver'),
+                  icon: const Icon(Icons.menu_book_outlined),
+                  // Todas las candidatas en la ficha deslizable: se comparan
+                  // fotos y rasgos con la planta antes de elegir.
+                  onPressed: () => abrirFichaGuia(contexto,
+                      lista: [
+                        for (final otro in propuesta.candidatos)
+                          entradaGuiaDe(otro.fila)
+                      ],
+                      indiceInicial: propuesta.candidatos.indexOf(candidato)),
+                ),
                 onTap: () => Navigator.pop(contexto, candidato.fila),
+              ),
+            if (propuesta.candidatos.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(top: 4),
+                child: Text(SoleraL10n.t('arom.guia_comparar'),
+                    style: Theme.of(contexto).textTheme.bodySmall),
               ),
             if (propuesta.fueraDelCatalogo)
               Text(SoleraL10n.t('arom.ia_fuera_catalogo')),

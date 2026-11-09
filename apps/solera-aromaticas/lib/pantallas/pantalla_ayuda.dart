@@ -9,6 +9,7 @@ const List<(String, String)> apartadosAyudaAromaticas = [
   ('arom.ayuda_taller_titulo', 'arom.ayuda_taller_texto'),
   ('arom.ayuda_lotes_titulo', 'arom.ayuda_lotes_texto'),
   ('arom.ayuda_documentos_titulo', 'arom.ayuda_documentos_texto'),
+  ('arom.ayuda_guia_titulo', 'arom.ayuda_guia_texto'),
   ('arom.ayuda_ia_titulo', 'arom.ayuda_ia_texto'),
   ('arom.ayuda_economia_titulo', 'arom.ayuda_economia_texto'),
   ('arom.ayuda_limites_titulo', 'arom.ayuda_limites_texto'),

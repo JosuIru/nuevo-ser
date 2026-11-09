@@ -14,6 +14,7 @@ import 'formularios.dart';
 import 'identificar_con_ia.dart';
 import 'pantalla_mapa.dart';
 import 'pantalla_editar_origen.dart';
+import 'pantalla_guia.dart';
 
 class _DatosCampo {
   _DatosCampo(this.parcelas, this.zonas, this.cosechas, this.tratamientos);
@@ -97,6 +98,12 @@ class _PantallaCampoState extends State<PantallaCampo>
       appBar: AppBar(
         title: Text(SoleraL10n.t('arom.campo')),
         actions: [
+          IconButton(
+            tooltip: SoleraL10n.t('arom.guia'),
+            icon: const Icon(Icons.menu_book_outlined),
+            onPressed: () => Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const PantallaGuia())),
+          ),
           IconButton(
             tooltip: SoleraL10n.t('arom.mapa'),
             icon: const Icon(Icons.map_outlined),

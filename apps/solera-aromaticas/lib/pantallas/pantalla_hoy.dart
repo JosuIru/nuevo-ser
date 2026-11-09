@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show AvisoCatalogosProvisionales;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show AvisoCatalogosProvisionales;
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show CabeceraHoySolera, CifraCabecera, SoleraL10n, TituloBloqueSolera;
@@ -8,6 +9,7 @@ import '../branding.dart';
 import '../datos/base_datos.dart';
 import '../datos/catalogos_generados/flag_revision.dart';
 import '../dominio/catalogos.dart';
+import '../dominio/guia.dart';
 import '../dominio/recoleccion.dart';
 import '../estado/cambios_datos.dart';
 import '../modelos/cosecha.dart';
@@ -16,6 +18,7 @@ import '../modelos/zona_recoleccion.dart';
 import '../utiles/textos_aromaticas.dart';
 import 'formularios.dart';
 import 'pantalla_editar_origen.dart';
+import 'pantalla_guia.dart';
 
 class _DatosHoy {
   _DatosHoy(this.parcelas, this.zonas, this.cosechasDelAnyo, this.lotes);
@@ -29,7 +32,10 @@ class _DatosHoy {
 /// Lo del día: permisos que vencen, especies en temporada y, la primera vez,
 /// los primeros pasos.
 class PantallaHoy extends StatefulWidget {
-  const PantallaHoy({super.key});
+  const PantallaHoy({super.key, this.fechaParaPruebas});
+
+  /// Fija «hoy» en los tests (la temporada depende del mes).
+  final DateTime? fechaParaPruebas;
 
   @override
   State<PantallaHoy> createState() => _PantallaHoyState();
@@ -105,7 +111,8 @@ class _PantallaHoyState extends State<PantallaHoy> {
                 ],
               ),
               if (!catalogosCompletamenteRevisados)
-                AvisoCatalogosProvisionales(texto: SoleraL10n.t('arom.catalogos_provisionales')),
+                AvisoCatalogosProvisionales(
+                    texto: SoleraL10n.t('arom.catalogos_provisionales')),
               if (instantanea.hasError)
                 Padding(
                   padding: const EdgeInsets.all(16),
@@ -156,7 +163,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
         ),
       ];
     }
-    final hoy = DateTime.now();
+    final hoy = widget.fechaParaPruebas ?? DateTime.now();
     final porVencer = permisosPorVencer(datos.zonas, hoy);
     final sinPermiso = datos.zonas.where((zona) => !zona.tienePermiso).toList();
     final enEpoca = especiesEnEpoca([
@@ -197,12 +204,18 @@ class _PantallaHoyState extends State<PantallaHoy> {
       if (enEpoca.isEmpty)
         ListTile(title: Text(SoleraL10n.t('arom.nada_en_temporada')))
       else
-        for (final especie in enEpoca)
+        for (final (indice, especie) in enEpoca.indexed)
           ListTile(
             dense: true,
             leading: const Icon(Icons.local_florist_outlined),
             title: Text(especie.nombre),
             subtitle: Text(especie.parteUsada),
+            trailing: const Icon(Icons.menu_book_outlined, size: 20),
+            onTap: () => abrirFichaGuia(context,
+                lista: [
+                  for (final enTemporada in enEpoca) entradaGuiaDe(enTemporada)
+                ],
+                indiceInicial: indice),
           ),
       Padding(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),

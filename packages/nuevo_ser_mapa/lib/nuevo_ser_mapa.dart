@@ -12,6 +12,7 @@ export 'src/geometria/geodesia.dart';
 export 'src/geometria/importar_contornos.dart';
 export 'src/geometria/recinto_sigpac.dart';
 export 'src/gps/ubicacion.dart';
+export 'src/ui/campos_mapa.dart';
 export 'src/ui/capas.dart';
 export 'src/ui/formato.dart';
 export 'src/ui/pantalla_editor_area.dart';

@@ -99,8 +99,8 @@ void main() {
 
     test('con un trazado incompleto no hay dentro', () {
       expect(
-          puntoDentroDePoligono(LatLng(latitudBase, longitudBase),
-              parcela.take(2).toList()),
+          puntoDentroDePoligono(
+              LatLng(latitudBase, longitudBase), parcela.take(2).toList()),
           isFalse);
     });
 

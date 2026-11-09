@@ -12,7 +12,8 @@ void main() {
   // Parcela 24-2 de Yerri según IDENA: 229,36 ha y este vértice.
   const verticeCatastro = LatLng(42.80698135, -2.04095564);
 
-  test('GeoJSON del catastro: la parcela y sus subparcelas, con su superficie', () {
+  test('GeoJSON del catastro: la parcela y sus subparcelas, con su superficie',
+      () {
     final leidos = leerContornos(
         'catastro-yerri-24-2.geojson', _fichero('catastro-yerri-24-2.geojson'));
     // La parcela entera y sus 26 subparcelas.

@@ -5,6 +5,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 
 const String urlCallejeroOsm = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -69,3 +70,26 @@ class AtribucionCapa extends StatelessWidget {
         ),
       );
 }
+
+/// Las áreas de una app sobre su mapa (parcelas, zonas, rodales…): relleno
+/// suave, borde de [color] y el nombre en medio. Las de menos de tres
+/// esquinas no se pintan.
+PolygonLayer capaDeAreas(
+  List<({String nombre, List<LatLng> vertices})> areas, {
+  required Color color,
+}) =>
+    PolygonLayer(polygons: [
+      for (final area in areas)
+        if (area.vertices.length >= 3)
+          Polygon(
+            points: area.vertices,
+            color: color.withValues(alpha: 0.22),
+            borderColor: color,
+            borderStrokeWidth: 2.5,
+            label: area.nombre,
+            labelStyle: const TextStyle(
+                fontWeight: FontWeight.w600,
+                color: Colors.black87,
+                shadows: [Shadow(color: Colors.white, blurRadius: 4)]),
+          ),
+    ]);

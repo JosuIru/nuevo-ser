@@ -83,8 +83,8 @@ class _PantallaMarcarPuntoState extends State<PantallaMarcarPunto> {
     if (!mounted) return;
     setState(() => _leyendoGps = false);
     if (lectura == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(SoleraL10n.t('mapa.sin_gps'))));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(SoleraL10n.t('mapa.sin_gps'))));
       return;
     }
     _controladorMapa.move(lectura.posicion, 18);

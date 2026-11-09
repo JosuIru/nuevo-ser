@@ -24,8 +24,8 @@ Future<List<LatLng>?> _abrirEditor(WidgetTester tester,
         body: Center(
           child: ElevatedButton(
             onPressed: () async {
-              devuelto = await Navigator.of(contexto).push<List<LatLng>>(
-                  MaterialPageRoute(
+              devuelto = await Navigator.of(contexto)
+                  .push<List<LatLng>>(MaterialPageRoute(
                       builder: (_) => PantallaEditorArea(
                             inicial: inicial,
                             centro: _centro,
@@ -142,5 +142,40 @@ void main() {
     await tester.tap(find.text(SoleraL10n.t('mapa.punto_usar')));
     await tester.pumpAndSettle();
     expect(resultado!.punto!.latitude, closeTo(_centro.latitude, 1e-9));
+  });
+
+  testWidgets('campo de área: superficie y «usar la superficie calculada»',
+      (tester) async {
+    double? copiada;
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: CampoArea(
+          vertices: const [
+            _centro,
+            LatLng(42.8226, -2.0305),
+            LatLng(42.8236, -2.0305),
+            LatLng(42.8236, -2.0315),
+          ],
+          alCambiar: (_) {},
+          alUsarSuperficie: (hectareas) => copiada = hectareas,
+        ),
+      ),
+    ));
+    expect(find.textContaining('ha'), findsWidgets);
+    await tester.tap(find.textContaining(
+        SoleraL10n.t('mapa.usar_superficie').split('(').first.trim()));
+    // ~82 m × 111 m ≈ 0,91 ha.
+    expect(copiada, closeTo(0.91, 0.05));
+  });
+
+  testWidgets('campo de área vacío invita a marcarla', (tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+          body: CampoArea(
+              vertices: const [], alCambiar: (_) {}, alUsarSuperficie: (_) {})),
+    ));
+    expect(find.text(SoleraL10n.t('mapa.sin_area')), findsOneWidget);
+    expect(find.text(SoleraL10n.t('mapa.marcar_area')), findsOneWidget);
+    expect(find.textContaining('ha)'), findsNothing);
   });
 }

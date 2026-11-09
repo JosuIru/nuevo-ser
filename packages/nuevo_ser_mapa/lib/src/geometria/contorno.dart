@@ -25,10 +25,7 @@ List<LatLng> leerContorno(String? json) {
     if (crudo is! List) return const [];
     return [
       for (final par in crudo)
-        if (par is List &&
-            par.length >= 2 &&
-            par[0] is num &&
-            par[1] is num)
+        if (par is List && par.length >= 2 && par[0] is num && par[1] is num)
           LatLng((par[0] as num).toDouble(), (par[1] as num).toDouble()),
     ];
   } catch (_) {

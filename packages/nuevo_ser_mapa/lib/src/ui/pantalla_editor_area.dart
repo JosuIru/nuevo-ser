@@ -89,9 +89,8 @@ class _PantallaEditorAreaState extends State<PantallaEditorArea> {
   LatLng get _centroInicial =>
       centroide(widget.inicial) ?? widget.centro ?? centroPeninsula;
 
-  double get _zoomInicial => widget.inicial.isNotEmpty || widget.centro != null
-      ? 17
-      : 6;
+  double get _zoomInicial =>
+      widget.inicial.isNotEmpty || widget.centro != null ? 17 : 6;
 
   void _alListo() {
     if (widget.inicial.length < 2) return;
@@ -450,10 +449,10 @@ class _PantallaEditorAreaState extends State<PantallaEditorArea> {
                     ),
                     if (_editor.elegida != null)
                       OutlinedButton.icon(
-                        onPressed: esquinas.length > esquinasMinimas ||
-                                !_editor.esArea
-                            ? () => setState(_editor.quitarElegida)
-                            : null,
+                        onPressed:
+                            esquinas.length > esquinasMinimas || !_editor.esArea
+                                ? () => setState(_editor.quitarElegida)
+                                : null,
                         icon: const Icon(Icons.remove_circle_outline),
                         label: Text(SoleraL10n.t('mapa.area_quitar_esquina')),
                       ),

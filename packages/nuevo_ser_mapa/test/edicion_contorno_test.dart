@@ -14,7 +14,8 @@ void main() {
   test('mover una esquina cambia solo esa', () {
     final movido = moverEsquina(cuadrado, 2, const LatLng(2, 2));
     expect(movido, [cuadrado[0], cuadrado[1], const LatLng(2, 2), cuadrado[3]]);
-    expect(cuadrado[2], const LatLng(1, 1), reason: 'no toca la lista original');
+    expect(cuadrado[2], const LatLng(1, 1),
+        reason: 'no toca la lista original');
   });
 
   test('quitar una esquina, pero nunca por debajo de tres', () {

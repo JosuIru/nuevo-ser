@@ -228,8 +228,7 @@ extension SincronizacionBaseDatos on BaseDatosSoleraZunbeltz {
     await db.transaction((txn) async {
       final filas = await txn.query('estado_sync',
           where: 'clave = ?', whereArgs: [claveCompletaPedida], limit: 1);
-      final pedidas =
-          filas.isEmpty ? 0 : (filas.first['valor'] as num).toInt();
+      final pedidas = filas.isEmpty ? 0 : (filas.first['valor'] as num).toInt();
       await txn.insert(
           'estado_sync', {'clave': claveCompletaPedida, 'valor': pedidas + 1},
           conflictAlgorithm: ConflictAlgorithm.replace);
@@ -517,4 +516,53 @@ extension SincronizacionBaseDatos on BaseDatosSoleraZunbeltz {
         false => 0,
         _ => valor,
       };
+}
+
+/// Lo hecho sin usuario (modo local) antes de conectar una clave. Al
+/// conectar no se sube: se descarta y manda el servidor. Si subiera, un
+/// borrado de prueba hecho sin usuario se aplicaría para todo el espacio en
+/// cuanto se conectara una clave de coordinación.
+extension CambiosModoLocal on BaseDatosSoleraZunbeltz {
+  /// Cuántos cambios hay en este dispositivo que el servidor no tiene:
+  /// borrados pendientes y filas o tareas tocadas después del último envío.
+  /// Lo sembrado de serie lleva marca 1 y no cuenta (nunca pisa al
+  /// servidor).
+  Future<int> contarCambiosSinSubir() async {
+    final db = await basedatos;
+    // `ClienteSyncZunbeltz.claveSubida`: hasta dónde se ha subido ya.
+    final subidaHastaMs = await leerEstadoSync('subida_ms');
+    final desdeMs = subidaHastaMs > 1 ? subidaHastaMs : 1;
+    Future<int> contar(String tabla) async {
+      final filas = await db.rawQuery(
+          'SELECT COUNT(*) AS n FROM $tabla WHERE actualizado_ms > ?',
+          [desdeMs]);
+      return (filas.first['n'] as num).toInt();
+    }
+
+    var total = (await db.rawQuery('SELECT COUNT(*) AS n FROM borrados_sync'))
+        .first['n'] as int;
+    for (final descriptor in tablasSincronizables) {
+      total += await contar(descriptor.tabla);
+    }
+    return total + await contar('tareas_mantenimiento');
+  }
+
+  /// Vacía todo lo que viene del servidor (entidades, tareas, actividad),
+  /// los borrados pendientes y los cursores, y pide una sincronización
+  /// completa: la siguiente lo baja todo de nuevo. Las fotos guardadas se
+  /// quedan (van por hash y se reaprovechan si el servidor las tiene).
+  Future<void> descartarCambiosSinSubir() async {
+    final db = await basedatos;
+    await db.transaction((txn) async {
+      await txn.delete('tareas_mantenimiento');
+      // De hijas a madres, por las claves foráneas.
+      for (final descriptor in tablasSincronizables.reversed) {
+        await txn.delete(descriptor.tabla);
+      }
+      await txn.delete('actividad_espacio');
+      await txn.delete('borrados_sync');
+      await txn.delete('estado_sync');
+    });
+    await pedirSincronizacionCompleta();
+  }
 }

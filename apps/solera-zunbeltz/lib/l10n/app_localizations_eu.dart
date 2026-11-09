@@ -996,7 +996,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaProyectosB =>
-      'Proiektuak koordinazioak sortzen ditu, eta bakoitza pertsona tester batena da.\n1. Proiektuetan, sakatu + (koordinazioak bakarrik).\n2. Jarri izena, jarduera eta aukeratu pertsona testerra. Nahi baduzu, finka eta datak ere bai.\n3. Sakatu Gorde.\n» Pertsona tester bakoitzak bere proiektua bakarrik ikusten du. Koordinazioak denak ikusten ditu eta, testa amaitzean, proiektuaren menutik ixten du (⋮ → Proiektua itxi).';
+      'Proiektuak koordinazioak sortzen ditu, eta bakoitza pertsona tester batena da, edo gehiagorena, testa partekatua bada.\n1. Proiektuetan, sakatu + (koordinazioak bakarrik).\n2. Jarri izena, jarduera eta markatu pertsona testerra (edo biak, testa bi pertsonarena bada). Nahi baduzu, finka eta datak ere bai.\n3. Sakatu Gorde.\n» Pertsona tester bakoitzak bere proiektua bakarrik ikusten du; test partekatu batean, biek ikusten dute eta biek idazten dute bertan. Koordinazioak denak ikusten ditu eta, testa amaitzean, proiektuaren menutik ixten du (⋮ → Proiektua itxi).';
 
   @override
   String get ayudaApuntarT => 'Zure egunerokoa apuntatu';
@@ -4356,4 +4356,11 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get syncDescartarLocalBoton => 'Baztertu eta konektatu';
+
+  @override
+  String get proyectoPersonasTester => 'Pertsona testerrak';
+
+  @override
+  String get proyectoPersonasTesterAyuda =>
+      'Testa bi pertsonarena bada, markatu biak: biek ikusten dute eta biek idazten dute bertan. Inor markatu gabe, koordinazioak bakarrik ikusten du.';
 }

@@ -1,3 +1,5 @@
+import 'dart:convert' show jsonEncode;
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -7,8 +9,10 @@ import '../l10n/app_localizations.dart';
 import '../modelos/constantes.dart';
 import '../modelos/finca.dart';
 import '../modelos/proyecto_test.dart';
+import '../modelos/tarea_mantenimiento.dart' show unirNombresResponsables;
 import 'widgets/cuerpo_responsivo.dart';
 import 'widgets/relleno_seguro.dart';
+import 'widgets/selector_responsables.dart';
 
 /// Alta o edición (con [proyecto]) de un proyecto de test: la persona
 /// tester y su proceso. Con sincronización, la persona se elige entre las
@@ -44,7 +48,9 @@ class _NuevoProyectoState extends State<NuevoProyecto> {
   final _notas = TextEditingController();
   int? _fincaId;
   DateTime? _inicio;
-  String _personaUid = '';
+
+  /// Personas tester elegidas, en el orden en que se marcaron.
+  List<String> _personasUids = const [];
   String _especie = '';
 
   @override
@@ -58,7 +64,7 @@ class _NuevoProyectoState extends State<NuevoProyecto> {
     _especie = proyecto.especie;
     _notas.text = proyecto.notas;
     _fincaId = proyecto.fincaId;
-    _personaUid = proyecto.personaUid;
+    _personasUids = proyecto.uidsTester;
     if (proyecto.fechaInicioMs != null) {
       _inicio = DateTime.fromMillisecondsSinceEpoch(proyecto.fechaInicioMs!);
     }
@@ -84,6 +90,23 @@ class _NuevoProyectoState extends State<NuevoProyecto> {
     if (d != null) setState(() => _inicio = d);
   }
 
+  /// Lo que va en `persona`: con sincronización, los nombres de las
+  /// elegidas («Ane, Mikel»; si una ya no está en el espacio, el nombre que
+  /// tenía el proyecto); sin ella, lo escrito a mano.
+  String _nombrePersonas() {
+    if (personasEspacio.value.isEmpty) return _persona.text.trim();
+    final nombrePorUid = {
+      for (final persona in personasEspacio.value) persona.uid: persona.nombre
+    };
+    final desconocidas =
+        _personasUids.where((uid) => !nombrePorUid.containsKey(uid));
+    if (desconocidas.isNotEmpty && _personasUids.length == 1) {
+      return _persona.text.trim();
+    }
+    return unirNombresResponsables(
+        [for (final uid in _personasUids) nombrePorUid[uid] ?? uid]);
+  }
+
   Future<void> _guardar() async {
     FocusManager.instance.primaryFocus?.unfocus();
     final textos = AppLocalizations.of(context);
@@ -96,8 +119,9 @@ class _NuevoProyectoState extends State<NuevoProyecto> {
     if (existente?.id != null) {
       await _bd.actualizarProyecto(existente!.id!, {
         'nombre': _nombre.text.trim(),
-        'persona': _persona.text.trim(),
-        'persona_uid': _personaUid,
+        'persona': _nombrePersonas(),
+        'persona_uid': _personasUids.firstOrNull ?? '',
+        'personas_uids': jsonEncode(_personasUids),
         'actividad': _actividad.text.trim(),
         'especie': _especie,
         'finca_id': _fincaId,
@@ -107,8 +131,9 @@ class _NuevoProyectoState extends State<NuevoProyecto> {
     } else {
       await _bd.guardarProyecto(ProyectoTest(
         nombre: _nombre.text.trim(),
-        persona: _persona.text.trim(),
-        personaUid: _personaUid,
+        persona: _nombrePersonas(),
+        personaUid: _personasUids.firstOrNull ?? '',
+        personasUids: _personasUids,
         actividad: _actividad.text.trim(),
         especie: _especie,
         fincaId: _fincaId,
@@ -146,43 +171,19 @@ class _NuevoProyectoState extends State<NuevoProyecto> {
                   decoration:
                       InputDecoration(labelText: textos.proyectoPersona))
             else
-              DropdownButtonFormField<String>(
-                initialValue: _personaUid,
-                decoration:
-                    InputDecoration(labelText: textos.proyectoPersonaTester),
-                items: [
-                  DropdownMenuItem(
-                      value: '', child: Text(textos.proyectoSinPersona)),
-                  for (final persona in personasEspacio.value)
-                    DropdownMenuItem(
-                        value: persona.uid, child: Text(persona.nombre)),
-                  // Tester dada de baja: sin su opción el desplegable falla
-                  // (o se queda en blanco y se perdería al guardar).
-                  if (_personaUid.isNotEmpty &&
-                      !personasEspacio.value
-                          .any((persona) => persona.uid == _personaUid))
-                    DropdownMenuItem(
-                        value: _personaUid,
-                        child: Text(_persona.text.isEmpty
-                            ? _personaUid
-                            : _persona.text)),
-                ],
-                onChanged: (uid) => setState(() {
-                  _personaUid = uid ?? '';
-                  _persona.text = [
-                        for (final persona in personasEspacio.value)
-                          if (persona.uid == _personaUid) persona.nombre,
-                      ].firstOrNull ??
-                      '';
-                }),
+              SelectorResponsables(
+                personas: personasEspacio.value,
+                elegidas: _personasUids,
+                etiqueta: textos.proyectoPersonasTester,
+                ayuda: textos.proyectoPersonasTesterAyuda,
+                alCambiar: (uids) => setState(() => _personasUids = uids),
               ),
             const SizedBox(height: 12),
             TextField(
                 controller: _actividad,
-                decoration:
-                    InputDecoration(
-                        labelText: textos.proyectoActividad,
-                        hintText: textos.proyectoActividadEjemplo)),
+                decoration: InputDecoration(
+                    labelText: textos.proyectoActividad,
+                    hintText: textos.proyectoActividadEjemplo)),
             const SizedBox(height: 12),
             DropdownButtonFormField<String>(
               isExpanded: true,

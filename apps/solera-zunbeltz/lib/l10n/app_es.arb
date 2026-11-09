@@ -383,7 +383,7 @@
   "ayudaTableroTesterT": "Consultar y llevar las tareas al día",
   "ayudaTableroTesterB": "En la app puedes ver las tareas de mantenimiento de las fincas y saber cuáles están pendientes, en curso, hechas o bloqueadas.\n1. En Fincas, pulsa el icono de tareas del buscador de arriba para ver la lista.\n2. Las tareas salen agrupadas por sitio (cada punto, cada pieza y las generales de la finca) y, de partida, solo las abiertas. Con los chips de arriba filtras por finca, estado y prioridad; «Mapa» te lleva al sitio en el mapa.\n3. «Mis tareas» deja solo las que tienes asignadas, también las que compartes con otras personas: en esas, cualquiera puede cambiar el estado y, cuando una la marca hecha, queda hecha para todas.\n4. Toca una tarea para ver su información y cambiar su estado cuando empieces o termines el trabajo. Para darla por hecha, pulsa el círculo con la marca, a la derecha.\n5. Si falta alguna actuación, pídela desde la ficha del punto o la zona para que coordinación la organice.\n» «Bloqueada» es para cuando no se puede seguir por algo ajeno a quien la hace: falta material, hay que esperar a alguien o el tiempo no deja. Coordinación la ve en el panel, en «Pide atención».\n» Las personas tester no pueden asignar tareas a otras personas. Eso lo hace coordinación, que organiza el mantenimiento de las fincas.",
   "ayudaProyectosT": "Crear tu proyecto",
-  "ayudaProyectosB": "Los proyectos los crea coordinación, y cada uno es de una persona tester.\n1. En Proyectos, pulsa + (solo coordinación).\n2. Pon el nombre, la actividad y elige la persona tester. Si quieres, también la finca y las fechas.\n3. Pulsa Guardar.\n» Cada persona tester ve solo su proyecto. Coordinación ve todos y, al terminar el test, lo cierra desde el menú del proyecto (⋮ → Cerrar proyecto).",
+  "ayudaProyectosB": "Los proyectos los crea coordinación, y cada uno es de una persona tester o de varias, si el test es compartido.\n1. En Proyectos, pulsa + (solo coordinación).\n2. Pon el nombre, la actividad y marca la persona tester (o las dos, si el test es de dos personas). Si quieres, también la finca y las fechas.\n3. Pulsa Guardar.\n» Cada persona tester ve solo su proyecto; en un test compartido, las dos lo ven y apuntan en él. Coordinación ve todos y, al terminar el test, lo cierra desde el menú del proyecto (⋮ → Cerrar proyecto).",
   "ayudaApuntarT": "Apuntar tu día a día",
   "ayudaApuntarB": "Dentro del proyecto hay cuatro pestañas: Producción, Comercialización, Validación y Económico.\n1. Ve a la pestaña de lo que quieras apuntar.\n2. Pulsa + y rellena lo que toque: lo producido; una venta (producto, canal, cantidad y precio); una prueba de producto y su resultado; o un gasto o ingreso.\n3. Los gastos van en uno de los seis bloques de la hoja de seguimiento (I. Costes directos … VI. Amortización) y en una partida: elige una de las sugeridas o escribe la tuya.\n4. Guarda. Los números de arriba se actualizan solos.",
   "ayudaNumerosT": "Entender tus números",
@@ -2073,5 +2073,7 @@
       }
     }
   },
-  "syncDescartarLocalBoton": "Descartar y conectar"
+  "syncDescartarLocalBoton": "Descartar y conectar",
+  "proyectoPersonasTester": "Personas tester",
+  "proyectoPersonasTesterAyuda": "Si el test es de dos personas, marca las dos: las dos lo ven y apuntan en él. Sin marcar a nadie, solo lo ve coordinación."
 }

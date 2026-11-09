@@ -1937,7 +1937,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaProyectosB.
   ///
   /// In es, this message translates to:
-  /// **'Los proyectos los crea coordinación, y cada uno es de una persona tester.\n1. En Proyectos, pulsa + (solo coordinación).\n2. Pon el nombre, la actividad y elige la persona tester. Si quieres, también la finca y las fechas.\n3. Pulsa Guardar.\n» Cada persona tester ve solo su proyecto. Coordinación ve todos y, al terminar el test, lo cierra desde el menú del proyecto (⋮ → Cerrar proyecto).'**
+  /// **'Los proyectos los crea coordinación, y cada uno es de una persona tester o de varias, si el test es compartido.\n1. En Proyectos, pulsa + (solo coordinación).\n2. Pon el nombre, la actividad y marca la persona tester (o las dos, si el test es de dos personas). Si quieres, también la finca y las fechas.\n3. Pulsa Guardar.\n» Cada persona tester ve solo su proyecto; en un test compartido, las dos lo ven y apuntan en él. Coordinación ve todos y, al terminar el test, lo cierra desde el menú del proyecto (⋮ → Cerrar proyecto).'**
   String get ayudaProyectosB;
 
   /// No description provided for @ayudaApuntarT.
@@ -7316,6 +7316,18 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Descartar y conectar'**
   String get syncDescartarLocalBoton;
+
+  /// No description provided for @proyectoPersonasTester.
+  ///
+  /// In es, this message translates to:
+  /// **'Personas tester'**
+  String get proyectoPersonasTester;
+
+  /// No description provided for @proyectoPersonasTesterAyuda.
+  ///
+  /// In es, this message translates to:
+  /// **'Si el test es de dos personas, marca las dos: las dos lo ven y apuntan en él. Sin marcar a nadie, solo lo ve coordinación.'**
+  String get proyectoPersonasTesterAyuda;
 }
 
 class _AppLocalizationsDelegate

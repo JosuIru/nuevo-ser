@@ -15,6 +15,7 @@ class SelectorResponsables extends StatelessWidget {
     required this.elegidas,
     required this.alCambiar,
     this.ayuda,
+    this.etiqueta,
   });
 
   final List<PersonaEspacio> personas;
@@ -26,6 +27,9 @@ class SelectorResponsables extends StatelessWidget {
 
   /// Texto bajo las casillas; por defecto, qué pasa sin elegir a nadie.
   final String? ayuda;
+
+  /// Rótulo del campo; por defecto, «Responsables» (de una tarea).
+  final String? etiqueta;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +44,7 @@ class SelectorResponsables extends StatelessWidget {
     ];
     return InputDecorator(
       decoration: InputDecoration(
-        labelText: textos.tareaResponsables,
+        labelText: etiqueta ?? textos.tareaResponsables,
         helperText: ayuda ?? textos.tareaResponsablesAyudaGeneral,
         helperMaxLines: 3,
       ),

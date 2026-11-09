@@ -210,6 +210,19 @@ publicados por cada sistema; **por verificar** contra el estándar vigente.
   dudoso: sin propuesta de impuesto fuera de la venta de madera o leña de un
   particular.
 
+- **2026-11-09 — Mapa común (`packages/nuevo_ser_mapa`)**: fuera
+  `utiles/geodesia.dart`, `utiles/permisos_gps.dart`, `modelos/contorno.dart` y
+  `posicionActual()`. El contorno del rodal se marca con el editor común
+  (`CampoArea` en la ficha, «Dibujar el contorno» y tocar el rodal en el mapa
+  abren `editarArea`), con los otros rodales de fondo; sin «usar la superficie
+  calculada», porque la declarada se compara con la dibujada
+  (`dominio/superficies.dart`). Las líneas (pistas, cortafuegos, fajas) siguen
+  caminando con `PantallaTrazado`, ya solo de línea abierta. Puntos de agua y
+  árboles con `CampoPunto` (GPS o mapa); el botón rápido de la lista de árboles
+  se queda. `Rodal.contorno` e `InfraestructuraIncendios.traza` pasan a
+  `List<LatLng>`; el JSON es el mismo, sin migración. El mapa cambia entre
+  callejero y ortofoto.
+
 ## Datos técnicos
 
 - Paquete `solera_monte`, BD `solera_monte.db` sobre `BaseDatosSolera` del core.

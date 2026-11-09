@@ -1,34 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart';
 
 import '../branding.dart';
 import '../datos/base_datos.dart';
 import '../dominio/catalogos.dart';
 import '../dominio/incendios.dart';
+import '../estado/cambios_datos.dart';
 import '../modelos/arbol_singular.dart';
-import '../modelos/contorno.dart';
 import '../modelos/incendios.dart';
 import '../modelos/rodal.dart';
-import '../utiles/geodesia.dart';
-import '../utiles/permisos_gps.dart';
 import '../utiles/textos_monte.dart';
 
-/// Pide la posición actual con el GPS; null si no hay permiso o no llega.
-Future<LatLng?> posicionActual() async {
-  if (!await asegurarPermisoUbicacion()) return null;
-  try {
-    final posicion = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
-      timeLimit: const Duration(seconds: 30),
-    );
-    return LatLng(posicion.latitude, posicion.longitude);
-  } catch (error) {
-    debugPrint('Sin posición GPS: $error');
-    return null;
-  }
+/// Los otros rodales, para verlos de fondo al marcar el área de [rodal].
+List<AreaDeFondo> areasDeFondoPara(List<Rodal> rodales, Rodal? rodal) => [
+      for (final otro in rodales)
+        if (otro.id != rodal?.id && otro.tieneContorno)
+          (nombre: otro.codigo, vertices: otro.contorno),
+    ];
+
+/// Dónde abrir el mapa si el rodal aún no tiene área: en los demás.
+LatLng? centroDeRodales(List<Rodal> rodales) =>
+    centroide([for (final rodal in rodales) ...rodal.contorno]);
+
+/// Abre el editor común de áreas (dibujar, caminar la linde con «Mi
+/// posición», ajustar esquinas, importar) y guarda el contorno del rodal.
+/// La superficie declarada no se toca: la comparación declarada/dibujada
+/// sigue en `dominio/superficies.dart`.
+Future<void> editarAreaRodal(BuildContext context, Rodal rodal) async {
+  final bd = BaseDatosSoleraMonte.instancia;
+  final rodales = await bd.listarRodales();
+  if (!context.mounted) return;
+  final esquinas = await editarArea(context,
+      inicial: rodal.contorno,
+      titulo: rodal.etiqueta,
+      centro: centroDeRodales(rodales),
+      areasDeFondo: areasDeFondoPara(rodales, rodal),
+      paqueteApp: paqueteAppMonte);
+  if (esquinas == null) return;
+  await bd.guardarRodal(rodal.conContorno(esquinas));
+  avisarCambioDatos();
 }
 
 class _DatosMapa {
@@ -42,25 +55,42 @@ class _DatosMapa {
 /// Mapa del monte: rodales con su contorno, pistas y cortafuegos, puntos de
 /// agua y árboles. Sin cobertura no se ven las teselas, pero lo dibujado sí.
 class PantallaMapaMonte extends StatefulWidget {
-  const PantallaMapaMonte({super.key});
+  const PantallaMapaMonte({super.key, this.conTeselas = true});
+
+  /// Los tests no bajan teselas.
+  final bool conTeselas;
 
   @override
   State<PantallaMapaMonte> createState() => _PantallaMapaMonteState();
 }
 
 class _PantallaMapaMonteState extends State<PantallaMapaMonte> {
-  final Future<_DatosMapa> _datos = () async {
+  late Future<_DatosMapa> _datos = _cargar();
+  CapaBase _capa = CapaBase.callejero;
+
+  static Future<_DatosMapa> _cargar() async {
     final bd = BaseDatosSoleraMonte.instancia;
     return _DatosMapa(
         await bd.listarRodales(),
         await bd.listarInfraestructuras(soloActivas: true),
         await bd.listarArboles());
-  }();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(SoleraL10n.t('mont.mapa'))),
+      appBar: AppBar(
+        title: Text(SoleraL10n.t('mont.mapa')),
+        actions: [
+          IconButton(
+            tooltip: SoleraL10n.t('mapa.cambiar_capa'),
+            icon: Icon(_capa == CapaBase.ortofoto
+                ? Icons.map_outlined
+                : Icons.satellite_alt_outlined),
+            onPressed: () => setState(() => _capa = _capa.otra),
+          ),
+        ],
+      ),
       body: FutureBuilder<_DatosMapa>(
         future: _datos,
         builder: (context, instantanea) {
@@ -77,8 +107,8 @@ class _PantallaMapaMonteState extends State<PantallaMapaMonte> {
               datos.infraestructuras.where((i) => i.tieneUbicacion).toList();
           final arboles = datos.arboles.where((a) => a.tieneUbicacion).toList();
           final todos = [
-            for (final rodal in conContorno) ...aLatLng(rodal.contorno),
-            for (final linea in lineas) ...aLatLng(linea.traza),
+            for (final rodal in conContorno) ...rodal.contorno,
+            for (final linea in lineas) ...linea.traza,
             for (final punto in puntos) LatLng(punto.latitud!, punto.longitud!),
             for (final arbol in arboles)
               LatLng(arbol.latitud!, arbol.longitud!),
@@ -98,26 +128,16 @@ class _PantallaMapaMonteState extends State<PantallaMapaMonte> {
                             padding: const EdgeInsets.all(32)),
                   ),
                   children: [
-                    TileLayer(
-                      urlTemplate:
-                          'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                      userAgentPackageName:
-                          'com.coleccionnuevoser.solera_monte',
-                    ),
-                    PolygonLayer(polygons: [
+                    if (widget.conTeselas)
+                      capaDeTeselas(_capa, paqueteApp: paqueteAppMonte),
+                    capaDeAreas([
                       for (final rodal in conContorno)
-                        Polygon(
-                          points: aLatLng(rodal.contorno),
-                          color: colorPrimarioMonte.withValues(alpha: 0.25),
-                          borderColor: colorPrimarioMonte,
-                          borderStrokeWidth: 2,
-                          label: rodal.codigo,
-                        ),
-                    ]),
+                        (nombre: rodal.codigo, vertices: rodal.contorno),
+                    ], color: colorPrimarioMonte),
                     PolylineLayer(polylines: [
                       for (final linea in lineas)
                         Polyline(
-                          points: aLatLng(linea.traza),
+                          points: linea.traza,
                           strokeWidth: 3,
                           color: linea.tipo == 'pista'
                               ? Colors.brown
@@ -140,6 +160,7 @@ class _PantallaMapaMonteState extends State<PantallaMapaMonte> {
                           child: const Icon(Icons.park, color: Colors.green),
                         ),
                     ]),
+                    AtribucionCapa(_capa),
                   ],
                 ),
               ),
@@ -157,6 +178,13 @@ class _PantallaMapaMonteState extends State<PantallaMapaMonte> {
                         subtitle: Text(rodal.tieneContorno
                             ? '${formatearNumero(rodal.superficieCalculadaHa, decimales: 2)} ha (${SoleraL10n.t('mont.calculada')}) · ${nombreEspecie(rodal.especiePrincipalId)}'
                             : SoleraL10n.t('mont.sin_contorno')),
+                        onTap: () async {
+                          await editarAreaRodal(context, rodal);
+                          if (!mounted) return;
+                          setState(() {
+                            _datos = _cargar();
+                          });
+                        },
                       ),
                   ],
                 ),
@@ -169,59 +197,56 @@ class _PantallaMapaMonteState extends State<PantallaMapaMonte> {
   }
 }
 
-/// Trazar caminando: en cada esquina (o recodo de la pista), «Añadir punto
-/// aquí» guarda la posición del GPS. [cerrado] = polígono (rodal); si no,
-/// línea (pista, cortafuegos). Devuelve los vértices al guardar.
+/// Trazar una línea caminando (pista, cortafuegos, faja): en cada recodo,
+/// «Añadir punto aquí» guarda la posición del GPS. Devuelve los vértices al
+/// guardar. Las áreas (rodales) van con el editor común de `nuevo_ser_mapa`,
+/// que no hace líneas.
 class PantallaTrazado extends StatefulWidget {
   const PantallaTrazado({
     super.key,
     required this.titulo,
     required this.verticesIniciales,
-    required this.cerrado,
+    this.leerGps = leerPosicionActual,
   });
 
   final String titulo;
-  final List<(double, double)> verticesIniciales;
-  final bool cerrado;
+  final List<LatLng> verticesIniciales;
+
+  /// Se sustituye en los tests.
+  final Future<LecturaGps?> Function() leerGps;
 
   @override
   State<PantallaTrazado> createState() => _PantallaTrazadoState();
 }
 
 class _PantallaTrazadoState extends State<PantallaTrazado> {
-  late List<(double, double)> _vertices = [...widget.verticesIniciales];
+  late List<LatLng> _vertices = [...widget.verticesIniciales];
   bool _buscando = false;
 
   Future<void> _anadirPunto() async {
     final mensajero = ScaffoldMessenger.of(context);
     setState(() => _buscando = true);
-    final posicion = await posicionActual();
+    final lectura = await widget.leerGps();
     if (!mounted) return;
     setState(() => _buscando = false);
-    if (posicion == null) {
+    if (lectura == null) {
       mensajero
           .showSnackBar(SnackBar(content: Text(SoleraL10n.t('mont.sin_gps'))));
       return;
     }
-    setState(() =>
-        _vertices = [..._vertices, (posicion.latitude, posicion.longitude)]);
+    setState(() => _vertices = [..._vertices, lectura.posicion]);
   }
 
   @override
   Widget build(BuildContext context) {
-    final medida = widget.cerrado
-        ? '${formatearNumero(superficieHectareas(aLatLng(_vertices)), decimales: 2)} ha · '
-            '${formatearNumero(perimetroMetros(aLatLng(_vertices)), decimales: 0)} m'
-        : '${formatearNumero(longitudTrazaMetros(_vertices), decimales: 0)} m';
+    final medida =
+        '${formatearNumero(longitudTrazaMetros(_vertices), decimales: 0)} m';
     return Scaffold(
       appBar: AppBar(title: Text(widget.titulo)),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          Text(
-              SoleraL10n.t(widget.cerrado
-                  ? 'mont.explicacion_contorno'
-                  : 'mont.explicacion_traza'),
+          Text(SoleraL10n.t('mont.explicacion_traza'),
               style: Theme.of(context).textTheme.bodySmall),
           const SizedBox(height: 12),
           FilledButton.icon(
@@ -235,12 +260,12 @@ class _PantallaTrazadoState extends State<PantallaTrazado> {
               style: Theme.of(context).textTheme.titleMedium),
           Text(SoleraL10n.t('mont.superficie_orientativa'),
               style: Theme.of(context).textTheme.bodySmall),
-          for (final (indice, (latitud, longitud)) in _vertices.indexed)
+          for (final (indice, vertice) in _vertices.indexed)
             ListTile(
               dense: true,
               leading: Text('${indice + 1}'),
-              title: Text(
-                  '${latitud.toStringAsFixed(6)}, ${longitud.toStringAsFixed(6)}'),
+              title: Text('${vertice.latitude.toStringAsFixed(6)}, '
+                  '${vertice.longitude.toStringAsFixed(6)}'),
             ),
           Row(
             children: [

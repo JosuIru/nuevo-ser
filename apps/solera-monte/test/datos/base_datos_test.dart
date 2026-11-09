@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:solera_monte/datos/base_datos.dart';
 import 'package:solera_monte/modelos/actuacion_plan.dart';
@@ -55,7 +56,11 @@ void main() {
     await baseDatos.guardarRodal(Rodal(
         codigo: '2a',
         especiePrincipalId: 'pinus_sylvestris',
-        contorno: const [(42.8, -1.6), (42.8, -1.59), (42.79, -1.59)]));
+        contorno: const [
+          LatLng(42.8, -1.6),
+          LatLng(42.8, -1.59),
+          LatLng(42.79, -1.59)
+        ]));
     await baseDatos.guardarRodal(
         Rodal(codigo: '1b', especiePrincipalId: 'fagus_sylvatica'));
     await expectLater(

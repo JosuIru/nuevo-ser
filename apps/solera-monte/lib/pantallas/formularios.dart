@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart' show CampoArea, CampoPunto;
+
+import '../branding.dart';
 
 import '../datos/base_datos.dart';
 import '../dominio/aprovechamientos.dart';
@@ -15,6 +19,7 @@ import '../modelos/sorteo_lena.dart';
 import '../utiles/textos_monte.dart';
 import 'campo_catalogo.dart';
 import 'hoja_formulario.dart';
+import 'pantalla_mapa.dart' show areasDeFondoPara, centroDeRodales;
 
 // Altas y ediciones en hojas inferiores. Cada función devuelve true si se
 // guardó y avisa a las pestañas abiertas.
@@ -36,6 +41,9 @@ String idEspecieDesdeTexto(String texto) {
 // ─── Rodal ───────────────────────────────────────────────────────────
 
 Future<bool> mostrarEdicionRodal(BuildContext context, {Rodal? rodal}) async {
+  final rodales = await _bd.listarRodales();
+  if (!context.mounted) return false;
+  var contorno = rodal?.contorno ?? const <LatLng>[];
   final codigo = TextEditingController(text: rodal?.codigo);
   final nombre = TextEditingController(text: rodal?.nombre);
   final especie = TextEditingController(
@@ -62,6 +70,15 @@ Future<bool> mostrarEdicionRodal(BuildContext context, {Rodal? rodal}) async {
           decimales: false, ayuda: SoleraL10n.t('mont.anyo_origen_ayuda')),
       campoNumero(superficie, SoleraL10n.t('mont.superficie_declarada'),
           ayuda: SoleraL10n.t('mont.superficie_declarada_ayuda')),
+      // Sin «usar la superficie calculada»: la declarada es la del plan o
+      // la escritura y se compara con la dibujada (dominio/superficies).
+      CampoArea(
+        vertices: contorno,
+        centro: centroDeRodales(rodales),
+        areasDeFondo: areasDeFondoPara(rodales, rodal),
+        paqueteApp: paqueteAppMonte,
+        alCambiar: (nuevo) => refrescar(() => contorno = nuevo),
+      ),
       etiquetaGrupo(context, SoleraL10n.t('mont.estado_masa')),
       selectorChips(
           opciones: estadosMasa,
@@ -86,7 +103,7 @@ Future<bool> mostrarEdicionRodal(BuildContext context, {Rodal? rodal}) async {
           anyoOrigen: leerEntero(anyo.text),
           estadoMasa: estado,
           superficieDeclaradaHa: leerNumero(superficie.text),
-          contorno: rodal?.contorno ?? const [],
+          contorno: contorno,
           notas: notas.text.trim(),
         ));
       } catch (_) {
@@ -513,6 +530,8 @@ Future<bool> mostrarEdicionArbol(BuildContext context,
   final radio =
       TextEditingController(text: numeroParaCampo(arbol?.radioParcelaM));
   final notas = TextEditingController(text: arbol?.notas);
+  var latitud = arbol?.latitud;
+  var longitud = arbol?.longitud;
   String? error;
   return mostrarHojaFormulario(
     context,
@@ -540,6 +559,17 @@ Future<bool> mostrarEdicionArbol(BuildContext context,
         campoNumero(altura, SoleraL10n.t('mont.altura_m')),
       ] else
         campoNumero(radio, SoleraL10n.t('mont.radio_parcela_m')),
+      CampoPunto(
+        latitud: latitud,
+        longitud: longitud,
+        areasDeFondo: areasDeFondoPara(rodales, null),
+        centro: centroDeRodales(rodales),
+        paqueteApp: paqueteAppMonte,
+        alCambiar: (nuevaLatitud, nuevaLongitud) => refrescar(() {
+          latitud = nuevaLatitud;
+          longitud = nuevaLongitud;
+        }),
+      ),
       campoTexto(notas, SoleraL10n.t('mont.notas'), lineas: 2),
       if (error != null) textoAviso(context, error!),
     ],
@@ -558,8 +588,8 @@ Future<bool> mostrarEdicionArbol(BuildContext context,
               : idEspecieDesdeTexto(especie.text),
           nombre: nombre.text.trim(),
           rodalId: rodalId,
-          latitud: arbol?.latitud,
-          longitud: arbol?.longitud,
+          latitud: latitud,
+          longitud: longitud,
           perimetroCm: leerNumero(perimetro.text),
           alturaM: leerNumero(altura.text),
           radioParcelaM: leerNumero(radio.text),

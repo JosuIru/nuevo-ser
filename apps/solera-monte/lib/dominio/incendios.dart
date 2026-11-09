@@ -1,7 +1,8 @@
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart' show distanciaMetros;
+
 import '../modelos/incendios.dart';
 import '../modelos/monte.dart';
-import '../utiles/geodesia.dart';
-import '../modelos/contorno.dart';
 
 /// Días antes del inicio de la época de peligro en los que la app empieza a
 /// recordar las revisiones. Decisión de la app, no de ninguna norma.
@@ -9,8 +10,7 @@ const int diasAvisoAntesEpoca = 45;
 
 /// Longitud de una traza abierta (pista, cortafuegos) en metros: suma de
 /// tramos, sin cerrar el anillo.
-double longitudTrazaMetros(List<(double, double)> traza) {
-  final puntos = aLatLng(traza);
+double longitudTrazaMetros(List<LatLng> puntos) {
   var total = 0.0;
   for (var indice = 1; indice < puntos.length; indice++) {
     total += distanciaMetros(puntos[indice - 1], puntos[indice]);

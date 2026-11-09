@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:solera_monte/modelos/actuacion_plan.dart';
 import 'package:solera_monte/modelos/apunte_economico.dart';
 import 'package:solera_monte/modelos/aprovechamiento.dart';
 import 'package:solera_monte/modelos/arbol_singular.dart';
-import 'package:solera_monte/modelos/contorno.dart';
 import 'package:solera_monte/modelos/ejecucion.dart';
 import 'package:solera_monte/modelos/incendios.dart';
 import 'package:solera_monte/modelos/monte.dart';
@@ -36,22 +36,25 @@ void main() {
     expect(Monte(figura: 'particular').esComunal, isFalse);
   });
 
-  test('contorno: JSON defensivo', () {
-    final texto = codificarContorno(const [(42.1, -1.5), (42.2, -1.6)]);
-    expect(leerContorno(texto), const [(42.1, -1.5), (42.2, -1.6)]);
-    expect(leerContorno('no es json'), isEmpty);
-    expect(leerContorno('[[1],[2,"a"],[3,4]]'), const [(3.0, 4.0)]);
-    expect(leerContorno(null), isEmpty);
+  test('contorno y traza: JSON defensivo al leer la fila', () {
+    expect(Rodal.fromMap(const {'contorno': 'no es json'}).contorno, isEmpty);
+    expect(Rodal.fromMap(const {'contorno': '[[1],[2,"a"],[3,4]]'}).contorno,
+        const [LatLng(3, 4)]);
+    expect(Rodal.fromMap(const {}).contorno, isEmpty);
+    expect(
+        InfraestructuraIncendios.fromMap(const {'traza': '[[42.1,-1.5]]'})
+            .traza,
+        const [LatLng(42.1, -1.5)]);
   });
 
   test('rodal: superficie declarada o dibujada, edad, etiqueta', () {
     // Cuadrado de ~100 m de lado a 42,8° N: ~1 ha.
     const lado = 0.0009;
-    final contorno = [
-      (42.8, -1.6),
-      (42.8 + lado, -1.6),
-      (42.8 + lado, -1.6 + lado / 0.7337),
-      (42.8, -1.6 + lado / 0.7337),
+    const contorno = [
+      LatLng(42.8, -1.6),
+      LatLng(42.8 + lado, -1.6),
+      LatLng(42.8 + lado, -1.6 + lado / 0.7337),
+      LatLng(42.8, -1.6 + lado / 0.7337),
     ];
     final rodal = Rodal.fromMap(Rodal(
       codigo: '3c',
@@ -154,7 +157,9 @@ void main() {
 
   test('infraestructura y revisión: ida y vuelta, traza, lineal', () {
     final pista = InfraestructuraIncendios.fromMap(InfraestructuraIncendios(
-        tipo: 'pista', nombre: 'Pista', traza: const [(1, 2), (3, 4)]).toMap());
+        tipo: 'pista',
+        nombre: 'Pista',
+        traza: const [LatLng(1, 2), LatLng(3, 4)]).toMap());
     expect((pista.esLineal, pista.traza.length), (true, 2));
     final balsa = InfraestructuraIncendios(
             tipo: 'punto_agua', nombre: 'Balsa', capacidadM3: 50)

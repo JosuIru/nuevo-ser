@@ -1,4 +1,6 @@
-import 'contorno.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart'
+    show codificarContorno, leerContorno;
 
 /// Infraestructuras de prevención y defensa contra incendios.
 const List<String> tiposInfraestructuraIncendios = [
@@ -49,8 +51,9 @@ class InfraestructuraIncendios {
   final double? latitud;
   final double? longitud;
 
-  /// Traza de una pista o un cortafuegos (vértices con el GPS).
-  final List<(double, double)> traza;
+  /// Traza de una pista o un cortafuegos (vértices con el GPS): línea
+  /// abierta, mismo JSON `[[lat,lng],…]` que los contornos.
+  final List<LatLng> traza;
 
   /// Longitud declarada (m); si no, la de la traza.
   final double? longitudM;
@@ -68,7 +71,7 @@ class InfraestructuraIncendios {
       InfraestructuraIncendios.fromMap(
           {...toMap(), 'latitud': latitud, 'longitud': longitud});
 
-  InfraestructuraIncendios conTraza(List<(double, double)> nuevaTraza) =>
+  InfraestructuraIncendios conTraza(List<LatLng> nuevaTraza) =>
       InfraestructuraIncendios.fromMap(
           {...toMap(), 'traza': codificarContorno(nuevaTraza)});
 

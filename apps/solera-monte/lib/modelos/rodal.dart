@@ -1,5 +1,7 @@
-import '../utiles/geodesia.dart';
-import 'contorno.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart'
+    show codificarContorno, leerContorno, superficieHectareas, tieneArea;
+
 import 'lista_ids.dart';
 
 /// Estado de la masa del rodal (descripción selvícola sencilla).
@@ -14,7 +16,8 @@ const List<String> estadosMasa = [
 ];
 
 /// Unidad de gestión del monte: una superficie con especie, edad y estado
-/// parecidos. Su contorno se dibuja caminando la linde con el GPS.
+/// parecidos. Su contorno se marca con el editor común de áreas (dibujar,
+/// caminar la linde con el GPS, ajustar, importar).
 class Rodal {
   Rodal({
     this.id,
@@ -49,15 +52,15 @@ class Rodal {
   /// Superficie del plan o de la escritura (ha); null = sin dato.
   final double? superficieDeclaradaHa;
 
-  /// Vértices (latitud, longitud) tomados con el GPS.
-  final List<(double, double)> contorno;
+  /// Esquinas del área. Columna `contorno`, JSON `[[lat,lng],…]`.
+  final List<LatLng> contorno;
   final String notas;
 
-  bool get tieneContorno => contorno.length >= 3;
+  bool get tieneContorno => tieneArea(contorno);
 
   /// Superficie del polígono (ha, orientativa: exceso esférico); 0 sin
   /// contorno.
-  double get superficieCalculadaHa => superficieHectareas(aLatLng(contorno));
+  double get superficieCalculadaHa => superficieHectareas(contorno);
 
   /// La declarada si la hay; si no, la calculada (0 sin ninguna).
   double get superficieHa => superficieDeclaradaHa ?? superficieCalculadaHa;
@@ -72,7 +75,7 @@ class Rodal {
     return anyo - origen;
   }
 
-  Rodal conContorno(List<(double, double)> nuevoContorno) =>
+  Rodal conContorno(List<LatLng> nuevoContorno) =>
       Rodal.fromMap({...toMap(), 'contorno': codificarContorno(nuevoContorno)});
 
   Map<String, Object?> toMap() => {

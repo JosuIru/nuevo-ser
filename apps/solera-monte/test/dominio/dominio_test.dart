@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:solera_monte/dominio/aprovechamientos.dart';
 import 'package:solera_monte/dominio/incendios.dart';
 import 'package:solera_monte/dominio/plan_gestion.dart';
@@ -35,10 +36,10 @@ void main() {
           especiePrincipalId: 'pino',
           superficieDeclaradaHa: 0.5,
           contorno: const [
-            (42.8, -1.6),
-            (42.8009, -1.6),
-            (42.8009, -1.59877),
-            (42.8, -1.59877)
+            LatLng(42.8, -1.6),
+            LatLng(42.8009, -1.6),
+            LatLng(42.8009, -1.59877),
+            LatLng(42.8, -1.59877)
           ]);
       expect(diferenciaDibujadaDeclarada(dibujado), closeTo(1.0, 0.1));
     });
@@ -307,9 +308,10 @@ void main() {
 
     test('longitud de una traza abierta', () {
       // 0,009° de latitud ≈ 1000 m.
-      expect(longitudTrazaMetros(const [(42.0, -1.0), (42.009, -1.0)]),
+      expect(
+          longitudTrazaMetros(const [LatLng(42.0, -1.0), LatLng(42.009, -1.0)]),
           closeTo(1000, 5));
-      expect(longitudTrazaMetros(const [(42.0, -1.0)]), 0);
+      expect(longitudTrazaMetros(const [LatLng(42.0, -1.0)]), 0);
       expect(
           longitudInfraestructuraMetros(InfraestructuraIncendios(
               tipo: 'pista', nombre: 'x', longitudM: 350)),

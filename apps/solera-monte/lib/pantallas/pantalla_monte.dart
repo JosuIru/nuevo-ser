@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show SoleraL10n, TituloBloqueSolera;
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart'
+    show CampoPunto, leerPosicionActual;
+
+import '../branding.dart';
 
 import '../datos/base_datos.dart';
 import '../dominio/catalogos.dart';
@@ -229,7 +234,7 @@ Future<void> abrirFichaRodal(BuildContext context, Rodal rodal) async {
             onTap: () => Navigator.pop(contexto, 'editar'),
           ),
           ListTile(
-            leading: const Icon(Icons.directions_walk),
+            leading: const Icon(Icons.edit_location_alt_outlined),
             title: Text(SoleraL10n.t('mont.dibujar_contorno')),
             onTap: () => Navigator.pop(contexto, 'contorno'),
           ),
@@ -248,16 +253,7 @@ Future<void> abrirFichaRodal(BuildContext context, Rodal rodal) async {
     case 'editar':
       await mostrarEdicionRodal(context, rodal: rodal);
     case 'contorno':
-      final vertices = await Navigator.push<List<(double, double)>>(
-          context,
-          MaterialPageRoute(
-              builder: (_) => PantallaTrazado(
-                  titulo: rodal.etiqueta,
-                  verticesIniciales: rodal.contorno,
-                  cerrado: true)));
-      if (vertices == null) return;
-      await bd.guardarRodal(rodal.conContorno(vertices));
-      avisarCambioDatos();
+      await editarAreaRodal(context, rodal);
     case 'borrar':
       if (!await confirmar(context, 'mont.borrar_rodal')) return;
       try {
@@ -314,14 +310,15 @@ class _ListaArboles extends StatelessWidget {
               tooltip: SoleraL10n.t('mont.usar_mi_ubicacion'),
               icon: const Icon(Icons.my_location),
               onPressed: () async {
-                final posicion = await posicionActual();
+                final lectura = await leerPosicionActual();
                 if (!context.mounted) return;
-                if (posicion == null) {
+                if (lectura == null) {
                   avisarConMensaje(context, 'mont.sin_gps');
                   return;
                 }
                 await BaseDatosSoleraMonte.instancia.guardarArbol(
-                    arbol.conUbicacion(posicion.latitude, posicion.longitude));
+                    arbol.conUbicacion(
+                        lectura.posicion.latitude, lectura.posicion.longitude));
                 avisarCambioDatos();
               },
             ),
@@ -437,28 +434,29 @@ class _PantallaInfraestructuraState extends State<PantallaInfraestructura> {
     );
   }
 
-  Future<void> _ubicar(InfraestructuraIncendios infraestructura) async {
-    final bd = BaseDatosSoleraMonte.instancia;
-    if (infraestructura.esLineal) {
-      final traza = await Navigator.push<List<(double, double)>>(
-          context,
-          MaterialPageRoute(
-              builder: (_) => PantallaTrazado(
-                  titulo: infraestructura.nombre,
-                  verticesIniciales: infraestructura.traza,
-                  cerrado: false)));
-      if (traza == null) return;
-      await bd.guardarInfraestructura(infraestructura.conTraza(traza));
-    } else {
-      final posicion = await posicionActual();
-      if (!mounted) return;
-      if (posicion == null) {
-        avisarConMensaje(context, 'mont.sin_gps');
-        return;
-      }
-      await bd.guardarInfraestructura(
-          infraestructura.conUbicacion(posicion.latitude, posicion.longitude));
-    }
+  /// Pistas, cortafuegos y fajas: traza abierta caminando.
+  Future<void> _trazar(InfraestructuraIncendios infraestructura) async {
+    final traza = await Navigator.push<List<LatLng>>(
+        context,
+        MaterialPageRoute(
+            builder: (_) => PantallaTrazado(
+                titulo: infraestructura.nombre,
+                verticesIniciales: infraestructura.traza)));
+    if (traza == null) return;
+    await BaseDatosSoleraMonte.instancia
+        .guardarInfraestructura(infraestructura.conTraza(traza));
+    avisarCambioDatos();
+  }
+
+  /// Puntos de agua y demás: el punto con el GPS o marcado en el mapa.
+  Future<void> _ubicar(InfraestructuraIncendios infraestructura,
+      double? latitud, double? longitud) async {
+    await BaseDatosSoleraMonte.instancia
+        .guardarInfraestructura(InfraestructuraIncendios.fromMap({
+      ...infraestructura.toMap(),
+      'latitud': latitud,
+      'longitud': longitud,
+    }));
     avisarCambioDatos();
   }
 
@@ -509,20 +507,25 @@ class _PantallaInfraestructuraState extends State<PantallaInfraestructura> {
                           infraestructura.notas,
                       ].join(' · ')),
                     ),
-                    ListTile(
-                      leading: Icon(infraestructura.esLineal
-                          ? Icons.directions_walk
-                          : Icons.my_location),
-                      title: Text(SoleraL10n.t(infraestructura.esLineal
-                          ? 'mont.trazar_caminando'
-                          : 'mont.usar_mi_ubicacion')),
-                      subtitle: Text(infraestructura.esLineal
-                          ? '${infraestructura.traza.length} ${SoleraL10n.t('mont.puntos')}'
-                          : infraestructura.tieneUbicacion
-                              ? '${infraestructura.latitud!.toStringAsFixed(5)}, ${infraestructura.longitud!.toStringAsFixed(5)}'
-                              : SoleraL10n.t('mont.sin_ubicacion')),
-                      onTap: () => _ubicar(infraestructura),
-                    ),
+                    if (infraestructura.esLineal)
+                      ListTile(
+                        leading: const Icon(Icons.directions_walk),
+                        title: Text(SoleraL10n.t('mont.trazar_caminando')),
+                        subtitle: Text(
+                            '${infraestructura.traza.length} ${SoleraL10n.t('mont.puntos')}'),
+                        onTap: () => _trazar(infraestructura),
+                      )
+                    else
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: CampoPunto(
+                          latitud: infraestructura.latitud,
+                          longitud: infraestructura.longitud,
+                          paqueteApp: paqueteAppMonte,
+                          alCambiar: (latitud, longitud) =>
+                              _ubicar(infraestructura, latitud, longitud),
+                        ),
+                      ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child:

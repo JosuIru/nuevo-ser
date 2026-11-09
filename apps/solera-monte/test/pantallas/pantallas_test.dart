@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart'
+    show CampoArea, CampoPunto, CapaBase, TextoCapaBase;
 import 'package:solera_monte/datos/base_datos.dart';
 import 'package:solera_monte/modelos/actuacion_plan.dart';
 import 'package:solera_monte/modelos/aprovechamiento.dart';
@@ -11,6 +14,7 @@ import 'package:solera_monte/modelos/rodal.dart';
 import 'package:solera_monte/modelos/sorteo_lena.dart';
 import 'package:solera_monte/pantallas/pantalla_aprovechamientos.dart';
 import 'package:solera_monte/pantallas/pantalla_hoy.dart';
+import 'package:solera_monte/pantallas/pantalla_mapa.dart';
 import 'package:solera_monte/pantallas/pantalla_monte.dart';
 import 'package:solera_monte/pantallas/pantalla_plan.dart';
 import 'package:solera_monte/pantallas/pantalla_sorteo.dart';
@@ -71,7 +75,7 @@ void main() {
       await tester.pumpWidget(const MaterialApp(home: PantallaMonte()));
       await esperar(tester);
       await tester.tap(find.text(SoleraL10n.t('mont.nuevo_rodal')));
-      await esperar(tester, 100);
+      await esperar(tester);
       await tester.enterText(find.byType(TextField).at(0), '1a');
       await tester.enterText(find.byType(TextField).at(2), 'Haya');
       await tester.enterText(find.byType(TextField).at(4), '3,5');
@@ -174,5 +178,70 @@ void main() {
         scrollable: find.byType(Scrollable).first);
     expect(verificado, findsOneWidget);
     expect(find.text(SoleraL10n.t('mont.lista_espera')), findsOneWidget);
+  });
+
+  testWidgets('la ficha del rodal ofrece marcar el área en el mapa',
+      (tester) async {
+    await tester.runAsync(() async {
+      await tester.pumpWidget(const MaterialApp(home: PantallaMonte()));
+      await esperar(tester);
+      await tester.tap(find.text(SoleraL10n.t('mont.nuevo_rodal')));
+      await esperar(tester);
+    });
+    expect(find.byType(CampoArea), findsOneWidget);
+    expect(find.text(SoleraL10n.t('mapa.sin_area')), findsOneWidget);
+  });
+
+  testWidgets('mapa del monte: rodal con área, lista y cambio de capa',
+      (tester) async {
+    await tester.runAsync(() async {
+      await baseDatos.guardarRodal(Rodal(
+          codigo: 'R1',
+          especiePrincipalId: 'pinus_sylvestris',
+          contorno: const [
+            LatLng(42.8, -1.6),
+            LatLng(42.8009, -1.6),
+            LatLng(42.8009, -1.59877),
+            LatLng(42.8, -1.59877)
+          ]));
+      await tester.pumpWidget(
+          const MaterialApp(home: PantallaMapaMonte(conTeselas: false)));
+      await esperar(tester);
+    });
+    expect(find.textContaining('1,00 ha'), findsOneWidget);
+    expect(find.text(CapaBase.callejero.atribucion), findsOneWidget);
+    await tester.tap(find.byTooltip(SoleraL10n.t('mapa.cambiar_capa')));
+    await tester.pump();
+    expect(find.text(CapaBase.ortofoto.atribucion), findsOneWidget);
+  });
+
+  testWidgets('traza de una pista: añade la posición y mide la línea',
+      (tester) async {
+    await tester.pumpWidget(MaterialApp(
+        home: PantallaTrazado(
+      titulo: 'Pista',
+      verticesIniciales: const [LatLng(42.0, -1.0)],
+      leerGps: () async =>
+          (posicion: const LatLng(42.009, -1.0), precisionMetros: 4.0),
+    )));
+    expect(find.textContaining('1 ${SoleraL10n.t('mont.puntos')} · 0 m'),
+        findsOneWidget);
+    await tester.tap(find.text(SoleraL10n.t('mont.anadir_punto_aqui')));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('2 ${SoleraL10n.t('mont.puntos')} · 1.00'),
+        findsOneWidget);
+  });
+
+  testWidgets('punto de agua: ubicación con el campo común', (tester) async {
+    late int id;
+    await tester.runAsync(() async {
+      id = await baseDatos.guardarInfraestructura(
+          InfraestructuraIncendios(tipo: 'punto_agua', nombre: 'Balsa'));
+      await tester.pumpWidget(
+          MaterialApp(home: PantallaInfraestructura(infraestructuraId: id)));
+      await esperar(tester);
+    });
+    expect(find.byType(CampoPunto), findsOneWidget);
+    expect(find.text(SoleraL10n.t('mapa.marcar_punto')), findsOneWidget);
   });
 }

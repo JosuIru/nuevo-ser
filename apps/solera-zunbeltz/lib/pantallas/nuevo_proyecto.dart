@@ -172,7 +172,14 @@ class _NuevoProyectoState extends State<NuevoProyecto> {
                       InputDecoration(labelText: textos.proyectoPersona))
             else
               SelectorResponsables(
-                personas: personasEspacio.value,
+                // Solo quien puede ser tester (coordinación ve todos los
+                // proyectos igualmente); las ya elegidas salen siempre.
+                personas: [
+                  for (final persona in personasEspacio.value)
+                    if (persona.rol != 'coordinador' ||
+                        _personasUids.contains(persona.uid))
+                      persona,
+                ],
                 elegidas: _personasUids,
                 etiqueta: textos.proyectoPersonasTester,
                 ayuda: textos.proyectoPersonasTesterAyuda,

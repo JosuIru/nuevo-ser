@@ -122,7 +122,9 @@ void main() {
             {
               'tipo': 'proyecto',
               'uid': uidProyecto,
-              'actualizado_ms': DateTime.now().millisecondsSinceEpoch + 1000,
+              // Sin adelantarse al reloj: si no, el borrado del final (más
+              // antiguo) perdería y el proyecto de prueba se quedaría.
+              'actualizado_ms': DateTime.now().millisecondsSinceEpoch,
               'borrado': false,
               'proyecto_uid': '',
               'datos': datosViejos,

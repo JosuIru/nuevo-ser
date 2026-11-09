@@ -23,8 +23,11 @@ import 'bd_en_memoria.dart';
 const ane = PersonaEspacio(uid: 'ane', nombre: 'Ane', etiquetaRol: 'Tester');
 const mikel =
     PersonaEspacio(uid: 'mikel', nombre: 'Mikel', etiquetaRol: 'Tester');
-const coord =
-    PersonaEspacio(uid: 'coord', nombre: 'Pablo', etiquetaRol: 'Coordinación');
+const coord = PersonaEspacio(
+    uid: 'coord',
+    nombre: 'Pablo',
+    rol: 'coordinador',
+    etiquetaRol: 'Coordinación');
 
 void main() {
   setUpAll(sqfliteFfiInit);
@@ -170,6 +173,8 @@ void main() {
       ));
       await tester.pumpAndSettle();
       expect(find.text('Personas tester'), findsOneWidget);
+      expect(find.byKey(const ValueKey('responsable-coord')), findsNothing,
+          reason: 'coordinación no sale entre las personas tester');
 
       await tester.enterText(find.byType(TextField).first, 'Quesería a medias');
       await tester.tap(find.byKey(const ValueKey('responsable-ane')));

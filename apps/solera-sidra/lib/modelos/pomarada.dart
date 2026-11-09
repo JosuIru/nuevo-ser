@@ -1,3 +1,7 @@
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart'
+    show contornoVacio, leerContorno;
+
 import 'codificacion.dart';
 
 /// Qué se cultiva en la parcela: manzano (pomarada) o vid (viña de txakoli).
@@ -23,6 +27,7 @@ class Pomarada {
     this.registradaDop = false,
     this.latitud,
     this.longitud,
+    this.contorno = contornoVacio,
     this.notas = '',
   });
 
@@ -49,7 +54,14 @@ class Pomarada {
   final bool registradaDop;
   final double? latitud;
   final double? longitud;
+
+  /// Área marcada en el mapa: JSON `[[lat,lng],…]` (nuevo_ser_mapa).
+  final String contorno;
+
+  List<LatLng> get vertices => leerContorno(contorno);
   final String notas;
+
+  bool get tieneUbicacion => latitud != null && longitud != null;
 
   /// `polígono/parcela/recinto`, o vacío si falta todo.
   String get referenciaSigpac =>
@@ -77,6 +89,7 @@ class Pomarada {
         'registrada_dop': registradaDop ? 1 : 0,
         'latitud': latitud,
         'longitud': longitud,
+        'contorno': contorno,
         'notas': notas,
       };
 
@@ -97,6 +110,7 @@ class Pomarada {
         registradaDop: comoBooleano(mapa['registrada_dop']),
         latitud: comoDecimal(mapa['latitud']),
         longitud: comoDecimal(mapa['longitud']),
+        contorno: (mapa['contorno'] as String?) ?? contornoVacio,
         notas: (mapa['notas'] as String?) ?? '',
       );
 }

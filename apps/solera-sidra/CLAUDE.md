@@ -112,6 +112,17 @@ ningún texto ni el pasaporte promociona el consumo de alcohol.
 - **2026-11-07 — GPS de un punto, sin mapa**: la pomarada guarda dónde está
   la persona al pulsar «Estoy aquí». El polígono lo da el SIGPAC (polígono,
   parcela, recinto), que es lo que pide el pliego; un mapa no aporta en F1.
+- **2026-11-09 — Área y punto de la pomarada con `nuevo_ser_mapa`** (sustituye
+  la decisión anterior de «GPS de un punto, sin mapa»). BD v2:
+  `pomaradas.contorno` TEXT JSON `[[lat,lng],…]`, por defecto `'[]'`; las
+  sentencias de la v1 pasan a `sentenciasEsquemaSidraV1` (públicas) para los
+  tests de migración. El formulario usa `CampoPunto` (GPS o marcar en el
+  mapa) y `CampoArea` (dibujar, caminar o importar), con «usar la superficie
+  calculada» solo si se pulsa; si hay área y no punto, el punto es el centro
+  del área. Nueva `pantalla_mapa_pomaradas.dart` (icono de mapa en
+  Pomaradas): áreas y marcadores, callejero/ortofoto, tocar abre la ficha.
+  Sin claves nuevas: el título es `sidr.pomaradas` y el icono usa
+  `sidr.ubicacion` (falta una `sidr.mapa`). Fuera `utiles/permisos_gps.dart`.
 - **2026-11-07 — Economía en un solo libro de apuntes** (como obrador), con la
   compensación del REAGP como casilla: venta de manzana propia (12 %, LIVA art.
   130.Cinco.1.º) frente a sidra y txotx (transformación, fuera del REAGP por el

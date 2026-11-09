@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart';
 
 import '../datos/base_datos.dart';
 import '../dominio/catalogos.dart';
@@ -8,11 +9,23 @@ import '../estado/cambios_datos.dart';
 import '../modelos/pomarada.dart';
 import '../modelos/sagardotegi.dart';
 import '../modelos/tratamiento.dart';
-import '../utiles/permisos_gps.dart';
 import '../utiles/textos_sidra.dart';
 import 'boton_diagnostico_ia.dart';
 import 'hoja_formulario.dart';
+import 'pantalla_mapa_pomaradas.dart';
 import 'pantalla_tratamiento.dart';
+
+/// Paquete de la app, para identificarse ante OpenStreetMap.
+const String paqueteAppSidra = 'com.coleccionnuevoser.solera_sidra';
+
+/// Si hay área y no punto, el punto es el centro del área (el mapa usa el
+/// punto).
+(double?, double?) puntoOCentroDelArea(
+    double? latitud, double? longitud, List<LatLng> area) {
+  if (latitud != null && longitud != null) return (latitud, longitud);
+  final centro = centroide(area);
+  return (centro?.latitude, centro?.longitude);
+}
 
 /// Pomaradas (y viñas de txakoli) con sus datos de registro.
 class PantallaPomaradas extends StatefulWidget {
@@ -50,7 +63,16 @@ class _PantallaPomaradasState extends State<PantallaPomaradas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(SoleraL10n.t('sidr.pomaradas'))),
+      appBar: AppBar(
+        title: Text(SoleraL10n.t('sidr.pomaradas')),
+        actions: [
+          IconButton(
+            tooltip: SoleraL10n.t('sidr.ubicacion'),
+            icon: const Icon(Icons.map_outlined),
+            onPressed: () => _abrir(const PantallaMapaPomaradas()),
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         tooltip: SoleraL10n.t('sidr.nueva_pomarada'),
         onPressed: () => _abrir(const PantallaEditarPomarada()),
@@ -137,6 +159,7 @@ class _PantallaEditarPomaradaState extends State<PantallaEditarPomarada> {
   late bool _registradaDop = _original?.registradaDop ?? false;
   double? _latitud;
   double? _longitud;
+  late List<LatLng> _area = _original?.vertices ?? const [];
   Sagardotegi _sagardotegi = Sagardotegi();
 
   @override
@@ -177,36 +200,6 @@ class _PantallaEditarPomaradaState extends State<PantallaEditarPomarada> {
     if (elegidas != null) setState(() => _variedades = elegidas);
   }
 
-  bool _buscandoUbicacion = false;
-
-  /// Toma la posición del móvil (de pie en la pomarada).
-  Future<void> _usarUbicacion() async {
-    final mensajero = ScaffoldMessenger.of(context);
-    setState(() => _buscandoUbicacion = true);
-    try {
-      if (!await asegurarPermisoUbicacion()) {
-        mensajero.showSnackBar(SnackBar(
-            content: Text(SoleraL10n.t('sidr.sin_permiso_ubicacion'))));
-        return;
-      }
-      final posicion = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
-        timeLimit: const Duration(seconds: 30),
-      );
-      if (!mounted) return;
-      setState(() {
-        _latitud = posicion.latitude;
-        _longitud = posicion.longitude;
-      });
-    } catch (error) {
-      debugPrint('Sin ubicación: $error');
-      mensajero.showSnackBar(
-          SnackBar(content: Text(SoleraL10n.t('sidr.sin_ubicacion'))));
-    } finally {
-      if (mounted) setState(() => _buscandoUbicacion = false);
-    }
-  }
-
   Future<void> _guardar() async {
     final nombre = _nombre.text.trim();
     if (nombre.isEmpty) {
@@ -214,6 +207,7 @@ class _PantallaEditarPomaradaState extends State<PantallaEditarPomarada> {
           SnackBar(content: Text(SoleraL10n.t('sidr.falta_nombre'))));
       return;
     }
+    final (latitud, longitud) = puntoOCentroDelArea(_latitud, _longitud, _area);
     await BaseDatosSoleraSidra.instancia.guardarPomarada(Pomarada(
       id: _original?.id,
       nombre: nombre,
@@ -227,8 +221,9 @@ class _PantallaEditarPomaradaState extends State<PantallaEditarPomarada> {
       anioPlantacion: leerEntero(_anio.text),
       variedades: _variedades,
       registradaDop: _registradaDop,
-      latitud: _latitud,
-      longitud: _longitud,
+      latitud: latitud,
+      longitud: longitud,
+      contorno: codificarContorno(_area),
       notas: _notas.text.trim(),
     ));
     avisarCambioDatos();
@@ -293,22 +288,30 @@ class _PantallaEditarPomaradaState extends State<PantallaEditarPomarada> {
             subtitle: Text(SoleraL10n.t('sidr.registrada_dop_ayuda')),
             onChanged: (valor) => setState(() => _registradaDop = valor),
           ),
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.place_outlined),
-            title: Text(SoleraL10n.t('sidr.ubicacion')),
-            subtitle: Text(_latitud == null || _longitud == null
-                ? '—'
-                : '${_latitud!.toStringAsFixed(5)}, ${_longitud!.toStringAsFixed(5)}'),
-            trailing: _buscandoUbicacion
-                ? const SizedBox(
-                    width: 24, height: 24, child: CircularProgressIndicator())
-                : TextButton.icon(
-                    onPressed: _usarUbicacion,
-                    icon: const Icon(Icons.my_location),
-                    label: Text(SoleraL10n.t('sidr.usar_mi_ubicacion')),
-                  ),
+          CampoPunto(
+            latitud: _latitud,
+            longitud: _longitud,
+            titulo: SoleraL10n.t('sidr.ubicacion'),
+            centro: centroide(_area),
+            areasDeFondo: [(nombre: '', vertices: _area)],
+            paqueteApp: paqueteAppSidra,
+            alCambiar: (latitud, longitud) => setState(() {
+              _latitud = latitud;
+              _longitud = longitud;
+            }),
           ),
+          const SizedBox(height: 8),
+          CampoArea(
+            vertices: _area,
+            centro: _latitud == null || _longitud == null
+                ? null
+                : LatLng(_latitud!, _longitud!),
+            paqueteApp: paqueteAppSidra,
+            alCambiar: (vertices) => setState(() => _area = vertices),
+            alUsarSuperficie: (hectareas) => setState(() =>
+                _superficie.text = formatearNumero(hectareas, decimales: 2)),
+          ),
+          const SizedBox(height: 8),
           campoTexto(_notas, SoleraL10n.t('sidr.notas')),
           const SizedBox(height: 16),
           FilledButton(

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart' show codificarContorno;
 import 'package:solera_sidra/datos/base_datos.dart';
 import 'package:solera_sidra/estado/cambios_datos.dart';
 import 'package:solera_sidra/modelos/embotellado.dart';
 import 'package:solera_sidra/modelos/kupela.dart';
 import 'package:solera_sidra/modelos/partida_manzana.dart';
+import 'package:solera_sidra/modelos/pomarada.dart';
 import 'package:solera_sidra/modelos/prensado.dart';
 import 'package:solera_sidra/modelos/sagardotegi.dart';
 import 'package:solera_sidra/modelos/sesion_txotx.dart';
@@ -15,6 +18,7 @@ import 'package:solera_sidra/pantallas/pantalla_bodega.dart';
 import 'package:solera_sidra/pantallas/pantalla_embotellados.dart';
 import 'package:solera_sidra/pantallas/pantalla_hoy.dart';
 import 'package:solera_sidra/pantallas/pantalla_kupela.dart';
+import 'package:solera_sidra/pantallas/pantalla_mapa_pomaradas.dart';
 import 'package:solera_sidra/pantallas/pantalla_partidas.dart';
 import 'package:solera_sidra/pantallas/pantalla_pomaradas.dart';
 import 'package:solera_sidra/pantallas/pantalla_prensados.dart';
@@ -78,6 +82,8 @@ void main() {
     pantallaAlta(tester);
     await tester.runAsync(() async {
       await tester.pumpWidget(const MaterialApp(home: PantallaPomaradas()));
+      // Primera apertura de la BD del fichero: con la máquina cargada tarda.
+      await esperar(tester);
       await esperar(tester);
       await tester.tap(find.byType(FloatingActionButton));
       await esperar(tester);
@@ -98,6 +104,61 @@ void main() {
     expect(find.text('Goiko sagastia'), findsOneWidget);
     expect((await tester.runAsync(baseDatos.listarPomaradas))!.single.cultivo,
         'manzano');
+  });
+
+  testWidgets('la ficha de pomarada ofrece marcar el punto y el área',
+      (tester) async {
+    pantallaAlta(tester);
+    await tester.pumpWidget(const MaterialApp(home: PantallaEditarPomarada()));
+    await tester.runAsync(() => esperar(tester));
+    expect(find.text(SoleraL10n.t('mapa.marcar_area')), findsOneWidget);
+    expect(find.text(SoleraL10n.t('mapa.sin_area')), findsOneWidget);
+    expect(find.text(SoleraL10n.t('mapa.marcar_punto')), findsOneWidget);
+  });
+
+  test('una pomarada con área y sin punto sale en el centro del área', () {
+    final pomarada = Pomarada(
+        nombre: 'Área',
+        contorno: codificarContorno(const [
+          LatLng(43, -2),
+          LatLng(43, -1.998),
+          LatLng(43.002, -1.998),
+          LatLng(43.002, -2),
+        ]));
+    final punto = puntoDePomarada(pomarada)!;
+    expect(punto.latitude, closeTo(43.001, 1e-6));
+    expect(punto.longitude, closeTo(-1.999, 1e-6));
+    expect(puntoDePomarada(Pomarada(nombre: 'Sin')), isNull);
+    expect(centroDePomaradas([pomarada]).latitude, closeTo(43.001, 1e-6));
+  });
+
+  testWidgets('el mapa de pomaradas pinta el área y abre la ficha',
+      (tester) async {
+    pantallaAlta(tester);
+    await tester.runAsync(() async {
+      await baseDatos.guardarPomarada(Pomarada(
+          nombre: 'Goiko soroa',
+          contorno: codificarContorno(const [
+            LatLng(43, -2),
+            LatLng(43, -1.998),
+            LatLng(43.002, -1.998),
+          ])));
+      await tester.pumpWidget(
+          const MaterialApp(home: PantallaMapaPomaradas(conTeselas: false)));
+      await esperar(tester);
+    });
+    final marcador = find.byTooltip('Goiko soroa');
+    expect(marcador, findsOneWidget);
+    await tester.tap(marcador);
+    // La ficha carga con un indicador: sin pumpAndSettle.
+    await tester.runAsync(() async {
+      for (var vuelta = 0; vuelta < 6; vuelta++) {
+        await Future<void>.delayed(const Duration(milliseconds: 100));
+        await tester.pump(const Duration(milliseconds: 100));
+      }
+    });
+    expect(find.byType(PantallaFichaPomarada), findsOneWidget);
+    expect(find.text('Goiko soroa'), findsWidgets);
   });
 
   testWidgets('alta de una kupela desde la bodega', (tester) async {

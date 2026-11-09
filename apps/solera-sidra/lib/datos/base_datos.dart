@@ -18,7 +18,176 @@ import '../modelos/tratamiento.dart';
 const String nombreFicheroBaseDatosSidra = 'solera_sidra.db';
 
 /// Versión del esquema: el número del último paso de [pasosMigracion].
-const int versionEsquemaSidra = 1;
+const int versionEsquemaSidra = 2;
+
+/// Sentencias del esquema v1. Públicas para los tests de contrato.
+const List<String> sentenciasEsquemaSidraV1 = [
+  '''CREATE TABLE titulares (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      nombre TEXT NOT NULL DEFAULT '',
+      nif TEXT NOT NULL DEFAULT '',
+      registro_sanitario TEXT NOT NULL DEFAULT '',
+      inscripcion_dop TEXT NOT NULL DEFAULT '',
+      registro_explotacion TEXT NOT NULL DEFAULT '',
+      regimen_fiscal TEXT NOT NULL DEFAULT 'general'
+    )''',
+  '''CREATE TABLE sagardotegis (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      nombre TEXT NOT NULL DEFAULT '',
+      municipio TEXT NOT NULL DEFAULT '',
+      territorio TEXT NOT NULL DEFAULT '',
+      perfil TEXT NOT NULL DEFAULT 'sidra',
+      dop_id TEXT NOT NULL DEFAULT '',
+      abre_txotx INTEGER NOT NULL DEFAULT 1
+    )''',
+  '''CREATE TABLE pomaradas (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      nombre TEXT NOT NULL,
+      cultivo TEXT NOT NULL DEFAULT 'manzano',
+      municipio TEXT NOT NULL DEFAULT '',
+      poligono TEXT NOT NULL DEFAULT '',
+      parcela TEXT NOT NULL DEFAULT '',
+      recinto TEXT NOT NULL DEFAULT '',
+      superficie_ha REAL NOT NULL DEFAULT 0,
+      numero_arboles INTEGER NOT NULL DEFAULT 0,
+      anio_plantacion INTEGER,
+      variedades TEXT NOT NULL DEFAULT '',
+      registrada_dop INTEGER NOT NULL DEFAULT 0,
+      latitud REAL,
+      longitud REAL,
+      notas TEXT NOT NULL DEFAULT ''
+    )''',
+  '''CREATE TABLE manzanos (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      pomarada_id INTEGER NOT NULL REFERENCES pomaradas(id) ON DELETE CASCADE,
+      etiqueta TEXT NOT NULL,
+      variedad_id TEXT NOT NULL DEFAULT '',
+      anio_plantacion INTEGER,
+      notas TEXT NOT NULL DEFAULT ''
+    )''',
+  '''CREATE TABLE tratamientos (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      pomarada_id INTEGER NOT NULL REFERENCES pomaradas(id) ON DELETE RESTRICT,
+      fecha_ms INTEGER NOT NULL,
+      sustancia_activa_id TEXT NOT NULL DEFAULT '',
+      numero_registro_producto TEXT NOT NULL DEFAULT '',
+      cantidad_aplicada TEXT NOT NULL DEFAULT '',
+      plaga_objetivo_id TEXT NOT NULL DEFAULT '',
+      superficie_tratada_ha REAL,
+      aplicador TEXT NOT NULL DEFAULT '',
+      carnet_aplicador TEXT NOT NULL DEFAULT '',
+      asesor TEXT NOT NULL DEFAULT '',
+      equipo_aplicacion TEXT NOT NULL DEFAULT '',
+      eficacia TEXT NOT NULL DEFAULT '',
+      notas TEXT NOT NULL DEFAULT ''
+    )''',
+  '''CREATE TABLE partidas_manzana (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      fecha_entrega_ms INTEGER NOT NULL,
+      kilos REAL NOT NULL,
+      fruta TEXT NOT NULL DEFAULT 'manzana',
+      propia INTEGER NOT NULL DEFAULT 1,
+      pomarada_id INTEGER REFERENCES pomaradas(id) ON DELETE RESTRICT,
+      proveedor TEXT NOT NULL DEFAULT '',
+      proveedor_registrado_dop INTEGER NOT NULL DEFAULT 0,
+      procedencia TEXT NOT NULL DEFAULT '',
+      variedades TEXT NOT NULL DEFAULT '',
+      fecha_recoleccion_ms INTEGER,
+      estado_fruta TEXT NOT NULL DEFAULT 'sana',
+      documento_transporte TEXT NOT NULL DEFAULT '',
+      precio_centimos_kg INTEGER NOT NULL DEFAULT 0,
+      notas TEXT NOT NULL DEFAULT ''
+    )''',
+  '''CREATE TABLE kupelas (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      codigo TEXT NOT NULL UNIQUE,
+      capacidad_litros REAL NOT NULL DEFAULT 0,
+      nombre TEXT NOT NULL DEFAULT '',
+      material TEXT NOT NULL DEFAULT 'madera',
+      producto TEXT NOT NULL DEFAULT 'sidra',
+      calificacion TEXT NOT NULL DEFAULT 'pendiente',
+      producto_dop_id TEXT NOT NULL DEFAULT '',
+      activa INTEGER NOT NULL DEFAULT 1,
+      notas TEXT NOT NULL DEFAULT ''
+    )''',
+  '''CREATE TABLE prensados (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      fecha_ms INTEGER NOT NULL,
+      kupela_id INTEGER NOT NULL REFERENCES kupelas(id) ON DELETE RESTRICT,
+      kilos_fruta REAL NOT NULL DEFAULT 0,
+      litros_mosto REAL NOT NULL DEFAULT 0,
+      presion_bar REAL,
+      densidad_mosto REAL,
+      temperatura_mosto_c REAL,
+      notas TEXT NOT NULL DEFAULT ''
+    )''',
+  '''CREATE TABLE prensados_partidas (
+      prensado_id INTEGER NOT NULL REFERENCES prensados(id) ON DELETE CASCADE,
+      partida_id INTEGER NOT NULL REFERENCES partidas_manzana(id) ON DELETE RESTRICT,
+      PRIMARY KEY (prensado_id, partida_id)
+    )''',
+  '''CREATE TABLE mediciones_kupela (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      kupela_id INTEGER NOT NULL REFERENCES kupelas(id) ON DELETE CASCADE,
+      fecha_ms INTEGER NOT NULL,
+      densidad REAL,
+      temperatura_c REAL,
+      acidez_volatil_g_l REAL,
+      grado_alcoholico REAL,
+      sulfuroso_total_mg_l REAL,
+      notas TEXT NOT NULL DEFAULT ''
+    )''',
+  '''CREATE TABLE trasiegos (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      fecha_ms INTEGER NOT NULL,
+      kupela_origen_id INTEGER NOT NULL REFERENCES kupelas(id) ON DELETE RESTRICT,
+      kupela_destino_id INTEGER REFERENCES kupelas(id) ON DELETE RESTRICT,
+      litros REAL NOT NULL,
+      motivo TEXT NOT NULL DEFAULT '',
+      CHECK (kupela_destino_id IS NULL OR kupela_destino_id <> kupela_origen_id)
+    )''',
+  '''CREATE TABLE sesiones_txotx (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      fecha_ms INTEGER NOT NULL,
+      kupela_id INTEGER NOT NULL REFERENCES kupelas(id) ON DELETE RESTRICT,
+      litros_servidos REAL NOT NULL DEFAULT 0,
+      comensales INTEGER,
+      notas TEXT NOT NULL DEFAULT ''
+    )''',
+  '''CREATE TABLE embotellados (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      fecha_ms INTEGER NOT NULL,
+      kupela_id INTEGER NOT NULL REFERENCES kupelas(id) ON DELETE RESTRICT,
+      codigo_lote TEXT NOT NULL,
+      botellas INTEGER NOT NULL,
+      mililitros_botella INTEGER NOT NULL DEFAULT 750,
+      con_dop INTEGER NOT NULL DEFAULT 0,
+      fecha_etiquetado_ms INTEGER,
+      etiqueta_desde INTEGER,
+      etiqueta_hasta INTEGER,
+      destino TEXT NOT NULL DEFAULT '',
+      notas TEXT NOT NULL DEFAULT ''
+    )''',
+  '''CREATE TABLE apuntes_economicos (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      es_ingreso INTEGER NOT NULL,
+      fecha_ms INTEGER NOT NULL,
+      concepto TEXT NOT NULL,
+      categoria TEXT NOT NULL,
+      base_centimos INTEGER NOT NULL,
+      tipo_iva_pct INTEGER NOT NULL DEFAULT 0,
+      compensacion_reagp INTEGER NOT NULL DEFAULT 0,
+      tercero TEXT NOT NULL DEFAULT '',
+      notas TEXT NOT NULL DEFAULT ''
+    )''',
+  'CREATE INDEX idx_tratamientos_fecha ON tratamientos(fecha_ms)',
+  'CREATE INDEX idx_partidas_fecha ON partidas_manzana(fecha_entrega_ms)',
+  'CREATE INDEX idx_prensados_fecha ON prensados(fecha_ms)',
+  'CREATE INDEX idx_mediciones_kupela ON mediciones_kupela(kupela_id, fecha_ms)',
+  'CREATE INDEX idx_txotx_fecha ON sesiones_txotx(fecha_ms)',
+  'CREATE INDEX idx_embotellados_fecha ON embotellados(fecha_ms)',
+  'CREATE INDEX idx_apuntes_fecha ON apuntes_economicos(fecha_ms)',
+];
 
 /// Base de datos local de Larrea Sagardoa. La apertura, el cerrojo, las FK y
 /// las migraciones las pone BaseDatosSolera (core). **Migraciones
@@ -39,178 +208,20 @@ class BaseDatosSoleraSidra extends BaseDatosSolera {
   DatabaseFactory get fabricaBaseDatos => databaseFactory;
 
   @override
-  Map<int, PasoMigracionSolera> get pasosMigracion => const {};
+  Map<int, PasoMigracionSolera> get pasosMigracion => {
+        2: _anadirContornoPomaradasV2,
+      };
+
+  /// v2 (2026-11-09): área de la pomarada marcada en el mapa
+  /// (nuevo_ser_mapa), JSON `[[lat,lng],…]`.
+  static Future<void> _anadirContornoPomaradasV2(Database db) async {
+    await db.execute(
+        "ALTER TABLE pomaradas ADD COLUMN contorno TEXT NOT NULL DEFAULT '[]'");
+  }
 
   @override
   Future<void> crearEsquemaInicial(Database db) async {
-    const sentencias = [
-      '''CREATE TABLE titulares (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nombre TEXT NOT NULL DEFAULT '',
-        nif TEXT NOT NULL DEFAULT '',
-        registro_sanitario TEXT NOT NULL DEFAULT '',
-        inscripcion_dop TEXT NOT NULL DEFAULT '',
-        registro_explotacion TEXT NOT NULL DEFAULT '',
-        regimen_fiscal TEXT NOT NULL DEFAULT 'general'
-      )''',
-      '''CREATE TABLE sagardotegis (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nombre TEXT NOT NULL DEFAULT '',
-        municipio TEXT NOT NULL DEFAULT '',
-        territorio TEXT NOT NULL DEFAULT '',
-        perfil TEXT NOT NULL DEFAULT 'sidra',
-        dop_id TEXT NOT NULL DEFAULT '',
-        abre_txotx INTEGER NOT NULL DEFAULT 1
-      )''',
-      '''CREATE TABLE pomaradas (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nombre TEXT NOT NULL,
-        cultivo TEXT NOT NULL DEFAULT 'manzano',
-        municipio TEXT NOT NULL DEFAULT '',
-        poligono TEXT NOT NULL DEFAULT '',
-        parcela TEXT NOT NULL DEFAULT '',
-        recinto TEXT NOT NULL DEFAULT '',
-        superficie_ha REAL NOT NULL DEFAULT 0,
-        numero_arboles INTEGER NOT NULL DEFAULT 0,
-        anio_plantacion INTEGER,
-        variedades TEXT NOT NULL DEFAULT '',
-        registrada_dop INTEGER NOT NULL DEFAULT 0,
-        latitud REAL,
-        longitud REAL,
-        notas TEXT NOT NULL DEFAULT ''
-      )''',
-      '''CREATE TABLE manzanos (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        pomarada_id INTEGER NOT NULL REFERENCES pomaradas(id) ON DELETE CASCADE,
-        etiqueta TEXT NOT NULL,
-        variedad_id TEXT NOT NULL DEFAULT '',
-        anio_plantacion INTEGER,
-        notas TEXT NOT NULL DEFAULT ''
-      )''',
-      '''CREATE TABLE tratamientos (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        pomarada_id INTEGER NOT NULL REFERENCES pomaradas(id) ON DELETE RESTRICT,
-        fecha_ms INTEGER NOT NULL,
-        sustancia_activa_id TEXT NOT NULL DEFAULT '',
-        numero_registro_producto TEXT NOT NULL DEFAULT '',
-        cantidad_aplicada TEXT NOT NULL DEFAULT '',
-        plaga_objetivo_id TEXT NOT NULL DEFAULT '',
-        superficie_tratada_ha REAL,
-        aplicador TEXT NOT NULL DEFAULT '',
-        carnet_aplicador TEXT NOT NULL DEFAULT '',
-        asesor TEXT NOT NULL DEFAULT '',
-        equipo_aplicacion TEXT NOT NULL DEFAULT '',
-        eficacia TEXT NOT NULL DEFAULT '',
-        notas TEXT NOT NULL DEFAULT ''
-      )''',
-      '''CREATE TABLE partidas_manzana (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        fecha_entrega_ms INTEGER NOT NULL,
-        kilos REAL NOT NULL,
-        fruta TEXT NOT NULL DEFAULT 'manzana',
-        propia INTEGER NOT NULL DEFAULT 1,
-        pomarada_id INTEGER REFERENCES pomaradas(id) ON DELETE RESTRICT,
-        proveedor TEXT NOT NULL DEFAULT '',
-        proveedor_registrado_dop INTEGER NOT NULL DEFAULT 0,
-        procedencia TEXT NOT NULL DEFAULT '',
-        variedades TEXT NOT NULL DEFAULT '',
-        fecha_recoleccion_ms INTEGER,
-        estado_fruta TEXT NOT NULL DEFAULT 'sana',
-        documento_transporte TEXT NOT NULL DEFAULT '',
-        precio_centimos_kg INTEGER NOT NULL DEFAULT 0,
-        notas TEXT NOT NULL DEFAULT ''
-      )''',
-      '''CREATE TABLE kupelas (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        codigo TEXT NOT NULL UNIQUE,
-        capacidad_litros REAL NOT NULL DEFAULT 0,
-        nombre TEXT NOT NULL DEFAULT '',
-        material TEXT NOT NULL DEFAULT 'madera',
-        producto TEXT NOT NULL DEFAULT 'sidra',
-        calificacion TEXT NOT NULL DEFAULT 'pendiente',
-        producto_dop_id TEXT NOT NULL DEFAULT '',
-        activa INTEGER NOT NULL DEFAULT 1,
-        notas TEXT NOT NULL DEFAULT ''
-      )''',
-      '''CREATE TABLE prensados (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        fecha_ms INTEGER NOT NULL,
-        kupela_id INTEGER NOT NULL REFERENCES kupelas(id) ON DELETE RESTRICT,
-        kilos_fruta REAL NOT NULL DEFAULT 0,
-        litros_mosto REAL NOT NULL DEFAULT 0,
-        presion_bar REAL,
-        densidad_mosto REAL,
-        temperatura_mosto_c REAL,
-        notas TEXT NOT NULL DEFAULT ''
-      )''',
-      '''CREATE TABLE prensados_partidas (
-        prensado_id INTEGER NOT NULL REFERENCES prensados(id) ON DELETE CASCADE,
-        partida_id INTEGER NOT NULL REFERENCES partidas_manzana(id) ON DELETE RESTRICT,
-        PRIMARY KEY (prensado_id, partida_id)
-      )''',
-      '''CREATE TABLE mediciones_kupela (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        kupela_id INTEGER NOT NULL REFERENCES kupelas(id) ON DELETE CASCADE,
-        fecha_ms INTEGER NOT NULL,
-        densidad REAL,
-        temperatura_c REAL,
-        acidez_volatil_g_l REAL,
-        grado_alcoholico REAL,
-        sulfuroso_total_mg_l REAL,
-        notas TEXT NOT NULL DEFAULT ''
-      )''',
-      '''CREATE TABLE trasiegos (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        fecha_ms INTEGER NOT NULL,
-        kupela_origen_id INTEGER NOT NULL REFERENCES kupelas(id) ON DELETE RESTRICT,
-        kupela_destino_id INTEGER REFERENCES kupelas(id) ON DELETE RESTRICT,
-        litros REAL NOT NULL,
-        motivo TEXT NOT NULL DEFAULT '',
-        CHECK (kupela_destino_id IS NULL OR kupela_destino_id <> kupela_origen_id)
-      )''',
-      '''CREATE TABLE sesiones_txotx (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        fecha_ms INTEGER NOT NULL,
-        kupela_id INTEGER NOT NULL REFERENCES kupelas(id) ON DELETE RESTRICT,
-        litros_servidos REAL NOT NULL DEFAULT 0,
-        comensales INTEGER,
-        notas TEXT NOT NULL DEFAULT ''
-      )''',
-      '''CREATE TABLE embotellados (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        fecha_ms INTEGER NOT NULL,
-        kupela_id INTEGER NOT NULL REFERENCES kupelas(id) ON DELETE RESTRICT,
-        codigo_lote TEXT NOT NULL,
-        botellas INTEGER NOT NULL,
-        mililitros_botella INTEGER NOT NULL DEFAULT 750,
-        con_dop INTEGER NOT NULL DEFAULT 0,
-        fecha_etiquetado_ms INTEGER,
-        etiqueta_desde INTEGER,
-        etiqueta_hasta INTEGER,
-        destino TEXT NOT NULL DEFAULT '',
-        notas TEXT NOT NULL DEFAULT ''
-      )''',
-      '''CREATE TABLE apuntes_economicos (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        es_ingreso INTEGER NOT NULL,
-        fecha_ms INTEGER NOT NULL,
-        concepto TEXT NOT NULL,
-        categoria TEXT NOT NULL,
-        base_centimos INTEGER NOT NULL,
-        tipo_iva_pct INTEGER NOT NULL DEFAULT 0,
-        compensacion_reagp INTEGER NOT NULL DEFAULT 0,
-        tercero TEXT NOT NULL DEFAULT '',
-        notas TEXT NOT NULL DEFAULT ''
-      )''',
-      'CREATE INDEX idx_tratamientos_fecha ON tratamientos(fecha_ms)',
-      'CREATE INDEX idx_partidas_fecha ON partidas_manzana(fecha_entrega_ms)',
-      'CREATE INDEX idx_prensados_fecha ON prensados(fecha_ms)',
-      'CREATE INDEX idx_mediciones_kupela ON mediciones_kupela(kupela_id, fecha_ms)',
-      'CREATE INDEX idx_txotx_fecha ON sesiones_txotx(fecha_ms)',
-      'CREATE INDEX idx_embotellados_fecha ON embotellados(fecha_ms)',
-      'CREATE INDEX idx_apuntes_fecha ON apuntes_economicos(fecha_ms)',
-    ];
-    for (final sentencia in sentencias) {
+    for (final sentencia in sentenciasEsquemaSidraV1) {
       await db.execute(sentencia);
     }
   }

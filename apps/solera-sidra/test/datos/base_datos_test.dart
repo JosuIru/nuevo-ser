@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart' show codificarContorno;
 import 'package:sqflite/sqflite.dart';
 import 'package:solera_sidra/datos/base_datos.dart';
 import 'package:solera_sidra/modelos/embotellado.dart';
@@ -14,6 +16,13 @@ import 'package:solera_sidra/modelos/titular.dart';
 import 'package:solera_sidra/modelos/tratamiento.dart';
 
 import 'soporte_contrato_base_datos.dart';
+
+/// Cambios de esquema desde la v1, para los tests de contrato.
+const Map<int, CambioEsquema> historialMigracionesSidra = {
+  2: CambioEsquema(columnasNuevas: {
+    'pomaradas': ['contorno'],
+  }),
+};
 
 void main() {
   final entorno = EntornoBaseDatosTemporal();
@@ -32,6 +41,52 @@ void main() {
       File(entorno.ruta(nombreFicheroBaseDatosSidra)).existsSync(),
       isTrue,
     );
+  });
+
+  test('el esquema creado es el v1 más el historial de migraciones', () async {
+    final db = await baseDatos.basedatos;
+    final actuales = await leerColumnasPorTabla(db);
+    expect(
+        actuales,
+        columnasDeclaradasEnVersion(
+          columnasV1: await columnasDeEsquemaV1(sentenciasEsquemaSidraV1),
+          historial: historialMigracionesSidra,
+          columnasActuales: actuales,
+          version: versionEsquemaSidra,
+        ));
+    expect(historialMigracionesSidra.keys.reduce((a, b) => a > b ? a : b),
+        versionEsquemaSidra);
+  });
+
+  test('migra desde la v1 sin perder filas y con el contorno vacío', () async {
+    final filas = {
+      'pomaradas': {'nombre': 'Goiko soroa'},
+    };
+    await crearBaseDatosHistorica(
+      ruta: entorno.ruta(nombreFicheroBaseDatosSidra),
+      version: 1,
+      sentenciasEsquemaV1: sentenciasEsquemaSidraV1,
+      historial: historialMigracionesSidra,
+      columnasActuales: const {},
+      filasPorTabla: filas,
+    );
+    final db = await baseDatos.basedatos;
+    expect(await db.getVersion(), versionEsquemaSidra);
+    await comprobarFilasConservadas(db, filas);
+    final pomarada = (await baseDatos.listarPomaradas()).single;
+    expect(pomarada.contorno, '[]');
+    expect(pomarada.vertices, isEmpty);
+  });
+
+  test('el área de una pomarada se guarda y se lee', () async {
+    const area = [
+      LatLng(43.2, -2.1),
+      LatLng(43.2, -2.099),
+      LatLng(43.201, -2.099),
+    ];
+    await baseDatos.guardarPomarada(
+        Pomarada(nombre: 'Goiko soroa', contorno: codificarContorno(area)));
+    expect((await baseDatos.listarPomaradas()).single.vertices, area);
   });
 
   test('titular y sagardotegi se guardan en una sola fila', () async {

@@ -138,7 +138,7 @@ frut.iva_repercutido,IVA repercutido,BEZ jasanarazia,IVA repercutit,IVE repercut
 frut.iva_soportado,IVA soportado,BEZ jasana,IVA suportat,IVE soportado
 frut.kg_cascara,Kilos en cáscara (o de fruta),Kiloak azalarekin (edo fruta),Quilos en closca (o de fruita),Quilos en casca (ou de froita)
 frut.mapa,Mapa,Mapa,Mapa,Mapa
-frut.mapa_sin_ubicaciones,"Ninguna parcela tiene ubicación. Guárdala con «Usar mi ubicación» al editarla, de pie en la parcela","Lursail batek ere ez du kokapenik. Gorde ezazu «Erabili nire kokapena» botoiarekin, lursailean zutik zaudela","Cap parcel·la no té ubicació. Desa-la amb «Fes servir la meva ubicació» en editar-la, dret a la parcel·la","Ningunha parcela ten localización. Gárdaa con «Usar a miña localización» ao editala, de pé na parcela"
+frut.mapa_sin_ubicaciones,Ninguna parcela tiene ubicación ni área: márcala en el mapa o con el GPS al editarla.,Lursail batek ere ez du kokapenik ez eremurik: markatu mapan edo GPSarekin editatzean.,Cap parcel·la no té ubicació ni àrea: marca-la al mapa o amb el GPS en editar-la.,Ningunha parcela ten localización nin área: márcaa no mapa ou co GPS ao editala.
 frut.marco_ayuda,"Por ejemplo, 7x6","Adibidez, 7x6","Per exemple, 7x6","Por exemplo, 7x6"
 frut.marco_plantacion,Marco de plantación (m),Landaketa-markoa (m),Marc de plantació (m),Marco de plantación (m)
 frut.municipio,Municipio,Udalerria,Municipi,Concello

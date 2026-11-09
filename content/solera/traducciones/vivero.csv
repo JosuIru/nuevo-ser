@@ -178,7 +178,7 @@ vive.linterna,Linterna,Linterna,Llanterna,Lanterna
 vive.lista_para_venta,Lista para venta,Saltzeko prest,A punt per vendre,Lista para a venda
 vive.lote,Lote,Sorta,Lot,Lote
 vive.mapa,Mapa,Mapa,Mapa,Mapa
-vive.mapa_sin_ubicaciones,Ninguna zona tiene ubicación: guárdala con «Usar mi ubicación» al editarla.,Eremu batek ere ez du kokapenik: gorde «Erabili nire kokapena» editatzean.,Cap zona no té ubicació: desa-la amb «Fes servir la meva ubicació» en editar-la.,Ningunha zona ten localización: gárdaa con «Usar a miña localización» ao editala.
+vive.mapa_sin_ubicaciones,Ninguna zona tiene ubicación ni área: márcala en el mapa o con el GPS al editarla.,Eremu batek ere ez du kokapenik ez eremurik: markatu mapan edo GPSarekin editatzean.,Cap zona no té ubicació ni àrea: marca-la al mapa o amb el GPS en editar-la.,Ningunha zona ten localización nin área: márcaa no mapa ou co GPS ao editala.
 vive.material,Material,Materiala,Material,Material
 vive.material_bulbo,Bulbo,Erraboila,Bulb,Bulbo
 vive.material_esqueje,Esqueje o estaquilla,Ebakina edo aldaxka,Esqueix o estaca,Esqueixe ou estaca

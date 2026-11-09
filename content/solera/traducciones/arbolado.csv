@@ -257,6 +257,7 @@ arb.notas,Notas,Oharrak,Notes,Notas
 arb.nueva_incidencia,Nueva incidencia,Intzidentzia berria,Incidència nova,Nova incidencia
 arb.nueva_inspeccion,Nueva inspección,Ikuskapen berria,Inspecció nova,Nova inspección
 arb.nueva_poda,Nueva poda,Inausketa berria,Poda nova,Nova poda
+arb.nueva_zona,Nueva zona,Eremu berria,Zona nova,Nova zona
 arb.nuevo_arbol,Nuevo árbol,Zuhaitz berria,Arbre nou,Nova árbore
 arb.nuevo_tecnico,Nuevo técnico,Teknikari berria,Tècnic nou,Novo técnico
 arb.nuevo_tratamiento,Nuevo tratamiento,Tratamendu berria,Tractament nou,Novo tratamento
@@ -334,6 +335,8 @@ arb.sintomas,Síntomas,Sintomak,Símptomes,Síntomas
 arb.sustancia_activa,Sustancia activa,Substantzia aktiboa,Substància activa,Substancia activa
 arb.sustancia_activa_hint,"Bacillus thuringiensis, abamectina…","Bacillus thuringiensis, abamektina…","Bacillus thuringiensis, abamectina…","Bacillus thuringiensis, abamectina…"
 arb.sustratos,Sustratos,Substratuak,Substrats,Substratos
+arb.tareas_esta_decada,Tareas esta década,Hamarraldi honetako zereginak,Tasques d'aquesta dècada,Tarefas desta década
+arb.tareas_este_mes,Tareas este mes,Hilabete honetako zereginak,Tasques d'aquest mes,Tarefas deste mes
 arb.tecnico_que_firma,Técnico que firma,Sinatzen duen teknikaria,Tècnic que signa,Técnico que asina
 arb.tecnicos_operarios,Técnicos / operarios,Teknikariak / langileak,Tècnics / operaris,Técnicos / operarios
 arb.telefono,Teléfono,Telefonoa,Telèfon,Teléfono
@@ -366,5 +369,3 @@ arb.zona,Zona,Eremua,Zona,Zona
 arb.zona_centro_meseta,Centro (meseta),Erdialdea (meseta),Centre (Meseta),Centro (meseta)
 arb.zona_norte_atlantica,Norte (atlántica),Iparraldea (atlantikoa),Nord (atlàntica),Norte (atlántica)
 arb.zona_sur_mediterranea,Sur (mediterránea),Hegoaldea (mediterraneoa),Sud (mediterrània),Sur (mediterránea)
-arb.tareas_esta_decada,Tareas esta década,Hamarraldi honetako zereginak,Tasques d'aquesta dècada,Tarefas desta década
-arb.tareas_este_mes,Tareas este mes,Hilabete honetako zereginak,Tasques d'aquest mes,Tarefas deste mes

@@ -67,7 +67,7 @@ class _PantallaPomaradasState extends State<PantallaPomaradas> {
         title: Text(SoleraL10n.t('sidr.pomaradas')),
         actions: [
           IconButton(
-            tooltip: SoleraL10n.t('sidr.ubicacion'),
+            tooltip: SoleraL10n.t('sidr.mapa'),
             icon: const Icon(Icons.map_outlined),
             onPressed: () => _abrir(const PantallaMapaPomaradas()),
           ),

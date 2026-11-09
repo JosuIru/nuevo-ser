@@ -113,14 +113,16 @@ class _CampoPuntoState extends State<CampoPunto> {
 }
 
 /// El área (contorno) de algo, con su superficie calculada. Si la app pasa
-/// [alUsarSuperficie], ofrece copiar la superficie calculada a su campo de
-/// hectáreas (la oficial manda: no se copia sola).
+/// [alUsarSuperficie], ofrece copiar la superficie calculada a su campo
+/// (la oficial manda: no se copia sola): en hectáreas o, con
+/// [enMetrosCuadrados], en m².
 class CampoArea extends StatelessWidget {
   const CampoArea({
     super.key,
     required this.vertices,
     required this.alCambiar,
     this.alUsarSuperficie,
+    this.enMetrosCuadrados = false,
     this.titulo,
     this.centro,
     this.areasDeFondo = const [],
@@ -130,6 +132,7 @@ class CampoArea extends StatelessWidget {
   final List<LatLng> vertices;
   final ValueChanged<List<LatLng>> alCambiar;
   final ValueChanged<double>? alUsarSuperficie;
+  final bool enMetrosCuadrados;
   final String? titulo;
 
   /// Dónde abrir el mapa si aún no hay área (p. ej. el punto de la
@@ -179,9 +182,13 @@ class CampoArea extends StatelessWidget {
             ),
             if (hayArea && alUsarSuperficie != null)
               TextButton(
-                onPressed: () => alUsarSuperficie!(hectareas),
-                child: Text(SoleraL10n.tf('mapa.usar_superficie',
-                    {'hectareas': formatearHectareas(hectareas)})),
+                onPressed: () => alUsarSuperficie!(
+                    enMetrosCuadrados ? hectareas * 10000 : hectareas),
+                child: Text(enMetrosCuadrados
+                    ? SoleraL10n.tf('mapa.usar_superficie_m2',
+                        {'metros': formatearMetros(hectareas * 10000)})
+                    : SoleraL10n.tf('mapa.usar_superficie',
+                        {'hectareas': formatearHectareas(hectareas)})),
               ),
           ],
         ),

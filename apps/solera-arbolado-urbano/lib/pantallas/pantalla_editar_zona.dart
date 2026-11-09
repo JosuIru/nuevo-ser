@@ -88,7 +88,10 @@ class _PantallaEditarZonaState extends State<PantallaEditarZona> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(SoleraL10n.t('arb.zona'))),
+      appBar: AppBar(
+          title: Text(widget.zona == null
+              ? SoleraL10n.t('arb.nueva_zona')
+              : SoleraL10n.t('arb.zona'))),
       body: Form(
         key: _claveFormulario,
         child: CuerpoResponsivoSolera(

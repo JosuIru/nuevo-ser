@@ -300,8 +300,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
               const Divider(height: 1),
               ListTile(
                 leading: const Icon(Icons.add),
-                title: Text(SoleraL10n.t('viti.nuevo')),
-                subtitle: Text(SoleraL10n.t('viti.vinedo')),
+                title: Text(SoleraL10n.t('viti.nuevo_vinedo')),
                 onTap: () => Navigator.pop(
                     context, (activo: activo, editar: null, nuevo: true)),
               ),

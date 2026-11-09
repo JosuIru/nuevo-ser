@@ -97,8 +97,9 @@ Future<bool> mostrarFormularioZona(BuildContext context,
         paqueteApp: paqueteAppVivero,
         alCambiar: (vertices) => refrescar(() => area = vertices),
         // nuevo_ser_mapa da hectáreas; la zona va en m².
-        alUsarSuperficie: (hectareas) => refrescar(() =>
-            superficie.text = metrosCuadradosParaCampo(hectareas * 10000)),
+        enMetrosCuadrados: true,
+        alUsarSuperficie: (metros) =>
+            refrescar(() => superficie.text = metrosCuadradosParaCampo(metros)),
       ),
       const SizedBox(height: 8),
       campoTexto(notas, SoleraL10n.t('vive.notas')),

@@ -104,6 +104,8 @@ viti.chat_imagen_adjunta,Imagen adjunta: se enviará a Claude,Irudia erantsita: 
 viti.chat_que_ves_imagen,¿Qué ves en esta imagen?,Zer ikusten duzu irudi honetan?,Què veus en aquesta imatge?,Que ves nesta imaxe?
 viti.chat_sin_clave,Necesitas configurar tu clave de Anthropic en Ajustes → Identificación con IA.,Zure Anthropic gakoa konfiguratu behar duzu Ezarpenak → AA bidezko identifikazioa atalean.,Has de configurar la teva clau d'Anthropic a Configuració → Identificació amb IA.,Tes que configurar a túa clave de Anthropic en Axustes → Identificación con IA.
 viti.chat_vacio,"Pregúntame lo que quieras sobre tus cepas, síntomas, fenología, manejo o el cuaderno PAC…","Galdetu nahi duzuna zure mahatsondoei, sintomei, fenologiari, maneiuari edo PAC koadernoari buruz…","Pregunta'm el que vulguis sobre els teus ceps, símptomes, fenologia, maneig o el quadern PAC…","Pregúntame o que queiras sobre as túas cepas, síntomas, fenoloxía, manexo ou o caderno PAC…"
+viti.cifra_estado_esperado,Estado esperado,Espero den egoera,Estat esperat,Estado esperado
+viti.cifra_proximo_hito,Próximo hito,Hurrengo mugarria,Proper estadi,Próximo fito
 viti.cliente,Cliente,Bezeroa,Client,Cliente
 viti.cliente_minuscula,cliente,bezeroa,client,cliente
 viti.cliente_y_proveedor,Cliente y proveedor,Bezeroa eta hornitzailea,Client i proveïdor,Cliente e provedor
@@ -383,6 +385,7 @@ viti.nuevo_gasto,Nuevo gasto,Gastu berria,Despesa nova,Novo gasto
 viti.nuevo_ingreso,Nuevo ingreso,Diru-sarrera berria,Ingrés nou,Novo ingreso
 viti.nuevo_tercero,Nuevo tercero,Hirugarren berria,Tercer nou,Novo terceiro
 viti.nuevo_tratamiento,Nuevo tratamiento,Tratamendu berria,Tractament nou,Novo tratamento
+viti.nuevo_vinedo,Nuevo viñedo,Mahasti berria,Vinya nova,Novo viñedo
 viti.numero_carnet_aplicador,N.º de carnet de aplicador,Aplikatzaile-txartelaren zk.,Núm. de carnet d'aplicador,N.º de carné de aplicador
 viti.numero_de_factura,N.º de factura,Faktura-zk.,Núm. de factura,N.º de factura
 viti.numero_regepa,N.º REGEPA,REGEPA zk.,Núm. REGEPA,N.º REGEPA
@@ -530,5 +533,3 @@ viti.vinedo_obligatorio_etiqueta,Viñedo *,Mahastia *,Vinya *,Viña *
 viti.zona,Zona,Eremua,Zona,Zona
 viti.zona_norte_atlantica,Norte (atlántica),Iparraldea (atlantikoa),Nord (atlàntica),Norte (atlántica)
 viti.zona_sur_mediterranea,Sur (mediterránea),Hegoaldea (mediterraneoa),Sud (mediterrània),Sur (mediterránea)
-viti.cifra_estado_esperado,Estado esperado,Espero den egoera,Estat esperat,Estado esperado
-viti.cifra_proximo_hito,Próximo hito,Hurrengo mugarria,Proper estadi,Próximo fito

@@ -41,3 +41,4 @@ mapa.sin_area,Sin área marcada,Eremurik markatu gabe,Sense àrea marcada,Sen á
 mapa.sin_gps,No se pudo leer el GPS: comprueba que la ubicación está activada y con permiso.,Ezin izan da GPSa irakurri: egiaztatu kokapena aktibatuta dagoela eta baimena duela.,No s’ha pogut llegir el GPS: comprova que la ubicació està activada i amb permís.,Non se puido ler o GPS: comproba que a localización está activada e con permiso.
 mapa.sin_nombre,Sin nombre,Izenik gabe,Sense nom,Sen nome
 mapa.usar_superficie,Usar la superficie calculada ({hectareas} ha),Kalkulatutako azalera erabili ({hectareas} ha),Fes servir la superfície calculada ({hectareas} ha),Usar a superficie calculada ({hectareas} ha)
+mapa.usar_superficie_m2,Usar la superficie calculada ({metros} m²),Kalkulatutako azalera erabili ({metros} m²),Fes servir la superfície calculada ({metros} m²),Usar a superficie calculada ({metros} m²)

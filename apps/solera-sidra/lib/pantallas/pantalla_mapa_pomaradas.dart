@@ -47,7 +47,7 @@ class _PantallaMapaPomaradasState extends State<PantallaMapaPomaradas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(SoleraL10n.t('sidr.pomaradas'))),
+      appBar: AppBar(title: Text(SoleraL10n.t('sidr.mapa'))),
       body: FutureBuilder<List<Pomarada>>(
         future: BaseDatosSoleraSidra.instancia.listarPomaradas(),
         builder: (context, instantanea) {

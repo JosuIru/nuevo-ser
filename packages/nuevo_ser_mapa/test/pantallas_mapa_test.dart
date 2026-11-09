@@ -178,4 +178,25 @@ void main() {
     expect(find.text(SoleraL10n.t('mapa.marcar_area')), findsOneWidget);
     expect(find.textContaining('ha)'), findsNothing);
   });
+
+  testWidgets('campo de área en m² (vivero)', (tester) async {
+    double? copiada;
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: CampoArea(
+          vertices: const [
+            _centro,
+            LatLng(42.8226, -2.0305),
+            LatLng(42.8236, -2.0305),
+            LatLng(42.8236, -2.0315),
+          ],
+          alCambiar: (_) {},
+          enMetrosCuadrados: true,
+          alUsarSuperficie: (metros) => copiada = metros,
+        ),
+      ),
+    ));
+    await tester.tap(find.textContaining('m²)'));
+    expect(copiada, closeTo(9100, 500));
+  });
 }

@@ -191,7 +191,7 @@ arom.lote_planta_seca,Planta seca,Landare lehorra,Planta seca,Planta seca
 arom.lote_sin_origen,Lote apuntado a mano: no sale de ningún secado ni destilación.,Eskuz idatzitako lotea: ez dator lehortze edo distilaziotik.,Lot anotat a mà: no surt de cap assecatge ni destil·lació.,Lote anotado a man: non sae de ningún secado nin destilación.
 arom.lotes,Lotes,Loteak,Lots,Lotes
 arom.mapa,Mapa,Mapa,Mapa,Mapa
-arom.mapa_sin_ubicaciones,Ninguna parcela ni zona tiene ubicación: guárdala con «Usar mi ubicación» en su ficha.,Lursail edo eremu batek ere ez du kokapenik: gorde «Nire kokapena erabili» bere fitxan.,Cap parcel·la ni zona no té ubicació: desa-la amb «Fes servir la meva ubicació» a la seva fitxa.,Ningunha parcela nin zona ten localización: gárdaa con «Usar a miña localización» na súa ficha.
+arom.mapa_sin_ubicaciones,Ninguna parcela ni zona tiene ubicación ni área: márcala en el mapa o con el GPS en su ficha.,Lursail edo eremu batek ere ez du kokapenik ez eremurik: markatu mapan edo GPSarekin bere fitxan.,Cap parcel·la ni zona no té ubicació ni àrea: marca-la al mapa o amb el GPS a la seva fitxa.,Ningunha parcela nin zona ten localización nin área: márcaa no mapa ou co GPS na súa ficha.
 arom.metodo_secado,Método de secado,Lehortze metodoa,Mètode d’assecatge,Método de secado
 arom.ml_aceite,ml de aceite esencial,olio esentzial ml,ml d’oli essencial,ml de aceite esencial
 arom.municipio,Municipio,Udalerria,Municipi,Concello

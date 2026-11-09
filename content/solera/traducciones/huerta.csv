@@ -204,7 +204,7 @@ huer.lote_cosecha,Lote de cosecha,Uzta-sorta,Lot de collita,Lote de colleita
 huer.lote_semilla,Lote de semilla,Hazi-sorta,Lot de llavor,Lote de semente
 huer.lote_sin_autorizacion,Semilla no ecológica sin autorización: lote {lote},Hazi ez-ekologikoa baimenik gabe: {lote} sorta,Llavor no ecològica sense autorització: lot {lote},Semente non ecolóxica sen autorización: lote {lote}
 huer.mapa,Mapa,Mapa,Mapa,Mapa
-huer.mapa_sin_ubicaciones,Ninguna parcela tiene ubicación. Edita una y pulsa «Usar mi ubicación» estando en ella.,Lursail batek ere ez du kokapenik. Editatu bat eta sakatu «Nire kokapena erabili» bertan zaudela.,Cap parcel·la té ubicació. Edita'n una i prem «Usa la meva ubicació» mentre hi ets.,Ningunha parcela ten localización. Edita unha e preme «Usar a miña localización» estando nela.
+huer.mapa_sin_ubicaciones,Ninguna parcela tiene ubicación ni área: márcala en el mapa o con el GPS al editarla.,Lursail batek ere ez du kokapenik ez eremurik: markatu mapan edo GPSarekin editatzean.,Cap parcel·la no té ubicació ni àrea: marca-la al mapa o amb el GPS en editar-la.,Ningunha parcela ten localización nin área: márcaa no mapa ou co GPS ao editala.
 huer.marcado_permitido,Marcado como permitido,Baimendutzat markatua,Marcat com a permès,Marcado como permitido
 huer.marcar_hecha_hoy,Hecha hoy,Gaur egina,Feta avui,Feita hoxe
 huer.marcar_preparada,Marcar como preparada,Prestatutzat markatu,Marca com a preparada,Marcar como preparada

@@ -184,6 +184,7 @@ sidr.litros_mosto,Litros de mosto,Muztio-litroak,Litres de most,Litros de mosto
 sidr.litros_servidos,Litros servidos (estimados),Zerbitzatutako litroak (gutxi gorabehera),Litres servits (estimats),Litros servidos (estimados)
 sidr.lotes_etiquetas_descuadradas,{n} lotes con contraetiquetas que no cuadran,{n} lote kontraetiketa okerrekin,{n} lots amb contraetiquetes que no quadren,{n} lotes con contraetiquetas que non cadran
 sidr.manzanos_marcados,Manzanos marcados,Markatutako sagarrondoak,Pomeres marcades,Maceiras marcadas
+sidr.mapa,Mapa de pomaradas,Sagastien mapa,Mapa de pomeredes,Mapa de pomares
 sidr.material,Material,Materiala,Material,Material
 sidr.material_inoxidable,Acero inoxidable,Altzairu herdoilgaitza,Acer inoxidable,Aceiro inoxidable
 sidr.material_madera,Madera,Egurra,Fusta,Madeira

@@ -148,7 +148,7 @@ class _PantallaEditarVinedoState extends State<PantallaEditarVinedo> {
     final codigoIne = SoleraL10n.t('agro.codigo_ine_abreviado');
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.vinedo?.nombre ?? SoleraL10n.t('viti.vinedo')),
+        title: Text(widget.vinedo?.nombre ?? SoleraL10n.t('viti.nuevo_vinedo')),
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),

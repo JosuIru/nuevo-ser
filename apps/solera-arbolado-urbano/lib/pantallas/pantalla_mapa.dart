@@ -281,7 +281,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
               // Alta de zona: nombre y área en el mapa.
               ListTile(
                 leading: Icon(Icons.add_location_alt_outlined),
-                title: Text('+ ${SoleraL10n.t('arb.zona')}'),
+                title: Text(SoleraL10n.t('arb.nueva_zona')),
                 onTap: () =>
                     Navigator.pop(context, const _EleccionZona.editar(null)),
               ),

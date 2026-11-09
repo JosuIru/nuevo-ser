@@ -26,7 +26,7 @@ import 'widgets/liberar_al_cerrar.dart';
 /// Versión visible de la app. Se mantiene a mano sincronizada con `version`
 /// del `pubspec.yaml` (campo antes del `+`); `test/version_app_test.dart`
 /// falla si no coinciden.
-const String versionAppZunbeltz = '0.9.1';
+const String versionAppZunbeltz = '0.9.2';
 
 /// Pestaña «Ajustes»: arriba, quién es y cómo va la sincronización; luego
 /// preferencias, datos y cuenta, y lo de la app.

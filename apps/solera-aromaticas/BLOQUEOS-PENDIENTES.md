@@ -26,6 +26,12 @@ y sigue. Lo recoge `scripts/pendientes/`.
 - **Técnico de medio natural**: cruzar `content/aromaticas/especies_pam.csv`
   con los catálogos autonómicos de flora amenazada y de recolección regulada;
   revisar la columna de confundibles y la época orientativa (sin fuente).
+- **Persona botánica** (o técnico de medio natural): revisar
+  `content/aromaticas/guia_especies.csv` (guía de especies, 2026-11-09):
+  rasgos para reconocer cada especie y hábitat, escritos por Claude sin
+  cotejar con Flora iberica ni claves regionales. Prioridad: los rasgos que
+  separan genciana/vedegambre, hinojo/cicuta, manzanilla/Anthemis y los
+  tomillos. Firmar con `persona:` en `revisado_por`.
 
 - **Asesor fiscal**: si la destilación (aceite esencial, hidrolato) y el
   secado son transformación fuera del REAGP; tipos de IVA de la planta seca

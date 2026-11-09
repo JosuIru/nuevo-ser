@@ -18,6 +18,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 9 Economía | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Ingresos y gastos: régimen de IVA (REAGP / general / sin elegir); apuntes por categoría propia (venta de planta, de aceite esencial y de hidrolato; permisos y tasas de recolección, combustible del alambique, envases, analíticas…), parcela opcional → margen por parcela; resumen del año y extracto PDF con sello. **Solo la venta de planta lleva compensación REAGP (12 %)**; aceite e hidrolato nunca (la destilación puede ser transformación: aviso «por verificar» en REAGP). En general, 10 % planta y 21 % destilado, por verificar. Importes en céntimos. Guardarraíles fiscales en `test/dominio/economia_test.dart`. 65 tests |
 | 10 Revisión con fuente pública | ✅ en parte (2026-11-07) | Revisión en `content/aromaticas/revision-2026-11-07.md`: rendimientos (29) y plagas (10) todas `fuente_publica:` con tabla y página; especies 2 `revision-ia:` (BOE, anexo VI Ley 42/2007) y 10 `fuente_publica:` (época del CTFC, tabla 1 de la ficha de cultivo); 15 especies sin revisar (época y confundibles). **`catalogosCompletamenteRevisados` sigue en `false`** y el banner se ve en Hoy. Normativa de los PDF cotejada: Ley 42/2007 arts. 56, 57.1.a, 58, 61 y 80.1.m (BOE consolidado), Ley 43/2003 art. 6 (BOE, 09/11/2024), REACH art. 6.1 (EUR-Lex, consolidado 23/06/2025), RD 1311/2012 art. 16.1. `scripts/auditoria` aún no conoce la vertical (lista fija fuera de esta calle). 66 tests |
 | 11 APK + ayuda | ✅ 2026-11-07 | Ayuda in-app (Ajustes → Ayuda, 9 apartados en 4 idiomas, con «lo que la app no hace»), README, APK release de **66,3 MB** firmada con la clave de depuración (como el resto de la suite; copia en `~/larrea-apks/solera-aromaticas-release.apk`) y `flutter clean` después. 67 tests. **Sin build Linux** (como Frutal; ahorra disco). **Release de GitHub sin publicar** (la publica la integración) |
+| Guía de especies | ✅ 2026-11-09 (PROVISIONAL) | Campo → icono de libro, al estilo de la guía de Fósiles (cuadernos-de-campo): lista buscable (sin acentos; nombre, científico, familia, rasgo o hábitat) agrupada por familia y ficha deslizable con fotos de Wikimedia Commons, **cómo reconocerla**, dónde crece, confundibles (se abren con un toque), parte recolectada, época y protección. También se abre desde las **especies en temporada de Hoy** y desde **cada propuesta de la IA de especie** (libro junto a cada candidata: la ficha deslizable lleva todas las candidatas para compararlas antes de elegir). Apartado propio en la Ayuda (10). `content/aromaticas/guia_especies.csv` (27 fichas, una por especie, **sin revisar**: rasgos y hábitat escritos por Claude) → `catalogo_guia.dart`; lógica en `dominio/guia.dart`; fotos en `servicios/fotos_wikipedia.dart` (caché de URL en disco, imágenes con `cached_network_image`, 2 peticiones a la vez; `buscadorFotosGuia` se sustituye en los tests). 78 tests. APK release regenerado (67,7 MB, copia en `~/larrea-apks/`) |
 
 **Siguiente acción**: F1 completa salvo lo humano (`BLOQUEOS-PENDIENTES.md`).
 Pendientes técnicos: dar de alta la vertical en `scripts/auditoria` y
@@ -207,6 +208,12 @@ electrónico desde el 1-1-2027, RD 1039/2025). Fiscalidad en el bloque 9.
   hidrolato, y aviso en pantalla.
 - **2026-11-07 — Unidades de lote fijas por tipo**: planta en kg, aceite en
   ml, hidrolato en l.
+- **2026-11-09 — La guía muestra fotos de Wikipedia pero nunca su texto**
+  (a diferencia de Fósiles, que enseña el extracto y enlaza el artículo):
+  los artículos de estas plantas hablan de usos de salud y el guardarraíl del
+  hard limit no ve lo que llega de la red. Por lo mismo, sin enlace al
+  artículo. El aviso de que la guía no habilita el consumo va arriba de la
+  lista y en cada ficha.
 
 ## Datos técnicos
 

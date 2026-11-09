@@ -63,7 +63,6 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
         4: _crearEsquemaV4,
       };
 
-
   // ─── Quesería (single-row) ──────────────────────────────
 
   Future<Queseria> obtenerQueseria() async {
@@ -84,10 +83,17 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
     return db.insert('proveedores_leche', p.toMap()..remove('id'));
   }
 
+  /// Cambia un proveedor ya guardado (por su id). Antes la ficha llamaba a
+  /// [guardarProveedor] también al editar y lo duplicaba.
+  Future<void> actualizarProveedor(ProveedorLeche p) async {
+    final db = await basedatos;
+    await db.update('proveedores_leche', p.toMap()..remove('id'),
+        where: 'id = ?', whereArgs: [p.id]);
+  }
+
   Future<List<ProveedorLeche>> listarProveedores() async {
     final db = await basedatos;
-    final filas =
-        await db.query('proveedores_leche', orderBy: 'nombre ASC');
+    final filas = await db.query('proveedores_leche', orderBy: 'nombre ASC');
     return filas.map(ProveedorLeche.fromMap).toList();
   }
 
@@ -98,7 +104,11 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
       "INNER JOIN partidas_leche pa ON pl.id = pa.proveedor_id "
       "WHERE pa.fecha_ms > ? "
       "ORDER BY pl.nombre ASC",
-      [DateTime.now().subtract(const Duration(days: 365)).millisecondsSinceEpoch],
+      [
+        DateTime.now()
+            .subtract(const Duration(days: 365))
+            .millisecondsSinceEpoch
+      ],
     );
     return filas.map(ProveedorLeche.fromMap).toList();
   }
@@ -145,7 +155,9 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
     }
     final where = condiciones.isEmpty ? null : condiciones.join(' AND ');
     final filas = await db.query('partidas_leche',
-        where: where, whereArgs: args.isEmpty ? null : args, orderBy: 'fecha_ms DESC');
+        where: where,
+        whereArgs: args.isEmpty ? null : args,
+        orderBy: 'fecha_ms DESC');
     return filas.map(PartidaLeche.fromMap).toList();
   }
 
@@ -213,8 +225,8 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
 
   Future<void> actualizarLote(int id, Map<String, Object?> cambios) async {
     final db = await basedatos;
-    await db.update('lotes_produccion', cambios,
-        where: 'id = ?', whereArgs: [id]);
+    await db
+        .update('lotes_produccion', cambios, where: 'id = ?', whereArgs: [id]);
   }
 
   Future<List<LoteProduccion>> listarLotes({String? estado}) async {
@@ -237,7 +249,9 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
   Future<List<LoteProduccion>> listarLotesPorReceta(int recetaId) async {
     final db = await basedatos;
     final filas = await db.query('lotes_produccion',
-        where: 'receta_id = ?', whereArgs: [recetaId], orderBy: 'fecha_ms DESC');
+        where: 'receta_id = ?',
+        whereArgs: [recetaId],
+        orderBy: 'fecha_ms DESC');
     return filas.map(LoteProduccion.fromMap).toList();
   }
 
@@ -311,8 +325,7 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
       condiciones.add('ubicacion_actual = ?');
       args.add(ubicacion);
     }
-    final where =
-        condiciones.isEmpty ? null : condiciones.join(' AND ');
+    final where = condiciones.isEmpty ? null : condiciones.join(' AND ');
     final filas = await db.query('piezas',
         where: where,
         whereArgs: args.isEmpty ? null : args,
@@ -322,8 +335,8 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
 
   Future<Pieza?> obtenerPieza(int id) async {
     final db = await basedatos;
-    final filas = await db.query('piezas',
-        where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas =
+        await db.query('piezas', where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return Pieza.fromMap(filas.first);
   }
@@ -342,8 +355,8 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
   /// de la cava y el dashboard.
   Future<Map<String, int>> contarPiezasPorEstado() async {
     final db = await basedatos;
-    final filas = await db.rawQuery(
-        'SELECT estado, COUNT(*) AS n FROM piezas GROUP BY estado');
+    final filas = await db
+        .rawQuery('SELECT estado, COUNT(*) AS n FROM piezas GROUP BY estado');
     return {for (final f in filas) (f['estado'] as String): (f['n'] as int)};
   }
 
@@ -376,9 +389,7 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
   Future<List<EventoCuracion>> listarEventosDePieza(int piezaId) async {
     final db = await basedatos;
     final filas = await db.query('eventos_curacion',
-        where: 'pieza_id = ?',
-        whereArgs: [piezaId],
-        orderBy: 'fecha_ms DESC');
+        where: 'pieza_id = ?', whereArgs: [piezaId], orderBy: 'fecha_ms DESC');
     return filas.map(EventoCuracion.fromMap).toList();
   }
 
@@ -389,7 +400,10 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
     final finHoy = DateTime.now().add(const Duration(hours: 12));
     final filas = await db.query('eventos_curacion',
         where: 'fecha_ms BETWEEN ? AND ?',
-        whereArgs: [inicioHoy.millisecondsSinceEpoch, finHoy.millisecondsSinceEpoch],
+        whereArgs: [
+          inicioHoy.millisecondsSinceEpoch,
+          finHoy.millisecondsSinceEpoch
+        ],
         orderBy: 'fecha_ms ASC');
     return filas.map(EventoCuracion.fromMap).toList();
   }
@@ -419,7 +433,8 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
     return db.insert('incidencias', i.toMap()..remove('id'));
   }
 
-  Future<void> actualizarIncidencia(int id, Map<String, Object?> cambios) async {
+  Future<void> actualizarIncidencia(
+      int id, Map<String, Object?> cambios) async {
     final db = await basedatos;
     await db.update('incidencias', cambios, where: 'id = ?', whereArgs: [id]);
   }
@@ -427,12 +442,11 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
   Future<List<Incidencia>> listarIncidencias({bool? soloAbiertas}) async {
     final db = await basedatos;
     if (soloAbiertas == true) {
-      final filas = await db
-          .query('incidencias', where: 'cerrada = 0', orderBy: 'fecha_ms DESC');
+      final filas = await db.query('incidencias',
+          where: 'cerrada = 0', orderBy: 'fecha_ms DESC');
       return filas.map(Incidencia.fromMap).toList();
     }
-    final filas =
-        await db.query('incidencias', orderBy: 'fecha_ms DESC');
+    final filas = await db.query('incidencias', orderBy: 'fecha_ms DESC');
     return filas.map(Incidencia.fromMap).toList();
   }
 
@@ -501,7 +515,10 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
       "FROM controles_temperatura GROUP BY cava_id) ult "
       "ON c.cava_id = ult.cava_id AND c.fecha_ms = ult.max_fecha",
     );
-    return {for (final f in filas) (f['cava_id'] as String): ControlTemperatura.fromMap(f)};
+    return {
+      for (final f in filas)
+        (f['cava_id'] as String): ControlTemperatura.fromMap(f)
+    };
   }
 
   Future<int> guardarControlLimpieza(ControlLimpieza c) async {
@@ -538,8 +555,7 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
 
   Future<List<Formacion>> listarFormacion() async {
     final db = await basedatos;
-    final filas =
-        await db.query('formacion', orderBy: 'fecha_ms DESC');
+    final filas = await db.query('formacion', orderBy: 'fecha_ms DESC');
     return filas.map(Formacion.fromMap).toList();
   }
 
@@ -552,8 +568,8 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
     final lote = await obtenerLote(loteId);
     if (lote == null) return {'error': 'Lote no encontrado'};
 
-    final partidasIds = (jsonDecode(lote.partidasLecheUsadasJson) as List<dynamic>)
-        .cast<int>();
+    final partidasIds =
+        (jsonDecode(lote.partidasLecheUsadasJson) as List<dynamic>).cast<int>();
     final partidas = <Map<String, Object?>>[];
     for (final pid in partidasIds) {
       final p = await obtenerPartidaLeche(pid);
@@ -561,7 +577,8 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
         final prov = await obtenerProveedor(p.proveedorId);
         partidas.add({
           'partida_id': p.id,
-          'fecha': DateTime.fromMillisecondsSinceEpoch(p.fechaMs).toIso8601String(),
+          'fecha':
+              DateTime.fromMillisecondsSinceEpoch(p.fechaMs).toIso8601String(),
           'volumen': p.volumenLitros,
           'proveedor': prov?.nombre ?? 'Desconocido',
         });
@@ -572,7 +589,8 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
 
     return {
       'lote': lote.numeroLote,
-      'fecha': DateTime.fromMillisecondsSinceEpoch(lote.fechaMs).toIso8601String(),
+      'fecha':
+          DateTime.fromMillisecondsSinceEpoch(lote.fechaMs).toIso8601String(),
       'tipo_queso': lote.tipoQuesoId,
       'receta': receta?.nombre ?? '',
       'partidas_leche': partidas,
@@ -600,7 +618,8 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
       );
       resultados.add({
         'lote': l.numeroLote,
-        'fecha': DateTime.fromMillisecondsSinceEpoch(l.fechaMs).toIso8601String(),
+        'fecha':
+            DateTime.fromMillisecondsSinceEpoch(l.fechaMs).toIso8601String(),
         'ventas': ventas.length,
       });
     }
@@ -624,8 +643,8 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
         todosEventos.add({
           'pieza': p.numeroPieza,
           'tipo': e.tipo,
-          'fecha': DateTime.fromMillisecondsSinceEpoch(e.fechaMs)
-              .toIso8601String(),
+          'fecha':
+              DateTime.fromMillisecondsSinceEpoch(e.fechaMs).toIso8601String(),
         });
       }
     }
@@ -642,8 +661,7 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
     final piezaIds = piezas.map((p) => p.id!).toSet();
     final ventasLote = ventas.where((v) {
       try {
-        final lineas =
-            jsonDecode(v.lineasJson) as List<dynamic>;
+        final lineas = jsonDecode(v.lineasJson) as List<dynamic>;
         return lineas.any((l) => piezaIds.contains(l['piezaId']));
       } catch (_) {
         return false;
@@ -652,32 +670,40 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
 
     return {
       ...atras,
-      'piezas': piezas.map((p) => {
-        'numero': p.numeroPieza,
-        'peso_inicial': p.pesoInicial,
-        'peso_actual': p.pesoActual,
-        'estado': p.estado,
-        'ubicacion': p.ubicacionActual,
-      }).toList(),
+      'piezas': piezas
+          .map((p) => {
+                'numero': p.numeroPieza,
+                'peso_inicial': p.pesoInicial,
+                'peso_actual': p.pesoActual,
+                'estado': p.estado,
+                'ubicacion': p.ubicacionActual,
+              })
+          .toList(),
       'eventos_curacion': todosEventos,
-      'analiticas': analiticas.map((a) => {
-        'tipo': a.tipo,
-        'conforme': a.conforme,
-        'fecha': DateTime.fromMillisecondsSinceEpoch(a.fechaMs)
-            .toIso8601String(),
-      }).toList(),
-      'incidencias': incsLote.map((i) => {
-        'tipo': i.tipo,
-        'descripcion': i.descripcion,
-        'cerrada': i.cerrada,
-      }).toList(),
-      'ventas': ventasLote.map((v) => {
-        'cliente': v.clienteNombre,
-        'fecha': DateTime.fromMillisecondsSinceEpoch(v.fechaMs)
-            .toIso8601String(),
-        'total': v.total,
-        'factura': v.numeroFactura,
-      }).toList(),
+      'analiticas': analiticas
+          .map((a) => {
+                'tipo': a.tipo,
+                'conforme': a.conforme,
+                'fecha': DateTime.fromMillisecondsSinceEpoch(a.fechaMs)
+                    .toIso8601String(),
+              })
+          .toList(),
+      'incidencias': incsLote
+          .map((i) => {
+                'tipo': i.tipo,
+                'descripcion': i.descripcion,
+                'cerrada': i.cerrada,
+              })
+          .toList(),
+      'ventas': ventasLote
+          .map((v) => {
+                'cliente': v.clienteNombre,
+                'fecha': DateTime.fromMillisecondsSinceEpoch(v.fechaMs)
+                    .toIso8601String(),
+                'total': v.total,
+                'factura': v.numeroFactura,
+              })
+          .toList(),
       'completa': ventasLote.isNotEmpty,
     };
   }
@@ -710,8 +736,8 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
 
   Future<List<SimulacionTrazabilidad>> listarSimulaciones() async {
     final db = await basedatos;
-    final filas = await db.query('simulaciones_trazabilidad',
-        orderBy: 'fecha_ms DESC');
+    final filas =
+        await db.query('simulaciones_trazabilidad', orderBy: 'fecha_ms DESC');
     return filas.map(SimulacionTrazabilidad.fromMap).toList();
   }
 
@@ -725,8 +751,8 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
 
   Future<void> borrarSimulacion(int id) async {
     final db = await basedatos;
-    await db.delete('simulaciones_trazabilidad',
-        where: 'id = ?', whereArgs: [id]);
+    await db
+        .delete('simulaciones_trazabilidad', where: 'id = ?', whereArgs: [id]);
   }
 
   /// Número de simulaciones realizadas en un período.
@@ -742,7 +768,8 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
 
   Future<Tercero?> obtenerTercero(int id) async {
     final db = await basedatos;
-    final filas = await db.query('terceros', where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas =
+        await db.query('terceros', where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return Tercero.fromMap(filas.first);
   }
@@ -783,23 +810,33 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
     return db.insert('apuntes_ingreso', i.toMap()..remove('id'));
   }
 
-  Future<List<ApunteIngreso>> listarIngresos({int? desdeMs, int? hastaMs}) async {
+  Future<List<ApunteIngreso>> listarIngresos(
+      {int? desdeMs, int? hastaMs}) async {
     final db = await basedatos;
     final condiciones = <String>[];
     final args = <Object?>[];
-    if (desdeMs != null) { condiciones.add('fecha_ms >= ?'); args.add(desdeMs); }
-    if (hastaMs != null) { condiciones.add('fecha_ms <= ?'); args.add(hastaMs); }
+    if (desdeMs != null) {
+      condiciones.add('fecha_ms >= ?');
+      args.add(desdeMs);
+    }
+    if (hastaMs != null) {
+      condiciones.add('fecha_ms <= ?');
+      args.add(hastaMs);
+    }
     final where = condiciones.isEmpty ? null : condiciones.join(' AND ');
     final filas = await db.query('apuntes_ingreso',
-        where: where, whereArgs: args.isEmpty ? null : args, orderBy: 'fecha_ms DESC');
+        where: where,
+        whereArgs: args.isEmpty ? null : args,
+        orderBy: 'fecha_ms DESC');
     return filas.map(ApunteIngreso.fromMap).toList();
   }
 
   Future<double> totalIngresosPeriodo(int desdeMs, int hastaMs) async {
     final db = await basedatos;
     final filas = await db.rawQuery(
-      'SELECT COALESCE(SUM(total), 0) AS t FROM apuntes_ingreso '
-      'WHERE fecha_ms BETWEEN ? AND ?', [desdeMs, hastaMs]);
+        'SELECT COALESCE(SUM(total), 0) AS t FROM apuntes_ingreso '
+        'WHERE fecha_ms BETWEEN ? AND ?',
+        [desdeMs, hastaMs]);
     return (filas.first['t'] as num?)?.toDouble() ?? 0;
   }
 
@@ -812,40 +849,56 @@ class BaseDatosSoleraQuesera extends BaseDatosSolera {
     final db = await basedatos;
     final condiciones = <String>[];
     final args = <Object?>[];
-    if (desdeMs != null) { condiciones.add('fecha_ms >= ?'); args.add(desdeMs); }
-    if (hastaMs != null) { condiciones.add('fecha_ms <= ?'); args.add(hastaMs); }
+    if (desdeMs != null) {
+      condiciones.add('fecha_ms >= ?');
+      args.add(desdeMs);
+    }
+    if (hastaMs != null) {
+      condiciones.add('fecha_ms <= ?');
+      args.add(hastaMs);
+    }
     final where = condiciones.isEmpty ? null : condiciones.join(' AND ');
     final filas = await db.query('apuntes_gasto',
-        where: where, whereArgs: args.isEmpty ? null : args, orderBy: 'fecha_ms DESC');
+        where: where,
+        whereArgs: args.isEmpty ? null : args,
+        orderBy: 'fecha_ms DESC');
     return filas.map(ApunteGasto.fromMap).toList();
   }
 
   Future<double> totalGastosPeriodo(int desdeMs, int hastaMs) async {
     final db = await basedatos;
     final filas = await db.rawQuery(
-      'SELECT COALESCE(SUM(total), 0) AS t FROM apuntes_gasto '
-      'WHERE fecha_ms BETWEEN ? AND ?', [desdeMs, hastaMs]);
+        'SELECT COALESCE(SUM(total), 0) AS t FROM apuntes_gasto '
+        'WHERE fecha_ms BETWEEN ? AND ?',
+        [desdeMs, hastaMs]);
     return (filas.first['t'] as num?)?.toDouble() ?? 0;
   }
 
-  Future<Map<String, double>> ingresosPorCategoria(int desdeMs, int hastaMs) async {
+  Future<Map<String, double>> ingresosPorCategoria(
+      int desdeMs, int hastaMs) async {
     final db = await basedatos;
     final filas = await db.rawQuery(
-      'SELECT categoria, COALESCE(SUM(total), 0) AS t FROM apuntes_ingreso '
-      'WHERE fecha_ms BETWEEN ? AND ? GROUP BY categoria ORDER BY t DESC',
-      [desdeMs, hastaMs]);
-    return {for (final f in filas) (f['categoria'] as String): (f['t'] as num).toDouble()};
+        'SELECT categoria, COALESCE(SUM(total), 0) AS t FROM apuntes_ingreso '
+        'WHERE fecha_ms BETWEEN ? AND ? GROUP BY categoria ORDER BY t DESC',
+        [desdeMs, hastaMs]);
+    return {
+      for (final f in filas)
+        (f['categoria'] as String): (f['t'] as num).toDouble()
+    };
   }
 
-  Future<Map<String, double>> gastosPorCategoria(int desdeMs, int hastaMs) async {
+  Future<Map<String, double>> gastosPorCategoria(
+      int desdeMs, int hastaMs) async {
     final db = await basedatos;
     final filas = await db.rawQuery(
-      'SELECT categoria, COALESCE(SUM(total), 0) AS t FROM apuntes_gasto '
-      'WHERE fecha_ms BETWEEN ? AND ? GROUP BY categoria ORDER BY t DESC',
-      [desdeMs, hastaMs]);
-    return {for (final f in filas) (f['categoria'] as String): (f['t'] as num).toDouble()};
+        'SELECT categoria, COALESCE(SUM(total), 0) AS t FROM apuntes_gasto '
+        'WHERE fecha_ms BETWEEN ? AND ? GROUP BY categoria ORDER BY t DESC',
+        [desdeMs, hastaMs]);
+    return {
+      for (final f in filas)
+        (f['categoria'] as String): (f['t'] as num).toDouble()
+    };
   }
-
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -1096,22 +1149,20 @@ Future<void> _crearEsquemaV1(Database db) async {
       'CREATE INDEX idx_partidas_proveedor ON partidas_leche(proveedor_id)');
   await db.execute(
       'CREATE INDEX idx_lotes_fecha ON lotes_produccion(fecha_ms DESC)');
-  await db.execute(
-      'CREATE INDEX idx_lotes_estado ON lotes_produccion(estado)');
-  await db.execute(
-      'CREATE INDEX idx_piezas_lote ON piezas(lote_produccion_id)');
+  await db.execute('CREATE INDEX idx_lotes_estado ON lotes_produccion(estado)');
+  await db
+      .execute('CREATE INDEX idx_piezas_lote ON piezas(lote_produccion_id)');
   await db.execute('CREATE INDEX idx_piezas_estado ON piezas(estado)');
-  await db.execute('CREATE INDEX idx_piezas_ubicacion ON piezas(ubicacion_actual)');
-  await db.execute(
-      'CREATE INDEX idx_eventos_pieza ON eventos_curacion(pieza_id)');
-  await db.execute(
-      'CREATE INDEX idx_ventas_fecha ON ventas(fecha_ms DESC)');
+  await db
+      .execute('CREATE INDEX idx_piezas_ubicacion ON piezas(ubicacion_actual)');
+  await db
+      .execute('CREATE INDEX idx_eventos_pieza ON eventos_curacion(pieza_id)');
+  await db.execute('CREATE INDEX idx_ventas_fecha ON ventas(fecha_ms DESC)');
   await db.execute(
       'CREATE INDEX idx_temp_fecha ON controles_temperatura(fecha_ms DESC)');
   await db.execute(
       'CREATE INDEX idx_incidencias_abiertas ON incidencias(cerrada) WHERE cerrada = 0');
 }
-
 
 /// Esquema v2 — tabla de simulaciones de trazabilidad (aditivo, no destructivo).
 Future<void> _crearEsquemaV2(Database db) async {
@@ -1132,8 +1183,7 @@ Future<void> _crearEsquemaV2(Database db) async {
       fecha_creacion_ms INTEGER NOT NULL
     )
   ''');
-  await db.execute(
-      'CREATE INDEX IF NOT EXISTS idx_simulaciones_fecha '
+  await db.execute('CREATE INDEX IF NOT EXISTS idx_simulaciones_fecha '
       'ON simulaciones_trazabilidad(fecha_ms DESC)');
 }
 

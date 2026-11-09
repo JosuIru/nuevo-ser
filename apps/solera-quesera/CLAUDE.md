@@ -95,6 +95,7 @@ tool/compilar_catalogos.dart  Lee los 5 CSVs, skipea líneas #,
 | F1-8 Backup + pulido | pendiente | Backup ZIP de BD, onboarding pulido, pantalla acerca legal |
 | F1-9 Libro ingresos/gastos | pendiente | Mismo patrón F3.5/F1-12 del resto de Larrea: Ingresos (venta queso, ferias, suscripción, subvención DO), Gastos (leche, fermentos, energía cavas, cuota DO, analíticas) |
 | F1-10 Catálogos pre-curados | pendiente | Revisión por asesor quesero + fuentes públicas (BOE DO, MAPA, AESAN) |
+| Mapa 2026-11-09 | ✅ | **Solo puntos**, sin migración (las columnas ya existían y solo las rellenaba el sembrador): `CampoPunto` de `nuevo_ser_mapa` (GPS o marcar en el mapa) en la ficha del **proveedor de leche** (título «Explotación ganadera») y en la de la **quesería** (Ajustes → Explotación, título «Dirección»). Arreglos de paso: editar un proveedor ya no lo duplica (`actualizarProveedor`; antes siempre insertaba) y conserva sus notas; editar la quesería ya no borra notas, fotos ni el punto. `file_picker` sube a ^10.2.4 (lo pide el paquete). 71 tests |
 | F2 Lanzamiento | pendiente | Stores, web, primeros suscriptores |
 
 ## Hard limits

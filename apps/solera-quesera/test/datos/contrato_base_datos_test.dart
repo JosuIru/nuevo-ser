@@ -803,6 +803,23 @@ void main() {
           throwsA(isA<DatabaseException>()));
     });
 
+    test('editar un proveedor guarda su punto sin duplicarlo', () async {
+      final id = await baseDatosQuesera.guardarProveedor(
+          ProveedorLeche(nombre: 'Caserío', fechaCreacionMs: 1));
+      final original = (await baseDatosQuesera.obtenerProveedor(id))!;
+      await baseDatosQuesera.actualizarProveedor(ProveedorLeche(
+        id: original.id,
+        nombre: original.nombre,
+        latitud: 43.1,
+        longitud: -2.2,
+        fechaCreacionMs: original.fechaCreacionMs,
+      ));
+      final proveedores = await baseDatosQuesera.listarProveedores();
+      expect(proveedores, hasLength(1));
+      expect(proveedores.single.latitud, 43.1);
+      expect(proveedores.single.longitud, -2.2);
+    });
+
     test('borrar el proveedor arrastra sus partidas de leche (CASCADE)',
         () async {
       final produccion = await crearProduccionMinima();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart' show CampoPunto;
 
 import '../datos/base_datos.dart';
 import '../estado/clave_anthropic_quesera.dart';
@@ -81,7 +82,8 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
           ListTile(
             leading: const Icon(Icons.person),
             title: Text(SoleraL10n.t('proveedores')),
-            subtitle: Text(SoleraL10n.tf('ques.registrados_n', {'n': _numeroProveedores})),
+            subtitle: Text(
+                SoleraL10n.tf('ques.registrados_n', {'n': _numeroProveedores})),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => _abrir(PantallaListaProveedores()),
           ),
@@ -125,7 +127,8 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
           ListTile(
             leading: const Icon(Icons.info_outline),
             title: Text(SoleraL10n.t('acerca_de')),
-            subtitle: Text(SoleraL10n.tf('ques.version_n', {'version': versionSoleraQuesera})),
+            subtitle: Text(SoleraL10n.tf(
+                'ques.version_n', {'version': versionSoleraQuesera})),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => Navigator.push(context,
                 MaterialPageRoute(builder: (_) => const PantallaAcerca())),
@@ -146,6 +149,8 @@ class _PantallaEditarQueseria extends StatefulWidget {
 
 class _PantallaEditarQueseriaState extends State<_PantallaEditarQueseria> {
   late final _razonCtrl, _nifCtrl, _dirCtrl, _rgseaaCtrl, _telCtrl, _emailCtrl;
+  late double? _latitud = widget.queseria.latitud;
+  late double? _longitud = widget.queseria.longitud;
   @override
   void initState() {
     super.initState();
@@ -176,7 +181,8 @@ class _PantallaEditarQueseriaState extends State<_PantallaEditarQueseria> {
         TextFormField(
             controller: _razonCtrl,
             decoration: InputDecoration(
-                labelText: SoleraL10n.t('ques.razon_social'), border: OutlineInputBorder())),
+                labelText: SoleraL10n.t('ques.razon_social'),
+                border: OutlineInputBorder())),
         SizedBox(height: 12),
         TextFormField(
             controller: _nifCtrl,
@@ -193,30 +199,50 @@ class _PantallaEditarQueseriaState extends State<_PantallaEditarQueseria> {
         TextFormField(
             controller: _dirCtrl,
             decoration: InputDecoration(
-                labelText: SoleraL10n.t('ques.direccion'), border: OutlineInputBorder())),
+                labelText: SoleraL10n.t('ques.direccion'),
+                border: OutlineInputBorder())),
         SizedBox(height: 12),
         TextFormField(
             controller: _telCtrl,
             decoration: InputDecoration(
-                labelText: SoleraL10n.t('ques.telefono'), border: OutlineInputBorder()),
+                labelText: SoleraL10n.t('ques.telefono'),
+                border: OutlineInputBorder()),
             keyboardType: TextInputType.phone),
         SizedBox(height: 12),
         TextFormField(
             controller: _emailCtrl,
             decoration: InputDecoration(
-                labelText: SoleraL10n.t('ques.correo_electronico'), border: OutlineInputBorder()),
+                labelText: SoleraL10n.t('ques.correo_electronico'),
+                border: OutlineInputBorder()),
             keyboardType: TextInputType.emailAddress),
+        SizedBox(height: 12),
+        CampoPunto(
+          latitud: _latitud,
+          longitud: _longitud,
+          titulo: SoleraL10n.t('ques.direccion'),
+          paqueteApp: paqueteAppQuesera,
+          alCambiar: (latitud, longitud) => setState(() {
+            _latitud = latitud;
+            _longitud = longitud;
+          }),
+        ),
         SizedBox(height: 24),
         FilledButton(
             onPressed: () => Navigator.pop(
                 context,
+                // Se guarda la fila entera: lo que no se edita aquí
+                // (notas, fotos) se conserva.
                 Queseria(
                     razonSocial: _razonCtrl.text,
                     nif: _nifCtrl.text,
                     direccion: _dirCtrl.text,
+                    latitud: _latitud,
+                    longitud: _longitud,
                     rgseaa: _rgseaaCtrl.text,
                     telefono: _telCtrl.text,
-                    email: _emailCtrl.text)),
+                    email: _emailCtrl.text,
+                    notas: widget.queseria.notas,
+                    rutasFotosJson: widget.queseria.rutasFotosJson)),
             child: Text(SoleraL10n.t('guardar'))),
       ]),
     );

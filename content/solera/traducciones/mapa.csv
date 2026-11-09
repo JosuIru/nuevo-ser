@@ -1,0 +1,43 @@
+clave,es,eu,ca,gl
+mapa.area_ayuda_elegida,Toca el mapa donde quieras llevar la esquina.,Ukitu mapa izkina eraman nahi duzun tokian.,Toca el mapa on vulguis portar la cantonada.,Toca o mapa onde queiras levar a esquina.
+mapa.area_ayuda_vacia,"Toca el mapa en cada esquina, o camina el borde y pulsa «Mi posición» en cada esquina.","Ukitu mapa izkina bakoitzean, edo ibili ertzean zehar eta sakatu «Nire kokapena» izkina bakoitzean.","Toca el mapa a cada cantonada, o camina per la vora i prem «La meva posició» a cada cantonada.","Toca o mapa en cada esquina, ou camiña o bordo e preme «A miña posición» en cada esquina."
+mapa.area_borrar,Borrar todo,Dena ezabatu,Esborra-ho tot,Borrar todo
+mapa.area_deshacer,Deshacer,Desegin,Desfés,Desfacer
+mapa.area_elegir_importada,¿Cuál de las áreas del fichero?,Fitxategiko zein eremu?,Quina de les àrees del fitxer?,Cal das áreas do ficheiro?
+mapa.area_error_fichero,No se pudo leer el fichero.,Ezin izan da fitxategia irakurri.,No s’ha pogut llegir el fitxer.,Non se puido ler o ficheiro.
+mapa.area_esquinas,{n} esquinas,{n} izkina,{n} cantonades,{n} esquinas
+mapa.area_faltan,Un área necesita al menos tres esquinas.,Eremu batek gutxienez hiru izkina behar ditu.,Una àrea necessita almenys tres cantonades.,Unha área precisa polo menos tres esquinas.
+mapa.area_guardar,Guardar,Gorde,Desa,Gardar
+mapa.area_importar,"Importar de un fichero (KML, GeoJSON, GPX, Shapefile)","Fitxategi batetik inportatu (KML, GeoJSON, GPX, Shapefile)","Importa d’un fitxer (KML, GeoJSON, GPX, Shapefile)","Importar dun ficheiro (KML, GeoJSON, GPX, Shapefile)"
+mapa.area_marcada,Área: {hectareas} ha,Eremua: {hectareas} ha,Àrea: {hectareas} ha,Área: {hectareas} ha
+mapa.area_mi_posicion,Mi posición,Nire kokapena,La meva posició,A miña posición
+mapa.area_ninguna_en_fichero,El fichero no trae ningún área.,Fitxategiak ez dakar eremurik.,El fitxer no porta cap àrea.,O ficheiro non trae ningunha área.
+mapa.area_orientativa,La superficie calculada es orientativa: la oficial es la de SIGPAC o el catastro.,Kalkulatutako azalera gutxi gorabeherakoa da: ofiziala SIGPACekoa edo katastrokoa da.,La superfície calculada és orientativa: l’oficial és la del SIGPAC o el cadastre.,A superficie calculada é orientativa: a oficial é a do SIGPAC ou o catastro.
+mapa.area_quitar,Quitar el área,Eremua kendu,Treu l’àrea,Quitar a área
+mapa.area_quitar_esquina,Quitar esquina,Izkina kendu,Treu la cantonada,Quitar esquina
+mapa.area_recorrido,Recorrido: {metros} m,Ibilbidea: {metros} m,Recorregut: {metros} m,Percorrido: {metros} m
+mapa.area_resumen,{hectareas} ha · perímetro {metros} m,{hectareas} ha · perimetroa {metros} m,{hectareas} ha · perímetre {metros} m,{hectareas} ha · perímetro {metros} m
+mapa.area_supuesto_utm,El fichero no dice en qué coordenadas está: se ha tomado como UTM 30N (ETRS89). Comprueba que cae en su sitio.,Fitxategiak ez du esaten zein koordenatutan dagoen: UTM 30N (ETRS89) gisa hartu da. Egiaztatu bere tokian erortzen dela.,El fitxer no diu en quines coordenades és: s’ha pres com a UTM 30N (ETRS89). Comprova que cau al seu lloc.,O ficheiro non di en que coordenadas está: tomouse como UTM 30N (ETRS89). Comproba que cae no seu sitio.
+mapa.area_titulo,Marcar el área,Eremua markatu,Marca l’àrea,Marcar a área
+mapa.buscar,Buscar un lugar,Leku bat bilatu,Cerca un lloc,Buscar un lugar
+mapa.cambiar_capa,Cambiar de mapa,Mapa aldatu,Canvia de mapa,Cambiar de mapa
+mapa.capa_callejero,Callejero,Kale-mapa,Carrerer,Rueiro
+mapa.capa_ortofoto,Foto aérea,Aireko argazkia,Foto aèria,Foto aérea
+mapa.editar_area,Cambiar el área,Eremua aldatu,Canvia l’àrea,Cambiar a área
+mapa.esquina_gps,Esquina añadida con el GPS (±{metros} m).,Izkina GPSarekin gehitu da (±{metros} m).,Cantonada afegida amb el GPS (±{metros} m).,Esquina engadida co GPS (±{metros} m).
+mapa.leyendo_gps,Leyendo el GPS…,GPSa irakurtzen…,S’està llegint el GPS…,Lendo o GPS…
+mapa.marcar_area,Marcar el área en el mapa,Eremua mapan markatu,Marca l’àrea al mapa,Marcar a área no mapa
+mapa.marcar_punto,Marcar en el mapa,Mapan markatu,Marca al mapa,Marcar no mapa
+mapa.mi_ubicacion,Ir a mi ubicación,Nire kokapenera joan,Vés a la meva ubicació,Ir á miña localización
+mapa.precision_baja,El GPS da poca precisión (±{metros} m): espera un poco al aire libre y vuelve a pulsar.,GPSak doitasun txikia du (±{metros} m): itxaron pixka bat kanpoan eta sakatu berriro.,El GPS dona poca precisió (±{metros} m): espera una mica a l’aire lliure i torna a prémer.,O GPS dá pouca precisión (±{metros} m): agarda un pouco ao aire libre e volve premer.
+mapa.punto_ayuda,"Mueve el mapa hasta que la cruz quede en el sitio, o toca el sitio.","Mugitu mapa gurutzea tokian geratu arte, edo ukitu tokia.","Mou el mapa fins que la creu quedi al lloc, o toca el lloc.","Move o mapa ata que a cruz quede no sitio, ou toca o sitio."
+mapa.punto_quitar,Quitar el punto,Puntua kendu,Treu el punt,Quitar o punto
+mapa.punto_titulo,Marcar el punto,Puntua markatu,Marca el punt,Marcar o punto
+mapa.punto_usar,Usar este punto,Puntu hau erabili,Fes servir aquest punt,Usar este punto
+mapa.salir,Salir,Irten,Surt,Saír
+mapa.salir_sin_guardar,¿Salir sin guardar?,Gorde gabe irten?,Vols sortir sense desar?,Saír sen gardar?
+mapa.seguir,Seguir editando,Editatzen jarraitu,Continua editant,Seguir editando
+mapa.sin_area,Sin área marcada,Eremurik markatu gabe,Sense àrea marcada,Sen área marcada
+mapa.sin_gps,No se pudo leer el GPS: comprueba que la ubicación está activada y con permiso.,Ezin izan da GPSa irakurri: egiaztatu kokapena aktibatuta dagoela eta baimena duela.,No s’ha pogut llegir el GPS: comprova que la ubicació està activada i amb permís.,Non se puido ler o GPS: comproba que a localización está activada e con permiso.
+mapa.sin_nombre,Sin nombre,Izenik gabe,Sense nom,Sen nome
+mapa.usar_superficie,Usar la superficie calculada ({hectareas} ha),Kalkulatutako azalera erabili ({hectareas} ha),Fes servir la superfície calculada ({hectareas} ha),Usar a superficie calculada ({hectareas} ha)

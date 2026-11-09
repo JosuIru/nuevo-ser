@@ -1,0 +1,30 @@
+name: nuevo_ser_mapa
+description: "Mapa de la suite Larrea: marcar puntos y áreas (dibujar, caminar con GPS, importar), geodesia y capas. Separado del core para que los juegos Kids no carguen con flutter_map ni con el GPS."
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ^3.5.0
+  flutter: ">=3.24.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  nuevo_ser_core:
+    path: ../nuevo_ser_core
+  # Las mismas versiones que ya usan las apps Larrea.
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
+  geolocator: 12.0.0
+  # Importar contornos (copiado de Larrea Zunbeltz): KML/GPX, KMZ y
+  # Shapefile en zip, UTM → grados, elegir el fichero.
+  xml: ^6.6.1
+  archive: ^3.6.1
+  proj4dart: ^2.1.0
+  file_picker: ^10.2.4
+  intl: any
+
+dev_dependencies:
+  flutter_lints: ^4.0.0
+  flutter_test:
+    sdk: flutter

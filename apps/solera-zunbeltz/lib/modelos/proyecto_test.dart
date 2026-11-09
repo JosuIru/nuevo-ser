@@ -1,3 +1,7 @@
+import 'dart:convert' show jsonEncode;
+
+import 'tarea_mantenimiento.dart' show decodificarUidsResponsables;
+
 const String estadoProyectoAbierto = 'abierto';
 const String estadoProyectoCerrado = 'cerrado';
 
@@ -18,6 +22,7 @@ class ProyectoTest {
     this.notas = '',
     this.fechaCreacionMs = 0,
     this.personaUid = '',
+    this.personasUids = const [],
     this.estado = estadoProyectoAbierto,
     this.cerradoMs,
     this.porcentajeBeneficioZunbeltz = 25,
@@ -31,7 +36,8 @@ class ProyectoTest {
   /// Nombre del proyecto de test.
   final String nombre;
 
-  /// Persona tester que lo lleva.
+  /// Persona o personas tester que lo llevan (nombres separados por comas
+  /// si son varias).
   final String persona;
 
   /// Actividad o vertical productiva (p. ej. «ovino de leche», «huerta»).
@@ -51,6 +57,33 @@ class ProyectoTest {
   /// Persona tester del espacio (`uid` del WordPress). Decide quién ve el
   /// proyecto y quién apunta en él. Vacío en modo local.
   final String personaUid;
+
+  /// Todas las personas tester del proyecto (`uid`), en el orden en que se
+  /// eligieron: un mismo test puede ser de dos personas. [personaUid] es
+  /// siempre la primera, para las apps y el servidor anteriores, que solo
+  /// entienden una. Vacía en los proyectos guardados antes de la v21: ver
+  /// [uidsTester].
+  final List<String> personasUids;
+
+  /// Las personas tester del proyecto: [personasUids] o, si no la hay (un
+  /// proyecto antiguo), [personaUid].
+  ///
+  /// Si [personaUid] no está en la lista, alguien la cambió con una app
+  /// anterior (que no conoce la lista): manda [personaUid].
+  List<String> get uidsTester {
+    final unicas = <String>{
+      for (final uid in personasUids)
+        if (uid.isNotEmpty) uid
+    };
+    if (unicas.isEmpty ||
+        (personaUid.isNotEmpty && !unicas.contains(personaUid))) {
+      return [if (personaUid.isNotEmpty) personaUid];
+    }
+    return unicas.toList();
+  }
+
+  /// ¿Es [uid] una de las personas tester del proyecto?
+  bool esDeTester(String uid) => uid.isNotEmpty && uidsTester.contains(uid);
 
   /// `abierto` o `cerrado`. Cerrado por coordinación: la persona tester ya
   /// no apunta y los informes dejan de ser borrador.
@@ -80,6 +113,7 @@ class ProyectoTest {
         'notas': notas,
         'fecha_creacion_ms': fechaCreacionMs,
         'persona_uid': personaUid,
+        'personas_uids': jsonEncode(uidsTester),
         'estado': estado,
         'cerrado_ms': cerradoMs,
         'porcentaje_beneficio_zunbeltz': porcentajeBeneficioZunbeltz,
@@ -100,6 +134,7 @@ class ProyectoTest {
         notas: (mapa['notas'] as String?) ?? '',
         fechaCreacionMs: (mapa['fecha_creacion_ms'] as int?) ?? 0,
         personaUid: (mapa['persona_uid'] as String?) ?? '',
+        personasUids: decodificarUidsResponsables(mapa['personas_uids']),
         estado: (mapa['estado'] as String?) ?? estadoProyectoAbierto,
         cerradoMs: mapa['cerrado_ms'] as int?,
         porcentajeBeneficioZunbeltz:

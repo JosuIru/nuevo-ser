@@ -51,10 +51,31 @@ void main() {
   });
 
   test('seguimiento: tester en su proyecto abierto; coordinación siempre', () {
-    expect(ane.puedeRegistrarEnProyecto(personaUidProyecto: 'ane', cerrado: false), isTrue);
-    expect(ane.puedeRegistrarEnProyecto(personaUidProyecto: 'ane', cerrado: true), isFalse);
-    expect(ane.puedeRegistrarEnProyecto(personaUidProyecto: 'jon', cerrado: false), isFalse);
-    expect(coordinacion.puedeRegistrarEnProyecto(personaUidProyecto: 'jon', cerrado: true), isTrue);
+    expect(
+        ane.puedeRegistrarEnProyecto(
+            uidsTesterProyecto: const ['ane'], cerrado: false),
+        isTrue);
+    expect(
+        ane.puedeRegistrarEnProyecto(
+            uidsTesterProyecto: const ['ane'], cerrado: true),
+        isFalse);
+    expect(
+        ane.puedeRegistrarEnProyecto(
+            uidsTesterProyecto: const ['jon'], cerrado: false),
+        isFalse);
+    expect(
+        coordinacion.puedeRegistrarEnProyecto(
+            uidsTesterProyecto: const ['jon'], cerrado: true),
+        isTrue);
+    // Un test de dos personas: apuntan las dos.
+    expect(
+        ane.puedeRegistrarEnProyecto(
+            uidsTesterProyecto: const ['jon', 'ane'], cerrado: false),
+        isTrue);
+    expect(
+        ane.puedeRegistrarEnProyecto(
+            uidsTesterProyecto: const [], cerrado: false),
+        isFalse);
     expect(ane.puedeGestionarProyectos, isFalse);
   });
 

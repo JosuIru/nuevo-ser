@@ -37,14 +37,15 @@ class PoliticaEspacio {
   bool get puedeGestionarProyectos => _puede(capacidadGestionarProyectos);
 
   /// Apuntar seguimiento (producción, ventas, validaciones, gastos) en un
-  /// proyecto: coordinación siempre; la persona tester en el suyo mientras
-  /// esté abierto.
+  /// proyecto: coordinación siempre; cualquiera de sus personas tester
+  /// ([uidsTesterProyecto], ver `ProyectoTest.uidsTester`) mientras esté
+  /// abierto.
   bool puedeRegistrarEnProyecto({
-    required String personaUidProyecto,
+    required List<String> uidsTesterProyecto,
     required bool cerrado,
   }) =>
       puedeGestionarProyectos ||
-      (!cerrado && miUid.isNotEmpty && personaUidProyecto == miUid);
+      (!cerrado && miUid.isNotEmpty && uidsTesterProyecto.contains(miUid));
 
   bool get puedeEnviarPeticiones =>
       _puede(capacidadEnviarPeticiones) || puedeGestionarPeticiones;

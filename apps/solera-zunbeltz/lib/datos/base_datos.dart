@@ -118,7 +118,7 @@ class BaseDatosSoleraZunbeltz {
     return _basedatos!;
   }
 
-  static const int versionEsquema = 20;
+  static const int versionEsquema = 21;
 
   /// Aplica en orden las migraciones posteriores a [anterior]. Lo usan la
   /// apertura de la BD (alta y subida de versión) y los tests.
@@ -142,6 +142,7 @@ class BaseDatosSoleraZunbeltz {
     if (anterior < 18) await aplicarMigracionV18(db);
     if (anterior < 19) await aplicarMigracionV19(db);
     if (anterior < 20) await aplicarMigracionV20(db);
+    if (anterior < 21) await aplicarMigracionV21(db);
   }
 
   /// Crea el esquema v1. Público y estático para reutilizarlo en tests con
@@ -814,6 +815,14 @@ class BaseDatosSoleraZunbeltz {
     }
   }
 
+  /// v21: un proyecto de test puede ser de varias personas tester
+  /// (`personas_uids`, lista JSON; `persona_uid` sigue siendo la primera).
+  /// Aditiva: vacía en lo que ya había, que se lee como `[persona_uid]`.
+  static Future<void> aplicarMigracionV21(Database db) async {
+    await db.execute(
+        "ALTER TABLE proyectos_test ADD COLUMN personas_uids TEXT NOT NULL DEFAULT ''");
+  }
+
   /// v20: fotos de la versión web. En el navegador no hay ficheros, así que
   /// cada foto (ya reducida, por su hash) se guarda aquí, con lo que falte
   /// por subir; las columnas de fotos de las entidades llevan siempre
@@ -1113,7 +1122,8 @@ class BaseDatosSoleraZunbeltz {
     final actuales = GestorFotos.decodificar(
         (filas.first['rutas_fotos_despues_json'] as String?) ?? '[]');
     await actualizarTarea(id, {
-      'rutas_fotos_despues_json': GestorFotos.codificar([...actuales, ...nuevas]),
+      'rutas_fotos_despues_json':
+          GestorFotos.codificar([...actuales, ...nuevas]),
     });
   }
 
@@ -1333,8 +1343,7 @@ class BaseDatosSoleraZunbeltz {
     // Fotos: las del servidor si las manda (ya traducidas a entradas
     // locales por quien llama); si no (plugin anterior), las de este móvil.
     mapa
-      ..['rutas_fotos_antes_json'] =
-          fotosAntesJson ?? local.rutasFotosAntesJson
+      ..['rutas_fotos_antes_json'] = fotosAntesJson ?? local.rutasFotosAntesJson
       ..['rutas_fotos_despues_json'] =
           fotosDespuesJson ?? local.rutasFotosDespuesJson;
     await db.update('tareas_mantenimiento', mapa,

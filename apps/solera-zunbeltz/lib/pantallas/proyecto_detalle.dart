@@ -91,7 +91,7 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
   int get _fincaId => _proyecto.fincaId ?? _fincaRespaldo ?? 0;
 
   bool get _puedeRegistrar => politicaEspacioActual.puedeRegistrarEnProyecto(
-      personaUidProyecto: _proyecto.personaUid, cerrado: _proyecto.cerrado);
+      uidsTesterProyecto: _proyecto.uidsTester, cerrado: _proyecto.cerrado);
 
   @override
   void initState() {

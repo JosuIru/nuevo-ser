@@ -57,7 +57,7 @@ class _PantallaCalculadoraState extends State<PantallaCalculadora> {
       ];
 
   bool get _puedeGuardar => politicaEspacioActual.puedeRegistrarEnProyecto(
-      personaUidProyecto: widget.proyecto.personaUid,
+      uidsTesterProyecto: widget.proyecto.uidsTester,
       cerrado: widget.proyecto.cerrado);
 
   @override

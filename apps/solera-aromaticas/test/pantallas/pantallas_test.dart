@@ -68,6 +68,19 @@ void main() {
     expect(find.text(SoleraL10n.t('arom.guia_aviso')), findsOneWidget);
   });
 
+  testWidgets('la ficha de parcela ofrece marcar el punto y el área',
+      (tester) async {
+    await tester.pumpWidget(
+        const MaterialApp(home: PantallaEditarParcela()));
+    await tester.pumpAndSettle();
+    final marcarArea = find.text(SoleraL10n.t('mapa.marcar_area'));
+    await tester.scrollUntilVisible(marcarArea, 200,
+        scrollable: find.byType(Scrollable).first);
+    expect(marcarArea, findsOneWidget);
+    expect(find.text(SoleraL10n.t('mapa.sin_area')), findsOneWidget);
+    expect(find.text(SoleraL10n.t('mapa.marcar_punto')), findsOneWidget);
+  });
+
   testWidgets('Hoy: zona sin permiso y permiso que vence', (tester) async {
     await tester.runAsync(() async {
       final pronto = DateTime.now().add(const Duration(days: 5));

@@ -25,6 +25,8 @@ dependencies:
   intl: ^0.19.0
   pdf: ^3.11.1
   printing: ^5.13.4
+  nuevo_ser_mapa:
+    path: ../../packages/nuevo_ser_mapa
   nuevo_ser_core:
     path: ../../packages/nuevo_ser_core
 

@@ -18,7 +18,7 @@ import '../modelos/zona_recoleccion.dart';
 const String nombreFicheroBaseDatosAromaticas = 'solera_aromaticas.db';
 
 /// Versión del esquema: el número del último paso de [pasosMigracion].
-const int versionEsquemaAromaticas = 1;
+const int versionEsquemaAromaticas = 2;
 
 /// Sentencias del esquema v1. Públicas para los tests de contrato.
 const List<String> sentenciasEsquemaAromaticasV1 = [
@@ -189,7 +189,18 @@ class BaseDatosSoleraAromaticas extends BaseDatosSolera {
   DatabaseFactory get fabricaBaseDatos => databaseFactory;
 
   @override
-  Map<int, PasoMigracionSolera> get pasosMigracion => const {};
+  Map<int, PasoMigracionSolera> get pasosMigracion => {
+        2: _anadirContornosV2,
+      };
+
+  /// v2 (2026-11-09): área marcada en el mapa de parcelas y zonas de
+  /// recolección (nuevo_ser_mapa), JSON `[[lat,lng],…]`.
+  static Future<void> _anadirContornosV2(Database db) async {
+    for (final tabla in ['parcelas', 'zonas_recoleccion']) {
+      await db.execute(
+          "ALTER TABLE $tabla ADD COLUMN contorno TEXT NOT NULL DEFAULT '[]'");
+    }
+  }
 
   @override
   Future<void> crearEsquemaInicial(Database db) async {

@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart' show codificarContorno;
 import 'package:sqflite/sqflite.dart';
 import 'package:solera_aromaticas/datos/base_datos.dart';
 import 'package:solera_aromaticas/modelos/cosecha.dart';
@@ -13,6 +15,14 @@ import 'package:solera_aromaticas/modelos/tratamiento.dart';
 import 'package:solera_aromaticas/modelos/zona_recoleccion.dart';
 
 import 'soporte_contrato_base_datos.dart';
+
+/// Cambios de esquema desde la v1, para los tests de contrato.
+const Map<int, CambioEsquema> historialMigracionesAromaticas = {
+  2: CambioEsquema(columnasNuevas: {
+    'parcelas': ['contorno'],
+    'zonas_recoleccion': ['contorno'],
+  }),
+};
 
 void main() {
   final entorno = EntornoBaseDatosTemporal();
@@ -32,10 +42,57 @@ void main() {
         isTrue);
   });
 
-  test('el esquema creado coincide con las sentencias v1', () async {
+  test('el esquema creado es el v1 más el historial de migraciones',
+      () async {
     final db = await baseDatos.basedatos;
-    expect(await leerColumnasPorTabla(db),
-        await columnasDeEsquemaV1(sentenciasEsquemaAromaticasV1));
+    final actuales = await leerColumnasPorTabla(db);
+    expect(
+        actuales,
+        columnasDeclaradasEnVersion(
+          columnasV1: await columnasDeEsquemaV1(sentenciasEsquemaAromaticasV1),
+          historial: historialMigracionesAromaticas,
+          columnasActuales: actuales,
+          version: versionEsquemaAromaticas,
+        ));
+    expect(historialMigracionesAromaticas.keys.reduce((a, b) => a > b ? a : b),
+        versionEsquemaAromaticas);
+  });
+
+  test('migra desde la v1 sin perder filas y con el contorno vacío',
+      () async {
+    final filas = {
+      'parcelas': {'nombre': 'Bancal', 'especie_id': 'lavanda'},
+      'zonas_recoleccion': {'nombre': 'Monte'},
+    };
+    await crearBaseDatosHistorica(
+      ruta: entorno.ruta(nombreFicheroBaseDatosAromaticas),
+      version: 1,
+      sentenciasEsquemaV1: sentenciasEsquemaAromaticasV1,
+      historial: historialMigracionesAromaticas,
+      columnasActuales: const {},
+      filasPorTabla: filas,
+    );
+    final db = await baseDatos.basedatos;
+    expect(await db.getVersion(), versionEsquemaAromaticas);
+    await comprobarFilasConservadas(db, filas);
+    expect((await baseDatos.listarParcelas()).single.contorno, '[]');
+    expect((await baseDatos.listarZonasRecoleccion()).single.vertices, isEmpty);
+  });
+
+  test('el área de una parcela y de una zona se guarda y se lee', () async {
+    const area = [
+      LatLng(42.0, -1.0),
+      LatLng(42.0, -0.999),
+      LatLng(42.001, -0.999),
+    ];
+    await baseDatos.guardarParcela(Parcela(
+        nombre: 'Bancal',
+        especieId: 'lavanda',
+        contorno: codificarContorno(area)));
+    await baseDatos.guardarZonaRecoleccion(
+        ZonaRecoleccion(nombre: 'Monte', contorno: codificarContorno(area)));
+    expect((await baseDatos.listarParcelas()).single.vertices, area);
+    expect((await baseDatos.listarZonasRecoleccion()).single.vertices, area);
   });
 
   test('el titular se guarda en una sola fila', () async {

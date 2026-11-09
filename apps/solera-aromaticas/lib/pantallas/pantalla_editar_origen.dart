@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart';
 
 import '../datos/base_datos.dart';
 import '../dominio/catalogos.dart';
 import '../estado/cambios_datos.dart';
 import '../modelos/parcela.dart';
 import '../modelos/zona_recoleccion.dart';
-import '../utiles/permisos_gps.dart';
 import '../utiles/textos_aromaticas.dart';
 import 'campo_catalogo.dart';
 import 'hoja_formulario.dart';
@@ -28,74 +28,16 @@ Future<void> abrirEdicionZona(BuildContext context,
   if (guardado == true) avisarCambioDatos();
 }
 
-/// Posición actual del GPS, o null (y un aviso) si no hay permiso o no
-/// responde.
-Future<(double, double)?> leerUbicacionActual(BuildContext context) async {
-  final mensajero = ScaffoldMessenger.of(context);
-  try {
-    if (!await asegurarPermisoUbicacion()) {
-      mensajero.showSnackBar(
-          SnackBar(content: Text(SoleraL10n.t('arom.gps_sin_permiso'))));
-      return null;
-    }
-    final posicion = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
-      timeLimit: const Duration(seconds: 30),
-    );
-    return (posicion.latitude, posicion.longitude);
-  } catch (error) {
-    debugPrint('GPS: $error');
-    mensajero
-        .showSnackBar(SnackBar(content: Text(SoleraL10n.t('arom.gps_error'))));
-    return null;
-  }
-}
+/// Paquete de la app, para identificarse ante OpenStreetMap.
+const String paqueteAppAromaticas = 'com.coleccionnuevoser.solera_aromaticas';
 
-/// Fila con la ubicación y el botón «Usar mi ubicación».
-class FilaUbicacion extends StatefulWidget {
-  const FilaUbicacion({
-    super.key,
-    required this.latitud,
-    required this.longitud,
-    required this.alCambiar,
-  });
-
-  final double? latitud;
-  final double? longitud;
-  final void Function(double latitud, double longitud) alCambiar;
-
-  @override
-  State<FilaUbicacion> createState() => _FilaUbicacionState();
-}
-
-class _FilaUbicacionState extends State<FilaUbicacion> {
-  bool _localizando = false;
-
-  Future<void> _usarMiUbicacion() async {
-    setState(() => _localizando = true);
-    final posicion = await leerUbicacionActual(context);
-    if (!mounted) return;
-    setState(() => _localizando = false);
-    if (posicion != null) widget.alCambiar(posicion.$1, posicion.$2);
-  }
-
-  @override
-  Widget build(BuildContext context) => ListTile(
-        contentPadding: EdgeInsets.zero,
-        leading: const Icon(Icons.my_location_outlined),
-        title: Text(SoleraL10n.t('arom.ubicacion')),
-        subtitle: Text(widget.latitud == null || widget.longitud == null
-            ? SoleraL10n.t('arom.sin_ubicacion')
-            : '${widget.latitud!.toStringAsFixed(5)}, ${widget.longitud!.toStringAsFixed(5)}'),
-        trailing: _localizando
-            ? const SizedBox(
-                width: 20,
-                height: 20,
-                child: CircularProgressIndicator(strokeWidth: 2))
-            : TextButton(
-                onPressed: _usarMiUbicacion,
-                child: Text(SoleraL10n.t('arom.usar_mi_ubicacion'))),
-      );
+/// Si hay área y no punto, el punto es el centro del área (el mapa y Hoy
+/// usan el punto).
+(double?, double?) puntoOCentroDelArea(
+    double? latitud, double? longitud, List<LatLng> area) {
+  if (latitud != null && longitud != null) return (latitud, longitud);
+  final centro = centroide(area);
+  return (centro?.latitude, centro?.longitude);
 }
 
 /// Alta o edición de una parcela de cultivo.
@@ -123,6 +65,7 @@ class _PantallaEditarParcelaState extends State<PantallaEditarParcela> {
   late bool _regadio = widget.parcela?.regadio ?? false;
   late double? _latitud = widget.parcela?.latitud;
   late double? _longitud = widget.parcela?.longitud;
+  late List<LatLng> _area = widget.parcela?.vertices ?? const [];
   bool _guardando = false;
 
   @override
@@ -150,6 +93,7 @@ class _PantallaEditarParcelaState extends State<PantallaEditarParcela> {
       _guardando = true;
     });
     final original = widget.parcela;
+    final (latitud, longitud) = puntoOCentroDelArea(_latitud, _longitud, _area);
     await BaseDatosSoleraAromaticas.instancia.guardarParcela(Parcela(
       id: original?.id,
       nombre: _nombre.text.trim(),
@@ -159,8 +103,9 @@ class _PantallaEditarParcelaState extends State<PantallaEditarParcela> {
       anyoPlantacion: leerEntero(_anyo.text),
       ecologico: _ecologico,
       regadio: _regadio,
-      latitud: _latitud,
-      longitud: _longitud,
+      latitud: latitud,
+      longitud: longitud,
+      contorno: codificarContorno(_area),
       notas: _notas.text.trim(),
       fechaCreacionMs:
           original?.fechaCreacionMs ?? DateTime.now().millisecondsSinceEpoch,
@@ -201,14 +146,30 @@ class _PantallaEditarParcelaState extends State<PantallaEditarParcela> {
             value: _regadio,
             onChanged: (valor) => setState(() => _regadio = valor),
           ),
-          FilaUbicacion(
+          CampoPunto(
             latitud: _latitud,
             longitud: _longitud,
+            titulo: SoleraL10n.t('arom.ubicacion'),
+            centro: centroide(_area),
+            areasDeFondo: [(nombre: '', vertices: _area)],
+            paqueteApp: paqueteAppAromaticas,
             alCambiar: (latitud, longitud) => setState(() {
               _latitud = latitud;
               _longitud = longitud;
             }),
           ),
+          const SizedBox(height: 8),
+          CampoArea(
+            vertices: _area,
+            centro: _latitud == null || _longitud == null
+                ? null
+                : LatLng(_latitud!, _longitud!),
+            paqueteApp: paqueteAppAromaticas,
+            alCambiar: (vertices) => setState(() => _area = vertices),
+            alUsarSuperficie: (hectareas) => setState(() =>
+                _superficie.text = numeroParaCampo(hectareas, decimales: 2)),
+          ),
+          const SizedBox(height: 8),
           TextField(
             controller: _notas,
             maxLines: 3,
@@ -259,6 +220,7 @@ class _PantallaEditarZonaState extends State<PantallaEditarZona> {
       : DateTime.fromMillisecondsSinceEpoch(widget.zona!.finVigenciaMs!);
   late double? _latitud = widget.zona?.latitud;
   late double? _longitud = widget.zona?.longitud;
+  late List<LatLng> _area = widget.zona?.vertices ?? const [];
   bool _guardando = false;
 
   @override
@@ -312,6 +274,7 @@ class _PantallaEditarZonaState extends State<PantallaEditarZona> {
     setState(() {
       _guardando = true;
     });
+    final (latitud, longitud) = puntoOCentroDelArea(_latitud, _longitud, _area);
     await BaseDatosSoleraAromaticas.instancia
         .guardarZonaRecoleccion(ZonaRecoleccion(
       id: widget.zona?.id,
@@ -326,8 +289,9 @@ class _PantallaEditarZonaState extends State<PantallaEditarZona> {
       finVigenciaMs: _fin?.millisecondsSinceEpoch,
       especiesPermitidas: _especies,
       limiteKg: leerNumero(_limite.text),
-      latitud: _latitud,
-      longitud: _longitud,
+      latitud: latitud,
+      longitud: longitud,
+      contorno: codificarContorno(_area),
       notas: _notas.text.trim(),
     ));
     if (mounted) Navigator.pop(context, true);
@@ -420,14 +384,28 @@ class _PantallaEditarZonaState extends State<PantallaEditarZona> {
                   context,
                   SoleraL10n.tf('arom.especie_protegida_en_permiso',
                       {'especie': nombreEspecie(especie)})),
-          FilaUbicacion(
+          CampoPunto(
             latitud: _latitud,
             longitud: _longitud,
+            titulo: SoleraL10n.t('arom.ubicacion'),
+            centro: centroide(_area),
+            areasDeFondo: [(nombre: '', vertices: _area)],
+            paqueteApp: paqueteAppAromaticas,
             alCambiar: (latitud, longitud) => setState(() {
               _latitud = latitud;
               _longitud = longitud;
             }),
           ),
+          const SizedBox(height: 8),
+          CampoArea(
+            vertices: _area,
+            centro: _latitud == null || _longitud == null
+                ? null
+                : LatLng(_latitud!, _longitud!),
+            paqueteApp: paqueteAppAromaticas,
+            alCambiar: (vertices) => setState(() => _area = vertices),
+          ),
+          const SizedBox(height: 8),
           TextField(
             controller: _notas,
             maxLines: 3,

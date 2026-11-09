@@ -1,3 +1,6 @@
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart'
+    show contornoVacio, leerContorno;
 import 'lista_ids.dart';
 
 /// Tipo de terreno de una zona de recolección silvestre.
@@ -29,6 +32,7 @@ class ZonaRecoleccion {
     this.limiteKg,
     this.latitud,
     this.longitud,
+    this.contorno = contornoVacio,
     this.notas = '',
   });
 
@@ -59,6 +63,11 @@ class ZonaRecoleccion {
   final double? limiteKg;
   final double? latitud;
   final double? longitud;
+
+  /// Área marcada en el mapa: JSON `[[lat,lng],…]` (nuevo_ser_mapa).
+  final String contorno;
+
+  List<LatLng> get vertices => leerContorno(contorno);
   final String notas;
 
   bool get tienePermiso => numeroPermiso.trim().isNotEmpty;
@@ -119,6 +128,7 @@ class ZonaRecoleccion {
         'limite_kg': limiteKg,
         'latitud': latitud,
         'longitud': longitud,
+        'contorno': contorno,
         'notas': notas,
       };
 
@@ -140,6 +150,7 @@ class ZonaRecoleccion {
         limiteKg: (mapa['limite_kg'] as num?)?.toDouble(),
         latitud: (mapa['latitud'] as num?)?.toDouble(),
         longitud: (mapa['longitud'] as num?)?.toDouble(),
+        contorno: (mapa['contorno'] as String?) ?? contornoVacio,
         notas: (mapa['notas'] as String?) ?? '',
       );
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart';
 
 import '../datos/base_datos.dart';
 import '../modelos/parcela.dart';
@@ -21,17 +22,29 @@ LatLng centroDePuntos(Iterable<LatLng> puntos) {
   return LatLng(latitud, longitud);
 }
 
-/// Mapa de parcelas (verde) y zonas de recolección (lavanda) con ubicación,
-/// la que se guardó con el GPS. Necesita conexión para las teselas.
-class PantallaMapa extends StatelessWidget {
-  const PantallaMapa({super.key});
+/// Mapa de parcelas (verde) y zonas de recolección (lavanda): su área, si
+/// está marcada, y su punto. Necesita conexión para las teselas.
+class PantallaMapa extends StatefulWidget {
+  const PantallaMapa({super.key, this.conTeselas = true});
+
+  /// Los tests no bajan teselas.
+  final bool conTeselas;
+
+  @override
+  State<PantallaMapa> createState() => _PantallaMapaState();
+}
+
+class _PantallaMapaState extends State<PantallaMapa> {
+  CapaBase _capa = CapaBase.callejero;
 
   Future<(List<Parcela>, List<ZonaRecoleccion>)> _cargar() async {
     final bd = BaseDatosSoleraAromaticas.instancia;
     return (
-      (await bd.listarParcelas()).where((p) => p.tieneUbicacion).toList(),
+      (await bd.listarParcelas())
+          .where((p) => p.tieneUbicacion || tieneArea(p.vertices))
+          .toList(),
       (await bd.listarZonasRecoleccion())
-          .where((z) => z.tieneUbicacion)
+          .where((z) => z.tieneUbicacion || tieneArea(z.vertices))
           .toList(),
     );
   }
@@ -63,9 +76,22 @@ class PantallaMapa extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
           final (parcelas, zonas) = datos;
+          final colorParcela = Colors.green.shade800;
+          final colorZona = Theme.of(context).colorScheme.primary;
+          LatLng puntoDe(
+                  double? latitud, double? longitud, List<LatLng> area) =>
+              latitud != null && longitud != null
+                  ? LatLng(latitud, longitud)
+                  : centroide(area)!;
           final puntos = [
-            for (final p in parcelas) LatLng(p.latitud!, p.longitud!),
-            for (final z in zonas) LatLng(z.latitud!, z.longitud!),
+            for (final p in parcelas) ...[
+              puntoDe(p.latitud, p.longitud, p.vertices),
+              ...p.vertices
+            ],
+            for (final z in zonas) ...[
+              puntoDe(z.latitud, z.longitud, z.vertices),
+              ...z.vertices
+            ],
           ];
           return Stack(
             children: [
@@ -75,31 +101,51 @@ class PantallaMapa extends StatelessWidget {
                   initialZoom: puntos.isEmpty ? 5 : 13,
                 ),
                 children: [
-                  TileLayer(
-                    urlTemplate:
-                        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                    userAgentPackageName:
-                        'com.coleccionnuevoser.solera_aromaticas',
-                  ),
+                  if (widget.conTeselas)
+                    capaDeTeselas(_capa, paqueteApp: paqueteAppAromaticas),
+                  capaDeAreas([
+                    for (final parcela in parcelas)
+                      (nombre: parcela.nombre, vertices: parcela.vertices),
+                  ], color: colorParcela),
+                  capaDeAreas([
+                    for (final zona in zonas)
+                      (nombre: zona.nombre, vertices: zona.vertices),
+                  ], color: colorZona),
                   MarkerLayer(markers: [
                     for (final parcela in parcelas)
                       _marcador(
-                          LatLng(parcela.latitud!, parcela.longitud!),
+                          puntoDe(parcela.latitud, parcela.longitud,
+                              parcela.vertices),
                           parcela.nombre,
-                          Colors.green.shade800,
-                          Icons.location_on,
-                          () => abrirEdicionParcela(context, parcela: parcela)),
+                          colorParcela,
+                          Icons.location_on, () async {
+                        await abrirEdicionParcela(context, parcela: parcela);
+                        if (mounted) setState(() {});
+                      }),
                     for (final zona in zonas)
                       _marcador(
-                          LatLng(zona.latitud!, zona.longitud!),
+                          puntoDe(zona.latitud, zona.longitud, zona.vertices),
                           zona.nombre,
-                          Theme.of(context).colorScheme.primary,
-                          Icons.forest,
-                          () => abrirEdicionZona(context, zona: zona)),
+                          colorZona,
+                          Icons.forest, () async {
+                        await abrirEdicionZona(context, zona: zona);
+                        if (mounted) setState(() {});
+                      }),
                   ]),
-                  const SimpleAttributionWidget(
-                      source: Text('OpenStreetMap contributors')),
+                  AtribucionCapa(_capa),
                 ],
+              ),
+              Positioned(
+                top: 12,
+                right: 12,
+                child: FloatingActionButton.small(
+                  heroTag: 'arom.mapa.capa',
+                  tooltip: SoleraL10n.t('mapa.cambiar_capa'),
+                  onPressed: () => setState(() => _capa = _capa.otra),
+                  child: Icon(_capa == CapaBase.ortofoto
+                      ? Icons.map_outlined
+                      : Icons.satellite_alt_outlined),
+                ),
               ),
               if (puntos.isEmpty)
                 Align(

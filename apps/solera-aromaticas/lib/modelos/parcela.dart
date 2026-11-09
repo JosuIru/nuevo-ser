@@ -1,3 +1,7 @@
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart'
+    show contornoVacio, leerContorno;
+
 /// Parcela de cultivo (recinto SIGPAC o parte de él) con una especie
 /// principal. La recolección silvestre va en `ZonaRecoleccion`.
 class Parcela {
@@ -12,6 +16,7 @@ class Parcela {
     this.regadio = false,
     this.latitud,
     this.longitud,
+    this.contorno = contornoVacio,
     this.notas = '',
     this.fechaCreacionMs = 0,
   });
@@ -32,6 +37,11 @@ class Parcela {
   final bool regadio;
   final double? latitud;
   final double? longitud;
+
+  /// Área marcada en el mapa: JSON `[[lat,lng],…]` (nuevo_ser_mapa).
+  final String contorno;
+
+  List<LatLng> get vertices => leerContorno(contorno);
   final String notas;
   final int fechaCreacionMs;
 
@@ -51,6 +61,7 @@ class Parcela {
         'regadio': regadio ? 1 : 0,
         'latitud': latitud,
         'longitud': longitud,
+        'contorno': contorno,
         'notas': notas,
         'fecha_creacion_ms': fechaCreacionMs,
       };
@@ -66,6 +77,7 @@ class Parcela {
         regadio: (mapa['regadio'] as int?) == 1,
         latitud: (mapa['latitud'] as num?)?.toDouble(),
         longitud: (mapa['longitud'] as num?)?.toDouble(),
+        contorno: (mapa['contorno'] as String?) ?? contornoVacio,
         notas: (mapa['notas'] as String?) ?? '',
         fechaCreacionMs: (mapa['fecha_creacion_ms'] as int?) ?? 0,
       );

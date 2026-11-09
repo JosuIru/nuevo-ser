@@ -309,6 +309,13 @@ afirmar( true, str_contains( szs_cuerpo_correo_al_momento( 'x', 't', "  Falta ag
 afirmar( array( 'Content-Type: text/plain; charset=UTF-8', 'Content-Language: eu' ), szs_cabeceras_correo( 'eu' ), 'cabeceras: texto plano UTF-8 y su idioma' );
 afirmar( 'Content-Language: es', szs_cabeceras_correo( 'fr' )[1], 'cabeceras: idioma desconocido, castellano' );
 
+// --- personas tester de un proyecto (un test puede ser de dos) ---
+$nombres_espacio = array( 'ane' => 'Ane', 'mikel' => 'Mikel' );
+afirmar( 'Ane, Mikel', szs_nombres_tester_proyecto( array( 'persona_uid' => 'ane', 'personas_uids' => '["ane","mikel"]' ), $nombres_espacio ), 'nombres: las dos personas' );
+afirmar( 'Ane', szs_nombres_tester_proyecto( array( 'persona_uid' => 'ane' ), $nombres_espacio ), 'nombres: proyecto de antes' );
+afirmar( 'Jon', szs_nombres_tester_proyecto( array( 'persona_uid' => 'jon', 'persona' => 'Jon' ), $nombres_espacio ), 'nombres: persona que ya no está, lo guardado' );
+afirmar( 'sin asignar', szs_nombres_tester_proyecto( array(), $nombres_espacio ), 'nombres: sin nadie' );
+
 if ( $fallos > 0 ) {
 	fwrite( STDERR, "\n{$fallos} test(s) fallidos.\n" );
 	exit( 1 );

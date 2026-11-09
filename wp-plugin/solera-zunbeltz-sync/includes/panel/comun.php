@@ -154,6 +154,23 @@ function szs_nombres_personas(): array {
 }
 
 /**
+ * Nombres de las personas tester de un proyecto («Ane, Mikel»), con los de
+ * [$nombres] (uid → nombre); si no están, lo guardado en `persona`; sin
+ * nadie, «sin asignar». Pura.
+ */
+function szs_nombres_tester_proyecto( array $datos, array $nombres ): string {
+	$uids = szs_personas_proyecto( $datos );
+	if ( array() === $uids ) {
+		return '' === (string) ( $datos['persona'] ?? '' ) ? szs_t( 'sin asignar' ) : (string) $datos['persona'];
+	}
+	$conocidos = array_values( array_filter( array_map( static fn( string $uid ): string => (string) ( $nombres[ $uid ] ?? '' ), $uids ) ) );
+	if ( count( $conocidos ) < count( $uids ) && '' !== (string) ( $datos['persona'] ?? '' ) ) {
+		return (string) $datos['persona'];
+	}
+	return szs_unir_nombres_responsables( $conocidos );
+}
+
+/**
  * Entidades de un tipo, normalizadas, sin las borradas.
  *
  * @return array<int, array>

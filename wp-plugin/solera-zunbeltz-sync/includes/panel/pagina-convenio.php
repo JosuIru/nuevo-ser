@@ -289,7 +289,7 @@ function szs_pagina_convenio(): void {
 		<h1><?php echo esc_html( szs_t( 'Convenio · %s', szs_etiqueta_entidad( $proyecto ) ) ); ?></h1>
 		<p>
 			<a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_PROYECTOS ) ); ?>"><?php echo esc_html( szs_t( '← Proyectos' ) ); ?></a>
-			&nbsp;·&nbsp; <?php echo esc_html( szs_t( 'Persona tester:' ) ); ?> <strong><?php echo esc_html( $personas[ (string) ( $datos['persona_uid'] ?? '' ) ] ?? ( '' === (string) ( $datos['persona'] ?? '' ) ? szs_t( 'sin asignar' ) : (string) $datos['persona'] ) ); ?></strong>
+			&nbsp;·&nbsp; <?php echo esc_html( count( szs_personas_proyecto( $datos ) ) > 1 ? szs_t( 'Personas tester:' ) : szs_t( 'Persona tester:' ) ); ?> <strong><?php echo esc_html( szs_nombres_tester_proyecto( $datos, $personas ) ); ?></strong>
 			&nbsp;·&nbsp; <?php echo esc_html( $cerrado ? szs_t( 'Cerrado el %s', szs_fecha_ms( (int) ( $datos['cerrado_ms'] ?? 0 ) ) ) : szs_t( 'Abierto' ) ); ?>
 			<?php if ( count( $proyectos ) > 1 ) : ?>
 				&nbsp;·&nbsp; <?php echo esc_html( szs_t( 'Otro proyecto:' ) ); ?>

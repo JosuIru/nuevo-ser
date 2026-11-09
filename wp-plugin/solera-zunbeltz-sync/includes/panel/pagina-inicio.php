@@ -106,7 +106,7 @@ function szs_resumen_inicio( array $tareas, array $peticiones, array $avisos, ar
 			continue;
 		}
 		$resumen['proyectos']['abiertos']++;
-		if ( '' === (string) ( $proyecto['datos']['persona_uid'] ?? '' ) ) {
+		if ( array() === szs_personas_proyecto( $proyecto['datos'] ) ) {
 			$resumen['proyectos']['sin_tester']++;
 		}
 	}

@@ -26,17 +26,20 @@ function szs_pagina_proyectos(): void {
 		$uid    = szs_campo_post( 'szs_uid' );
 		if ( null !== szs_obtener_entidad( 'proyecto', $uid ) ) {
 			if ( 'asignar' === $accion ) {
-				$persona_uid = szs_campo_post( 'szs_persona_uid' );
-				$nombres     = szs_nombres_personas();
+				// Un mismo test puede ser de varias personas: la primera va
+				// también en `persona_uid`, para las apps anteriores.
+				$uids    = szs_normalizar_uids( isset( $_POST['szs_personas_uids'] ) ? array_map( 'sanitize_text_field', (array) wp_unslash( $_POST['szs_personas_uids'] ) ) : array() ); // phpcs:ignore WordPress.Security.NonceVerification
+				$nombres = szs_nombres_personas();
 				szs_guardar_entidad_desde_panel(
 					'proyecto',
 					$uid,
 					array(
-						'persona_uid' => $persona_uid,
-						'persona'     => $nombres[ $persona_uid ] ?? '',
+						'persona_uid'   => $uids[0] ?? '',
+						'personas_uids' => $uids,
+						'persona'       => szs_unir_nombres_responsables( array_map( static fn( string $persona_uid ): string => (string) ( $nombres[ $persona_uid ] ?? $persona_uid ), $uids ) ),
 					)
 				);
-				$aviso = array( 'success', szs_t( 'Persona tester asignada. Verá el proyecto en su próxima sincronización.' ) );
+				$aviso = array( 'success', count( $uids ) > 1 ? szs_t( 'Personas tester asignadas. Verán el proyecto en su próxima sincronización.' ) : szs_t( 'Persona tester asignada. Verá el proyecto en su próxima sincronización.' ) );
 			}
 			if ( in_array( $accion, array( 'cerrar', 'reabrir' ), true ) ) {
 				szs_guardar_entidad_desde_panel(
@@ -79,11 +82,11 @@ function szs_pagina_proyectos(): void {
 				<tr>
 					<td><strong><?php echo esc_html( szs_etiqueta_entidad( $proyecto ) ); ?></strong><br><small><?php echo esc_html( (string) ( $datos['actividad'] ?? '' ) ); ?></small></td>
 					<td>
-						<form method="post" style="display:flex;gap:4px;">
+						<form method="post">
 							<?php wp_nonce_field( 'szs_proyectos' ); ?>
 							<input type="hidden" name="szs_accion" value="asignar">
 							<input type="hidden" name="szs_uid" value="<?php echo esc_attr( $proyecto['uid'] ); ?>">
-							<?php szs_selector( 'szs_persona_uid', $personas, (string) ( $datos['persona_uid'] ?? '' ), szs_t( 'Sin asignar' ) ); ?>
+							<?php szs_casillas_personas_proyecto( $personas, szs_personas_proyecto( $datos ), (string) ( $datos['persona'] ?? '' ) ); ?>
 							<button class="button button-small"><?php echo esc_html( szs_t( 'Asignar' ) ); ?></button>
 						</form>
 					</td>
@@ -107,6 +110,30 @@ function szs_pagina_proyectos(): void {
 		</table>
 	</div>
 	<?php
+}
+
+/**
+ * Casillas de las personas tester de un proyecto (un mismo test puede ser
+ * de dos). Una elegida que ya no está entre las personas (desactivada) sale
+ * igual, para no perderla al guardar sin darse cuenta.
+ */
+function szs_casillas_personas_proyecto( array $personas, array $elegidas, string $nombres_guardados ): void {
+	foreach ( $elegidas as $uid ) {
+		if ( ! isset( $personas[ $uid ] ) ) {
+			$personas[ $uid ] = 1 === count( $elegidas ) && '' !== $nombres_guardados ? $nombres_guardados : $uid;
+		}
+	}
+	if ( empty( $personas ) ) {
+		echo '<em>' . esc_html( szs_t( 'Todavía no hay personas en el espacio.' ) ) . '</em><br>';
+	}
+	foreach ( $personas as $uid => $nombre ) {
+		printf(
+			'<label style="display:block;margin:0 0 4px;"><input type="checkbox" name="szs_personas_uids[]" value="%1$s"%2$s> %3$s</label>',
+			esc_attr( (string) $uid ),
+			checked( in_array( (string) $uid, $elegidas, true ), true, false ),
+			esc_html( (string) $nombre )
+		);
+	}
 }
 
 /** «Ane ha movido el punto "Corral móvil" en Zunbeltz». */

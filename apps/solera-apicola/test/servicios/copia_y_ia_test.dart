@@ -17,7 +17,7 @@ void main() {
       expect(configuracion.nombreFicheroBaseDatos, nombreFicheroBaseDatosApicola);
       expect(configuracion.prefijoNombreCopia, 'solera-apicola-backup');
       expect(configuracion.versionEsquemaActual, versionEsquemaBaseDatosApicola);
-      expect(versionEsquemaBaseDatosApicola, 3);
+      expect(versionEsquemaBaseDatosApicola, 4);
       expect(configuracion.comprobarIntegridad, isNotNull);
     });
 

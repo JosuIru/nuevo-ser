@@ -20,7 +20,7 @@ const String nombreFicheroBaseDatosApicola = 'solera_apicola.db';
 
 /// Versión del esquema que abre la app (`version:` de openDatabase). La
 /// usa también la copia de seguridad para rechazar copias más nuevas.
-const int versionEsquemaBaseDatosApicola = 3;
+const int versionEsquemaBaseDatosApicola = 4;
 
 /// Acceso a la base de datos local de Larrea Apícola. Singleton con
 /// inicialización perezosa: la primera lectura crea la BD.
@@ -42,8 +42,12 @@ const int versionEsquemaBaseDatosApicola = 3;
 /// (pantalla de facturas y `estaVacia()` fallaban). Subir a 3 dispara el
 /// paso; es idempotente (`IF NOT EXISTS`) para las BD v2 creadas de cero,
 /// que ya la tenían por `crearEsquemaCompleto`.
+///
+/// v4 (2026-11-09) añade `apiarios.contorno`: el terreno del colmenar
+/// marcado en el mapa (nuevo_ser_mapa), JSON `[[lat,lng],…]`.
 class BaseDatosSoleraApicola extends BaseDatosSolera {
-  static final BaseDatosSoleraApicola instancia = BaseDatosSoleraApicola._interno();
+  static final BaseDatosSoleraApicola instancia =
+      BaseDatosSoleraApicola._interno();
   factory BaseDatosSoleraApicola() => instancia;
   BaseDatosSoleraApicola._interno();
 
@@ -63,6 +67,7 @@ class BaseDatosSoleraApicola extends BaseDatosSolera {
   Map<int, PasoMigracionSolera> get pasosMigracion => {
         2: _crearTablasContabilidadV2,
         3: _crearTablasFacturasV3,
+        4: _anadirContornoApiariosV4,
       };
 
   // ─── Apiarios ───────────────────────────────────────────
@@ -85,7 +90,8 @@ class BaseDatosSoleraApicola extends BaseDatosSolera {
 
   Future<Apiario?> obtenerApiario(int id) async {
     final db = await basedatos;
-    final filas = await db.query('apiarios', where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas =
+        await db.query('apiarios', where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return Apiario.fromMap(filas.first);
   }
@@ -93,7 +99,8 @@ class BaseDatosSoleraApicola extends BaseDatosSolera {
   Future<void> borrarApiario(int id) async {
     final db = await basedatos;
     await db.transaction((txn) async {
-      await txn.update('colmenas', {'apiario_id': null}, where: 'apiario_id = ?', whereArgs: [id]);
+      await txn.update('colmenas', {'apiario_id': null},
+          where: 'apiario_id = ?', whereArgs: [id]);
       await txn.delete('apiarios', where: 'id = ?', whereArgs: [id]);
     });
   }
@@ -114,26 +121,32 @@ class BaseDatosSoleraApicola extends BaseDatosSolera {
     final db = await basedatos;
     final filas = apiarioId == null
         ? await db.query('colmenas', orderBy: 'matricula ASC')
-        : await db.query('colmenas', where: 'apiario_id = ?', whereArgs: [apiarioId], orderBy: 'matricula ASC');
+        : await db.query('colmenas',
+            where: 'apiario_id = ?',
+            whereArgs: [apiarioId],
+            orderBy: 'matricula ASC');
     return filas.map(Colmena.fromMap).toList();
   }
 
   Future<List<Colmena>> listarColmenasPuntoSuelto() async {
     final db = await basedatos;
-    final filas = await db.query('colmenas', where: 'apiario_id IS NULL', orderBy: 'matricula ASC');
+    final filas = await db.query('colmenas',
+        where: 'apiario_id IS NULL', orderBy: 'matricula ASC');
     return filas.map(Colmena.fromMap).toList();
   }
 
   Future<Colmena?> obtenerColmena(int id) async {
     final db = await basedatos;
-    final filas = await db.query('colmenas', where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas =
+        await db.query('colmenas', where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return Colmena.fromMap(filas.first);
   }
 
   Future<Colmena?> obtenerColmenaPorMatricula(String matricula) async {
     final db = await basedatos;
-    final filas = await db.query('colmenas', where: 'matricula = ?', whereArgs: [matricula], limit: 1);
+    final filas = await db.query('colmenas',
+        where: 'matricula = ?', whereArgs: [matricula], limit: 1);
     if (filas.isEmpty) return null;
     return Colmena.fromMap(filas.first);
   }
@@ -170,14 +183,18 @@ class BaseDatosSoleraApicola extends BaseDatosSolera {
 
   Future<Revision?> obtenerRevision(int id) async {
     final db = await basedatos;
-    final filas = await db.query('revisiones', where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas = await db.query('revisiones',
+        where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return Revision.fromMap(filas.first);
   }
 
   Future<List<Revision>> listarRevisionesDeColmena(int colmenaId) async {
     final db = await basedatos;
-    final filas = await db.query('revisiones', where: 'colmena_id = ?', whereArgs: [colmenaId], orderBy: 'fecha_ms DESC');
+    final filas = await db.query('revisiones',
+        where: 'colmena_id = ?',
+        whereArgs: [colmenaId],
+        orderBy: 'fecha_ms DESC');
     return filas.map(Revision.fromMap).toList();
   }
 
@@ -193,21 +210,26 @@ class BaseDatosSoleraApicola extends BaseDatosSolera {
     return db.insert('cosechas_miel', c.toMap()..remove('id'));
   }
 
-  Future<void> actualizarCosechaMiel(int id, Map<String, Object?> cambios) async {
+  Future<void> actualizarCosechaMiel(
+      int id, Map<String, Object?> cambios) async {
     final db = await basedatos;
     await db.update('cosechas_miel', cambios, where: 'id = ?', whereArgs: [id]);
   }
 
   Future<CosechaMiel?> obtenerCosechaMiel(int id) async {
     final db = await basedatos;
-    final filas = await db.query('cosechas_miel', where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas = await db.query('cosechas_miel',
+        where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return CosechaMiel.fromMap(filas.first);
   }
 
   Future<List<CosechaMiel>> listarCosechasDeColmena(int colmenaId) async {
     final db = await basedatos;
-    final filas = await db.query('cosechas_miel', where: 'colmena_id = ?', whereArgs: [colmenaId], orderBy: 'fecha_ms DESC');
+    final filas = await db.query('cosechas_miel',
+        where: 'colmena_id = ?',
+        whereArgs: [colmenaId],
+        orderBy: 'fecha_ms DESC');
     return filas.map(CosechaMiel.fromMap).toList();
   }
 
@@ -223,21 +245,28 @@ class BaseDatosSoleraApicola extends BaseDatosSolera {
     return db.insert('tratamientos_varroa', t.toMap()..remove('id'));
   }
 
-  Future<void> actualizarTratamientoVarroa(int id, Map<String, Object?> cambios) async {
+  Future<void> actualizarTratamientoVarroa(
+      int id, Map<String, Object?> cambios) async {
     final db = await basedatos;
-    await db.update('tratamientos_varroa', cambios, where: 'id = ?', whereArgs: [id]);
+    await db.update('tratamientos_varroa', cambios,
+        where: 'id = ?', whereArgs: [id]);
   }
 
   Future<TratamientoVarroa?> obtenerTratamientoVarroa(int id) async {
     final db = await basedatos;
-    final filas = await db.query('tratamientos_varroa', where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas = await db.query('tratamientos_varroa',
+        where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return TratamientoVarroa.fromMap(filas.first);
   }
 
-  Future<List<TratamientoVarroa>> listarTratamientosDeColmena(int colmenaId) async {
+  Future<List<TratamientoVarroa>> listarTratamientosDeColmena(
+      int colmenaId) async {
     final db = await basedatos;
-    final filas = await db.query('tratamientos_varroa', where: 'colmena_id = ?', whereArgs: [colmenaId], orderBy: 'fecha_aplicacion_ms DESC');
+    final filas = await db.query('tratamientos_varroa',
+        where: 'colmena_id = ?',
+        whereArgs: [colmenaId],
+        orderBy: 'fecha_aplicacion_ms DESC');
     return filas.map(TratamientoVarroa.fromMap).toList();
   }
 
@@ -277,21 +306,27 @@ class BaseDatosSoleraApicola extends BaseDatosSolera {
     return db.insert('incidencias', i.toMap()..remove('id'));
   }
 
-  Future<void> actualizarIncidencia(int id, Map<String, Object?> cambios) async {
+  Future<void> actualizarIncidencia(
+      int id, Map<String, Object?> cambios) async {
     final db = await basedatos;
     await db.update('incidencias', cambios, where: 'id = ?', whereArgs: [id]);
   }
 
   Future<IncidenciaApicola?> obtenerIncidencia(int id) async {
     final db = await basedatos;
-    final filas = await db.query('incidencias', where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas = await db.query('incidencias',
+        where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return IncidenciaApicola.fromMap(filas.first);
   }
 
-  Future<List<IncidenciaApicola>> listarIncidenciasDeColmena(int colmenaId) async {
+  Future<List<IncidenciaApicola>> listarIncidenciasDeColmena(
+      int colmenaId) async {
     final db = await basedatos;
-    final filas = await db.query('incidencias', where: 'colmena_id = ?', whereArgs: [colmenaId], orderBy: 'fecha_ms DESC');
+    final filas = await db.query('incidencias',
+        where: 'colmena_id = ?',
+        whereArgs: [colmenaId],
+        orderBy: 'fecha_ms DESC');
     return filas.map(IncidenciaApicola.fromMap).toList();
   }
 
@@ -368,13 +403,15 @@ class BaseDatosSoleraApicola extends BaseDatosSolera {
     return filas.map(Movimiento.fromMap).toList();
   }
 
-  Future<List<IncidenciaApicola>> listarIncidenciasAbiertas({int? apiarioId}) async {
+  Future<List<IncidenciaApicola>> listarIncidenciasAbiertas(
+      {int? apiarioId}) async {
     final db = await basedatos;
     const base =
         'SELECT i.* FROM incidencias i INNER JOIN colmenas c ON i.colmena_id = c.id WHERE i.resuelta = 0';
     final filas = apiarioId == null
         ? await db.rawQuery('$base ORDER BY i.fecha_ms DESC')
-        : await db.rawQuery('$base AND c.apiario_id = ? ORDER BY i.fecha_ms DESC', [apiarioId]);
+        : await db.rawQuery(
+            '$base AND c.apiario_id = ? ORDER BY i.fecha_ms DESC', [apiarioId]);
     return filas.map(IncidenciaApicola.fromMap).toList();
   }
 
@@ -390,21 +427,26 @@ class BaseDatosSoleraApicola extends BaseDatosSolera {
     return db.insert('movimientos', m.toMap()..remove('id'));
   }
 
-  Future<void> actualizarMovimiento(int id, Map<String, Object?> cambios) async {
+  Future<void> actualizarMovimiento(
+      int id, Map<String, Object?> cambios) async {
     final db = await basedatos;
     await db.update('movimientos', cambios, where: 'id = ?', whereArgs: [id]);
   }
 
   Future<Movimiento?> obtenerMovimiento(int id) async {
     final db = await basedatos;
-    final filas = await db.query('movimientos', where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas = await db.query('movimientos',
+        where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return Movimiento.fromMap(filas.first);
   }
 
   Future<List<Movimiento>> listarMovimientosDeColmena(int colmenaId) async {
     final db = await basedatos;
-    final filas = await db.query('movimientos', where: 'colmena_id = ?', whereArgs: [colmenaId], orderBy: 'fecha_movimiento_ms DESC');
+    final filas = await db.query('movimientos',
+        where: 'colmena_id = ?',
+        whereArgs: [colmenaId],
+        orderBy: 'fecha_movimiento_ms DESC');
     return filas.map(Movimiento.fromMap).toList();
   }
 
@@ -465,14 +507,16 @@ class BaseDatosSoleraApicola extends BaseDatosSolera {
 
   Future<Tercero?> obtenerTercero(int id) async {
     final db = await basedatos;
-    final filas = await db.query('terceros', where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas =
+        await db.query('terceros', where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return Tercero.fromMap(filas.first);
   }
 
   Future<Tercero?> obtenerTerceroPorNif(String nif) async {
     final db = await basedatos;
-    final filas = await db.query('terceros', where: 'nif = ?', whereArgs: [nif], limit: 1);
+    final filas = await db.query('terceros',
+        where: 'nif = ?', whereArgs: [nif], limit: 1);
     if (filas.isEmpty) return null;
     return Tercero.fromMap(filas.first);
   }
@@ -502,14 +546,17 @@ class BaseDatosSoleraApicola extends BaseDatosSolera {
     return db.insert('apuntes_ingreso', a.toMap()..remove('id'));
   }
 
-  Future<void> actualizarApunteIngreso(int id, Map<String, Object?> cambios) async {
+  Future<void> actualizarApunteIngreso(
+      int id, Map<String, Object?> cambios) async {
     final db = await basedatos;
-    await db.update('apuntes_ingreso', cambios, where: 'id = ?', whereArgs: [id]);
+    await db
+        .update('apuntes_ingreso', cambios, where: 'id = ?', whereArgs: [id]);
   }
 
   Future<ApunteIngreso?> obtenerApunteIngreso(int id) async {
     final db = await basedatos;
-    final filas = await db.query('apuntes_ingreso', where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas = await db.query('apuntes_ingreso',
+        where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return ApunteIngreso.fromMap(filas.first);
   }
@@ -534,7 +581,8 @@ class BaseDatosSoleraApicola extends BaseDatosSolera {
     return listarApuntesIngresoPorRango(desdeMs: desdeMs, hastaMs: hastaMs);
   }
 
-  Future<List<ApunteIngreso>> listarApuntesIngresoDeTercero(int terceroId) async {
+  Future<List<ApunteIngreso>> listarApuntesIngresoDeTercero(
+      int terceroId) async {
     final db = await basedatos;
     final filas = await db.query(
       'apuntes_ingreso',
@@ -557,14 +605,16 @@ class BaseDatosSoleraApicola extends BaseDatosSolera {
     return db.insert('apuntes_gasto', a.toMap()..remove('id'));
   }
 
-  Future<void> actualizarApunteGasto(int id, Map<String, Object?> cambios) async {
+  Future<void> actualizarApunteGasto(
+      int id, Map<String, Object?> cambios) async {
     final db = await basedatos;
     await db.update('apuntes_gasto', cambios, where: 'id = ?', whereArgs: [id]);
   }
 
   Future<ApunteGasto?> obtenerApunteGasto(int id) async {
     final db = await basedatos;
-    final filas = await db.query('apuntes_gasto', where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas = await db.query('apuntes_gasto',
+        where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return ApunteGasto.fromMap(filas.first);
   }
@@ -604,7 +654,6 @@ class BaseDatosSoleraApicola extends BaseDatosSolera {
     final db = await basedatos;
     await db.delete('apuntes_gasto', where: 'id = ?', whereArgs: [id]);
   }
-
 
   Future<String> rutaBaseDatos() async {
     final db = await basedatos;
@@ -654,9 +703,11 @@ Future<void> _crearEsquemaInicial(Database db) async {
       FOREIGN KEY (apiario_id) REFERENCES apiarios(id) ON DELETE SET NULL
     )
   ''');
-  await db.execute('CREATE INDEX idx_colmenas_apiario ON colmenas (apiario_id)');
+  await db
+      .execute('CREATE INDEX idx_colmenas_apiario ON colmenas (apiario_id)');
   await db.execute('CREATE INDEX idx_colmenas_estado ON colmenas (estado)');
-  await db.execute('CREATE INDEX idx_colmenas_matricula ON colmenas (matricula)');
+  await db
+      .execute('CREATE INDEX idx_colmenas_matricula ON colmenas (matricula)');
 
   await db.execute('''
     CREATE TABLE revisiones (
@@ -675,7 +726,8 @@ Future<void> _crearEsquemaInicial(Database db) async {
       FOREIGN KEY (colmena_id) REFERENCES colmenas(id) ON DELETE CASCADE
     )
   ''');
-  await db.execute('CREATE INDEX idx_revisiones_colmena_fecha ON revisiones (colmena_id, fecha_ms DESC)');
+  await db.execute(
+      'CREATE INDEX idx_revisiones_colmena_fecha ON revisiones (colmena_id, fecha_ms DESC)');
 
   await db.execute('''
     CREATE TABLE cosechas_miel (
@@ -694,7 +746,8 @@ Future<void> _crearEsquemaInicial(Database db) async {
       FOREIGN KEY (colmena_id) REFERENCES colmenas(id) ON DELETE CASCADE
     )
   ''');
-  await db.execute('CREATE INDEX idx_cosechas_colmena_fecha ON cosechas_miel (colmena_id, fecha_ms DESC)');
+  await db.execute(
+      'CREATE INDEX idx_cosechas_colmena_fecha ON cosechas_miel (colmena_id, fecha_ms DESC)');
 
   await db.execute('''
     CREATE TABLE tratamientos_varroa (
@@ -714,7 +767,8 @@ Future<void> _crearEsquemaInicial(Database db) async {
       FOREIGN KEY (colmena_id) REFERENCES colmenas(id) ON DELETE CASCADE
     )
   ''');
-  await db.execute('CREATE INDEX idx_tratamientos_colmena_fecha ON tratamientos_varroa (colmena_id, fecha_aplicacion_ms DESC)');
+  await db.execute(
+      'CREATE INDEX idx_tratamientos_colmena_fecha ON tratamientos_varroa (colmena_id, fecha_aplicacion_ms DESC)');
 
   await db.execute('''
     CREATE TABLE incidencias (
@@ -731,8 +785,10 @@ Future<void> _crearEsquemaInicial(Database db) async {
       FOREIGN KEY (colmena_id) REFERENCES colmenas(id) ON DELETE CASCADE
     )
   ''');
-  await db.execute('CREATE INDEX idx_incidencias_colmena_fecha ON incidencias (colmena_id, fecha_ms DESC)');
-  await db.execute('CREATE INDEX idx_incidencias_abiertas ON incidencias (resuelta, fecha_ms DESC)');
+  await db.execute(
+      'CREATE INDEX idx_incidencias_colmena_fecha ON incidencias (colmena_id, fecha_ms DESC)');
+  await db.execute(
+      'CREATE INDEX idx_incidencias_abiertas ON incidencias (resuelta, fecha_ms DESC)');
 
   await db.execute('''
     CREATE TABLE movimientos (
@@ -753,8 +809,10 @@ Future<void> _crearEsquemaInicial(Database db) async {
       FOREIGN KEY (apiario_destino_id) REFERENCES apiarios(id) ON DELETE SET NULL
     )
   ''');
-  await db.execute('CREATE INDEX idx_movimientos_fecha ON movimientos (fecha_movimiento_ms DESC)');
-  await db.execute('CREATE INDEX idx_movimientos_colmena ON movimientos (colmena_id)');
+  await db.execute(
+      'CREATE INDEX idx_movimientos_fecha ON movimientos (fecha_movimiento_ms DESC)');
+  await db.execute(
+      'CREATE INDEX idx_movimientos_colmena ON movimientos (colmena_id)');
 
   await db.execute('''
     CREATE TABLE apicultores (
@@ -821,9 +879,12 @@ Future<void> _crearTablasContabilidadV2(Database db) async {
       FOREIGN KEY (apiario_id) REFERENCES apiarios(id) ON DELETE SET NULL
     )
   ''');
-  await db.execute('CREATE INDEX idx_ingresos_fecha ON apuntes_ingreso (fecha_ms DESC)');
-  await db.execute('CREATE INDEX idx_ingresos_tipo ON apuntes_ingreso (tipo_ingreso)');
-  await db.execute('CREATE INDEX idx_ingresos_tercero ON apuntes_ingreso (tercero_id)');
+  await db.execute(
+      'CREATE INDEX idx_ingresos_fecha ON apuntes_ingreso (fecha_ms DESC)');
+  await db.execute(
+      'CREATE INDEX idx_ingresos_tipo ON apuntes_ingreso (tipo_ingreso)');
+  await db.execute(
+      'CREATE INDEX idx_ingresos_tercero ON apuntes_ingreso (tercero_id)');
 
   await db.execute('''
     CREATE TABLE apuntes_gasto (
@@ -845,9 +906,12 @@ Future<void> _crearTablasContabilidadV2(Database db) async {
       FOREIGN KEY (tratamiento_varroa_id) REFERENCES tratamientos_varroa(id) ON DELETE SET NULL
     )
   ''');
-  await db.execute('CREATE INDEX idx_gastos_fecha ON apuntes_gasto (fecha_ms DESC)');
-  await db.execute('CREATE INDEX idx_gastos_tipo ON apuntes_gasto (tipo_gasto)');
-  await db.execute('CREATE INDEX idx_gastos_tercero ON apuntes_gasto (tercero_id)');
+  await db.execute(
+      'CREATE INDEX idx_gastos_fecha ON apuntes_gasto (fecha_ms DESC)');
+  await db
+      .execute('CREATE INDEX idx_gastos_tipo ON apuntes_gasto (tipo_gasto)');
+  await db
+      .execute('CREATE INDEX idx_gastos_tercero ON apuntes_gasto (tercero_id)');
 }
 
 /// Esquema v3 — tabla de facturas (aditivo).
@@ -898,8 +962,15 @@ Future<bool> baseDatosSinRegistros(DatabaseExecutor db) async {
 }
 
 /// Esquema de una instalación nueva (también lo usan los tests).
+/// Esquema v4 — área del colmenar en el mapa (aditivo).
+Future<void> _anadirContornoApiariosV4(Database db) async {
+  await db.execute(
+      "ALTER TABLE apiarios ADD COLUMN contorno TEXT NOT NULL DEFAULT '[]'");
+}
+
 Future<void> crearEsquemaCompleto(Database db) async {
   await _crearEsquemaInicial(db);
   await _crearTablasContabilidadV2(db);
   await _crearTablasFacturasV3(db);
+  await _anadirContornoApiariosV4(db);
 }

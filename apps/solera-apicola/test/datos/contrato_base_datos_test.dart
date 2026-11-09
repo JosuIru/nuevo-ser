@@ -26,6 +26,8 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart' show codificarContorno;
 import 'package:solera_apicola/datos/base_datos.dart';
 import 'package:solera_apicola/modelos/apiario.dart';
 import 'package:solera_apicola/modelos/apicultor.dart';
@@ -181,7 +183,8 @@ const List<String> sentenciasEsquemaV1Apicola = [
     )''',
 ];
 
-/// Historial del `onUpgrade`: contabilidad en v2 y facturas en v3.
+/// Historial de migraciones: contabilidad en v2, facturas en v3 y el área
+/// del colmenar en v4.
 const Map<int, CambioEsquema> historialMigracionesApicola = {
   2: CambioEsquema(
     tablasNuevas: [
@@ -192,10 +195,13 @@ const Map<int, CambioEsquema> historialMigracionesApicola = {
     ],
   ),
   3: CambioEsquema(tablasNuevas: ['facturas']),
+  4: CambioEsquema(columnasNuevas: {
+    'apiarios': ['contorno'],
+  }),
 };
 
 /// Último paso escrito en el `onUpgrade` (= versión declarada).
-const int ultimoPasoMigracionApicola = 3;
+const int ultimoPasoMigracionApicola = 4;
 
 /// Esquema esperado en una BD nueva.
 const Map<String, Set<String>> columnasEsperadasApicola = {
@@ -209,6 +215,7 @@ const Map<String, Set<String>> columnasEsperadasApicola = {
     'fecha_creacion_ms',
     'codigo_sitran',
     'superficie_hectareas',
+    'contorno',
   },
   'colmenas': {
     'id',
@@ -473,7 +480,7 @@ void main() {
     test('llega a la versión actual con todas las tablas y columnas', () async {
       final baseDatos = await baseDatosApicola.basedatos;
       expect(await baseDatos.getVersion(), versionEsquemaBaseDatosApicola);
-      expect(versionEsquemaBaseDatosApicola, 3);
+      expect(versionEsquemaBaseDatosApicola, 4);
       expect(await leerColumnasPorTabla(baseDatos), columnasEsperadasApicola);
     });
 
@@ -544,6 +551,24 @@ void main() {
         expect(await baseDatosApicola.estaVacia(), isFalse);
       },
     );
+
+    test('v3 → v4: los apiarios conservan sus filas con el área vacía',
+        () async {
+      await crearBaseDatosHistorica(
+        ruta: entorno.ruta(nombreFicheroBaseDatosApicola),
+        version: 3,
+        sentenciasEsquemaV1: sentenciasEsquemaV1Apicola,
+        historial: historialMigracionesApicola,
+        columnasActuales: columnasEsperadasApicola,
+        filasPorTabla: filasV1Apicola,
+      );
+      final baseDatos = await baseDatosApicola.basedatos;
+      expect(await baseDatos.getVersion(), versionEsquemaBaseDatosApicola);
+      await comprobarFilasConservadas(baseDatos, filasV1Apicola);
+      final apiario = (await baseDatosApicola.listarApiarios()).single;
+      expect(apiario.contorno, '[]');
+      expect(apiario.vertices, isEmpty);
+    });
 
     test(
       'desde v1, el esquema migrado es idéntico al de una BD nueva',
@@ -616,6 +641,27 @@ void main() {
         );
       },
     );
+
+    test('el área del colmenar se guarda, se cambia y se lee', () async {
+      const area = [
+        LatLng(42.0, -1.0),
+        LatLng(42.0, -0.999),
+        LatLng(42.001, -0.999),
+      ];
+      final idApiario = await baseDatosApicola.guardarApiario(Apiario(
+        nombre: 'La Solana',
+        colorEntero: 1,
+        fechaCreacionMs: 1,
+        contorno: codificarContorno(area),
+      ));
+      expect(
+          (await baseDatosApicola.obtenerApiario(idApiario))!.vertices, area);
+      await baseDatosApicola.actualizarApiario(
+          idApiario, {'contorno': codificarContorno(area.take(2).toList())});
+      expect(
+          (await baseDatosApicola.obtenerApiario(idApiario))!.vertices.length,
+          2);
+    });
 
     test('la matrícula de colmena es única', () async {
       await baseDatosApicola.guardarColmena(
@@ -736,7 +782,8 @@ void main() {
       expect(
         (await baseDatosApicola.obtenerApunteGasto(
           idGasto,
-        ))!.importeBaseCentimos,
+        ))!
+            .importeBaseCentimos,
         200,
       );
       expect(

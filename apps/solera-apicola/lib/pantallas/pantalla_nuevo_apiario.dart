@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart';
 
 import '../datos/base_datos.dart';
 import '../modelos/apiario.dart';
-import '../utiles/permisos_gps.dart';
+
+/// Paquete de la app, para identificarse ante OpenStreetMap.
+const String paqueteAppApicola = 'com.coleccionnuevoser.solera_apicola';
 
 class PantallaNuevoApiario extends StatefulWidget {
   final Apiario? apiarioExistente;
@@ -25,9 +28,9 @@ class _PantallaNuevoApiarioState extends State<PantallaNuevoApiario> {
   final _notas = TextEditingController();
   double? _latitud;
   double? _longitud;
+  List<LatLng> _area = const [];
   int _colorEntero = 0xFFB8860B;
   bool _guardando = false;
-  bool _capturandoGps = false;
 
   /// Getter para que los nombres salgan en el idioma actual.
   static List<Map<String, Object>> get _colores => <Map<String, Object>>[
@@ -53,6 +56,7 @@ class _PantallaNuevoApiarioState extends State<PantallaNuevoApiario> {
       _notas.text = existente.notas;
       _latitud = existente.latitudCentroide;
       _longitud = existente.longitudCentroide;
+      _area = existente.vertices;
       _colorEntero = existente.colorEntero;
     }
   }
@@ -66,42 +70,24 @@ class _PantallaNuevoApiarioState extends State<PantallaNuevoApiario> {
     super.dispose();
   }
 
-  Future<void> _capturarGps() async {
-    setState(() => _capturandoGps = true);
-    final permitido = await asegurarPermisoUbicacion();
-    if (!permitido) {
-      if (!mounted) return;
-      setState(() => _capturandoGps = false);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(SoleraL10n.t('api.falta_permiso_ubicacion'))),
-      );
-      return;
-    }
-    try {
-      final pos = await Geolocator.getCurrentPosition()
-          .timeout(const Duration(seconds: 10));
-      if (!mounted) return;
-      setState(() {
-        _latitud = pos.latitude;
-        _longitud = pos.longitude;
-        _capturandoGps = false;
-      });
-    } catch (_) {
-      if (!mounted) return;
-      setState(() => _capturandoGps = false);
-    }
-  }
-
   Future<void> _guardar() async {
     if (!(_formKey.currentState?.validate() ?? false)) return;
     setState(() => _guardando = true);
     final superficie = leerNumero(_superficie.text);
     final db = BaseDatosSoleraApicola.instancia;
     final ahora = DateTime.now().millisecondsSinceEpoch;
+    // Si hay área y no punto, el punto es el centro del área (el mapa y
+    // la meteo usan el punto).
+    final centroArea = centroide(_area);
+    final hayPunto = _latitud != null && _longitud != null;
+    final latitud = hayPunto ? _latitud : centroArea?.latitude;
+    final longitud = hayPunto ? _longitud : centroArea?.longitude;
+    final contorno = codificarContorno(_area);
     final cambios = <String, Object?>{
       'nombre': _nombre.text.trim(),
-      'latitud_centroide': _latitud,
-      'longitud_centroide': _longitud,
+      'latitud_centroide': latitud,
+      'longitud_centroide': longitud,
+      'contorno': contorno,
       'color_entero': _colorEntero,
       'notas': _notas.text.trim(),
       'codigo_sitran': _codigoSitran.text.trim(),
@@ -113,8 +99,9 @@ class _PantallaNuevoApiarioState extends State<PantallaNuevoApiario> {
       await db.guardarApiario(
         Apiario(
           nombre: _nombre.text.trim(),
-          latitudCentroide: _latitud,
-          longitudCentroide: _longitud,
+          latitudCentroide: latitud,
+          longitudCentroide: longitud,
+          contorno: contorno,
           colorEntero: _colorEntero,
           notas: _notas.text.trim(),
           fechaCreacionMs: ahora,
@@ -131,11 +118,14 @@ class _PantallaNuevoApiarioState extends State<PantallaNuevoApiario> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.esEdicion ? SoleraL10n.t('api.editar_apiario') : SoleraL10n.t('api.nuevo_apiario')),
+        title: Text(widget.esEdicion
+            ? SoleraL10n.t('api.editar_apiario')
+            : SoleraL10n.t('api.nuevo_apiario')),
       ),
       body: Form(
         key: _formKey,
-        child: CuerpoResponsivoSolera(child: ListView(
+        child: CuerpoResponsivoSolera(
+            child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
             TextFormField(
@@ -144,8 +134,9 @@ class _PantallaNuevoApiarioState extends State<PantallaNuevoApiario> {
                 labelText: '${SoleraL10n.t('api.nombre')} *',
                 border: const OutlineInputBorder(),
               ),
-              validator: (v) =>
-                  (v ?? '').trim().isEmpty ? SoleraL10n.t('api.nombre_obligatorio') : null,
+              validator: (v) => (v ?? '').trim().isEmpty
+                  ? SoleraL10n.t('api.nombre_obligatorio')
+                  : null,
             ),
             const SizedBox(height: 12),
             TextFormField(
@@ -194,28 +185,34 @@ class _PantallaNuevoApiarioState extends State<PantallaNuevoApiario> {
               maxLines: 4,
             ),
             const SizedBox(height: 12),
-            FilledButton.icon(
-              onPressed: _capturandoGps ? null : _capturarGps,
-              icon: _capturandoGps
-                  ? const SizedBox(
-                      width: 16,
-                      height: 16,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    )
-                  : const Icon(Icons.my_location),
-              label: Text(SoleraL10n.t('api.tomar_gps_colmenar')),
+            CampoPunto(
+              latitud: _latitud,
+              longitud: _longitud,
+              titulo: SoleraL10n.t('api.centroide'),
+              centro: centroide(_area),
+              areasDeFondo: [(nombre: '', vertices: _area)],
+              paqueteApp: paqueteAppApicola,
+              alCambiar: (latitud, longitud) => setState(() {
+                _latitud = latitud;
+                _longitud = longitud;
+              }),
             ),
             const SizedBox(height: 8),
-            Text(
-              _latitud == null || _longitud == null
-                  ? SoleraL10n.t('api.sin_ubicacion_fijada')
-                  : '${SoleraL10n.t('api.centroide')}: ${_latitud!.toStringAsFixed(6)}, ${_longitud!.toStringAsFixed(6)}',
-              style: Theme.of(context).textTheme.bodySmall,
+            CampoArea(
+              vertices: _area,
+              centro: _latitud == null || _longitud == null
+                  ? null
+                  : LatLng(_latitud!, _longitud!),
+              paqueteApp: paqueteAppApicola,
+              alCambiar: (vertices) => setState(() => _area = vertices),
+              alUsarSuperficie: (hectareas) => setState(() => _superficie.text =
+                  hectareas.toStringAsFixed(2).replaceAll('.', ',')),
             ),
             if (widget.esEdicion) ...[
               const SizedBox(height: 12),
               Text(
-                SoleraL10n.tf('api.editaras_apiario', {'nombre': widget.apiarioExistente!.nombre}),
+                SoleraL10n.tf('api.editaras_apiario',
+                    {'nombre': widget.apiarioExistente!.nombre}),
                 style: Theme.of(context).textTheme.bodySmall,
               ),
             ],

@@ -1,3 +1,7 @@
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart'
+    show contornoVacio, leerContorno;
+
 /// Un apiario (colmenar): asentamiento fijo con un código REGA propio.
 /// Las colmenas pueden estar asociadas a un apiario o estar como
 /// **ubicación puntual** (`apiarioId == null`) — útil para registrar
@@ -20,6 +24,12 @@ class Apiario {
   final String codigoSitran;
   final double? superficieHectareas;
 
+  /// Terreno del colmenar marcado en el mapa: JSON `[[lat,lng],…]`
+  /// (nuevo_ser_mapa).
+  final String contorno;
+
+  List<LatLng> get vertices => leerContorno(contorno);
+
   Apiario({
     this.id,
     required this.nombre,
@@ -30,6 +40,7 @@ class Apiario {
     required this.fechaCreacionMs,
     this.codigoSitran = '',
     this.superficieHectareas,
+    this.contorno = contornoVacio,
   });
 
   Map<String, Object?> toMap() => {
@@ -42,6 +53,7 @@ class Apiario {
         'fecha_creacion_ms': fechaCreacionMs,
         'codigo_sitran': codigoSitran,
         'superficie_hectareas': superficieHectareas,
+        'contorno': contorno,
       };
 
   factory Apiario.fromMap(Map<String, Object?> mapa) => Apiario(
@@ -54,5 +66,6 @@ class Apiario {
         fechaCreacionMs: mapa['fecha_creacion_ms'] as int,
         codigoSitran: (mapa['codigo_sitran'] as String?) ?? '',
         superficieHectareas: (mapa['superficie_hectareas'] as num?)?.toDouble(),
+        contorno: (mapa['contorno'] as String?) ?? contornoVacio,
       );
 }

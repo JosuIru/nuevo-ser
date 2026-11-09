@@ -46,7 +46,7 @@ dependencies:
   crypto: ^3.0.7
 
   # Selector de ficheros (backup/restore)
-  file_picker: ^8.1.4
+  file_picker: ^10.2.4
 
   # Generación de PDF (libro REGA + informes). `pdf` viene transitivo
   # via nuevo_ser_core; `printing` se queda en la app porque lanza el
@@ -55,6 +55,8 @@ dependencies:
   printing: ^5.13.4
 
   # Plataforma compartida del monorepo
+  nuevo_ser_mapa:
+    path: ../../packages/nuevo_ser_mapa
   nuevo_ser_core:
     path: ../../packages/nuevo_ser_core
 

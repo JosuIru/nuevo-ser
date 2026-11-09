@@ -4,6 +4,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart' show capaDeAreas, tieneArea;
 
 import '../datos/base_datos.dart';
 import '../estado/apiario_activo.dart';
@@ -150,7 +151,10 @@ class _PantallaMapaState extends State<PantallaMapa> {
               subtitle: Text(
                 _posicionGps == null
                     ? SoleraL10n.t('api.captura_posicion_nueva')
-                    : SoleraL10n.tf('api.ultimo_gps_coordenadas', {'coordenadas': '${_posicionGps!.latitude.toStringAsFixed(6)}, ${_posicionGps!.longitude.toStringAsFixed(6)}'}),
+                    : SoleraL10n.tf('api.ultimo_gps_coordenadas', {
+                        'coordenadas':
+                            '${_posicionGps!.latitude.toStringAsFixed(6)}, ${_posicionGps!.longitude.toStringAsFixed(6)}'
+                      }),
               ),
               onTap: () => Navigator.pop(context, _OrigenAltaMapa.gps),
             ),
@@ -223,7 +227,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
     if (!permitido) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(SoleraL10n.t('api.falta_permiso_de_ubicacion'))),
+          SnackBar(
+              content: Text(SoleraL10n.t('api.falta_permiso_de_ubicacion'))),
         );
       }
       return;
@@ -362,6 +367,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
                       builder: (_) => const PantallaGestionApiarios(),
                     ),
                   );
+                  // Puede haber cambiado el área de algún colmenar.
+                  _cargarTodo();
                   break;
                 case _AccionMenu.libroRega:
                   await Navigator.of(context).push<void>(
@@ -415,8 +422,18 @@ class _PantallaMapaState extends State<PantallaMapa> {
                 maxZoom: 22,
                 maxNativeZoom: 19,
               ),
+              // El terreno de cada colmenar, con su color, bajo las colmenas.
+              for (final apiario in _apiarios)
+                if (tieneArea(apiario.vertices))
+                  capaDeAreas(
+                    [(nombre: apiario.nombre, vertices: apiario.vertices)],
+                    color: Color(apiario.colorEntero),
+                  ),
               // Las condiciones de uso de OSM y Esri piden citarlos.
-              SimpleAttributionWidget(source: Text(_estiloMapa == _EstiloMapa.calle ? 'OpenStreetMap' : 'Esri')),
+              SimpleAttributionWidget(
+                  source: Text(_estiloMapa == _EstiloMapa.calle
+                      ? 'OpenStreetMap'
+                      : 'Esri')),
               MarkerClusterLayerWidget(
                 options: MarkerClusterLayerOptions(
                   maxClusterRadius: 42,
@@ -479,7 +496,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                   child: Text(
                     SoleraL10n.t('api.esri_satelite'),
                     style: const TextStyle(color: Colors.white, fontSize: 11),
@@ -522,7 +540,9 @@ class _PantallaMapaState extends State<PantallaMapa> {
                             : Icons.map_outlined,
                       ),
                       label: Text(
-                        _estiloMapa == _EstiloMapa.calle ? SoleraL10n.t('api.capas') : SoleraL10n.t('mapa'),
+                        _estiloMapa == _EstiloMapa.calle
+                            ? SoleraL10n.t('api.capas')
+                            : SoleraL10n.t('mapa'),
                       ),
                     ),
                   ),
@@ -549,7 +569,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
                       child: Text(
                         _altitudGps == null
                             ? SoleraL10n.t('api.altitud_gps_sin_dato')
-                            : SoleraL10n.tf('api.altitud_gps_m', {'m': formatearNumero(_altitudGps!)}),
+                            : SoleraL10n.tf('api.altitud_gps_m',
+                                {'m': formatearNumero(_altitudGps!)}),
                       ),
                     ),
                   ),

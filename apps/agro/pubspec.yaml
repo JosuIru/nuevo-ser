@@ -1,7 +1,7 @@
 name: agro
 description: "Larrea — gestor de fincas agrícolas. Frutales, trufas, olivar, pistacho, dehesa."
 publish_to: 'none'
-version: 0.3.9+12
+version: 0.3.9+13
 
 environment:
   sdk: ^3.11.5

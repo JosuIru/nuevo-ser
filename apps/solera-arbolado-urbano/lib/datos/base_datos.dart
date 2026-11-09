@@ -15,7 +15,7 @@ const String nombreFicheroBaseDatosArbolado = 'solera_arbolado_urbano.db';
 
 /// Versión del esquema que abre la app (`version:` de openDatabase). La
 /// usa también la copia de seguridad para rechazar copias más nuevas.
-const int versionEsquemaArbolado = 2;
+const int versionEsquemaArbolado = 3;
 
 /// Acceso a la base de datos local de Larrea Arbolado Urbano. Singleton
 /// con inicialización perezosa: la primera lectura crea la BD.
@@ -27,8 +27,13 @@ const int versionEsquemaArbolado = 2;
 /// v1 arranca con esquema completo: zonas + árboles + 4 eventos
 /// (inspeccion / poda / tratamiento / incidencia) + tecnicos +
 /// ayuntamiento (single-row).
+///
+/// v2 añade `facturas`. v3 (2026-11-09) añade `zonas.contorno`: el área
+/// de la zona o barrio marcada en el mapa (nuevo_ser_mapa), JSON
+/// `[[lat,lng],…]`.
 class BaseDatosSoleraArbolado extends BaseDatosSolera {
-  static final BaseDatosSoleraArbolado instancia = BaseDatosSoleraArbolado._interno();
+  static final BaseDatosSoleraArbolado instancia =
+      BaseDatosSoleraArbolado._interno();
   factory BaseDatosSoleraArbolado() => instancia;
   BaseDatosSoleraArbolado._interno();
 
@@ -47,6 +52,7 @@ class BaseDatosSoleraArbolado extends BaseDatosSolera {
   @override
   Map<int, PasoMigracionSolera> get pasosMigracion => {
         2: _crearEsquemaV2,
+        3: _anadirContornoZonasV3,
       };
 
   // ─── Zonas ────────────────────────────────────────────────
@@ -69,7 +75,8 @@ class BaseDatosSoleraArbolado extends BaseDatosSolera {
 
   Future<Zona?> obtenerZona(int id) async {
     final db = await basedatos;
-    final filas = await db.query('zonas', where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas =
+        await db.query('zonas', where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return Zona.fromMap(filas.first);
   }
@@ -77,7 +84,8 @@ class BaseDatosSoleraArbolado extends BaseDatosSolera {
   Future<void> borrarZona(int id) async {
     final db = await basedatos;
     await db.transaction((txn) async {
-      await txn.update('arboles', {'zona_id': null}, where: 'zona_id = ?', whereArgs: [id]);
+      await txn.update('arboles', {'zona_id': null},
+          where: 'zona_id = ?', whereArgs: [id]);
       await txn.delete('zonas', where: 'id = ?', whereArgs: [id]);
     });
   }
@@ -107,15 +115,19 @@ class BaseDatosSoleraArbolado extends BaseDatosSolera {
 
   Future<Arbol?> obtenerArbol(int id) async {
     final db = await basedatos;
-    final filas = await db.query('arboles', where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas =
+        await db.query('arboles', where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return Arbol.fromMap(filas.first);
   }
 
-  Future<Arbol?> obtenerArbolPorIdentificadorMunicipal(String identificador) async {
+  Future<Arbol?> obtenerArbolPorIdentificadorMunicipal(
+      String identificador) async {
     final db = await basedatos;
     final filas = await db.query('arboles',
-        where: 'identificador_municipal = ?', whereArgs: [identificador], limit: 1);
+        where: 'identificador_municipal = ?',
+        whereArgs: [identificador],
+        limit: 1);
     if (filas.isEmpty) return null;
     return Arbol.fromMap(filas.first);
   }
@@ -123,7 +135,9 @@ class BaseDatosSoleraArbolado extends BaseDatosSolera {
   Future<Arbol?> obtenerArbolPorQrPayload(String payload) async {
     final db = await basedatos;
     final filas = await db.query('arboles',
-        where: 'qr_payload = ? AND qr_payload != \'\'', whereArgs: [payload], limit: 1);
+        where: 'qr_payload = ? AND qr_payload != \'\'',
+        whereArgs: [payload],
+        limit: 1);
     if (filas.isEmpty) return null;
     return Arbol.fromMap(filas.first);
   }
@@ -267,7 +281,8 @@ class BaseDatosSoleraArbolado extends BaseDatosSolera {
     return db.insert('incidencias', i.toMap()..remove('id'));
   }
 
-  Future<void> actualizarIncidencia(int id, Map<String, Object?> cambios) async {
+  Future<void> actualizarIncidencia(
+      int id, Map<String, Object?> cambios) async {
     final db = await basedatos;
     await db.update('incidencias', cambios, where: 'id = ?', whereArgs: [id]);
   }
@@ -285,7 +300,8 @@ class BaseDatosSoleraArbolado extends BaseDatosSolera {
         'SELECT i.* FROM incidencias i INNER JOIN arboles a ON i.arbol_id = a.id WHERE i.resuelta = 0';
     final filas = zonaId == null
         ? await db.rawQuery('$base ORDER BY i.fecha_ms DESC')
-        : await db.rawQuery('$base AND a.zona_id = ? ORDER BY i.fecha_ms DESC', [zonaId]);
+        : await db.rawQuery(
+            '$base AND a.zona_id = ? ORDER BY i.fecha_ms DESC', [zonaId]);
     return filas.map(Incidencia.fromMap).toList();
   }
 
@@ -328,13 +344,15 @@ class BaseDatosSoleraArbolado extends BaseDatosSolera {
   Future<List<Tecnico>> listarTecnicos({bool soloActivos = false}) async {
     final db = await basedatos;
     final where = soloActivos ? 'activo = 1' : null;
-    final filas = await db.query('tecnicos', where: where, orderBy: 'nombre ASC');
+    final filas =
+        await db.query('tecnicos', where: where, orderBy: 'nombre ASC');
     return filas.map(Tecnico.fromMap).toList();
   }
 
   Future<Tecnico?> obtenerTecnico(int id) async {
     final db = await basedatos;
-    final filas = await db.query('tecnicos', where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas =
+        await db.query('tecnicos', where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return Tecnico.fromMap(filas.first);
   }
@@ -351,7 +369,6 @@ class BaseDatosSoleraArbolado extends BaseDatosSolera {
   Future<void> guardarAyuntamiento(Ayuntamiento a) async {
     await guardarFilaUnica('ayuntamientos', a.toMap());
   }
-
 }
 
 // ─── Esquema inicial v1 ─────────────────────────────────────
@@ -394,7 +411,8 @@ Future<void> _crearEsquemaInicial(Database db) async {
   ''');
   await db.execute('CREATE INDEX idx_arboles_zona ON arboles (zona_id)');
   await db.execute('CREATE INDEX idx_arboles_estado ON arboles (estado)');
-  await db.execute('CREATE INDEX idx_arboles_identificador ON arboles (identificador_municipal)');
+  await db.execute(
+      'CREATE INDEX idx_arboles_identificador ON arboles (identificador_municipal)');
   await db.execute('CREATE INDEX idx_arboles_qr ON arboles (qr_payload)');
 
   await db.execute('''
@@ -412,7 +430,8 @@ Future<void> _crearEsquemaInicial(Database db) async {
       FOREIGN KEY (tecnico_id) REFERENCES tecnicos(id) ON DELETE SET NULL
     )
   ''');
-  await db.execute('CREATE INDEX idx_inspecciones_arbol_fecha ON inspecciones (arbol_id, fecha_ms DESC)');
+  await db.execute(
+      'CREATE INDEX idx_inspecciones_arbol_fecha ON inspecciones (arbol_id, fecha_ms DESC)');
 
   await db.execute('''
     CREATE TABLE podas (
@@ -430,7 +449,8 @@ Future<void> _crearEsquemaInicial(Database db) async {
       FOREIGN KEY (tecnico_id) REFERENCES tecnicos(id) ON DELETE SET NULL
     )
   ''');
-  await db.execute('CREATE INDEX idx_podas_arbol_fecha ON podas (arbol_id, fecha_ms DESC)');
+  await db.execute(
+      'CREATE INDEX idx_podas_arbol_fecha ON podas (arbol_id, fecha_ms DESC)');
 
   await db.execute('''
     CREATE TABLE tratamientos (
@@ -450,7 +470,8 @@ Future<void> _crearEsquemaInicial(Database db) async {
       FOREIGN KEY (tecnico_id) REFERENCES tecnicos(id) ON DELETE SET NULL
     )
   ''');
-  await db.execute('CREATE INDEX idx_tratamientos_arbol_fecha ON tratamientos (arbol_id, fecha_ms DESC)');
+  await db.execute(
+      'CREATE INDEX idx_tratamientos_arbol_fecha ON tratamientos (arbol_id, fecha_ms DESC)');
 
   await db.execute('''
     CREATE TABLE incidencias (
@@ -469,8 +490,10 @@ Future<void> _crearEsquemaInicial(Database db) async {
       FOREIGN KEY (tecnico_id) REFERENCES tecnicos(id) ON DELETE SET NULL
     )
   ''');
-  await db.execute('CREATE INDEX idx_incidencias_arbol_fecha ON incidencias (arbol_id, fecha_ms DESC)');
-  await db.execute('CREATE INDEX idx_incidencias_abiertas ON incidencias (resuelta, fecha_ms DESC)');
+  await db.execute(
+      'CREATE INDEX idx_incidencias_arbol_fecha ON incidencias (arbol_id, fecha_ms DESC)');
+  await db.execute(
+      'CREATE INDEX idx_incidencias_abiertas ON incidencias (resuelta, fecha_ms DESC)');
 
   await db.execute('''
     CREATE TABLE tecnicos (
@@ -525,4 +548,10 @@ Future<void> _crearEsquemaV2(Database db) async {
       fecha_creacion_ms INTEGER NOT NULL
     )
   ''');
+}
+
+/// Esquema v3 — área de la zona en el mapa (aditivo).
+Future<void> _anadirContornoZonasV3(Database db) async {
+  await db.execute(
+      "ALTER TABLE zonas ADD COLUMN contorno TEXT NOT NULL DEFAULT '[]'");
 }

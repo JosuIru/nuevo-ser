@@ -4,18 +4,35 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart' show capaDeAreas, tieneArea;
 
 import '../datos/base_datos.dart';
 import '../estado/zona_activa.dart';
 import '../modelos/arbol.dart';
 import '../modelos/zona.dart';
 import '../utiles/permisos_gps.dart';
+import 'pantalla_editar_zona.dart';
 import 'pantalla_escaner_qr.dart';
 import 'pantalla_ficha_arbol.dart';
 import 'pantalla_nuevo_arbol.dart';
 
 /// Capa de fondo del mapa: callejero (OSM) o foto aérea (Esri).
 enum _CapaMapa { callejero, satelite }
+
+/// Lo que se elige en la hoja de zonas: filtrar por una zona (o por todo
+/// el municipio), o abrir una zona (nueva si [zona] es null) para editarla.
+class _EleccionZona {
+  const _EleccionZona.filtrar(this.zonaId)
+      : editar = false,
+        zona = null;
+  const _EleccionZona.editar(this.zona)
+      : editar = true,
+        zonaId = null;
+
+  final int? zonaId;
+  final bool editar;
+  final Zona? zona;
+}
 
 const _urlCapaCallejero = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
 const _urlCapaSatelite =
@@ -116,8 +133,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
   Future<void> _cargarTodo() async {
     final zonas = await BaseDatosSoleraArbolado.instancia.listarZonas();
     final zonaActivaId = await _persistenciaZona.cargar();
-    final arboles =
-        await BaseDatosSoleraArbolado.instancia.listarArboles(zonaId: zonaActivaId);
+    final arboles = await BaseDatosSoleraArbolado.instancia
+        .listarArboles(zonaId: zonaActivaId);
     if (!mounted) return;
     setState(() {
       _zonas = zonas;
@@ -137,7 +154,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
     });
   }
 
-  Future<void> _abrirNuevoArbol({double? latitud, double? longitud, String? qrPayload}) async {
+  Future<void> _abrirNuevoArbol(
+      {double? latitud, double? longitud, String? qrPayload}) async {
     final creado = await Navigator.of(context).push<bool>(
       MaterialPageRoute(
         builder: (_) => PantallaNuevoArbol(
@@ -160,8 +178,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
     try {
       final permitido = await asegurarPermisoUbicacion();
       if (permitido) {
-        final pos = await Geolocator.getCurrentPosition()
-            .timeout(Duration(seconds: 6));
+        final pos =
+            await Geolocator.getCurrentPosition().timeout(Duration(seconds: 6));
         latitud = pos.latitude;
         longitud = pos.longitude;
       }
@@ -172,7 +190,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
     if (!mounted) return;
     if (latitud == null || longitud == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(SoleraL10n.t('arb.gps_no_disponible_formulario'))),
+        SnackBar(
+            content: Text(SoleraL10n.t('arb.gps_no_disponible_formulario'))),
       );
     }
     await _abrirNuevoArbol(latitud: latitud, longitud: longitud);
@@ -183,12 +202,13 @@ class _PantallaMapaState extends State<PantallaMapa> {
       MaterialPageRoute(builder: (_) => PantallaEscanerQr()),
     );
     if (payload == null || payload.isEmpty || !mounted) return;
-    final arbol =
-        await BaseDatosSoleraArbolado.instancia.obtenerArbolPorQrPayload(payload);
+    final arbol = await BaseDatosSoleraArbolado.instancia
+        .obtenerArbolPorQrPayload(payload);
     if (!mounted) return;
     if (arbol != null) {
       final cambio = await Navigator.of(context).push<bool>(
-        MaterialPageRoute(builder: (_) => PantallaFichaArbol(arbolId: arbol.id!)),
+        MaterialPageRoute(
+            builder: (_) => PantallaFichaArbol(arbolId: arbol.id!)),
       );
       if (cambio == true) _cargarTodo();
     } else {
@@ -202,9 +222,12 @@ class _PantallaMapaState extends State<PantallaMapa> {
             '${SoleraL10n.t('arb.dar_de_alta_con_qr_pregunta')}',
           ),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(context, false), child: Text(SoleraL10n.t('cancelar'))),
+            TextButton(
+                onPressed: () => Navigator.pop(context, false),
+                child: Text(SoleraL10n.t('cancelar'))),
             FilledButton(
-                onPressed: () => Navigator.pop(context, true), child: Text(SoleraL10n.t('arb.dar_de_alta'))),
+                onPressed: () => Navigator.pop(context, true),
+                child: Text(SoleraL10n.t('arb.dar_de_alta'))),
           ],
         ),
       );
@@ -216,33 +239,76 @@ class _PantallaMapaState extends State<PantallaMapa> {
 
   Future<void> _abrirSelectorZona() async {
     final activo = _zonaActivaId;
-    final elegido = await showModalBottomSheet<int?>(
+    final elegido = await showModalBottomSheet<_EleccionZona>(
       context: context,
+      isScrollControlled: true,
       builder: (_) => SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              leading: Icon(Icons.public),
-              title: Text(SoleraL10n.t('arb.todo_el_municipio')),
-              trailing: activo == null ? Icon(Icons.check) : null,
-              onTap: () => Navigator.pop(context, null),
-            ),
-            Divider(height: 1),
-            for (final z in _zonas)
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
               ListTile(
-                leading: Icon(Icons.location_on, color: Color(z.colorEntero)),
-                title: Text(z.nombre),
-                subtitle: z.codigoMunicipal.isEmpty ? null : Text(z.codigoMunicipal),
-                trailing: activo == z.id ? Icon(Icons.check) : null,
-                onTap: () => Navigator.pop(context, z.id),
+                leading: Icon(Icons.public),
+                title: Text(SoleraL10n.t('arb.todo_el_municipio')),
+                trailing: activo == null ? Icon(Icons.check) : null,
+                onTap: () =>
+                    Navigator.pop(context, const _EleccionZona.filtrar(null)),
               ),
-          ],
+              Divider(height: 1),
+              for (final z in _zonas)
+                ListTile(
+                  leading: Icon(Icons.location_on, color: Color(z.colorEntero)),
+                  title: Text(z.nombre),
+                  subtitle: z.codigoMunicipal.isEmpty
+                      ? null
+                      : Text(z.codigoMunicipal),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (activo == z.id) Icon(Icons.check),
+                      IconButton(
+                        icon: Icon(Icons.edit_location_alt_outlined),
+                        tooltip: SoleraL10n.t('editar'),
+                        onPressed: () =>
+                            Navigator.pop(context, _EleccionZona.editar(z)),
+                      ),
+                    ],
+                  ),
+                  onTap: () =>
+                      Navigator.pop(context, _EleccionZona.filtrar(z.id)),
+                ),
+              Divider(height: 1),
+              // Alta de zona: nombre y área en el mapa.
+              ListTile(
+                leading: Icon(Icons.add_location_alt_outlined),
+                title: Text('+ ${SoleraL10n.t('arb.zona')}'),
+                onTap: () =>
+                    Navigator.pop(context, const _EleccionZona.editar(null)),
+              ),
+            ],
+          ),
         ),
       ),
     );
-    if (!mounted) return;
-    if (elegido != activo) await _cambiarZonaActiva(elegido);
+    if (!mounted || elegido == null) return;
+    if (elegido.editar) {
+      await _abrirEdicionZona(elegido.zona);
+      return;
+    }
+    if (elegido.zonaId != activo) await _cambiarZonaActiva(elegido.zonaId);
+  }
+
+  Future<void> _abrirEdicionZona(Zona? zona) async {
+    final guardada = await Navigator.of(context).push<bool>(
+      MaterialPageRoute(
+        builder: (_) => PantallaEditarZona(
+          zona: zona,
+          otrasZonas: _zonas,
+          centroInicial: _centroActual,
+        ),
+      ),
+    );
+    if (guardada == true) _cargarTodo();
   }
 
   Color _colorEstadoArbol(EstadoArbol e, ColorScheme paleta) {
@@ -272,7 +338,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
             child: GestureDetector(
               onTap: () async {
                 final cambio = await Navigator.of(context).push<bool>(
-                  MaterialPageRoute(builder: (_) => PantallaFichaArbol(arbolId: a.id!)),
+                  MaterialPageRoute(
+                      builder: (_) => PantallaFichaArbol(arbolId: a.id!)),
                 );
                 if (cambio == true) _cargarTodo();
               },
@@ -325,17 +392,30 @@ class _PantallaMapaState extends State<PantallaMapa> {
                     initialZoom: _zoomActual,
                     minZoom: 3,
                     maxZoom: 19,
+                    onPositionChanged: (camara, _) =>
+                        _centroActual = camara.center,
                   ),
                   children: [
                     TileLayer(
                       urlTemplate: _capaMapa == _CapaMapa.callejero
                           ? _urlCapaCallejero
                           : _urlCapaSatelite,
-                      userAgentPackageName: 'com.coleccionnuevoser.solera_arbolado_urbano',
+                      userAgentPackageName:
+                          'com.coleccionnuevoser.solera_arbolado_urbano',
                       maxNativeZoom: 19,
                     ),
+                    // El área de cada zona, con su color, bajo los árboles.
+                    for (final zona in _zonas)
+                      if (tieneArea(zona.vertices))
+                        capaDeAreas(
+                          [(nombre: zona.nombre, vertices: zona.vertices)],
+                          color: Color(zona.colorEntero),
+                        ),
                     // Las condiciones de uso de OSM y Esri piden citarlos.
-                    SimpleAttributionWidget(source: Text(_capaMapa == _CapaMapa.callejero ? 'OpenStreetMap' : 'Esri')),
+                    SimpleAttributionWidget(
+                        source: Text(_capaMapa == _CapaMapa.callejero
+                            ? 'OpenStreetMap'
+                            : 'Esri')),
                     MarkerClusterLayerWidget(
                       options: MarkerClusterLayerOptions(
                         maxClusterRadius: 60,
@@ -352,7 +432,9 @@ class _PantallaMapaState extends State<PantallaMapa> {
                             child: Center(
                               child: Text(
                                 markers.length.toString(),
-                                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
                           );
@@ -372,7 +454,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
                       onTap: _abrirSelectorZona,
                       borderRadius: BorderRadius.circular(20),
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 6),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -397,7 +480,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
                       onTap: _alternarCapaMapa,
                       borderRadius: BorderRadius.circular(20),
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 6),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -427,7 +511,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                         child: Text(
                           SoleraL10n.t('arb.esri_satelite'),
                           style: TextStyle(color: Colors.white, fontSize: 11),

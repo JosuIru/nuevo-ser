@@ -1,3 +1,7 @@
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart'
+    show contornoVacio, leerContorno;
+
 /// Sector de la ciudad bajo el que se agrupan árboles. Equivalente B2B
 /// a `Vinedo`/`Apiario` de las hermanas. Centroide aproximado y nombre
 /// humano (parque, paseo, calle, distrito).
@@ -15,6 +19,12 @@ class Zona {
   final String notas;
   final int fechaCreacionMs;
 
+  /// Área de la zona marcada en el mapa: JSON `[[lat,lng],…]`
+  /// (nuevo_ser_mapa). El centroide se calcula de ella al guardar.
+  final String contorno;
+
+  List<LatLng> get vertices => leerContorno(contorno);
+
   Zona({
     this.id,
     required this.nombre,
@@ -24,6 +34,7 @@ class Zona {
     this.colorEntero = 0xFF2E7D32,
     this.notas = '',
     required this.fechaCreacionMs,
+    this.contorno = contornoVacio,
   });
 
   Map<String, Object?> toMap() => {
@@ -35,6 +46,7 @@ class Zona {
         'color_entero': colorEntero,
         'notas': notas,
         'fecha_creacion_ms': fechaCreacionMs,
+        'contorno': contorno,
       };
 
   factory Zona.fromMap(Map<String, Object?> mapa) => Zona(
@@ -46,5 +58,6 @@ class Zona {
         colorEntero: (mapa['color_entero'] as int?) ?? 0xFF2E7D32,
         notas: (mapa['notas'] as String?) ?? '',
         fechaCreacionMs: (mapa['fecha_creacion_ms'] as int?) ?? 0,
+        contorno: (mapa['contorno'] as String?) ?? contornoVacio,
       );
 }

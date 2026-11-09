@@ -21,7 +21,7 @@ void main() {
     test('la versión de esquema es la que abre la BD', () {
       expect(configuracionCopiaSeguridadArbolado.versionEsquemaActual,
           versionEsquemaArbolado);
-      expect(versionEsquemaArbolado, 2);
+      expect(versionEsquemaArbolado, 3);
       expect(nombreFicheroBaseDatosArbolado, 'solera_arbolado_urbano.db');
     });
   });

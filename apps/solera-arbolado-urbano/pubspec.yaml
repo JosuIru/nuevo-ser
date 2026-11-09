@@ -48,7 +48,7 @@ dependencies:
   crypto: ^3.0.7
 
   # Selector de ficheros (backup/restore)
-  file_picker: ^8.1.4
+  file_picker: ^10.2.4
 
   # Generación de PDF (informes municipales). `pdf` viene transitivo
   # via nuevo_ser_core; `printing` se queda en la app para abrir el
@@ -59,6 +59,8 @@ dependencies:
   # Plataforma compartida del monorepo
   qr_flutter: ^4.1.0
 
+  nuevo_ser_mapa:
+    path: ../../packages/nuevo_ser_mapa
   nuevo_ser_core:
     path: ../../packages/nuevo_ser_core
 

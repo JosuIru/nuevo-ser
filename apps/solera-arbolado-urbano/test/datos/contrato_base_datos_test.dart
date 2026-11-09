@@ -18,6 +18,8 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart' show codificarContorno;
 import 'package:solera_arbolado_urbano/datos/base_datos.dart';
 import 'package:solera_arbolado_urbano/modelos/arbol.dart';
 import 'package:solera_arbolado_urbano/modelos/incidencia.dart';
@@ -164,12 +166,15 @@ const List<String> sentenciasEsquemaV1Arbolado = [
     )''',
 ];
 
-/// Historial del `onUpgrade` (solo v2: facturas).
+/// Historial de migraciones: facturas en v2 y el área de la zona en v3.
 const Map<int, CambioEsquema> historialMigracionesArbolado = {
   2: CambioEsquema(tablasNuevas: ['facturas']),
+  3: CambioEsquema(columnasNuevas: {
+    'zonas': ['contorno'],
+  }),
 };
 
-/// Esquema esperado en la versión actual (v2).
+/// Esquema esperado en la versión actual (v3).
 const Map<String, Set<String>> columnasEsperadasArbolado = {
   'zonas': {
     'id',
@@ -179,7 +184,8 @@ const Map<String, Set<String>> columnasEsperadasArbolado = {
     'longitud_centroide',
     'color_entero',
     'notas',
-    'fecha_creacion_ms'
+    'fecha_creacion_ms',
+    'contorno'
   },
   'arboles': {
     'id',
@@ -366,7 +372,7 @@ void main() {
     test('llega a la versión actual con todas las tablas y columnas', () async {
       final baseDatos = await baseDatosArbolado.basedatos;
       expect(await baseDatos.getVersion(), versionEsquemaArbolado);
-      expect(versionEsquemaArbolado, 2);
+      expect(versionEsquemaArbolado, 3);
       expect(await leerColumnasPorTabla(baseDatos), columnasEsperadasArbolado);
     });
 
@@ -414,6 +420,8 @@ void main() {
             (await baseDatosArbolado.obtenerArbolPorQrPayload('qr:PN-0001'))!
                 .id,
             1);
+        // La zona migrada llega sin área.
+        expect((await baseDatosArbolado.listarZonas()).single.contorno, '[]');
       });
     }
 
@@ -464,6 +472,21 @@ void main() {
       await baseDatosArbolado.borrarZona(idZona);
       expect(await baseDatosArbolado.obtenerZona(idZona), isNull);
       expect((await baseDatosArbolado.obtenerArbol(idArbol))!.zonaId, isNull);
+    });
+
+    test('el área de una zona se guarda, se cambia y se lee', () async {
+      const area = [
+        LatLng(42.0, -1.0),
+        LatLng(42.0, -0.999),
+        LatLng(42.001, -0.999),
+      ];
+      final idZona = await baseDatosArbolado.guardarZona(Zona(
+          nombre: 'Barrio Viejo',
+          fechaCreacionMs: 1,
+          contorno: codificarContorno(area)));
+      expect((await baseDatosArbolado.obtenerZona(idZona))!.vertices, area);
+      await baseDatosArbolado.actualizarZona(idZona, {'contorno': '[]'});
+      expect((await baseDatosArbolado.obtenerZona(idZona))!.vertices, isEmpty);
     });
 
     test('árboles: identificador municipal único y búsquedas', () async {

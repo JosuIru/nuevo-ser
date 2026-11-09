@@ -223,6 +223,25 @@ afirmar( array( 'crear', '' ), szs_accion_tarea( null, $tarea ), 'tarea nueva' )
 afirmar( array( 'estado', 'hecha' ), szs_accion_tarea( $tarea, array_merge( $tarea, array( 'estado' => 'hecha' ) ) ), 'cambio de estado' );
 afirmar( array( 'asignar', 'Ane' ), szs_accion_tarea( $tarea, array_merge( $tarea, array( 'responsable_uid' => 'ane', 'responsable' => 'Ane' ) ) ), 'asignación' );
 
+// --- un test de varias personas tester ---
+$capacidades_tester = szs_capacidades_de_rol( 'tester' );
+$a_medias = entidad( 'proyecto', array( 'persona_uid' => 'ane', 'personas_uids' => '["ane","mikel"]' ) );
+afirmar( array( 'ane', 'mikel' ), szs_personas_proyecto( $a_medias['datos'] ), 'las dos personas del proyecto' );
+afirmar( array( 'ane' ), szs_personas_proyecto( array( 'persona_uid' => 'ane' ) ), 'un proyecto de antes es de su persona_uid' );
+afirmar( array( 'jon' ), szs_personas_proyecto( array( 'persona_uid' => 'jon', 'personas_uids' => '["ane","mikel"]' ) ), 'persona_uid cambiada por una app anterior: manda ella' );
+afirmar( array(), szs_personas_proyecto( array( 'personas_uids' => 'no es json' ) ), 'lista ilegible y sin persona: nadie' );
+afirmar( true, szs_entidad_visible( $a_medias, 'mikel', $capacidades_tester, array() ), 'la segunda persona ve el proyecto' );
+afirmar( false, szs_entidad_visible( $a_medias, 'jon', $capacidades_tester, array() ), 'otra tester no lo ve' );
+$apunte_mikel = entidad( 'apunte', array( 'concepto' => 'Pienso' ), array( 'proyecto_uid' => $a_medias['uid'] ) );
+afirmar( 'insertar', accion( null, $apunte_mikel, 'mikel', $capacidades_tester, $a_medias ), 'la segunda persona apunta en el proyecto' );
+afirmar( 'rechazar', accion( null, $apunte_mikel, 'jon', $capacidades_tester, $a_medias ), 'otra tester no apunta' );
+afirmar( '["ane","mikel"]', szs_sanear_datos_entidad( array( 'personas_uids' => array( 'ane', '', 'mikel', 'ane' ) ) )['personas_uids'], 'la lista se guarda como JSON sin vacíos ni repetidos' );
+$de_app_vieja = entidad( 'proyecto', array( 'persona_uid' => 'ane', 'nombre' => 'Renombrado' ) );
+afirmar( '["ane","mikel"]', szs_conservar_personas_proyecto( $a_medias, $de_app_vieja )['datos']['personas_uids'], 'una app anterior que no toca la persona conserva las dos' );
+$cambiada_vieja = entidad( 'proyecto', array( 'persona_uid' => 'jon' ) );
+afirmar( '["jon"]', szs_conservar_personas_proyecto( $a_medias, $cambiada_vieja )['datos']['personas_uids'], 'una app anterior que cambia la persona deja solo esa' );
+afirmar( '["ane","mikel"]', szs_conservar_personas_proyecto( $a_medias, $a_medias )['datos']['personas_uids'], 'si trae la lista, no se toca' );
+
 if ( $fallos > 0 ) {
 	fwrite( STDERR, "\n{$fallos} test(s) fallidos.\n" );
 	exit( 1 );

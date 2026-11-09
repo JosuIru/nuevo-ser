@@ -122,6 +122,11 @@ function szs_sanear_datos_entidad( array $datos ): array {
 			$datos[ $clave ] = function_exists( 'szs_normalizar_lista_fotos' ) ? szs_normalizar_lista_fotos( $valor ) : array();
 			continue;
 		}
+		if ( 'personas_uids' === $clave ) {
+			// Lista de uids guardada como texto JSON, como la guarda la app.
+			$datos[ $clave ] = json_encode( szs_normalizar_uids( $valor ), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+			continue;
+		}
 		if ( null === $valor ) {
 			continue;
 		}
@@ -132,6 +137,57 @@ function szs_sanear_datos_entidad( array $datos ): array {
 		}
 	}
 	return $datos;
+}
+
+/**
+ * Lista de uids recibida como texto JSON o como lista: sin vacíos ni
+ * repetidos, en su orden. Lo que no se entiende, lista vacía. Pura.
+ */
+function szs_normalizar_uids( $valor ): array {
+	if ( is_string( $valor ) ) {
+		$valor = '' === trim( $valor ) ? array() : json_decode( $valor, true );
+	}
+	$uids = array();
+	foreach ( is_array( $valor ) ? $valor : array() as $uid ) {
+		if ( ( is_string( $uid ) || is_int( $uid ) ) && '' !== (string) $uid && ! in_array( (string) $uid, $uids, true ) ) {
+			$uids[] = substr( (string) $uid, 0, 64 );
+		}
+	}
+	return $uids;
+}
+
+/**
+ * Personas tester de un proyecto (sus `datos`): un mismo test puede ser de
+ * varias (`personas_uids`). Sin lista (un proyecto de antes, o de una app
+ * anterior), o si `persona_uid` no está en ella (la cambió una app anterior),
+ * manda `persona_uid`. Igual que `ProyectoTest.uidsTester` de la app. Pura.
+ */
+function szs_personas_proyecto( array $datos ): array {
+	$persona = (string) ( $datos['persona_uid'] ?? '' );
+	$lista   = szs_normalizar_uids( $datos['personas_uids'] ?? null );
+	if ( array() === $lista || ( '' !== $persona && ! in_array( $persona, $lista, true ) ) ) {
+		return '' === $persona ? array() : array( $persona );
+	}
+	return $lista;
+}
+
+/**
+ * Un proyecto que llega de una app anterior a las personas múltiples no trae
+ * `personas_uids`: si sigue con la misma `persona_uid`, conserva la lista que
+ * había (si no, la segunda persona perdería el proyecto); si no, la lista
+ * pasa a ser esa persona. Así lo guardado siempre la lleva. Pura.
+ */
+function szs_conservar_personas_proyecto( ?array $existente, array $entrante ): array {
+	if ( 'proyecto' !== $entrante['tipo'] || $entrante['borrado'] || array_key_exists( 'personas_uids', $entrante['datos'] ) ) {
+		return $entrante;
+	}
+	$persona = (string) ( $entrante['datos']['persona_uid'] ?? '' );
+	$antes   = null === $existente ? array() : szs_personas_proyecto( $existente['datos'] );
+	$entrante['datos']['personas_uids'] = json_encode(
+		( array() !== $antes && $antes[0] === $persona ) ? $antes : ( '' === $persona ? array() : array( $persona ) ),
+		JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+	);
+	return $entrante;
 }
 
 function szs_puede( array $capacidades, string $capacidad ): bool {
@@ -206,7 +262,7 @@ function szs_entidad_permitida( array $definicion, ?array $existente, array $ent
 			if ( empty( $definicion['tester_registra'] ) || null === $proyecto ) {
 				return false;
 			}
-			$es_suyo = ( $proyecto['datos']['persona_uid'] ?? '' ) === $persona_uid && '' !== $persona_uid;
+			$es_suyo = '' !== $persona_uid && in_array( $persona_uid, szs_personas_proyecto( $proyecto['datos'] ), true );
 			$abierto = 'cerrado' !== ( $proyecto['datos']['estado'] ?? 'abierto' );
 			$mismo   = $es_alta || $existente['proyecto_uid'] === $entrante['proyecto_uid'];
 			return $es_suyo && $abierto && $mismo && $entrante['proyecto_uid'] === $proyecto['uid'];
@@ -301,7 +357,7 @@ function szs_entidad_visible( array $entidad, string $persona_uid, array $capaci
 			return true;
 		case SZS_AMBITO_PROYECTO:
 			return szs_puede( $capacidades, SZS_CAPACIDAD_GESTIONAR_PROYECTOS )
-				|| ( '' !== $persona_uid && ( $entidad['datos']['persona_uid'] ?? '' ) === $persona_uid );
+				|| ( '' !== $persona_uid && in_array( $persona_uid, szs_personas_proyecto( $entidad['datos'] ), true ) );
 		case SZS_AMBITO_HIJO_PROYECTO:
 			return szs_puede( $capacidades, SZS_CAPACIDAD_GESTIONAR_PROYECTOS )
 				|| in_array( $entidad['proyecto_uid'], $proyectos_visibles, true );

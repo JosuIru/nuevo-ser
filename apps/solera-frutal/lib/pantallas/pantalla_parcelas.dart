@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart';
 
 import '../datos/base_datos.dart';
 import '../dominio/catalogos.dart';
 import '../estado/cambios_datos.dart';
 import '../modelos/parcela.dart';
-import '../utiles/permisos_gps.dart';
 import '../utiles/textos_frutal.dart';
 import 'pantalla_mapa.dart';
 import 'campo_catalogo.dart';
@@ -120,6 +120,18 @@ class _PantallaParcelasState extends State<PantallaParcelas> {
   }
 }
 
+/// Paquete de la app, para identificarse ante OpenStreetMap.
+const String paqueteAppFrutal = 'com.coleccionnuevoser.solera_frutal';
+
+/// Si hay área y no punto, el punto es el centro del área (el mapa usa el
+/// punto).
+(double?, double?) puntoOCentroDelArea(
+    double? latitud, double? longitud, List<LatLng> area) {
+  if (latitud != null && longitud != null) return (latitud, longitud);
+  final centro = centroide(area);
+  return (centro?.latitude, centro?.longitude);
+}
+
 /// Alta o edición de una parcela.
 class PantallaEditarParcela extends StatefulWidget {
   const PantallaEditarParcela({super.key, this.parcela});
@@ -151,38 +163,9 @@ class _PantallaEditarParcelaState extends State<PantallaEditarParcela> {
       ? widget.parcela!.sistemaRiego
       : sistemasRiego.first;
   bool _guardando = false;
-  bool _localizando = false;
   late double? _latitud = widget.parcela?.latitud;
   late double? _longitud = widget.parcela?.longitud;
-
-  /// Guarda la posición actual como ubicación de la parcela. Si no hay
-  /// permiso o el GPS no responde, avisa y la parcela queda sin ubicación.
-  Future<void> _usarMiUbicacion() async {
-    final mensajero = ScaffoldMessenger.of(context);
-    setState(() => _localizando = true);
-    try {
-      if (!await asegurarPermisoUbicacion()) {
-        mensajero.showSnackBar(
-            SnackBar(content: Text(SoleraL10n.t('frut.gps_sin_permiso'))));
-        return;
-      }
-      final posicion = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
-        timeLimit: const Duration(seconds: 30),
-      );
-      if (!mounted) return;
-      setState(() {
-        _latitud = posicion.latitude;
-        _longitud = posicion.longitude;
-      });
-    } catch (error) {
-      debugPrint('GPS: $error');
-      mensajero.showSnackBar(
-          SnackBar(content: Text(SoleraL10n.t('frut.gps_error'))));
-    } finally {
-      if (mounted) setState(() => _localizando = false);
-    }
-  }
+  late List<LatLng> _area = widget.parcela?.vertices ?? const [];
 
   @override
   void dispose() {
@@ -206,6 +189,7 @@ class _PantallaEditarParcelaState extends State<PantallaEditarParcela> {
       _guardando = true;
     });
     final original = widget.parcela;
+    final (latitud, longitud) = puntoOCentroDelArea(_latitud, _longitud, _area);
     await BaseDatosSoleraFrutal.instancia.guardarParcela(Parcela(
       id: original?.id,
       nombre: _nombre.text.trim(),
@@ -218,8 +202,9 @@ class _PantallaEditarParcelaState extends State<PantallaEditarParcela> {
       anyoPlantacion: leerEntero(_anyo.text),
       regadio: _regadio,
       sistemaRiego: _sistemaRiego,
-      latitud: _latitud,
-      longitud: _longitud,
+      latitud: latitud,
+      longitud: longitud,
+      contorno: codificarContorno(_area),
       notas: _notas.text.trim(),
       fechaCreacionMs:
           original?.fechaCreacionMs ?? DateTime.now().millisecondsSinceEpoch,
@@ -305,22 +290,30 @@ class _PantallaEditarParcelaState extends State<PantallaEditarParcela> {
                   ),
               ],
             ),
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.my_location_outlined),
-            title: Text(SoleraL10n.t('frut.ubicacion')),
-            subtitle: Text(_latitud == null || _longitud == null
-                ? SoleraL10n.t('frut.sin_ubicacion')
-                : '${_latitud!.toStringAsFixed(5)}, ${_longitud!.toStringAsFixed(5)}'),
-            trailing: _localizando
-                ? const SizedBox(
-                    width: 20,
-                    height: 20,
-                    child: CircularProgressIndicator(strokeWidth: 2))
-                : TextButton(
-                    onPressed: _usarMiUbicacion,
-                    child: Text(SoleraL10n.t('frut.usar_mi_ubicacion'))),
+          CampoPunto(
+            latitud: _latitud,
+            longitud: _longitud,
+            titulo: SoleraL10n.t('frut.ubicacion'),
+            centro: centroide(_area),
+            areasDeFondo: [(nombre: '', vertices: _area)],
+            paqueteApp: paqueteAppFrutal,
+            alCambiar: (latitud, longitud) => setState(() {
+              _latitud = latitud;
+              _longitud = longitud;
+            }),
           ),
+          const SizedBox(height: 8),
+          CampoArea(
+            vertices: _area,
+            centro: _latitud == null || _longitud == null
+                ? null
+                : LatLng(_latitud!, _longitud!),
+            paqueteApp: paqueteAppFrutal,
+            alCambiar: (vertices) => setState(() => _area = vertices),
+            alUsarSuperficie: (hectareas) => setState(() =>
+                _superficie.text = formatearNumero(hectareas, decimales: 2)),
+          ),
+          const SizedBox(height: 8),
           TextField(
             controller: _notas,
             maxLines: 3,

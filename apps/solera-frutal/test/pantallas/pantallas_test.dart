@@ -63,6 +63,18 @@ void main() {
     expect((parcela.especieId, parcela.superficieHa), ('almendro', 2.5));
   });
 
+  testWidgets('la ficha de parcela ofrece marcar el punto y el área',
+      (tester) async {
+    await tester.pumpWidget(const MaterialApp(home: PantallaEditarParcela()));
+    await tester.pumpAndSettle();
+    final marcarArea = find.text(SoleraL10n.t('mapa.marcar_area'));
+    await tester.scrollUntilVisible(marcarArea, 200,
+        scrollable: find.byType(Scrollable).first);
+    expect(marcarArea, findsOneWidget);
+    expect(find.text(SoleraL10n.t('mapa.sin_area')), findsOneWidget);
+    expect(find.text(SoleraL10n.t('mapa.marcar_punto')), findsOneWidget);
+  });
+
   testWidgets('Hoy: primeros pasos sin parcelas', (tester) async {
     await tester.runAsync(() async {
       await tester.pumpWidget(const MaterialApp(home: PantallaHoy()));

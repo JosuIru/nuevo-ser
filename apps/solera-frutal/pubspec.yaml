@@ -26,6 +26,8 @@ dependencies:
   printing: ^5.13.4
   nuevo_ser_core:
     path: ../../packages/nuevo_ser_core
+  nuevo_ser_mapa:
+    path: ../../packages/nuevo_ser_mapa
 
 dev_dependencies:
   flutter_test:

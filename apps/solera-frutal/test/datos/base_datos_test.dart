@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart' show codificarContorno;
 import 'package:sqflite/sqflite.dart';
 import 'package:solera_frutal/datos/base_datos.dart';
 import 'package:solera_frutal/modelos/contrato_polinizacion.dart';
@@ -14,6 +16,13 @@ import 'package:solera_frutal/modelos/titular.dart';
 import 'package:solera_frutal/modelos/tratamiento.dart';
 
 import 'soporte_contrato_base_datos.dart';
+
+/// Cambios de esquema desde la v1, para los tests de contrato.
+const Map<int, CambioEsquema> historialMigracionesFrutal = {
+  2: CambioEsquema(columnasNuevas: {
+    'parcelas': ['contorno'],
+  }),
+};
 
 void main() {
   final entorno = EntornoBaseDatosTemporal();
@@ -32,10 +41,54 @@ void main() {
         File(entorno.ruta(nombreFicheroBaseDatosFrutal)).existsSync(), isTrue);
   });
 
-  test('el esquema creado coincide con las sentencias v1', () async {
+  test('el esquema creado es el v1 más el historial de migraciones', () async {
     final db = await baseDatos.basedatos;
-    expect(await leerColumnasPorTabla(db),
-        await columnasDeEsquemaV1(sentenciasEsquemaFrutalV1));
+    final actuales = await leerColumnasPorTabla(db);
+    expect(
+        actuales,
+        columnasDeclaradasEnVersion(
+          columnasV1: await columnasDeEsquemaV1(sentenciasEsquemaFrutalV1),
+          historial: historialMigracionesFrutal,
+          columnasActuales: actuales,
+          version: versionEsquemaFrutal,
+        ));
+    expect(historialMigracionesFrutal.keys.reduce((a, b) => a > b ? a : b),
+        versionEsquemaFrutal);
+  });
+
+  test('migra desde la v1 sin perder filas y con el contorno vacío', () async {
+    final filas = {
+      'parcelas': {'nombre': 'Almendral', 'especie_id': 'almendro'},
+    };
+    await crearBaseDatosHistorica(
+      ruta: entorno.ruta(nombreFicheroBaseDatosFrutal),
+      version: 1,
+      sentenciasEsquemaV1: sentenciasEsquemaFrutalV1,
+      historial: historialMigracionesFrutal,
+      columnasActuales: const {},
+      filasPorTabla: filas,
+    );
+    final db = await baseDatos.basedatos;
+    expect(await db.getVersion(), versionEsquemaFrutal);
+    await comprobarFilasConservadas(db, filas);
+    final parcela = (await baseDatos.listarParcelas()).single;
+    expect(parcela.contorno, '[]');
+    expect(parcela.vertices, isEmpty);
+  });
+
+  test('el área de una parcela se guarda y se lee', () async {
+    const area = [
+      LatLng(42.0, -1.0),
+      LatLng(42.0, -0.999),
+      LatLng(42.001, -0.999),
+    ];
+    await baseDatos.guardarParcela(Parcela(
+        nombre: 'Almendral',
+        especieId: 'almendro',
+        contorno: codificarContorno(area)));
+    final guardada = (await baseDatos.listarParcelas()).single;
+    expect(guardada.vertices, area);
+    expect(guardada.copiarConUbicacion(42, -1).vertices, area);
   });
 
   test('el titular se guarda en una sola fila', () async {

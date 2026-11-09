@@ -119,6 +119,16 @@ Lo esencial que no se toca (hard limits):
   autonómicos (módulo T4 del plan, calle N).
 - **2026-11-07 — La v1 se amplía durante la F1** (como en Obrador): no hay
   ninguna instalación publicada.
+- **2026-11-09 — Punto y área de la parcela con `nuevo_ser_mapa`** (amplía la
+  decisión del punto único): BD v2 con `parcelas.contorno` (JSON
+  `[[lat,lng],…]`); la ficha usa `CampoPunto` (GPS o marcado en el mapa) y
+  `CampoArea` (dibujada, caminada o importada) con «usar la superficie
+  calculada» para `superficie_ha`, nunca automático (la oficial es la de
+  SIGPAC). Si hay área y no punto, el punto es su centro (lo usan el mapa y la
+  meteo). El mapa pinta las áreas y cambia entre callejero y ortofoto. Fuera
+  `utiles/permisos_gps.dart` (el GPS lo trae el paquete). El texto
+  `frut.mapa_sin_ubicaciones` aún cita «Usar mi ubicación»: queda por
+  reescribir en las traducciones.
 
 ## Normativa y fuentes consultadas (2026-11-07)
 

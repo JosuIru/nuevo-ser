@@ -1,4 +1,6 @@
-import 'dart:convert';
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart'
+    show codificarContorno, leerContorno, superficieHectareas, tieneArea;
 
 /// Tipo de pasto a efectos del eco-régimen (RD 1048/2022, art. 30.2.b).
 const String pastoMediterraneo = 'mediterraneo';
@@ -44,22 +46,33 @@ class PiezaPasto {
   /// Código de [titularidadesPieza].
   final String titularidad;
 
-  /// Vértices (latitud, longitud) tomados con el GPS.
-  final List<(double, double)> contorno;
+  /// Esquinas del área (caminadas con el GPS, dibujadas o importadas con
+  /// el editor de `nuevo_ser_mapa`). Columna `contorno`, JSON `[[lat,lng],…]`.
+  final List<LatLng> contorno;
   final bool activa;
   final String notas;
 
-  PiezaPasto conContorno(List<(double, double)> nuevoContorno) => PiezaPasto(
-        id: id,
-        nombre: nombre,
-        recintoSigpac: recintoSigpac,
-        superficieHa: superficieHa,
-        tipoPasto: tipoPasto,
-        titularidad: titularidad,
-        contorno: nuevoContorno,
-        activa: activa,
-        notas: notas,
-      );
+  bool get tieneContorno => tieneArea(contorno);
+
+  /// Superficie del área dibujada (ha, orientativa); 0 sin área.
+  double get superficieCalculadaHa => superficieHectareas(contorno);
+
+  /// Con el área nueva. Si la pieza no tenía superficie, toma la calculada
+  /// (la que se haya escrito a mano manda: no se pisa).
+  PiezaPasto conContorno(List<LatLng> nuevoContorno) {
+    final calculada = superficieHectareas(nuevoContorno);
+    return PiezaPasto(
+      id: id,
+      nombre: nombre,
+      recintoSigpac: recintoSigpac,
+      superficieHa: superficieHa ?? (calculada > 0 ? calculada : null),
+      tipoPasto: tipoPasto,
+      titularidad: titularidad,
+      contorno: nuevoContorno,
+      activa: activa,
+      notas: notas,
+    );
+  }
 
   Map<String, Object?> toMap() => {
         'id': id,
@@ -68,9 +81,7 @@ class PiezaPasto {
         'superficie_ha': superficieHa,
         'tipo_pasto': tipoPasto,
         'titularidad': titularidad,
-        'contorno': jsonEncode([
-          for (final (latitud, longitud) in contorno) [latitud, longitud]
-        ]),
+        'contorno': codificarContorno(contorno),
         'activa': activa ? 1 : 0,
         'notas': notas,
       };
@@ -86,23 +97,4 @@ class PiezaPasto {
         activa: ((mapa['activa'] as num?)?.toInt() ?? 1) != 0,
         notas: (mapa['notas'] as String?) ?? '',
       );
-}
-
-/// Lee el contorno guardado; uno roto o vacío da una lista vacía.
-List<(double, double)> leerContorno(String? texto) {
-  if (texto == null || texto.isEmpty) return const [];
-  try {
-    final lista = jsonDecode(texto);
-    if (lista is! List) return const [];
-    return [
-      for (final punto in lista)
-        if (punto is List &&
-            punto.length == 2 &&
-            punto[0] is num &&
-            punto[1] is num)
-          ((punto[0] as num).toDouble(), (punto[1] as num).toDouble()),
-    ];
-  } on FormatException {
-    return const [];
-  }
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show SelectorIdioma, SoleraL10n;
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart' show CampoPunto;
+
+import '../branding.dart';
 
 import '../datos/base_datos.dart';
 import '../modelos/explotacion.dart';
@@ -12,7 +15,6 @@ import '../servicios/exportacion_datos.dart';
 import 'pantalla_ayuda.dart';
 import 'pantalla_documentos.dart';
 import 'pantalla_economia.dart';
-import 'pantalla_mapa_pastos.dart' show posicionActual;
 
 /// Ajustes: idioma, titular y explotación (los datos de cabecera del libro
 /// de registro) y los accesos al resto.
@@ -89,19 +91,12 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
     }
   }
 
-  Future<void> _usarUbicacion() async {
-    final mensajero = ScaffoldMessenger.of(context);
-    final posicion = await posicionActual();
-    if (!mounted) return;
-    if (posicion == null) {
-      mensajero
-          .showSnackBar(SnackBar(content: Text(SoleraL10n.t('gana.sin_gps'))));
-      return;
-    }
+  /// El punto de la explotación: con el GPS o marcado en el mapa.
+  void _cambiarUbicacion(double? latitud, double? longitud) {
     setState(() {
       _explotacion = Explotacion.fromMap(_explotacion.toMap()
-        ..['latitud'] = posicion.latitude
-        ..['longitud'] = posicion.longitude);
+        ..['latitud'] = latitud
+        ..['longitud'] = longitud);
     });
   }
 
@@ -220,18 +215,12 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
           _campo(_direccionExplotacion, 'gana.direccion'),
           _campo(_municipio, 'gana.municipio'),
           _campo(_provincia, 'gana.provincia'),
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.my_location),
-            title: Text(SoleraL10n.t('gana.coordenadas_explotacion')),
-            subtitle: Text(_explotacion.latitud == null
-                ? SoleraL10n.t('gana.sin_indicar')
-                : '${_explotacion.latitud!.toStringAsFixed(5)}, '
-                    '${_explotacion.longitud!.toStringAsFixed(5)}'),
-            trailing: TextButton(
-              onPressed: _usarUbicacion,
-              child: Text(SoleraL10n.t('gana.usar_mi_ubicacion')),
-            ),
+          CampoPunto(
+            titulo: SoleraL10n.t('gana.coordenadas_explotacion'),
+            latitud: _explotacion.latitud,
+            longitud: _explotacion.longitud,
+            paqueteApp: paqueteAppGanadera,
+            alCambiar: _cambiarUbicacion,
           ),
           _campo(_clasificacion, 'gana.clasificacion'),
           _campo(_capacidad, 'gana.capacidad_maxima',

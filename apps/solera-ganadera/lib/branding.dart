@@ -9,3 +9,6 @@ const Color colorAcentoGanadera = Color(0xFFB8402A);
 
 /// Logo PLACEHOLDER (ImageMagick): crotal rojo sobre pasto.
 const String rutaLogoGanadera = 'assets/icono-logo-ganadera.png';
+
+/// Identifica a la app ante OpenStreetMap al bajar teselas.
+const String paqueteAppGanadera = 'com.coleccionnuevoser.solera_ganadera';

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart';
+
+import '../branding.dart';
 
 import '../datos/base_datos.dart';
 import '../dominio/ocupacion_pastos.dart';
 import '../estado/cambios_datos.dart';
 import '../estado/datos_ganado.dart';
 import '../modelos/pieza_pasto.dart';
-import '../utiles/recinto_sigpac.dart';
 import '../utiles/textos_ganadera.dart';
 import 'hoja_formulario.dart';
 import 'pantalla_mapa_pastos.dart';
@@ -138,6 +141,9 @@ Future<void> mostrarEdicionPieza(BuildContext context,
   var tipoPasto = existente?.tipoPasto ?? pastoMediterraneo;
   var titularidad = existente?.titularidad ?? titularidadesPieza.first;
   var activa = existente?.activa ?? true;
+  var contorno = existente?.contorno ?? const <LatLng>[];
+  final piezas = await BaseDatosSoleraGanadera.instancia.listarPiezas();
+  if (!context.mounted) return;
   final guardado = await mostrarHojaFormulario(
     context,
     titulo: SoleraL10n.t(
@@ -146,6 +152,17 @@ Future<void> mostrarEdicionPieza(BuildContext context,
       campoTexto(nombre, SoleraL10n.t('gana.nombre')),
       campoTexto(recinto, SoleraL10n.t('gana.recinto_sigpac')),
       campoNumero(superficie, SoleraL10n.t('gana.superficie_ha')),
+      // Editor común: dibujar, caminar con «Mi posición», ajustar, importar.
+      CampoArea(
+        vertices: contorno,
+        titulo: nombre.text.trim().isEmpty ? null : nombre.text.trim(),
+        centro: centroDePiezas(piezas),
+        areasDeFondo: areasDeFondoPara(piezas, existente),
+        paqueteApp: paqueteAppGanadera,
+        alCambiar: (nuevo) => refrescar(() => contorno = nuevo),
+        alUsarSuperficie: (hectareas) => refrescar(
+            () => superficie.text = formatearNumero(hectareas, decimales: 2)),
+      ),
       DropdownButtonFormField<String>(
         initialValue: tipoPasto,
         decoration: InputDecoration(labelText: SoleraL10n.t('gana.tipo_pasto')),
@@ -179,6 +196,7 @@ Future<void> mostrarEdicionPieza(BuildContext context,
     ],
     guardar: () async {
       if (nombre.text.trim().isEmpty) return false;
+      // Sin superficie escrita, la del área (conContorno).
       await BaseDatosSoleraGanadera.instancia.guardarPieza(PiezaPasto(
         id: existente?.id,
         nombre: nombre.text.trim(),
@@ -186,10 +204,9 @@ Future<void> mostrarEdicionPieza(BuildContext context,
         superficieHa: leerNumero(superficie.text),
         tipoPasto: tipoPasto,
         titularidad: titularidad,
-        contorno: existente?.contorno ?? const [],
         activa: activa,
         notas: notas.text.trim(),
-      ));
+      ).conContorno(contorno));
       return true;
     },
   );

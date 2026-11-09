@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart'
+    show CapaBase, TextoCapaBase;
 import 'package:solera_ganadera/datos/base_datos.dart';
 import 'package:solera_ganadera/modelos/ganado.dart';
 import 'package:solera_ganadera/modelos/pieza_pasto.dart';
@@ -151,21 +155,37 @@ void main() {
     expect(visitas.single.esVeterinaria, isTrue);
   });
 
-  testWidgets('contorno: superficie y perímetro de los puntos tomados',
+  testWidgets('la ficha de la pieza ofrece marcar el área en el mapa',
       (tester) async {
-    // Un cuadrado de unos 100 m de lado a la latitud de Navarra.
+    await tester.runAsync(() async {
+      await tester.pumpWidget(const MaterialApp(home: PantallaPastos()));
+      await esperar(tester);
+      await tester.tap(find.byType(FloatingActionButton));
+      await esperar(tester);
+    });
+    expect(find.text(SoleraL10n.t('mapa.marcar_area')), findsOneWidget);
+    expect(find.text(SoleraL10n.t('mapa.sin_area')), findsOneWidget);
+  });
+
+  testWidgets('mapa de pastos: área calculada y cambio de capa',
+      (tester) async {
     const lado = 100 / 111195.0;
-    final pieza = PiezaPasto(id: 1, nombre: 'Larre', contorno: [
-      (42.8, -1.6),
-      (42.8 + lado, -1.6),
-      (42.8 + lado, -1.6 + lado / 0.7337),
-      (42.8, -1.6 + lado / 0.7337),
-    ]);
-    await tester
-        .pumpWidget(MaterialApp(home: PantallaContornoPieza(pieza: pieza)));
-    expect(find.textContaining('4 puntos · 1,00 ha · 400 m'), findsOneWidget);
-    await tester.tap(find.text('Quitar el último'));
+    await tester.runAsync(() =>
+        baseDatos.guardarPieza(PiezaPasto(nombre: 'Larre', contorno: const [
+          LatLng(42.8, -1.6),
+          LatLng(42.8 + lado, -1.6),
+          LatLng(42.8 + lado, -1.6 + lado / 0.7337),
+          LatLng(42.8, -1.6 + lado / 0.7337),
+        ])));
+    await tester.runAsync(() async {
+      await tester.pumpWidget(
+          const MaterialApp(home: PantallaMapaPastos(conTeselas: false)));
+      await esperar(tester);
+    });
+    expect(find.textContaining('1,00 ha'), findsOneWidget);
+    expect(find.text(CapaBase.callejero.atribucion), findsOneWidget);
+    await tester.tap(find.byTooltip(SoleraL10n.t('mapa.cambiar_capa')));
     await tester.pump();
-    expect(find.textContaining('3 puntos · 0,50 ha'), findsOneWidget);
+    expect(find.text(CapaBase.ortofoto.atribucion), findsOneWidget);
   });
 }

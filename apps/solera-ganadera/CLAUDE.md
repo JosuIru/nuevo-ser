@@ -175,6 +175,17 @@ Para comparar: `git diff 92ade2b -- apps/solera-zunbeltz/lib/modelos/`.
 - **2026-11-07 — Fechas con selector** en movimientos, eventos, tareas y visitas
   (en Obrador se apuntaba con la fecha actual).
 
+- **2026-11-09 — Mapa común (`packages/nuevo_ser_mapa`)**: fuera las copias
+  `utiles/geodesia.dart`, `utiles/recinto_sigpac.dart`, `utiles/permisos_gps.dart`
+  (y sus tests, duplicados en el paquete), `posicionActual()` y
+  `PantallaContornoPieza`. El área de la pieza se marca con el editor común
+  (`CampoArea` en la ficha; tocar la pieza en el mapa abre `editarArea`):
+  dibujar, caminar con «Mi posición», ajustar esquinas, importar y ortofoto,
+  con las otras piezas de fondo. Sin superficie escrita se guarda la calculada
+  (`PiezaPasto.conContorno`). `PiezaPasto.contorno` pasa a `List<LatLng>`; el
+  JSON de la columna es el mismo, sin migración. Coordenadas de la explotación
+  con `CampoPunto`. El mapa de pastos cambia entre callejero y ortofoto.
+
 ## Datos técnicos
 
 - Paquete `solera_ganadera`, BD `solera_ganadera.db` sobre `BaseDatosSolera` del core.

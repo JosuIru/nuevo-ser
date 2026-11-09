@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:solera_ganadera/datos/base_datos.dart';
 import 'package:solera_ganadera/modelos/apunte_economico.dart';
@@ -54,7 +55,11 @@ void main() {
         superficieHa: 12.5,
         tipoPasto: pastoHumedo,
         titularidad: 'comunal',
-        contorno: [(43.0, -1.5), (43.1, -1.5), (43.1, -1.4)]));
+        contorno: const [
+          LatLng(43.0, -1.5),
+          LatLng(43.1, -1.5),
+          LatLng(43.1, -1.4)
+        ]));
     final baja = await baseDatos.guardarPieza(PiezaPasto(nombre: 'Soto'));
     final lote = await baseDatos
         .guardarLote(LoteGanado(nombre: 'Latxas', especie: 'ovino'));

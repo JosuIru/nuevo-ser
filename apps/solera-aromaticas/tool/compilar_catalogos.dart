@@ -128,8 +128,21 @@ Future<void> main() async {
       Campo('revisadoPor', 'revisado_por'),
     ],
   );
+  await _compilar(
+    csvNombre: 'guia_especies.csv',
+    ficheroDart: 'catalogo_guia.dart',
+    clase: 'FichaGuiaEspecie',
+    lista: 'catalogoGuia',
+    campos: const [
+      Campo('id', 'id'),
+      Campo('rasgos', 'rasgos', TipoCampo.lista),
+      Campo('habitat', 'habitat'),
+      Campo('tituloWikipedia', 'titulo_wikipedia'),
+      Campo('revisadoPor', 'revisado_por'),
+    ],
+  );
   await compilador.escribirFlagRevision(
-    descripcionCatalogos: 'los 3 catálogos de Larrea Aromáticas',
+    descripcionCatalogos: 'los 4 catálogos de Larrea Aromáticas',
     textoBanner: 'datos provisionales sin validar',
   );
   print('catalogosCompletamenteRevisados = ${compilador.todasRevisadas}');

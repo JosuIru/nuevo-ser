@@ -75,6 +75,7 @@ lib/
 - `track_grabacion_buffer` — buffer incremental: cada fix GPS se persiste según llega para que un crash o kill OS no pierda el recorrido. `consolidarSesionesPendientes()` al arrancar la app recupera sesiones con ≥2 puntos como "Recorrido recuperado DD/MM HH:mm".
 - `titulares` — titular único de la explotación (v4). Datos NIF + nombre + dirección + REGEPA + asesor agronómico opcional + aplicador opcional. Single-row enforced por la lógica de `guardarTitular` (upsert manual). Multi-titular llega en F4 con backend.
 - `fincas` ampliado en v4 con SIGPAC (provincia/municipio/polígono/parcela/recinto) + `superficie_hectareas`. Free-text en v1 — F4 valida contra BBDD pública SIGPAC.
+- `fincas.contorno` (v8): área marcada en el mapa, JSON `[[lat,lng],…]`.
 
 Migraciones escalonadas en `_aplicarMigraciones`. Nunca destructivo: agricultor en campo lleva años de cosechas y no podemos perder un dato.
 
@@ -93,6 +94,7 @@ Migraciones escalonadas en `_aplicarMigraciones`. Nunca destructivo: agricultor 
 - **Sondas físicas**: NO en v1. Lecturas ambientales sólo manuales o vía servicio meteo (Open-Meteo, AEMET) en F2+.
 - **Marketplace fitosanitarios**: pospuesto a v2 — necesita alianzas con tiendas + comisiones acordadas.
 - **Cultivos prioritarios**: trufas (3 especies) + frutales + olivar + pistacho. Hermano truficultor disponible para validar info de Tuber spp y plagas asociadas.
+- **Área de la finca en el mapa (2026-11-09)**: BD v8 con `fincas.contorno` (TEXT JSON `[[lat,lng],…]`, formato de `nuevo_ser_mapa`). La ficha de la finca (`pantalla_editar_sigpac.dart`, menú «Datos SIGPAC y superficie») usa `CampoPunto` (centroide, por GPS o marcado en el mapa) y `CampoArea` (dibujada, caminada o importada KML/GeoJSON/GPX/Shapefile) con «usar la superficie calculada» que solo copia al pulsar: la oficial manda. Si hay área y no punto, el centroide = `centroide` del área. El mapa de plantas pinta las áreas con `capaDeAreas` (color de cada finca) bajo el recorrido y las plantas, sin tocar su cluster, sus capas ni su buscador; se repinta al cambiar una finca (`estado/cambios_fincas.dart`, porque vive en un IndexedStack). Las plantas siguen siendo puntos con su alta de siempre. `file_picker` sube a ^10.2.4 (lo pide el paquete).
 
 ## Hard limits
 

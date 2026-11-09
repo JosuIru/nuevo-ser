@@ -29,6 +29,8 @@ import 'package:agro/modelos/titular.dart';
 import 'package:agro/modelos/track.dart';
 import 'package:agro/modelos/tratamiento.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart' show codificarContorno;
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 import 'soporte_contrato_base_datos.dart';
@@ -125,7 +127,7 @@ const List<String> sentenciasEsquemaV1Agro = [
   'CREATE INDEX idx_tratamientos_planta_fecha ON tratamientos (planta_id, fecha_ms DESC)',
 ];
 
-/// Historial de `_aplicarMigraciones` (v2…v7).
+/// Historial de `_aplicarMigraciones` (v2…v8).
 const Map<int, CambioEsquema> historialMigracionesAgro = {
   2: CambioEsquema(
     columnasNuevas: {
@@ -166,15 +168,20 @@ const Map<int, CambioEsquema> historialMigracionesAgro = {
     ],
   ),
   7: CambioEsquema(tablasNuevas: ['facturas']),
+  8: CambioEsquema(
+    columnasNuevas: {
+      'fincas': ['contorno'],
+    },
+  ),
 };
 
-/// Esquema esperado en la versión actual (v7).
+/// Esquema esperado en la versión actual (v8).
 const Map<String, Set<String>> columnasEsperadasAgro = {
   'fincas': {
     'id', 'nombre', 'latitud_centroide', 'longitud_centroide', //
     'color_entero', 'notas', 'fecha_creacion_ms', 'sigpac_provincia',
     'sigpac_municipio', 'sigpac_poligono', 'sigpac_parcela',
-    'sigpac_recinto', 'superficie_hectareas',
+    'sigpac_recinto', 'superficie_hectareas', 'contorno',
   },
   'plantas': {
     'id', 'finca_id', 'cultivo_id', 'variedad', 'latitud', 'longitud', //
@@ -333,7 +340,7 @@ void main() {
     test('llega a la versión actual con todas las tablas y columnas', () async {
       final baseDatos = await baseDatosAgro.basedatos;
       expect(await baseDatos.getVersion(), versionEsquemaAgro);
-      expect(versionEsquemaAgro, 7);
+      expect(versionEsquemaAgro, 8);
       expect(await leerColumnasPorTabla(baseDatos), columnasEsperadasAgro);
     });
 
@@ -388,6 +395,11 @@ void main() {
             final finca = await baseDatosAgro.obtenerFinca(1);
             expect(finca!.sigpacProvincia, '');
             expect(finca.superficieHectareas, isNull);
+          }
+          if (versionAntigua < 8) {
+            final finca = await baseDatosAgro.obtenerFinca(1);
+            expect(finca!.contorno, '[]');
+            expect(finca.vertices, isEmpty);
           }
         },
       );
@@ -473,6 +485,32 @@ void main() {
         expect((await baseDatosAgro.listarPuntosSueltos()).single.id, idPlanta);
       },
     );
+
+    test('fincas: el área marcada en el mapa se guarda y se lee', () async {
+      const area = [
+        LatLng(42.0, -1.0),
+        LatLng(42.0, -0.999),
+        LatLng(42.001, -0.999),
+      ];
+      final idFinca = await baseDatosAgro.guardarFinca(
+        Finca(
+          nombre: 'El Soto',
+          colorEntero: 1,
+          fechaCreacionMs: 1,
+          contorno: codificarContorno(area),
+        ),
+      );
+      expect((await baseDatosAgro.obtenerFinca(idFinca))!.vertices, area);
+
+      // La ficha la cambia con actualizarFinca, como el resto de campos.
+      await baseDatosAgro.actualizarFinca(idFinca, {
+        'contorno': codificarContorno(area.take(2).toList()),
+      });
+      expect(
+        (await baseDatosAgro.obtenerFinca(idFinca))!.vertices,
+        hasLength(2),
+      );
+    });
 
     test(
       'plantas y eventos: borrar la planta arrastra sus eventos (CASCADE)',

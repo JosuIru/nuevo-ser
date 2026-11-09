@@ -1,3 +1,7 @@
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart'
+    show contornoVacio, leerContorno;
+
 /// Una finca/parcela agrícola con un nombre, una localización aproximada
 /// (centroide para centrar el mapa al abrirla) y un color de
 /// identificación. Las plantas pueden estar asociadas a una finca o
@@ -26,6 +30,11 @@ class Finca {
   final String sigpacRecinto;
   final double? superficieHectareas;
 
+  /// Área marcada en el mapa: JSON `[[lat,lng],…]` (nuevo_ser_mapa).
+  final String contorno;
+
+  List<LatLng> get vertices => leerContorno(contorno);
+
   Finca({
     this.id,
     required this.nombre,
@@ -40,6 +49,7 @@ class Finca {
     this.sigpacParcela = '',
     this.sigpacRecinto = '',
     this.superficieHectareas,
+    this.contorno = contornoVacio,
   });
 
   /// Devuelve la referencia SIGPAC formateada o cadena vacía si la
@@ -63,34 +73,36 @@ class Finca {
   }
 
   Map<String, Object?> toMap() => {
-        'id': id,
-        'nombre': nombre,
-        'latitud_centroide': latitudCentroide,
-        'longitud_centroide': longitudCentroide,
-        'color_entero': colorEntero,
-        'notas': notas,
-        'fecha_creacion_ms': fechaCreacionMs,
-        'sigpac_provincia': sigpacProvincia,
-        'sigpac_municipio': sigpacMunicipio,
-        'sigpac_poligono': sigpacPoligono,
-        'sigpac_parcela': sigpacParcela,
-        'sigpac_recinto': sigpacRecinto,
-        'superficie_hectareas': superficieHectareas,
-      };
+    'id': id,
+    'nombre': nombre,
+    'latitud_centroide': latitudCentroide,
+    'longitud_centroide': longitudCentroide,
+    'color_entero': colorEntero,
+    'notas': notas,
+    'fecha_creacion_ms': fechaCreacionMs,
+    'sigpac_provincia': sigpacProvincia,
+    'sigpac_municipio': sigpacMunicipio,
+    'sigpac_poligono': sigpacPoligono,
+    'sigpac_parcela': sigpacParcela,
+    'sigpac_recinto': sigpacRecinto,
+    'superficie_hectareas': superficieHectareas,
+    'contorno': contorno,
+  };
 
   factory Finca.fromMap(Map<String, Object?> mapa) => Finca(
-        id: mapa['id'] as int?,
-        nombre: (mapa['nombre'] as String?) ?? '',
-        latitudCentroide: (mapa['latitud_centroide'] as num?)?.toDouble(),
-        longitudCentroide: (mapa['longitud_centroide'] as num?)?.toDouble(),
-        colorEntero: (mapa['color_entero'] as int?) ?? 0xFF5E7D3A,
-        notas: (mapa['notas'] as String?) ?? '',
-        fechaCreacionMs: mapa['fecha_creacion_ms'] as int,
-        sigpacProvincia: (mapa['sigpac_provincia'] as String?) ?? '',
-        sigpacMunicipio: (mapa['sigpac_municipio'] as String?) ?? '',
-        sigpacPoligono: (mapa['sigpac_poligono'] as String?) ?? '',
-        sigpacParcela: (mapa['sigpac_parcela'] as String?) ?? '',
-        sigpacRecinto: (mapa['sigpac_recinto'] as String?) ?? '',
-        superficieHectareas: (mapa['superficie_hectareas'] as num?)?.toDouble(),
-      );
+    id: mapa['id'] as int?,
+    nombre: (mapa['nombre'] as String?) ?? '',
+    latitudCentroide: (mapa['latitud_centroide'] as num?)?.toDouble(),
+    longitudCentroide: (mapa['longitud_centroide'] as num?)?.toDouble(),
+    colorEntero: (mapa['color_entero'] as int?) ?? 0xFF5E7D3A,
+    notas: (mapa['notas'] as String?) ?? '',
+    fechaCreacionMs: mapa['fecha_creacion_ms'] as int,
+    sigpacProvincia: (mapa['sigpac_provincia'] as String?) ?? '',
+    sigpacMunicipio: (mapa['sigpac_municipio'] as String?) ?? '',
+    sigpacPoligono: (mapa['sigpac_poligono'] as String?) ?? '',
+    sigpacParcela: (mapa['sigpac_parcela'] as String?) ?? '',
+    sigpacRecinto: (mapa['sigpac_recinto'] as String?) ?? '',
+    superficieHectareas: (mapa['superficie_hectareas'] as num?)?.toDouble(),
+    contorno: (mapa['contorno'] as String?) ?? contornoVacio,
+  );
 }

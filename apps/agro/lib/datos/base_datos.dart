@@ -32,7 +32,8 @@ const String nombreFicheroBaseDatosAgro = 'agro.db';
 /// declarada en _aplicarMigraciones pero la versión seguía en 6, así que
 /// la tabla no llegaba a crearse y la pantalla de facturas fallaba en
 /// silencio.
-const int versionEsquemaAgro = 7;
+/// v8 (2026-11-09) añade `fincas.contorno`: el área marcada en el mapa.
+const int versionEsquemaAgro = 8;
 
 class BaseDatosAgro extends BaseDatosSolera {
   static final BaseDatosAgro instancia = BaseDatosAgro._interno();
@@ -53,11 +54,11 @@ class BaseDatosAgro extends BaseDatosSolera {
 
   @override
   Map<int, PasoMigracionSolera> get pasosMigracion => {
-        // Un paso por versión; el detalle de cada uno, en _aplicarMigraciones.
-        for (var version = 2; version <= versionEsquemaAgro; version++)
-          version: (db) =>
-              _aplicarMigraciones(db, desde: version - 1, hasta: version),
-      };
+    // Un paso por versión; el detalle de cada uno, en _aplicarMigraciones.
+    for (var version = 2; version <= versionEsquemaAgro; version++)
+      version: (db) =>
+          _aplicarMigraciones(db, desde: version - 1, hasta: version),
+  };
 
   // ─── Fincas ─────────────────────────────────────────────
 
@@ -718,7 +719,6 @@ class BaseDatosAgro extends BaseDatosSolera {
     final db = await basedatos;
     await db.delete('apuntes_gasto', where: 'id = ?', whereArgs: [id]);
   }
-
 }
 
 // ─── Esquema y migraciones ────────────────────────────────
@@ -1013,6 +1013,10 @@ Future<void> _aplicarMigraciones(
         // v7 — Facturas emitidas con numeración secuencial.
         await _crearTablaFacturasV7(db);
         break;
+      case 8:
+        // v8 — Área de la finca marcada en el mapa (nuevo_ser_mapa).
+        await _anadirContornoFincasV8(db);
+        break;
     }
   }
 }
@@ -1116,6 +1120,15 @@ Future<void> _crearTablasContabilidadV6(Database db) async {
     'CREATE INDEX IF NOT EXISTS idx_gastos_cultivo ON apuntes_gasto (cultivo_id)',
   );
 }
+
+// ─── Migración v8: área de la finca ─────────────────────────
+
+/// Área de la finca dibujada, caminada o importada en el mapa: JSON
+/// `[[lat,lng],…]` (formato de nuevo_ser_mapa).
+Future<void> _anadirContornoFincasV8(Database db) => _ejecutarSiNoExiste(
+  db,
+  "ALTER TABLE fincas ADD COLUMN contorno TEXT NOT NULL DEFAULT '[]'",
+);
 
 // ─── Migración v7: facturas ─────────────────────────────────
 

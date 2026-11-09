@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/base_datos.dart';
+import '../estado/cambios_fincas.dart';
 import '../modelos/finca.dart';
 import 'pantalla_editar_sigpac.dart';
 
@@ -22,6 +23,12 @@ class _PantallaFincasState extends State<PantallaFincas> {
     _cargar();
   }
 
+  /// Recarga la lista y avisa al mapa (que no se reconstruye solo).
+  Future<void> _cargarYAvisar() async {
+    avisarCambioFincas();
+    await _cargar();
+  }
+
   Future<void> _cargar() async {
     final fincas = await BaseDatosAgro.instancia.listarFincas();
     if (!mounted) return;
@@ -32,14 +39,19 @@ class _PantallaFincasState extends State<PantallaFincas> {
   }
 
   Future<void> _alAnadir() async {
-    final nombre = await _pedirNombre(context: context, titulo: SoleraL10n.t('agro.nueva_finca'));
+    final nombre = await _pedirNombre(
+      context: context,
+      titulo: SoleraL10n.t('agro.nueva_finca'),
+    );
     if (nombre == null || nombre.trim().isEmpty) return;
-    await BaseDatosAgro.instancia.guardarFinca(Finca(
-      nombre: nombre.trim(),
-      colorEntero: 0xFF5E7D3A,
-      fechaCreacionMs: DateTime.now().millisecondsSinceEpoch,
-    ));
-    _cargar();
+    await BaseDatosAgro.instancia.guardarFinca(
+      Finca(
+        nombre: nombre.trim(),
+        colorEntero: 0xFF5E7D3A,
+        fechaCreacionMs: DateTime.now().millisecondsSinceEpoch,
+      ),
+    );
+    _cargarYAvisar();
   }
 
   Future<void> _alRenombrar(Finca finca) async {
@@ -49,25 +61,38 @@ class _PantallaFincasState extends State<PantallaFincas> {
       valorInicial: finca.nombre,
     );
     if (nuevoNombre == null || nuevoNombre.trim().isEmpty) return;
-    await BaseDatosAgro.instancia.actualizarFinca(finca.id!, {'nombre': nuevoNombre.trim()});
-    _cargar();
+    await BaseDatosAgro.instancia.actualizarFinca(finca.id!, {
+      'nombre': nuevoNombre.trim(),
+    });
+    _cargarYAvisar();
   }
 
   Future<void> _alBorrar(Finca finca) async {
     final ok = await showDialog<bool>(
       context: context,
       builder: (_) => AlertDialog(
-        title: Text(SoleraL10n.tf('agro.pregunta_borrar_finca', {'nombre': finca.nombre})),
+        title: Text(
+          SoleraL10n.tf('agro.pregunta_borrar_finca', {'nombre': finca.nombre}),
+        ),
         content: Text(SoleraL10n.t('agro.borrar_finca_plantas_quedan_sueltas')),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context, false), child: Text(SoleraL10n.t('cancelar'))),
-          TextButton(onPressed: () => Navigator.pop(context, true), child: Text(SoleraL10n.t('borrar'), style: TextStyle(color: Colors.red))),
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: Text(SoleraL10n.t('cancelar')),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: Text(
+              SoleraL10n.t('borrar'),
+              style: TextStyle(color: Colors.red),
+            ),
+          ),
         ],
       ),
     );
     if (ok != true) return;
     await BaseDatosAgro.instancia.borrarFinca(finca.id!);
-    _cargar();
+    _cargarYAvisar();
   }
 
   @override
@@ -77,57 +102,76 @@ class _PantallaFincasState extends State<PantallaFincas> {
       body: _cargando
           ? Center(child: CircularProgressIndicator())
           : _fincas.isEmpty
-              ? Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(24),
-                    child: Text(
-                      '${SoleraL10n.t('agro.aun_no_hay_fincas_ayuda_1')}\n${SoleraL10n.t('agro.aun_no_hay_fincas_ayuda_2')}',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                  ),
-                )
-              : ListView.builder(
-                  itemCount: _fincas.length,
-                  itemBuilder: (_, i) {
-                    final f = _fincas[i];
-                    final subtitulos = <String>[];
-                    if (f.referenciaSigpac.isNotEmpty) {
-                      subtitulos.add('SIGPAC ${f.referenciaSigpac}');
-                    }
-                    if (f.superficieHectareas != null) {
-                      subtitulos.add('${formatearNumero(f.superficieHectareas!, decimales: 2)} ha');
-                    }
-                    if (f.notas.isNotEmpty) subtitulos.add(f.notas);
-                    return ListTile(
-                      leading: CircleAvatar(
-                        backgroundColor: Color(f.colorEntero),
-                        child: Icon(Icons.agriculture, color: Colors.white),
-                      ),
-                      title: Text(f.nombre),
-                      subtitle: subtitulos.isEmpty
-                          ? null
-                          : Text(subtitulos.join(' · '), maxLines: 2, overflow: TextOverflow.ellipsis),
-                      trailing: PopupMenuButton<String>(
-                        onSelected: (op) async {
-                          if (op == 'renombrar') _alRenombrar(f);
-                          if (op == 'sigpac') {
-                            final cambio = await Navigator.of(context).push<bool>(
-                              MaterialPageRoute(builder: (_) => PantallaEditarSigpac(finca: f)),
-                            );
-                            if (cambio == true) _cargar();
-                          }
-                          if (op == 'borrar') _alBorrar(f);
-                        },
-                        itemBuilder: (_) => [
-                          PopupMenuItem(value: 'renombrar', child: Text(SoleraL10n.t('agro.renombrar'))),
-                          PopupMenuItem(value: 'sigpac', child: Text(SoleraL10n.t('agro.datos_sigpac_y_superficie'))),
-                          PopupMenuItem(value: 'borrar', child: Text(SoleraL10n.t('borrar'))),
-                        ],
-                      ),
-                    );
-                  },
+          ? Center(
+              child: Padding(
+                padding: EdgeInsets.all(24),
+                child: Text(
+                  '${SoleraL10n.t('agro.aun_no_hay_fincas_ayuda_1')}\n${SoleraL10n.t('agro.aun_no_hay_fincas_ayuda_2')}',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.grey),
                 ),
+              ),
+            )
+          : ListView.builder(
+              itemCount: _fincas.length,
+              itemBuilder: (_, i) {
+                final f = _fincas[i];
+                final subtitulos = <String>[];
+                if (f.referenciaSigpac.isNotEmpty) {
+                  subtitulos.add('SIGPAC ${f.referenciaSigpac}');
+                }
+                if (f.superficieHectareas != null) {
+                  subtitulos.add(
+                    '${formatearNumero(f.superficieHectareas!, decimales: 2)} ha',
+                  );
+                }
+                if (f.notas.isNotEmpty) subtitulos.add(f.notas);
+                return ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Color(f.colorEntero),
+                    child: Icon(Icons.agriculture, color: Colors.white),
+                  ),
+                  title: Text(f.nombre),
+                  subtitle: subtitulos.isEmpty
+                      ? null
+                      : Text(
+                          subtitulos.join(' · '),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                  trailing: PopupMenuButton<String>(
+                    onSelected: (op) async {
+                      if (op == 'renombrar') _alRenombrar(f);
+                      if (op == 'sigpac') {
+                        final cambio = await Navigator.of(context).push<bool>(
+                          MaterialPageRoute(
+                            builder: (_) => PantallaEditarSigpac(finca: f),
+                          ),
+                        );
+                        if (cambio == true) _cargar();
+                      }
+                      if (op == 'borrar') _alBorrar(f);
+                    },
+                    itemBuilder: (_) => [
+                      PopupMenuItem(
+                        value: 'renombrar',
+                        child: Text(SoleraL10n.t('agro.renombrar')),
+                      ),
+                      PopupMenuItem(
+                        value: 'sigpac',
+                        child: Text(
+                          SoleraL10n.t('agro.datos_sigpac_y_superficie'),
+                        ),
+                      ),
+                      PopupMenuItem(
+                        value: 'borrar',
+                        child: Text(SoleraL10n.t('borrar')),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
       floatingActionButton: FloatingActionButton(
         onPressed: _alAnadir,
         child: Icon(Icons.add),
@@ -152,8 +196,14 @@ Future<String?> _pedirNombre({
         decoration: InputDecoration(labelText: SoleraL10n.t('agro.nombre')),
       ),
       actions: [
-        TextButton(onPressed: () => Navigator.pop(context), child: Text(SoleraL10n.t('cancelar'))),
-        FilledButton(onPressed: () => Navigator.pop(context, controlador.text), child: Text('OK')),
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(SoleraL10n.t('cancelar')),
+        ),
+        FilledButton(
+          onPressed: () => Navigator.pop(context, controlador.text),
+          child: Text('OK'),
+        ),
       ],
     ),
   );

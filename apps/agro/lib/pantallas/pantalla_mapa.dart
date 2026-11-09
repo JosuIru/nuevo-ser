@@ -6,9 +6,11 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart' show capaDeAreas;
 
 import '../datos/base_datos.dart';
 import '../datos/catalogo_cultivos.dart';
+import '../estado/cambios_fincas.dart';
 import '../estado/finca_activa.dart';
 import '../estado/ultimo_centro_mapa.dart';
 import '../modelos/finca.dart';
@@ -62,6 +64,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
   void initState() {
     super.initState();
     _cargarTodo();
+    cambiosFincas.addListener(_cargarTodo);
     _resolverCentroInicial();
     _suscripcionGrabador = GrabadorTrack.instancia.cambios.listen((_) {
       // Tick específico para la polyline. Usamos también setState
@@ -74,6 +77,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
 
   @override
   void dispose() {
+    cambiosFincas.removeListener(_cargarTodo);
     _suscripcionGrabador?.cancel();
     _tickTrack.dispose();
     super.dispose();
@@ -196,7 +200,9 @@ class _PantallaMapaState extends State<PantallaMapa> {
             ListTile(
               leading: Icon(Icons.add_location),
               title: Text(SoleraL10n.t('agro.anadir_planta')),
-              subtitle: Text(SoleraL10n.t('agro.elige_como_fijar_punto_inicial')),
+              subtitle: Text(
+                SoleraL10n.t('agro.elige_como_fijar_punto_inicial'),
+              ),
             ),
             Divider(height: 1),
             ListTile(
@@ -205,7 +211,10 @@ class _PantallaMapaState extends State<PantallaMapa> {
               subtitle: Text(
                 _posicionGps == null
                     ? SoleraL10n.t('agro.captura_posicion_nueva_dispositivo')
-                    : SoleraL10n.tf('agro.ultimo_gps_coordenadas', {'coordenadas': '${_posicionGps!.latitude.toStringAsFixed(6)}, ${_posicionGps!.longitude.toStringAsFixed(6)}'}),
+                    : SoleraL10n.tf('agro.ultimo_gps_coordenadas', {
+                        'coordenadas':
+                            '${_posicionGps!.latitude.toStringAsFixed(6)}, ${_posicionGps!.longitude.toStringAsFixed(6)}',
+                      }),
               ),
               onTap: () => Navigator.pop(context, _OrigenAltaMapa.gps),
             ),
@@ -235,7 +244,9 @@ class _PantallaMapaState extends State<PantallaMapa> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(SoleraL10n.t('agro.falta_permiso_ubicacion_o_gps_desactivado')),
+          content: Text(
+            SoleraL10n.t('agro.falta_permiso_ubicacion_o_gps_desactivado'),
+          ),
         ),
       );
       return;
@@ -307,7 +318,9 @@ class _PantallaMapaState extends State<PantallaMapa> {
     } catch (_) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(SoleraL10n.t('agro.no_se_pudo_obtener_gps_actual'))),
+          SnackBar(
+            content: Text(SoleraL10n.t('agro.no_se_pudo_obtener_gps_actual')),
+          ),
         );
       }
     }
@@ -410,10 +423,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
             ),
             Divider(height: 1),
             ListTile(
-              leading: Icon(
-                Icons.shopping_basket,
-                color: Color(0xFF689F38),
-              ),
+              leading: Icon(Icons.shopping_basket, color: Color(0xFF689F38)),
               title: Text(SoleraL10n.t('agro.cosecha_rapida')),
               onTap: () => Navigator.pop(context, _AccionMarcador.cosecha),
             ),
@@ -423,10 +433,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
               onTap: () => Navigator.pop(context, _AccionMarcador.observacion),
             ),
             ListTile(
-              leading: Icon(
-                Icons.warning_amber,
-                color: Color(0xFFE65100),
-              ),
+              leading: Icon(Icons.warning_amber, color: Color(0xFFE65100)),
               title: Text(SoleraL10n.t('agro.incidencia_rapida')),
               onTap: () => Navigator.pop(context, _AccionMarcador.incidencia),
             ),
@@ -482,7 +489,9 @@ class _PantallaMapaState extends State<PantallaMapa> {
           title: Text(SoleraL10n.t('agro.detener_recorrido')),
           content: TextField(
             controller: controlador,
-            decoration: InputDecoration(labelText: SoleraL10n.t('agro.nombre_opcional')),
+            decoration: InputDecoration(
+              labelText: SoleraL10n.t('agro.nombre_opcional'),
+            ),
             autofocus: true,
           ),
           actions: [
@@ -509,7 +518,9 @@ class _PantallaMapaState extends State<PantallaMapa> {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(
-                  SoleraL10n.tf('agro.recorrido_guardado_n_puntos', {'n': r.puntos.length}),
+                  SoleraL10n.tf('agro.recorrido_guardado_n_puntos', {
+                    'n': r.puntos.length,
+                  }),
                 ),
               ),
             );
@@ -523,7 +534,9 @@ class _PantallaMapaState extends State<PantallaMapa> {
       if (!permitido) {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(SoleraL10n.t('agro.falta_permiso_ubicacion'))),
+            SnackBar(
+              content: Text(SoleraL10n.t('agro.falta_permiso_ubicacion')),
+            ),
           );
         }
         return;
@@ -607,9 +620,9 @@ class _PantallaMapaState extends State<PantallaMapa> {
           IconButton(
             icon: const Icon(Icons.route),
             tooltip: SoleraL10n.t('agro.recorridos_guardados'),
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => PantallaTracks()),
-            ),
+            onPressed: () => Navigator.of(
+              context,
+            ).push(MaterialPageRoute(builder: (_) => PantallaTracks())),
           ),
           IconButton(
             icon: Icon(
@@ -666,8 +679,18 @@ class _PantallaMapaState extends State<PantallaMapa> {
                 maxZoom: 22,
                 maxNativeZoom: 19,
               ),
+              // Áreas de las fincas (marcadas en su ficha), bajo el
+              // recorrido y las plantas; cada una con su color.
+              for (final finca in _fincas)
+                capaDeAreas([
+                  (nombre: finca.nombre, vertices: finca.vertices),
+                ], color: Color(finca.colorEntero)),
               // Las condiciones de uso de OSM y Esri piden citarlos.
-              SimpleAttributionWidget(source: Text(_estiloMapa == _EstiloMapa.calle ? 'OpenStreetMap' : 'Esri')),
+              SimpleAttributionWidget(
+                source: Text(
+                  _estiloMapa == _EstiloMapa.calle ? 'OpenStreetMap' : 'Esri',
+                ),
+              ),
               ValueListenableBuilder<int>(
                 valueListenable: _tickTrack,
                 builder: (context, _, __) {
@@ -764,7 +787,9 @@ class _PantallaMapaState extends State<PantallaMapa> {
                 child: Padding(
                   padding: EdgeInsets.all(8),
                   child: Text(
-                    SoleraL10n.t('agro.modo_censo_toca_mapa_para_anadir_planta'),
+                    SoleraL10n.t(
+                      'agro.modo_censo_toca_mapa_para_anadir_planta',
+                    ),
                     textAlign: TextAlign.center,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
@@ -793,7 +818,9 @@ class _PantallaMapaState extends State<PantallaMapa> {
                             : Icons.map_outlined,
                       ),
                       label: Text(
-                        _estiloMapa == _EstiloMapa.calle ? SoleraL10n.t('agro.capas') : SoleraL10n.t('mapa'),
+                        _estiloMapa == _EstiloMapa.calle
+                            ? SoleraL10n.t('agro.capas')
+                            : SoleraL10n.t('mapa'),
                       ),
                     ),
                   ),
@@ -821,7 +848,9 @@ class _PantallaMapaState extends State<PantallaMapa> {
                       child: Text(
                         _altitudGps == null
                             ? SoleraL10n.t('agro.altitud_gps_sin_dato')
-                            : SoleraL10n.tf('agro.altitud_gps_metros', {'metros': formatearNumero(_altitudGps!)}),
+                            : SoleraL10n.tf('agro.altitud_gps_metros', {
+                                'metros': formatearNumero(_altitudGps!),
+                              }),
                       ),
                     ),
                   ),

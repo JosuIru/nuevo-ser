@@ -248,6 +248,7 @@ En tu proyecto, el botón del apretón de manos (arriba) abre el Convenio:
 2. En Ajustes → Sincronización, pon la dirección del WordPress de Zunbeltz y tu clave de usuario.
 3. La app sincroniza sola al abrirla, al volver a ella y cada 10 minutos si hay cobertura. También puedes pulsar el botón de sincronizar en Hoy.
 » Sin cobertura puedes seguir trabajando: lo que hagas sube en cuanto vuelva la conexión. Las fotos (de puntos, zonas, fincas y tareas) suben y bajan solo con wifi, para no gastar datos; mientras tanto, una foto de otra persona sale como «Sin descargar» y se puede bajar tocándola.
+» Lo que hagas antes de poner tu clave de usuario se queda solo en ese dispositivo: al conectar no se sube, se descarta (la app avisa antes) y quedan los datos del espacio.
 » Estos pasos son para las personas tester de Zunbeltz que comparten la información con coordinación. Si usas la app por tu cuenta, no necesitas configurar la sincronización ni pedir una clave de usuario.',
 		'ayudaWebT' => 'Usar la app en el ordenador',
 		'ayudaWebB' => 'La app también funciona en el navegador, sin instalar nada. Es útil para trabajar desde la oficina o con una pantalla más grande.
@@ -507,6 +508,7 @@ Zure proiektuan, esku-emate botoiak (goian) Hitzarmena irekitzen du:
 2. Ezarpenak → Sinkronizazioa atalean, jarri Zunbeltzen WordPressaren helbidea eta zure erabiltzaile-gakoa.
 3. Aplikazioak berak sinkronizatzen du irekitzean, itzultzean eta 10 minuturo estaldura badago. Gaur pantailako sinkronizazio-botoia ere saka dezakezu.
 » Estaldurarik gabe lanean jarrai dezakezu: egiten duzuna konexioa itzultzean igotzen da. Argazkiak (puntuenak, eremuenak, finkenak eta zereginenak) wifiarekin bakarrik igotzen eta jaisten dira, daturik ez gastatzeko; bitartean, beste norbaiten argazkia «Deskargatu gabe» ageri da eta ukituta jaits daiteke.
+» Zure erabiltzaile-gakoa jarri aurretik egiten duzuna gailu horretan bakarrik geratzen da: konektatzean ez da igotzen, baztertu egiten da (app-ak aurretik abisatzen du) eta espazioko datuak geratzen dira.
 » Urrats hauek koordinazioarekin informazioa partekatzen duten Zunbeltzeko pertsona testerrentzat dira. App-a zure kabuz erabiltzen baduzu, ez duzu sinkronizazioa konfiguratu behar, ezta erabiltzaile-gakorik eskatu ere.',
 		'ayudaWebT' => 'Aplikazioa ordenagailuan erabili',
 		'ayudaWebB' => 'Aplikazioak nabigatzailean ere funtzionatzen du, ezer instalatu gabe. Erabilgarria da bulegotik edo pantaila handiago batekin lan egiteko.

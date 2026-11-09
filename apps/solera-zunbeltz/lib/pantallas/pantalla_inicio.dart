@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -248,13 +249,16 @@ class _PantallaInicioState extends State<PantallaInicio> {
                 )
               else ...[
                 const SizedBox(height: 16),
-                // Aviso de versión nueva: si no la hay, no ocupa sitio.
-                conMargen(AvisoActualizaciones(
-                  config: configActualizacionesZunbeltz,
-                  nombreApp: textos.appTitulo,
-                  traducir: traductorActualizaciones(textos),
-                  margen: EdgeInsets.zero,
-                )),
+                // Aviso de versión nueva: si no la hay, no ocupa sitio. En el
+                // navegador no: la web se actualiza sola con el plugin y el
+                // aviso ofrecería descargar el APK.
+                if (!kIsWeb)
+                  conMargen(AvisoActualizaciones(
+                    config: configActualizacionesZunbeltz,
+                    nombreApp: textos.appTitulo,
+                    traducir: traductorActualizaciones(textos),
+                    margen: EdgeInsets.zero,
+                  )),
                 if (alarmas.isNotEmpty) ...[
                   conMargen(_TituloSeccion(
                       textos.hoyAlarmasAbiertas(alarmas.length))),

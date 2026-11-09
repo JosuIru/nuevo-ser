@@ -436,13 +436,17 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
               _fila(Icons.help_outline, textos.ayudaTitulo,
                   detalle: textos.ajuAyudaDetalle,
                   alPulsar: () => _ir(const PantallaAyuda())),
-              _fila(Icons.system_update_outlined, textos.actualizacionesTitulo,
-                  detalle: textos.ajustesActualizacionesSubtitulo,
-                  alPulsar: () => _ir(PantallaEstadoActualizaciones(
-                        config: configActualizacionesZunbeltz,
-                        nombreApp: textos.appTitulo,
-                        traducir: traductorActualizaciones(textos),
-                      ))),
+              // En el navegador la app se actualiza sola con el plugin:
+              // las releases de GitHub (el APK) no son para ella.
+              if (!kIsWeb)
+                _fila(
+                    Icons.system_update_outlined, textos.actualizacionesTitulo,
+                    detalle: textos.ajustesActualizacionesSubtitulo,
+                    alPulsar: () => _ir(PantallaEstadoActualizaciones(
+                          config: configActualizacionesZunbeltz,
+                          nombreApp: textos.appTitulo,
+                          traducir: traductorActualizaciones(textos),
+                        ))),
               _fila(Icons.landscape_outlined, textos.acercaTitulo,
                   alPulsar: () => _ir(const PantallaAcercaEspacioTest())),
               _fila(Icons.handshake_outlined, textos.entidadesTitulo,

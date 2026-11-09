@@ -27,7 +27,7 @@ const String nombreFicheroBaseDatosAceitera = 'solera_aceitera.db';
 
 /// Versión del esquema que abre la app (`version:` de `openDatabase`).
 /// La copia de seguridad rechaza copias con un esquema más nuevo.
-const int versionEsquemaSoleraAceitera = 2;
+const int versionEsquemaSoleraAceitera = 3;
 
 /// Acceso a la base de datos local de Larrea Aceitera. Singleton con
 /// inicialización perezosa: la primera lectura crea/migra la BD.
@@ -62,7 +62,16 @@ class BaseDatosSoleraAceitera extends BaseDatosSolera {
   @override
   Map<int, PasoMigracionSolera> get pasosMigracion => {
         2: _aplicarMigracionV2,
+        3: _anadirContornoParcelasV3,
       };
+
+  /// v3 (2026-11-09): área de la parcela marcada en el mapa
+  /// (nuevo_ser_mapa), JSON `[[lat,lng],…]`. `poligono_geojson` se queda
+  /// sin uso (ver `Parcela`).
+  static Future<void> _anadirContornoParcelasV3(DatabaseExecutor db) async {
+    await db.execute(
+        "ALTER TABLE parcelas ADD COLUMN contorno TEXT NOT NULL DEFAULT '[]'");
+  }
 
   /// Esquema completo de la versión 1. Si necesitas cambiar tablas,
   /// añade un paso en `pasosMigracion` y sube
@@ -161,8 +170,8 @@ class BaseDatosSoleraAceitera extends BaseDatosSolera {
         FOREIGN KEY (olivar_id) REFERENCES olivares(id) ON DELETE CASCADE
       )
     ''');
-    await db.execute(
-        'CREATE INDEX idx_campanias_olivar ON campanias(olivar_id)');
+    await db
+        .execute('CREATE INDEX idx_campanias_olivar ON campanias(olivar_id)');
     await db.execute(
         'CREATE INDEX idx_campanias_anyo ON campanias(anyo_comercial)');
 
@@ -288,8 +297,8 @@ class BaseDatosSoleraAceitera extends BaseDatosSolera {
     ''');
     await db.execute(
         'CREATE INDEX idx_movimientos_lote ON movimientos(lote_aceite_id)');
-    await db.execute(
-        'CREATE INDEX idx_movimientos_fecha ON movimientos(fecha_ms)');
+    await db
+        .execute('CREATE INDEX idx_movimientos_fecha ON movimientos(fecha_ms)');
     await db.execute('CREATE INDEX idx_movimientos_tipo ON movimientos(tipo)');
 
     // ─── Ventas ───
@@ -352,10 +361,10 @@ class BaseDatosSoleraAceitera extends BaseDatosSolera {
         FOREIGN KEY (lote_aceite_id) REFERENCES lotes_aceite(id) ON DELETE SET NULL
       )
     ''');
-    await db.execute(
-        'CREATE INDEX idx_incidencias_fecha ON incidencias(fecha_ms)');
-    await db.execute(
-        'CREATE INDEX idx_incidencias_ambito ON incidencias(ambito)');
+    await db
+        .execute('CREATE INDEX idx_incidencias_fecha ON incidencias(fecha_ms)');
+    await db
+        .execute('CREATE INDEX idx_incidencias_ambito ON incidencias(ambito)');
 
     // ─── Analíticas ───
     await db.execute('''
@@ -379,8 +388,8 @@ class BaseDatosSoleraAceitera extends BaseDatosSolera {
     ''');
     await db.execute(
         'CREATE INDEX idx_analiticas_lote ON analiticas(lote_aceite_id)');
-    await db.execute(
-        'CREATE INDEX idx_analiticas_fecha ON analiticas(fecha_ms)');
+    await db
+        .execute('CREATE INDEX idx_analiticas_fecha ON analiticas(fecha_ms)');
   }
 
   /// v1 → v2: libro económico (terceros + configuración fiscal +
@@ -471,10 +480,10 @@ class BaseDatosSoleraAceitera extends BaseDatosSolera {
         FOREIGN KEY (tratamiento_id) REFERENCES tratamientos(id) ON DELETE SET NULL
       )
     ''');
-    await db.execute(
-        'CREATE INDEX idx_gastos_fecha ON apuntes_gasto(fecha_ms)');
-    await db.execute(
-        'CREATE INDEX idx_gastos_tipo ON apuntes_gasto(tipo_gasto)');
+    await db
+        .execute('CREATE INDEX idx_gastos_fecha ON apuntes_gasto(fecha_ms)');
+    await db
+        .execute('CREATE INDEX idx_gastos_tipo ON apuntes_gasto(tipo_gasto)');
     await db.execute(
         'CREATE INDEX idx_gastos_tercero ON apuntes_gasto(tercero_id)');
     await db.execute(
@@ -543,6 +552,29 @@ class BaseDatosSoleraAceitera extends BaseDatosSolera {
     );
   }
 
+  /// Actualiza el punto y el área de una parcela (y, si se pasa, la
+  /// superficie). Lo usa la ficha de la parcela al marcarlos en el mapa.
+  Future<void> actualizarParcelaUbicacion({
+    required int id,
+    required double? latitud,
+    required double? longitud,
+    required String contorno,
+    double? superficieHa,
+  }) async {
+    final db = await basedatos;
+    await db.update(
+      'parcelas',
+      {
+        'latitud': latitud,
+        'longitud': longitud,
+        'contorno': contorno,
+        if (superficieHa != null) 'superficie_ha': superficieHa,
+      },
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
+
   Future<int> insertarOlivo(Olivo o) async {
     final db = await basedatos;
     return db.insert('olivos', o.toMap()..remove('id'));
@@ -555,8 +587,7 @@ class BaseDatosSoleraAceitera extends BaseDatosSolera {
 
   Future<List<Campania>> listarCampanias() async {
     final db = await basedatos;
-    final filas =
-        await db.query('campanias', orderBy: 'anyo_comercial DESC');
+    final filas = await db.query('campanias', orderBy: 'anyo_comercial DESC');
     return filas.map(Campania.fromMap).toList(growable: false);
   }
 

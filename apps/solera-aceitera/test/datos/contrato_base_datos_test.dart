@@ -21,6 +21,8 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart' show codificarContorno;
 import 'package:solera_aceitera/datos/base_datos.dart';
 import 'package:solera_aceitera/modelos/analitica.dart';
 import 'package:solera_aceitera/modelos/apunte_gasto.dart';
@@ -291,7 +293,8 @@ const List<String> sentenciasEsquemaV1Aceitera = [
   'CREATE INDEX idx_analiticas_fecha ON analiticas(fecha_ms)',
 ];
 
-/// Historial de `_aplicarMigraciones` (solo v2: libro económico).
+/// Historial de `pasosMigracion`: v2 libro económico, v3 área de la
+/// parcela.
 const Map<int, CambioEsquema> historialMigracionesAceitera = {
   2: CambioEsquema(tablasNuevas: [
     'terceros',
@@ -299,9 +302,12 @@ const Map<int, CambioEsquema> historialMigracionesAceitera = {
     'apuntes_ingreso',
     'apuntes_gasto',
   ]),
+  3: CambioEsquema(columnasNuevas: {
+    'parcelas': ['contorno'],
+  }),
 };
 
-/// Esquema esperado en la versión actual (v2).
+/// Esquema esperado en la versión actual (v3).
 const Map<String, Set<String>> columnasEsperadasAceitera = {
   'titulares': {
     'id',
@@ -342,6 +348,7 @@ const Map<String, Set<String>> columnasEsperadasAceitera = {
     'latitud',
     'longitud',
     'poligono_geojson',
+    'contorno',
     'notas',
     'rutas_fotos_json',
     'fecha_creacion_ms'
@@ -641,7 +648,7 @@ void main() {
     test('llega a la versión actual con todas las tablas y columnas', () async {
       final baseDatos = await baseDatosAceitera.basedatos;
       expect(await baseDatos.getVersion(), versionEsquemaSoleraAceitera);
-      expect(versionEsquemaSoleraAceitera, 2);
+      expect(versionEsquemaSoleraAceitera, 3);
       expect(await leerColumnasPorTabla(baseDatos), columnasEsperadasAceitera);
     });
 
@@ -692,6 +699,10 @@ void main() {
             'L-25-01');
         // Las tablas nuevas de v2 están vacías y listas para usarse.
         expect(await baseDatosAceitera.listarTerceros(), isEmpty);
+        // La parcela de antes llega sin área (v3).
+        final parcela = (await baseDatosAceitera.listarParcelas()).single;
+        expect(parcela.contorno, '[]');
+        expect(parcela.vertices, isEmpty);
       });
     }
 
@@ -740,6 +751,35 @@ void main() {
       await baseDatosAceitera.actualizarParcelaCoords(
           id: explotacion.parcelaId, latitud: 37.9, longitud: -3.8);
       expect((await baseDatosAceitera.listarParcelas()).single.latitud, 37.9);
+    });
+
+    test('el área y el punto de una parcela se guardan y se leen', () async {
+      const area = [
+        LatLng(37.9, -3.8),
+        LatLng(37.9, -3.799),
+        LatLng(37.901, -3.799),
+      ];
+      final explotacion = await crearExplotacionMinima();
+      await baseDatosAceitera.insertarParcela(Parcela(
+          olivarId: explotacion.olivarId,
+          nombre: 'Con área',
+          contorno: codificarContorno(area),
+          fechaCreacionMs: 2));
+      final conArea = (await baseDatosAceitera.listarParcelas())
+          .firstWhere((parcela) => parcela.nombre == 'Con área');
+      expect(conArea.vertices, area);
+
+      await baseDatosAceitera.actualizarParcelaUbicacion(
+          id: explotacion.parcelaId,
+          latitud: 37.95,
+          longitud: -3.75,
+          contorno: codificarContorno(area),
+          superficieHa: 1.25);
+      final actualizada = (await baseDatosAceitera.listarParcelas())
+          .firstWhere((parcela) => parcela.id == explotacion.parcelaId);
+      expect(actualizada.vertices, area);
+      expect(actualizada.latitud, 37.95);
+      expect(actualizada.superficieHa, 1.25);
     });
 
     test('lotes, movimientos y analíticas; borrar la campaña los arrastra',

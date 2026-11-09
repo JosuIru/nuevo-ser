@@ -1,3 +1,7 @@
+import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart'
+    show contornoVacio, leerContorno;
+
 /// Parcela del olivar. Entidad análoga a Vinedo/Apiario/Zona en las
 /// otras Larrea. Cada parcela tiene su polígono SIGPAC, superficie,
 /// variedad mayoritaria y régimen de riego.
@@ -11,18 +15,29 @@ class Parcela {
   final String nombre;
   final String codigoSigpac;
   final double superficieHa;
+
   /// FK textual al catálogo `variedades_olivo` (id de la variedad
   /// mayoritaria). Cadena vacía si la parcela es mezcla sin variedad
   /// dominante.
   final String variedadMayoritariaId;
   final String marcoPlantacion;
   final int edadMediaAnyos;
+
   /// Uno de: `secano` / `superficial` / `goteo` / `aspersion` / `mixto`.
   final String sistemaRiego;
   final double? latitud;
   final double? longitud;
-  /// GeoJSON del polígono SIGPAC. Cadena vacía si no se dibujó.
+
+  /// GeoJSON del polígono SIGPAC. **Sin uso desde 2026-11-09**: ninguna
+  /// pantalla la rellenó nunca y el área va en [contorno], con el formato
+  /// común de la suite. La columna se conserva (SQLite no quita columnas
+  /// con facilidad y podría haber datos).
   final String poligonoGeoJson;
+
+  /// Área marcada en el mapa: JSON `[[lat,lng],…]` (nuevo_ser_mapa).
+  final String contorno;
+
+  List<LatLng> get vertices => leerContorno(contorno);
   final String notas;
   final String rutasFotosJson;
   final int fechaCreacionMs;
@@ -40,6 +55,7 @@ class Parcela {
     this.latitud,
     this.longitud,
     this.poligonoGeoJson = '',
+    this.contorno = contornoVacio,
     this.notas = '',
     this.rutasFotosJson = '[]',
     required this.fechaCreacionMs,
@@ -58,6 +74,7 @@ class Parcela {
         'latitud': latitud,
         'longitud': longitud,
         'poligono_geojson': poligonoGeoJson,
+        'contorno': contorno,
         'notas': notas,
         'rutas_fotos_json': rutasFotosJson,
         'fecha_creacion_ms': fechaCreacionMs,
@@ -69,13 +86,15 @@ class Parcela {
         nombre: (mapa['nombre'] as String?) ?? '',
         codigoSigpac: (mapa['codigo_sigpac'] as String?) ?? '',
         superficieHa: (mapa['superficie_ha'] as num?)?.toDouble() ?? 0,
-        variedadMayoritariaId: (mapa['variedad_mayoritaria_id'] as String?) ?? '',
+        variedadMayoritariaId:
+            (mapa['variedad_mayoritaria_id'] as String?) ?? '',
         marcoPlantacion: (mapa['marco_plantacion'] as String?) ?? '',
         edadMediaAnyos: (mapa['edad_media_anyos'] as int?) ?? 0,
         sistemaRiego: (mapa['sistema_riego'] as String?) ?? 'secano',
         latitud: (mapa['latitud'] as num?)?.toDouble(),
         longitud: (mapa['longitud'] as num?)?.toDouble(),
         poligonoGeoJson: (mapa['poligono_geojson'] as String?) ?? '',
+        contorno: (mapa['contorno'] as String?) ?? contornoVacio,
         notas: (mapa['notas'] as String?) ?? '',
         rutasFotosJson: (mapa['rutas_fotos_json'] as String?) ?? '[]',
         fechaCreacionMs: (mapa['fecha_creacion_ms'] as int?) ?? 0,

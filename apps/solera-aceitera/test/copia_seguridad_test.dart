@@ -20,7 +20,7 @@ void main() {
 
     test('la versión de esquema es la que abre la base de datos', () {
       expect(configuracion.versionEsquemaActual, versionEsquemaSoleraAceitera);
-      expect(versionEsquemaSoleraAceitera, 2);
+      expect(versionEsquemaSoleraAceitera, 3);
     });
 
     test('comprueba la integridad de la BD antes de restaurar', () {

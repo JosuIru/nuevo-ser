@@ -3,7 +3,10 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, buscarLugarEnMapa, formatearNumero;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show SoleraL10n, buscarLugarEnMapa, formatearNumero;
+import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart'
+    show capaDeAreas, centroide, tieneArea;
 
 import '../datos/base_datos.dart';
 import '../modelos/parcela.dart';
@@ -12,6 +15,13 @@ import 'pantalla_ficha_parcela.dart';
 import 'pantalla_nueva_parcela.dart';
 
 enum _EstiloMapa { calle, satelite }
+
+/// Punto de la parcela en el mapa: el suyo o, si solo tiene área, el
+/// centro del área. Null si no tiene ninguno de los dos.
+LatLng? puntoDeParcela(Parcela parcela) =>
+    parcela.latitud != null && parcela.longitud != null
+        ? LatLng(parcela.latitud!, parcela.longitud!)
+        : centroide(parcela.vertices);
 
 enum _OrigenAltaMapa { gps, centroMapa }
 
@@ -56,21 +66,22 @@ class _PantallaMapaState extends State<PantallaMapa> {
     final todas = await _bd.listarParcelas();
     if (!mounted) return;
     setState(() {
-      _conCoords = todas
-          .where((p) => p.latitud != null && p.longitud != null)
-          .toList(growable: false);
-      _sinCoords = todas
-          .where((p) => p.latitud == null || p.longitud == null)
-          .toList(growable: false);
+      _conCoords =
+          todas.where((p) => puntoDeParcela(p) != null).toList(growable: false);
+      _sinCoords =
+          todas.where((p) => puntoDeParcela(p) == null).toList(growable: false);
       _cargando = false;
     });
     // Si hay parcelas con coords y aún no hemos centrado por GPS,
     // centramos en el centroide. Si después llega un fix GPS gana el GPS.
     if (_conCoords.isNotEmpty && !_centroResuelto) {
-      final lat = _conCoords.map((p) => p.latitud!).reduce((a, b) => a + b) /
-          _conCoords.length;
-      final lon = _conCoords.map((p) => p.longitud!).reduce((a, b) => a + b) /
-          _conCoords.length;
+      final puntos = _conCoords.map((p) => puntoDeParcela(p)!);
+      final lat =
+          puntos.map((punto) => punto.latitude).reduce((a, b) => a + b) /
+              _conCoords.length;
+      final lon =
+          puntos.map((punto) => punto.longitude).reduce((a, b) => a + b) /
+              _conCoords.length;
       _aplicarCentro(LatLng(lat, lon), 14);
     }
   }
@@ -284,7 +295,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
         ),
       for (final parcela in _conCoords)
         Marker(
-          point: LatLng(parcela.latitud!, parcela.longitud!),
+          point: puntoDeParcela(parcela)!,
           width: 40,
           height: 40,
           child: GestureDetector(
@@ -357,7 +368,9 @@ class _PantallaMapaState extends State<PantallaMapa> {
       mensajero
         ..hideCurrentSnackBar()
         ..showSnackBar(
-          SnackBar(content: Text(SoleraL10n.tf('acei.error_capturar_gps', {'error': e}))),
+          SnackBar(
+              content:
+                  Text(SoleraL10n.tf('acei.error_capturar_gps', {'error': e}))),
         );
     }
   }
@@ -365,7 +378,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
   void _mostrarSinCoords() {
     if (_sinCoords.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(SoleraL10n.t('acei.todas_parcelas_con_coordenadas'))),
+        SnackBar(
+            content: Text(SoleraL10n.t('acei.todas_parcelas_con_coordenadas'))),
       );
       return;
     }
@@ -378,16 +392,16 @@ class _PantallaMapaState extends State<PantallaMapa> {
             Padding(
               padding: const EdgeInsets.all(16),
               child: Text(
-                SoleraL10n.tf('acei.parcelas_sin_coordenadas_n', {'n': _sinCoords.length}),
+                SoleraL10n.tf('acei.parcelas_sin_coordenadas_n',
+                    {'n': _sinCoords.length}),
                 style: Theme.of(context).textTheme.titleMedium,
               ),
             ),
             ..._sinCoords.map((p) => ListTile(
                   leading: const Icon(Icons.location_off),
                   title: Text(p.nombre),
-                  subtitle: p.codigoSigpac.isNotEmpty
-                      ? Text(p.codigoSigpac)
-                      : null,
+                  subtitle:
+                      p.codigoSigpac.isNotEmpty ? Text(p.codigoSigpac) : null,
                   trailing: TextButton.icon(
                     icon: const Icon(Icons.my_location),
                     label: Text(SoleraL10n.t('acei.asignar_gps')),
@@ -455,15 +469,23 @@ class _PantallaMapaState extends State<PantallaMapa> {
                   urlTemplate: _estiloMapa == _EstiloMapa.calle
                       ? 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
                       : 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-                  userAgentPackageName:
-                      'com.coleccionnuevoser.solera_aceitera',
+                  userAgentPackageName: 'com.coleccionnuevoser.solera_aceitera',
                   maxZoom: 22,
                   maxNativeZoom: 19,
                   keepBuffer: 4,
                   panBuffer: 1,
                 ),
                 // Las condiciones de uso de OSM y Esri piden citarlos.
-                SimpleAttributionWidget(source: Text(_estiloMapa == _EstiloMapa.calle ? 'OpenStreetMap' : 'Esri')),
+                SimpleAttributionWidget(
+                    source: Text(_estiloMapa == _EstiloMapa.calle
+                        ? 'OpenStreetMap'
+                        : 'Esri')),
+                // Áreas marcadas de las parcelas, bajo los marcadores.
+                capaDeAreas([
+                  for (final parcela in _conCoords)
+                    if (tieneArea(parcela.vertices))
+                      (nombre: parcela.nombre, vertices: parcela.vertices),
+                ], color: const Color(0xFF5C6B3A)),
                 MarkerClusterLayerWidget(
                   options: MarkerClusterLayerOptions(
                     maxClusterRadius: 42,
@@ -480,8 +502,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
                         child: Text(
                           markers.length.toString(),
                           style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold),
+                              color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -543,7 +564,9 @@ class _PantallaMapaState extends State<PantallaMapa> {
                             : Icons.map_outlined,
                       ),
                       label: Text(
-                        _estiloMapa == _EstiloMapa.calle ? SoleraL10n.t('acei.capas') : SoleraL10n.t('mapa'),
+                        _estiloMapa == _EstiloMapa.calle
+                            ? SoleraL10n.t('acei.capas')
+                            : SoleraL10n.t('mapa'),
                       ),
                     ),
                   ),
@@ -558,9 +581,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
                   const SizedBox(width: 8),
                   DecoratedBox(
                     decoration: BoxDecoration(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .surfaceContainerHighest,
+                      color:
+                          Theme.of(context).colorScheme.surfaceContainerHighest,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
@@ -568,7 +590,9 @@ class _PantallaMapaState extends State<PantallaMapa> {
                           horizontal: 12, vertical: 10),
                       child: Text(_altitudGps == null
                           ? SoleraL10n.t('acei.altitud_gps_vacia')
-                          : SoleraL10n.tf('acei.altitud_gps_m', {'m': formatearNumero(_altitudGps!, decimales: 0)})),
+                          : SoleraL10n.tf('acei.altitud_gps_m', {
+                              'm': formatearNumero(_altitudGps!, decimales: 0)
+                            })),
                     ),
                   ),
                 ],

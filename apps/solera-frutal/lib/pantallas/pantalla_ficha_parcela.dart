@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
-    show DialogoConfirmacion, SoleraL10n, TituloBloqueSolera;
+    show DialogoConfirmacion, SoleraL10n, TituloBloqueSolera, rellenoInferiorSeguro;
 
 import '../datos/base_datos.dart';
 import '../dominio/catalogos.dart';
@@ -209,7 +209,7 @@ class _PantallaFichaParcelaState extends State<PantallaFichaParcela> {
             ],
           ),
           body: ListView(
-            padding: const EdgeInsets.only(bottom: 32),
+            padding: rellenoInferiorSeguro(context, const EdgeInsets.only(bottom: 32)),
             children: [
               ListTile(
                 title: Text(nombreEspecie(parcela.especieId)),

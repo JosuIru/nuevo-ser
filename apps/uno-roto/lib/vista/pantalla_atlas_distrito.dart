@@ -113,7 +113,7 @@ class _PantallaAtlasDistritoState extends State<PantallaAtlasDistrito> {
     });
     return ListView.separated(
       key: const ValueKey('lista'),
-      padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
+      padding: rellenoInferiorSeguro(context, const EdgeInsets.fromLTRB(16, 16, 16, 32)),
       itemCount: habilidades.length + 1,
       separatorBuilder: (_, __) => const SizedBox(height: 8),
       itemBuilder: (contexto, indice) {

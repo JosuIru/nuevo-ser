@@ -757,7 +757,7 @@ class _PantallaHabilidadesState extends State<PantallaHabilidades> {
     final dominiosOrdenados = catalogo.dominios.entries.toList();
     // El encabezado va antes que los bloques por dominio.
     return ListView.builder(
-      padding: const EdgeInsets.all(16),
+      padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
       itemCount: dominiosOrdenados.length + 1,
       itemBuilder: (_, indice) {
         if (indice == 0) {

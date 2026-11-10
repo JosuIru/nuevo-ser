@@ -70,7 +70,7 @@ class _PestanaBestiarioState extends State<PestanaBestiario> {
     return ValueListenableBuilder<Map<String, String>>(
       valueListenable: dibujosMonstruos.rutas,
       builder: (_, dibujos, __) => ListView(
-        padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.fromLTRB(16, 12, 16, 24)),
         children: [
           for (final ficha in CatalogoBestiario.todas)
             _TarjetaFicha(

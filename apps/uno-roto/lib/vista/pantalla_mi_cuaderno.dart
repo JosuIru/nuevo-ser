@@ -285,7 +285,7 @@ class _PestanaHabilidadesState extends State<_PestanaHabilidades> {
             )
           : ListView.separated(
               key: const ValueKey('lista'),
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 32),
+              padding: rellenoInferiorSeguro(context, const EdgeInsets.fromLTRB(20, 20, 20, 32)),
               itemCount: CatalogoDistritos.todos.length + 1,
               separatorBuilder: (_, __) => const SizedBox(height: 16),
               itemBuilder: (contexto, indice) {
@@ -705,7 +705,7 @@ class _PestanaDiarioState extends State<_PestanaDiario> {
         .toList();
 
     return ListView.builder(
-      padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
+      padding: rellenoInferiorSeguro(context, const EdgeInsets.fromLTRB(16, 12, 16, 24)),
       itemCount: categorias.length + 1,
       itemBuilder: (_, indice) {
         if (indice == 0) return _resumenLeidas();

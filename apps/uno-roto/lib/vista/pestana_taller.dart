@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show EstadoHabilidad;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show EstadoHabilidad, rellenoInferiorSeguro;
 
 import '../datos/dibujos_taller.dart';
 import '../datos/repositorio_progreso.dart';
@@ -97,7 +98,7 @@ class _PestanaTallerState extends State<PestanaTaller> {
         dibujosFondos.rutas
       ]),
       builder: (_, __) => ListView(
-        padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.fromLTRB(16, 12, 16, 24)),
         children: [
           Padding(
             padding: const EdgeInsets.only(bottom: 4),

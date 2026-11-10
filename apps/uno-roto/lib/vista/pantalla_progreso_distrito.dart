@@ -85,7 +85,7 @@ class _PantallaProgresoDistritoState extends State<PantallaProgresoDistrito> {
             : _skills.isEmpty
                 ? const Center(child: Text('Sin habilidades'))
                 : ListView.builder(
-                    padding: const EdgeInsets.all(16),
+                    padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
                     itemCount: _skills.length,
                     itemBuilder: (_, i) => _FilaSkill(
                       skill: _skills[i],

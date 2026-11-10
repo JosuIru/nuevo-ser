@@ -3,6 +3,8 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart' show AvisoCatalogosProvision
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show CabeceraHoySolera, CifraCabecera, SoleraL10n, TituloBloqueSolera;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show AvisoActualizaciones, configActualizacionesMonorepo;
 
 import '../branding.dart';
 import '../datos/catalogos_generados/flag_revision.dart';
@@ -81,6 +83,11 @@ class _PantallaHoyState extends State<PantallaHoy> {
                       valor: '${estados.length}',
                       etiqueta: SoleraL10n.t('gana.rebanos')),
                 ],
+              ),
+              // Aviso de versión nueva: si no la hay, no ocupa sitio.
+              AvisoActualizaciones(
+                config: configActualizacionesMonorepo('solera-ganadera'),
+                nombreApp: 'Larrea Ganadera',
               ),
               if (!catalogosCompletamenteRevisados)
                 AvisoCatalogosProvisionales(texto: SoleraL10n.t('gana.catalogos_provisionales')),

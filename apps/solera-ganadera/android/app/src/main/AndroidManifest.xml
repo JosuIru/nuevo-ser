@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- IA (clave BYO) y teselas del mapa. -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- Contorno de las piezas y coordenadas de la explotación. -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show SelectorIdioma, SoleraL10n;
 import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart' show CampoPunto;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show PantallaEstadoActualizaciones, configActualizacionesMonorepo;
 
 import '../branding.dart';
 
@@ -191,6 +193,17 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
                     content: Text(SoleraL10n.t('gana.error_documento'))));
               }
             },
+          ),
+          ListTile(
+            leading: const Icon(Icons.system_update),
+            title: Text(SoleraL10n.t('comprobar_actualizaciones')),
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => PantallaEstadoActualizaciones(
+                          config: configActualizacionesMonorepo('solera-ganadera'),
+                          nombreApp: 'Larrea Ganadera',
+                        ))),
           ),
           ListTile(
             contentPadding: EdgeInsets.zero,

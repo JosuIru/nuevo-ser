@@ -6,6 +6,7 @@ class MasaMadre {
     this.harinaBase = '',
     required this.creadaMs,
     this.notas = '',
+    this.recordatorioHoras,
   });
 
   final int? id;
@@ -14,12 +15,26 @@ class MasaMadre {
   final int creadaMs;
   final String notas;
 
+  /// Cada cuántas horas recordar el refresco (null: sin recordatorio).
+  /// Columna de la v2.
+  final int? recordatorioHoras;
+
+  MasaMadre conRecordatorio(int? horas) => MasaMadre(
+        id: id,
+        nombre: nombre,
+        harinaBase: harinaBase,
+        creadaMs: creadaMs,
+        notas: notas,
+        recordatorioHoras: horas,
+      );
+
   Map<String, Object?> toMap() => {
         'id': id,
         'nombre': nombre,
         'harina_base': harinaBase,
         'creada_ms': creadaMs,
         'notas': notas,
+        'recordatorio_horas': recordatorioHoras,
       };
 
   factory MasaMadre.fromMap(Map<String, Object?> mapa) => MasaMadre(
@@ -28,6 +43,7 @@ class MasaMadre {
         harinaBase: (mapa['harina_base'] as String?) ?? '',
         creadaMs: mapa['creada_ms'] as int,
         notas: (mapa['notas'] as String?) ?? '',
+        recordatorioHoras: mapa['recordatorio_horas'] as int?,
       );
 }
 

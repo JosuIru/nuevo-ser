@@ -3,6 +3,10 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:solera_obrador/datos/base_datos.dart';
+import 'package:solera_obrador/dominio/planificador_hornada.dart';
+import 'package:solera_obrador/dominio/tiempos_guia.dart';
+import 'package:solera_obrador/modelos/plan_hornada.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart' show databaseFactoryFfi;
 import 'package:solera_obrador/modelos/hornada.dart';
 import 'package:solera_obrador/modelos/ingrediente.dart';
 import 'package:solera_obrador/modelos/lote_ingrediente.dart';
@@ -83,5 +87,60 @@ void main() {
     final temperaturas = await baseDatos.listarRegistrosAutocontrol(
         desdeMs: 0, hastaMs: 30, tipo: 'temperatura');
     expect(temperaturas, hasLength(2));
+  });
+
+  test('migra de la v1 a la v2 sin perder filas', () async {
+    final ruta = entorno.ruta(nombreFicheroBaseDatosObrador);
+    final v1 = await databaseFactoryFfi.openDatabase(ruta,
+        options: OpenDatabaseOptions(
+            version: 1,
+            singleInstance: false,
+            onCreate: (db, _) async {
+              for (final sentencia in sentenciasEsquemaV1Obrador) {
+                await db.execute(sentencia);
+              }
+            }));
+    await v1.insert('masas_madre',
+        {'nombre': 'Centeno', 'harina_base': 'Centeno', 'creada_ms': 5});
+    await v1.insert('recetas', {'nombre': 'Hogaza'});
+    await v1.close();
+
+    final db = await baseDatos.basedatos;
+    expect(await db.getVersion(), 2);
+    final masa = (await baseDatos.listarMasasMadre()).single;
+    expect(masa.nombre, 'Centeno');
+    expect(masa.recordatorioHoras, isNull);
+    await baseDatos.guardarMasaMadre(masa.conRecordatorio(24));
+    expect((await baseDatos.listarMasasMadre()).single.recordatorioHoras, 24);
+    expect((await baseDatos.listarRecetas()).single.nombre, 'Hogaza');
+  });
+
+  test('tiempos de una receta propia y planes en curso', () async {
+    final pan = await baseDatos.guardarReceta(Receta(nombre: 'Pan'));
+    expect(await baseDatos.obtenerTiemposReceta(pan), isNull);
+    await baseDatos.guardarTiemposReceta(pan, plantillaRecetaPropiaPorDefecto);
+    await baseDatos.guardarTiemposReceta(pan, tiemposRecetasGuia['baguette']!);
+    final leida = (await baseDatos.obtenerTiemposReceta(pan))!;
+    expect(leida.admiteNevera, isTrue);
+
+    final fases = planificarHaciaAtras(
+        plantilla: leida,
+        listoA: DateTime(2026, 11, 12, 8),
+        temperaturaCocinaC: 20);
+    final planId = await baseDatos.guardarPlanHornada(PlanHornada(
+        nombre: 'Pan',
+        recetaId: pan,
+        listoMs: DateTime(2026, 11, 12, 8).millisecondsSinceEpoch,
+        temperaturaCocinaC: 20,
+        fases: fases,
+        creadoMs: 1));
+    final plan = (await baseDatos.listarPlanesEnCurso()).single;
+    expect(plan.fases.length, fases.length);
+    await baseDatos.guardarPlanHornada(plan.copiar(terminado: true));
+    expect(await baseDatos.listarPlanesEnCurso(), isEmpty);
+    // Borrar la receta deja el plan (sin receta) y se lleva sus tiempos.
+    await baseDatos.borrarReceta(pan);
+    expect((await baseDatos.obtenerPlanHornada(planId))!.recetaId, isNull);
+    expect(await baseDatos.obtenerTiemposReceta(pan), isNull);
   });
 }

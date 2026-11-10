@@ -2,12 +2,14 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show BaseDatosSolera, PasoMigracionSolera;
 import 'package:sqflite/sqflite.dart';
 
+import '../dominio/planificador_hornada.dart';
 import '../modelos/apunte_economico.dart';
 import '../modelos/hornada.dart';
 import '../modelos/ingrediente.dart';
 import '../modelos/lote_ingrediente.dart';
 import '../modelos/masa_madre.dart';
 import '../modelos/pedido_fijo.dart';
+import '../modelos/plan_hornada.dart';
 import '../modelos/receta.dart';
 import '../modelos/registro_autocontrol.dart';
 import '../modelos/titular.dart';
@@ -17,7 +19,7 @@ import '../modelos/titular.dart';
 const String nombreFicheroBaseDatosObrador = 'solera_obrador.db';
 
 /// Versión del esquema: el número del último paso de [pasosMigracion].
-const int versionEsquemaObrador = 1;
+const int versionEsquemaObrador = 2;
 
 /// Base de datos local de Larrea Obrador. La apertura, el cerrojo, las FK y
 /// las migraciones las pone BaseDatosSolera (core). **Migraciones
@@ -39,131 +41,22 @@ class BaseDatosSoleraObrador extends BaseDatosSolera {
   DatabaseFactory get fabricaBaseDatos => databaseFactory;
 
   @override
-  Map<int, PasoMigracionSolera> get pasosMigracion => const {};
+  Map<int, PasoMigracionSolera> get pasosMigracion => {2: _crearEsquemaV2};
 
-  @override
-  Future<void> crearEsquemaInicial(Database db) async {
-    const sentencias = [
-      '''CREATE TABLE titulares (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nombre TEXT NOT NULL DEFAULT '',
-        nif TEXT NOT NULL DEFAULT '',
-        registro_sanitario TEXT NOT NULL DEFAULT ''
-      )''',
-      '''CREATE TABLE ingredientes (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nombre TEXT NOT NULL,
-        alergenos TEXT NOT NULL DEFAULT '',
-        trazas TEXT NOT NULL DEFAULT '',
-        proveedor TEXT NOT NULL DEFAULT '',
-        precio_centimos_kg INTEGER NOT NULL DEFAULT 0,
-        sal_g_100g REAL NOT NULL DEFAULT 0,
-        notas TEXT NOT NULL DEFAULT ''
-      )''',
-      '''CREATE TABLE lotes_ingrediente (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        ingrediente_id INTEGER NOT NULL REFERENCES ingredientes(id) ON DELETE RESTRICT,
-        codigo_lote TEXT NOT NULL,
-        fecha_recepcion_ms INTEGER NOT NULL,
-        consumo_preferente_ms INTEGER,
-        cantidad_kg REAL NOT NULL DEFAULT 0,
-        temperatura_recepcion_c REAL,
-        notas TEXT NOT NULL DEFAULT ''
-      )''',
-      '''CREATE TABLE recetas (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nombre TEXT NOT NULL,
-        denominacion TEXT NOT NULL DEFAULT '',
-        piezas_por_masa INTEGER NOT NULL DEFAULT 1,
-        merma_coccion_pct REAL NOT NULL DEFAULT 0,
-        es_subreceta INTEGER NOT NULL DEFAULT 0,
-        precio_venta_centimos_pieza INTEGER NOT NULL DEFAULT 0,
-        notas TEXT NOT NULL DEFAULT ''
-      )''',
-      '''CREATE TABLE lineas_receta (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        receta_id INTEGER NOT NULL REFERENCES recetas(id) ON DELETE CASCADE,
-        ingrediente_id INTEGER REFERENCES ingredientes(id) ON DELETE RESTRICT,
-        subreceta_id INTEGER REFERENCES recetas(id) ON DELETE RESTRICT,
-        gramos REAL NOT NULL,
-        CHECK ((ingrediente_id IS NULL) <> (subreceta_id IS NULL))
-      )''',
-      '''CREATE TABLE masas_madre (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nombre TEXT NOT NULL,
-        harina_base TEXT NOT NULL DEFAULT '',
-        creada_ms INTEGER NOT NULL,
-        notas TEXT NOT NULL DEFAULT ''
-      )''',
-      '''CREATE TABLE refrescos_masa_madre (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        masa_madre_id INTEGER NOT NULL REFERENCES masas_madre(id) ON DELETE CASCADE,
-        fecha_ms INTEGER NOT NULL,
-        gramos_masa_madre REAL NOT NULL,
-        gramos_harina REAL NOT NULL,
-        gramos_agua REAL NOT NULL,
-        temperatura_c REAL,
-        horas_hasta_pico REAL,
-        notas TEXT NOT NULL DEFAULT ''
-      )''',
-      '''CREATE TABLE hornadas (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        receta_id INTEGER NOT NULL REFERENCES recetas(id) ON DELETE RESTRICT,
-        fecha_ms INTEGER NOT NULL,
-        piezas INTEGER NOT NULL,
-        codigo_lote TEXT NOT NULL,
-        temperatura_horno_c REAL,
-        minutos_horno INTEGER,
-        responsable TEXT NOT NULL DEFAULT '',
-        notas TEXT NOT NULL DEFAULT ''
-      )''',
-      '''CREATE TABLE hornadas_lotes (
-        hornada_id INTEGER NOT NULL REFERENCES hornadas(id) ON DELETE CASCADE,
-        lote_ingrediente_id INTEGER NOT NULL REFERENCES lotes_ingrediente(id) ON DELETE RESTRICT,
-        PRIMARY KEY (hornada_id, lote_ingrediente_id)
-      )''',
-      '''CREATE TABLE pedidos_fijos (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        cliente TEXT NOT NULL,
-        receta_id INTEGER NOT NULL REFERENCES recetas(id) ON DELETE CASCADE,
-        piezas INTEGER NOT NULL,
-        dias_semana TEXT NOT NULL DEFAULT '',
-        activo INTEGER NOT NULL DEFAULT 1,
-        notas TEXT NOT NULL DEFAULT ''
-      )''',
-      '''CREATE TABLE registros_autocontrol (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        tipo TEXT NOT NULL,
-        fecha_ms INTEGER NOT NULL,
-        elemento TEXT NOT NULL,
-        valor REAL,
-        correcto INTEGER NOT NULL DEFAULT 1,
-        accion_correctora TEXT NOT NULL DEFAULT '',
-        responsable TEXT NOT NULL DEFAULT '',
-        notas TEXT NOT NULL DEFAULT ''
-      )''',
-      '''CREATE TABLE apuntes_economicos (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        es_ingreso INTEGER NOT NULL,
-        fecha_ms INTEGER NOT NULL,
-        concepto TEXT NOT NULL,
-        categoria TEXT NOT NULL,
-        base_centimos INTEGER NOT NULL,
-        tipo_iva_pct INTEGER NOT NULL DEFAULT 0,
-        tercero TEXT NOT NULL DEFAULT '',
-        notas TEXT NOT NULL DEFAULT ''
-      )''',
-      'CREATE INDEX idx_apuntes_fecha ON apuntes_economicos(fecha_ms)',
-      'CREATE INDEX idx_lotes_ingrediente ON lotes_ingrediente(ingrediente_id)',
-      'CREATE INDEX idx_lineas_receta ON lineas_receta(receta_id)',
-      'CREATE INDEX idx_refrescos_fecha ON refrescos_masa_madre(masa_madre_id, fecha_ms)',
-      'CREATE INDEX idx_hornadas_fecha ON hornadas(fecha_ms)',
-      'CREATE INDEX idx_autocontrol_fecha ON registros_autocontrol(fecha_ms)',
-    ];
-    for (final sentencia in sentencias) {
+  /// v2 (2026-11-10): planificador de hornadas y recordatorio de refresco.
+  Future<void> _crearEsquemaV2(Database db) async {
+    for (final sentencia in sentenciasEsquemaV2Obrador) {
       await db.execute(sentencia);
     }
   }
+
+  @override
+  Future<void> crearEsquemaInicial(Database db) async {
+    for (final sentencia in sentenciasEsquemaV1Obrador) {
+      await db.execute(sentencia);
+    }
+  }
+
 
   // ─── Utilidades ──────────────────────────────────────────────────
 
@@ -285,6 +178,44 @@ class BaseDatosSoleraObrador extends BaseDatosSolera {
           .map(RefrescoMasaMadre.fromMap)
           .toList();
 
+  // ─── Planificador (v2) ───────────────────────────────────────────
+
+  /// Tiempos por fase de una receta propia; null si no se han puesto.
+  Future<PlantillaTiempos?> obtenerTiemposReceta(int recetaId) async {
+    final filas = await _listar('tiempos_receta',
+        donde: 'receta_id = ?', argumentos: [recetaId]);
+    if (filas.isEmpty) return null;
+    return PlantillaTiempos.deJson(filas.first['plantilla_json'] as String);
+  }
+
+  Future<void> guardarTiemposReceta(
+      int recetaId, PlantillaTiempos plantilla) async {
+    final db = await basedatos;
+    await db.insert(
+        'tiempos_receta',
+        {'receta_id': recetaId, 'plantilla_json': plantilla.aJson()},
+        conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
+  Future<int> guardarPlanHornada(PlanHornada plan) =>
+      _guardar('planes_hornada', plan.toMap());
+
+  Future<PlanHornada?> obtenerPlanHornada(int planId) async {
+    final filas = await _listar('planes_hornada',
+        donde: 'id = ?', argumentos: [planId]);
+    return filas.isEmpty ? null : PlanHornada.fromMap(filas.first);
+  }
+
+  /// Planes sin terminar, del que acaba antes al que acaba después.
+  Future<List<PlanHornada>> listarPlanesEnCurso() async =>
+      (await _listar('planes_hornada',
+              donde: 'terminado = 0', orden: 'listo_ms'))
+          .map(PlanHornada.fromMap)
+          .toList();
+
+  Future<void> borrarPlanHornada(int planId) =>
+      _borrar('planes_hornada', planId);
+
   // ─── Hornadas ────────────────────────────────────────────────────
 
   /// Guarda la hornada y los lotes de ingrediente usados, en una
@@ -385,3 +316,144 @@ class BaseDatosSoleraObrador extends BaseDatosSolera {
           .map(ApunteEconomico.fromMap)
           .toList();
 }
+
+/// Esquema de la v1 (publicada). No se edita: los cambios van en pasos.
+const sentenciasEsquemaV1Obrador = [
+      '''CREATE TABLE titulares (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nombre TEXT NOT NULL DEFAULT '',
+        nif TEXT NOT NULL DEFAULT '',
+        registro_sanitario TEXT NOT NULL DEFAULT ''
+      )''',
+      '''CREATE TABLE ingredientes (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nombre TEXT NOT NULL,
+        alergenos TEXT NOT NULL DEFAULT '',
+        trazas TEXT NOT NULL DEFAULT '',
+        proveedor TEXT NOT NULL DEFAULT '',
+        precio_centimos_kg INTEGER NOT NULL DEFAULT 0,
+        sal_g_100g REAL NOT NULL DEFAULT 0,
+        notas TEXT NOT NULL DEFAULT ''
+      )''',
+      '''CREATE TABLE lotes_ingrediente (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        ingrediente_id INTEGER NOT NULL REFERENCES ingredientes(id) ON DELETE RESTRICT,
+        codigo_lote TEXT NOT NULL,
+        fecha_recepcion_ms INTEGER NOT NULL,
+        consumo_preferente_ms INTEGER,
+        cantidad_kg REAL NOT NULL DEFAULT 0,
+        temperatura_recepcion_c REAL,
+        notas TEXT NOT NULL DEFAULT ''
+      )''',
+      '''CREATE TABLE recetas (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nombre TEXT NOT NULL,
+        denominacion TEXT NOT NULL DEFAULT '',
+        piezas_por_masa INTEGER NOT NULL DEFAULT 1,
+        merma_coccion_pct REAL NOT NULL DEFAULT 0,
+        es_subreceta INTEGER NOT NULL DEFAULT 0,
+        precio_venta_centimos_pieza INTEGER NOT NULL DEFAULT 0,
+        notas TEXT NOT NULL DEFAULT ''
+      )''',
+      '''CREATE TABLE lineas_receta (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        receta_id INTEGER NOT NULL REFERENCES recetas(id) ON DELETE CASCADE,
+        ingrediente_id INTEGER REFERENCES ingredientes(id) ON DELETE RESTRICT,
+        subreceta_id INTEGER REFERENCES recetas(id) ON DELETE RESTRICT,
+        gramos REAL NOT NULL,
+        CHECK ((ingrediente_id IS NULL) <> (subreceta_id IS NULL))
+      )''',
+      '''CREATE TABLE masas_madre (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nombre TEXT NOT NULL,
+        harina_base TEXT NOT NULL DEFAULT '',
+        creada_ms INTEGER NOT NULL,
+        notas TEXT NOT NULL DEFAULT ''
+      )''',
+      '''CREATE TABLE refrescos_masa_madre (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        masa_madre_id INTEGER NOT NULL REFERENCES masas_madre(id) ON DELETE CASCADE,
+        fecha_ms INTEGER NOT NULL,
+        gramos_masa_madre REAL NOT NULL,
+        gramos_harina REAL NOT NULL,
+        gramos_agua REAL NOT NULL,
+        temperatura_c REAL,
+        horas_hasta_pico REAL,
+        notas TEXT NOT NULL DEFAULT ''
+      )''',
+      '''CREATE TABLE hornadas (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        receta_id INTEGER NOT NULL REFERENCES recetas(id) ON DELETE RESTRICT,
+        fecha_ms INTEGER NOT NULL,
+        piezas INTEGER NOT NULL,
+        codigo_lote TEXT NOT NULL,
+        temperatura_horno_c REAL,
+        minutos_horno INTEGER,
+        responsable TEXT NOT NULL DEFAULT '',
+        notas TEXT NOT NULL DEFAULT ''
+      )''',
+      '''CREATE TABLE hornadas_lotes (
+        hornada_id INTEGER NOT NULL REFERENCES hornadas(id) ON DELETE CASCADE,
+        lote_ingrediente_id INTEGER NOT NULL REFERENCES lotes_ingrediente(id) ON DELETE RESTRICT,
+        PRIMARY KEY (hornada_id, lote_ingrediente_id)
+      )''',
+      '''CREATE TABLE pedidos_fijos (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        cliente TEXT NOT NULL,
+        receta_id INTEGER NOT NULL REFERENCES recetas(id) ON DELETE CASCADE,
+        piezas INTEGER NOT NULL,
+        dias_semana TEXT NOT NULL DEFAULT '',
+        activo INTEGER NOT NULL DEFAULT 1,
+        notas TEXT NOT NULL DEFAULT ''
+      )''',
+      '''CREATE TABLE registros_autocontrol (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        tipo TEXT NOT NULL,
+        fecha_ms INTEGER NOT NULL,
+        elemento TEXT NOT NULL,
+        valor REAL,
+        correcto INTEGER NOT NULL DEFAULT 1,
+        accion_correctora TEXT NOT NULL DEFAULT '',
+        responsable TEXT NOT NULL DEFAULT '',
+        notas TEXT NOT NULL DEFAULT ''
+      )''',
+      '''CREATE TABLE apuntes_economicos (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        es_ingreso INTEGER NOT NULL,
+        fecha_ms INTEGER NOT NULL,
+        concepto TEXT NOT NULL,
+        categoria TEXT NOT NULL,
+        base_centimos INTEGER NOT NULL,
+        tipo_iva_pct INTEGER NOT NULL DEFAULT 0,
+        tercero TEXT NOT NULL DEFAULT '',
+        notas TEXT NOT NULL DEFAULT ''
+      )''',
+      'CREATE INDEX idx_apuntes_fecha ON apuntes_economicos(fecha_ms)',
+      'CREATE INDEX idx_lotes_ingrediente ON lotes_ingrediente(ingrediente_id)',
+      'CREATE INDEX idx_lineas_receta ON lineas_receta(receta_id)',
+      'CREATE INDEX idx_refrescos_fecha ON refrescos_masa_madre(masa_madre_id, fecha_ms)',
+      'CREATE INDEX idx_hornadas_fecha ON hornadas(fecha_ms)',
+      'CREATE INDEX idx_autocontrol_fecha ON registros_autocontrol(fecha_ms)',
+];
+
+/// Paso a la v2: tiempos por fase de las recetas propias, planes de hornada
+/// y recordatorio de refresco de la masa madre. Solo añade.
+const sentenciasEsquemaV2Obrador = [
+  '''CREATE TABLE tiempos_receta (
+    receta_id INTEGER PRIMARY KEY REFERENCES recetas(id) ON DELETE CASCADE,
+    plantilla_json TEXT NOT NULL
+  )''',
+  '''CREATE TABLE planes_hornada (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre TEXT NOT NULL,
+    receta_id INTEGER REFERENCES recetas(id) ON DELETE SET NULL,
+    receta_guia_id TEXT NOT NULL DEFAULT '',
+    listo_ms INTEGER NOT NULL,
+    temperatura_cocina_c REAL NOT NULL,
+    fases_json TEXT NOT NULL,
+    avisos_programados INTEGER NOT NULL DEFAULT 0,
+    terminado INTEGER NOT NULL DEFAULT 0,
+    creado_ms INTEGER NOT NULL
+  )''',
+  'ALTER TABLE masas_madre ADD COLUMN recordatorio_horas INTEGER',
+];

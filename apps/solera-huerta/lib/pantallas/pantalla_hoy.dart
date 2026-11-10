@@ -19,6 +19,7 @@ import '../utiles/textos_huerta.dart';
 import 'formularios_huerta.dart';
 import 'pantalla_guia.dart';
 import 'selector_perfil.dart';
+import 'tarjeta_tiempo.dart';
 import '../estado/semana_cestas.dart';
 
 typedef _DatosHoy = ({
@@ -38,11 +39,13 @@ class PantallaHoy extends StatefulWidget {
 
 class _PantallaHoyState extends State<PantallaHoy> {
   late Future<_DatosHoy> _datos;
+  late Future<EstadoTiempoHoy> _tiempo;
 
   @override
   void initState() {
     super.initState();
     _datos = _cargar();
+    _tiempo = _cargarTiempo();
     cambiosDatos.addListener(_recargar);
     perfilHuerta.addListener(_alCambiarPerfil);
   }
@@ -72,10 +75,16 @@ class _PantallaHoyState extends State<PantallaHoy> {
     );
   }
 
+  /// Avisos del tiempo, aparte de los datos: la red no retrasa el resto.
+  Future<EstadoTiempoHoy> _cargarTiempo() => _datos
+      .then((cargado) => cargarTiempoHoy(cargado.datos))
+      .catchError((Object _) => EstadoTiempoHoy.nada);
+
   void _recargar() {
     if (!mounted) return;
     setState(() {
       _datos = _cargar();
+      _tiempo = _cargarTiempo();
     });
   }
 
@@ -226,6 +235,11 @@ class _PantallaHoyState extends State<PantallaHoy> {
           }),
     ];
     return [
+      FutureBuilder<EstadoTiempoHoy>(
+        future: _tiempo,
+        builder: (context, instantanea) => TarjetaTiempo(
+            estado: instantanea.data ?? EstadoTiempoHoy.nada),
+      ),
       Card(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,

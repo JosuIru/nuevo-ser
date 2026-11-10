@@ -5,6 +5,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show PantallaEstadoActualizaciones, configActualizacionesMonorepo;
 
 import '../datos/base_datos.dart';
+import '../estado/aviso_helada_programado.dart';
 import '../estado/perfil_huerta.dart';
 import '../modelos/titular.dart';
 import 'hoja_formulario.dart';
@@ -137,6 +138,24 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
             _acceso(Icons.euro_outlined, 'huer.ingresos_y_gastos',
                 const PantallaEconomia()),
           ],
+          ValueListenableBuilder<bool>(
+            valueListenable: avisarHeladas,
+            builder: (context, activo, _) => SwitchListTile(
+              key: const ValueKey('avisar-heladas'),
+              contentPadding: EdgeInsets.zero,
+              secondary: const Icon(Icons.ac_unit),
+              title: Text(SoleraL10n.t('huer.tiempo_avisar_heladas')),
+              subtitle: Text(SoleraL10n.t('huer.tiempo_avisar_heladas_texto')),
+              value: activo,
+              onChanged: (nuevo) async {
+                final quedo = await cambiarAvisarHeladas(nuevo);
+                if (nuevo && !quedo && context.mounted) {
+                  avisar(context,
+                      SoleraL10n.t('huer.tiempo_avisar_heladas_sin_permiso'));
+                }
+              },
+            ),
+          ),
           _acceso(Icons.auto_awesome_outlined, 'huer.inteligencia_artificial',
               pantallaClaveHuerta()),
           ListTile(

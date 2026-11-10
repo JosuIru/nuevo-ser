@@ -13,6 +13,7 @@ const List<(String, String)> apartadosAyudaHuerta = [
   ('huer.ayuda_guia_titulo', 'huer.ayuda_guia_texto'),
   ('huer.ayuda_ia_titulo', 'huer.ayuda_ia_texto'),
   ('huer.ayuda_economia_titulo', 'huer.ayuda_economia_texto'),
+  ('huer.tiempo_ayuda_titulo', 'huer.tiempo_ayuda_texto'),
   ('huer.ayuda_limites_titulo', 'huer.ayuda_limites_texto'),
 ];
 

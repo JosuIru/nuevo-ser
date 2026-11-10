@@ -14,6 +14,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show SoleraL10n, cargarIdiomaSolera, PaletaSolera, temaSolera;
 
 import 'branding.dart';
+import 'estado/aviso_helada_programado.dart';
 import 'estado/perfil_huerta.dart';
 import 'pantallas/pantalla_ajustes.dart';
 import 'pantallas/pantalla_cestas.dart';
@@ -26,6 +27,7 @@ Future<void> main() async {
   await cargarIdiomaSolera();
   await initializeDateFormatting();
   await cargarPerfilHuerta();
+  await cargarAvisarHeladas();
   runApp(const AppHuerta());
 }
 

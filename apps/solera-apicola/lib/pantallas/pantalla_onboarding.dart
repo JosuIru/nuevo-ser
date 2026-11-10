@@ -173,7 +173,7 @@ class _PaginaOnboarding extends StatelessWidget {
     // encima) el texto no cabe y se desbordaría.
     return LayoutBuilder(
       builder: (context, restricciones) => SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.symmetric(horizontal: 32, vertical: 24)),
         child: ConstrainedBox(
           constraints: BoxConstraints(
             minHeight: (restricciones.maxHeight - 48).clamp(0, double.infinity),

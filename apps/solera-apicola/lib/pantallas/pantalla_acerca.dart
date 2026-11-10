@@ -20,7 +20,7 @@ class PantallaAcerca extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(SoleraL10n.t('acerca_de'))),
       body: ListView(
-        padding: const EdgeInsets.all(20),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(20)),
         children: [
           Center(
             child: Column(

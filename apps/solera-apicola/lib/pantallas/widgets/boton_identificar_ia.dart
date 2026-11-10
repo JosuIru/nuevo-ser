@@ -236,7 +236,7 @@ class _ModalResultadoIA extends StatelessWidget {
       expand: false,
       builder: (ctx, scrollController) => SingleChildScrollView(
         controller: scrollController,
-        padding: const EdgeInsets.all(16),
+        padding: margenHojaSegura(ctx, const EdgeInsets.all(16)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

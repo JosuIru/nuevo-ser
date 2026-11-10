@@ -109,7 +109,7 @@ class _PantallaGestionApiariosState extends State<PantallaGestionApiarios> {
                   ),
                 )
               : ListView.separated(
-                  padding: const EdgeInsets.all(16),
+                  padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
                   itemCount: _apiarios.length,
                   separatorBuilder: (_, __) => SizedBox(height: 12),
                   itemBuilder: (context, index) {

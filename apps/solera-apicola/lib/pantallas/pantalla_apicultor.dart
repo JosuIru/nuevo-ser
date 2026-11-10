@@ -107,7 +107,7 @@ class _PantallaApicultorState extends State<PantallaApicultor> {
       body: Form(
         key: _claveFormulario,
         child: ListView(
-          padding: const EdgeInsets.all(16),
+          padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
           children: [
             _Cabecera(SoleraL10n.t('api.datos_personales')),
             _campo(_nif, '${SoleraL10n.t('api.sigla_nif')} *', validador: _obligatorio),

@@ -243,7 +243,7 @@ class _ListaIngresos extends StatelessWidget {
       );
     }
     return ListView.separated(
-      padding: const EdgeInsets.only(top: 8, bottom: 80),
+      padding: rellenoInferiorSeguro(context, const EdgeInsets.only(top: 8, bottom: 80)),
       itemCount: ingresos.length,
       separatorBuilder: (_, __) => const Divider(height: 1),
       itemBuilder: (_, i) {
@@ -346,7 +346,7 @@ class _ListaGastos extends StatelessWidget {
       );
     }
     return ListView.separated(
-      padding: const EdgeInsets.only(top: 8, bottom: 80),
+      padding: rellenoInferiorSeguro(context, const EdgeInsets.only(top: 8, bottom: 80)),
       itemCount: gastos.length,
       separatorBuilder: (_, __) => const Divider(height: 1),
       itemBuilder: (_, i) {
@@ -452,7 +452,7 @@ class _ResumenTrimestral extends StatelessWidget {
     );
 
     return ListView(
-      padding: const EdgeInsets.all(16),
+      padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
       children: [
         Text(
           SoleraL10n.t('api.eco_resumen_fiscal_trimestral'),
@@ -736,7 +736,7 @@ class _ResumenAnual extends StatelessWidget {
     final diferenciaOrdinaria = ingresosOrdinarios - gastosBase;
 
     return ListView(
-      padding: const EdgeInsets.all(16),
+      padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
       children: [
         _Card(
           titulo: '${SoleraL10n.t('api.eco_ingresos_ordinarios')} $ano',

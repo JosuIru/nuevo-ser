@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show SelectorIdioma, SoleraL10n, TituloBloqueSolera;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show PantallaEstadoActualizaciones, configActualizacionesMonorepo;
 
 import '../datos/base_datos.dart';
 import '../estado/cambios_datos.dart';
@@ -48,6 +50,17 @@ class PantallaAjustes extends StatelessWidget {
             subtitle: Text(SoleraL10n.t('mont.ingresos_y_gastos_ayuda')),
             onTap: () => Navigator.push(context,
                 MaterialPageRoute(builder: (_) => const PantallaEconomia())),
+          ),
+          ListTile(
+            leading: const Icon(Icons.system_update),
+            title: Text(SoleraL10n.t('comprobar_actualizaciones')),
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => PantallaEstadoActualizaciones(
+                          config: configActualizacionesMonorepo('solera-monte'),
+                          nombreApp: 'Larrea Monte',
+                        ))),
           ),
           ListTile(
             contentPadding: EdgeInsets.zero,

@@ -3,6 +3,8 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart' show AvisoCatalogosProvision
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show CabeceraHoySolera, CifraCabecera, SoleraL10n, TituloBloqueSolera;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show AvisoActualizaciones, configActualizacionesMonorepo;
 
 import '../branding.dart';
 import '../datos/base_datos.dart';
@@ -127,6 +129,11 @@ class _PantallaHoyState extends State<PantallaHoy> {
                           '${datos?.aprovechamientos.where((a) => a.campanya == anyo).length ?? 0}',
                       etiqueta: SoleraL10n.t('mont.aprovechamientos_anyo')),
                 ],
+              ),
+              // Aviso de versión nueva: si no la hay, no ocupa sitio.
+              AvisoActualizaciones(
+                config: configActualizacionesMonorepo('solera-monte'),
+                nombreApp: 'Larrea Monte',
               ),
               if (!catalogosCompletamenteRevisados)
                 AvisoCatalogosProvisionales(texto: SoleraL10n.t('mont.catalogos_provisionales')),

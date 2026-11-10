@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../i18n/solera_l10n.dart';
+import '../ui/piezas_solera.dart' show rellenoInferiorSeguro;
 import 'estado_clave_anthropic.dart';
 
 /// Comprueba una clave contra la API. Devuelve **null si la clave
@@ -177,7 +178,7 @@ class _PantallaClaveAnthropicState extends State<PantallaClaveAnthropic> {
     return Scaffold(
       appBar: AppBar(title: Text(widget.titulo)),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
         children: [
           Card(
             color: colores.primaryContainer,

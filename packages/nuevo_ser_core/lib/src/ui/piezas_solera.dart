@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'hueco_barra_sistema.dart' show margenHojaSegura;
 import 'tema_solera.dart';
 
 /// Piezas de pantalla del rediseño de Zunbeltz que sirven en cualquier app
@@ -76,6 +77,10 @@ class CuerpoResponsivoSolera extends StatelessWidget {
 /// Un `ListView` con `padding` explícito deja de sumar ese hueco, y en
 /// móviles de pantalla completa (Android 15, borde a borde) el último
 /// elemento queda debajo de la barra.
+///
+/// No se suma dos veces: si un `Scaffold` con `bottomNavigationBar` o un
+/// `SafeArea` ya consumió el hueco, aquí vale 0, y con el teclado abierto
+/// Flutter también lo pone a 0. Para hojas inferiores, [margenHojaSegura].
 EdgeInsets rellenoInferiorSeguro(BuildContext context, EdgeInsets base) =>
     base.copyWith(bottom: base.bottom + MediaQuery.paddingOf(context).bottom);
 

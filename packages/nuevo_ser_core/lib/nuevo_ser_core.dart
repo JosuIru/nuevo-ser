@@ -110,6 +110,7 @@ export 'src/ui/campo_autocomplete_catalogo.dart';
 export 'src/ui/dialogo_confirmacion.dart';
 export 'src/ui/vista_quiz.dart';
 export 'src/ui/galeria_imagenes.dart';
+export 'src/ui/hueco_barra_sistema.dart';
 export 'src/ui/indicador_estado.dart';
 export 'src/ui/selector_fotos.dart';
 export 'src/ui/selector_idioma.dart';

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../quiz/calibracion_quiz.dart';
 import '../quiz/pregunta_quiz.dart';
 import '../quiz/sesion_quiz.dart';
+import 'piezas_solera.dart' show rellenoInferiorSeguro;
 
 /// Textos de la vista de quiz. Cada juego los da en su voz e idioma.
 class TextosQuiz {
@@ -116,7 +117,7 @@ class _EstadoVistaQuiz extends State<VistaQuiz> {
     final aciertos = _sesion.respuestas.where((r) => r.acierto).length;
 
     return ListView(
-      padding: const EdgeInsets.all(16),
+      padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
       children: [
         if (widget.textos.progreso != null || widget.mostrarMarcador)
           Row(

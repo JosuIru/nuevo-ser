@@ -149,7 +149,9 @@ class _PantallaHoyState extends State<PantallaHoy> {
               children: [
                 Text(SoleraL10n.t('huer.primeros_pasos'), style: estilo),
                 const SizedBox(height: 8),
-                Text(SoleraL10n.t('huer.primeros_pasos_texto')),
+                Text(SoleraL10n.t(esHuertoDeCasa
+                    ? 'huer.primeros_pasos_texto_casa'
+                    : 'huer.primeros_pasos_texto')),
                 const SizedBox(height: 12),
                 const SelectorPerfilHuerta(),
                 const SizedBox(height: 12),

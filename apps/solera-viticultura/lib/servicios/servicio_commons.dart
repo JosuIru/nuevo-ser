@@ -84,7 +84,7 @@ bool _licenciaPermitida(String? licenciaCorta) {
 final Map<String, Future<ImagenCommons?>> _cache = {};
 
 const _cabeceras = {
-  'User-Agent': 'solera-agro/1.0 (https://github.com/josu/solera-agro)',
+  'User-Agent': 'larrea-viticultura/1.0 (https://github.com/JosuIru/nuevo-ser)',
 };
 
 /// Busca una imagen libre en Commons cuya licencia sea compatible con

@@ -21,7 +21,7 @@ import 'package:path_provider/path_provider.dart';
 /// Wikimedia pide identificar al cliente; sin User-Agent responde 403.
 const Map<String, String> cabecerasWikimedia = {
   'User-Agent':
-      'larrea-aromaticas/0.1 (https://coleccion-nuevo-ser.com; guía de especies)',
+      'larrea-aromaticas/0.1 (https://github.com/JosuIru/nuevo-ser; guía de especies)',
 };
 
 /// Busca las fotos de un artículo de Wikipedia. Se inyecta en la pantalla

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, separarCampoSolera;
 
 import '../datos/base_datos.dart';
 import '../datos/catalogos_generados/catalogo_especies.dart';
@@ -23,7 +23,7 @@ Widget desplegableCodigo({
   required void Function(String) alCambiar,
   bool conVacio = false,
 }) =>
-    DropdownButtonFormField<String>(
+    separarCampoSolera(DropdownButtonFormField<String>(
       initialValue: valor,
       decoration: InputDecoration(labelText: etiqueta),
       items: [
@@ -34,13 +34,13 @@ Widget desplegableCodigo({
       onChanged: (nuevo) {
         if (nuevo != null) alCambiar(nuevo);
       },
-    );
+    ));
 
 /// Campo de texto con sugerencias de una lista (la persona puede escribir
 /// otra cosa).
 Widget campoConSugerencias(TextEditingController controlador, String etiqueta,
         Iterable<String> sugerencias) =>
-    Autocomplete<String>(
+    separarCampoSolera(Autocomplete<String>(
       initialValue: controlador.value,
       optionsBuilder: (texto) {
         final buscado = texto.text.trim().toLowerCase();
@@ -58,7 +58,7 @@ Widget campoConSugerencias(TextEditingController controlador, String etiqueta,
           decoration: InputDecoration(labelText: etiqueta),
         );
       },
-    );
+    ));
 
 /// Alta o edición de un rebaño.
 Future<void> mostrarEdicionLote(BuildContext context,
@@ -266,7 +266,7 @@ Future<void> mostrarAltaMovimiento(BuildContext context, LoteGanado lote,
         selectorFecha(context, SoleraL10n.t('gana.fecha'), fecha,
             (elegida) => refrescar(() => fecha = elegida)),
         if (necesitaDestino)
-          DropdownButtonFormField<int?>(
+          separarCampoSolera(DropdownButtonFormField<int?>(
             initialValue: destino,
             decoration:
                 InputDecoration(labelText: SoleraL10n.t('gana.pieza_destino')),
@@ -276,7 +276,7 @@ Future<void> mostrarAltaMovimiento(BuildContext context, LoteGanado lote,
                     value: pieza.id, child: Text(pieza.nombre)),
             ],
             onChanged: (valor) => refrescar(() => destino = valor),
-          ),
+          )),
         campoNumero(cabezas, SoleraL10n.t('gana.cabezas'), decimales: false),
         if (externo) ...[
           campoTexto(identificaciones, SoleraL10n.t('gana.crotales_movidos')),

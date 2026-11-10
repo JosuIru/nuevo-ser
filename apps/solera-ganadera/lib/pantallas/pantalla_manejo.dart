@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
-    show SoleraL10n, TituloBloqueSolera;
+    show SoleraL10n, TituloBloqueSolera, separarCampoSolera;
 
 import '../branding.dart';
 import '../datos/base_datos.dart';
@@ -244,7 +244,7 @@ Widget selectorFecha(BuildContext context, String etiqueta, DateTime fecha,
 Widget selectorLote(
         List<LoteGanado> lotes, int? loteId, void Function(int?) alCambiar,
         {String? textoVacio}) =>
-    DropdownButtonFormField<int?>(
+    separarCampoSolera(DropdownButtonFormField<int?>(
       initialValue: loteId,
       decoration: InputDecoration(labelText: SoleraL10n.t('gana.rebano')),
       items: [
@@ -256,7 +256,7 @@ Widget selectorLote(
           DropdownMenuItem<int?>(value: lote.id, child: Text(lote.nombre)),
       ],
       onChanged: alCambiar,
-    );
+    ));
 
 Future<void> mostrarAltaTareaSanitaria(
     BuildContext context, List<LoteGanado> lotes) async {
@@ -272,7 +272,7 @@ Future<void> mostrarAltaTareaSanitaria(
       Text(SoleraL10n.t('gana.tarea_la_planifica_veterinario'),
           style: Theme.of(context).textTheme.bodySmall),
       campoTexto(titulo, SoleraL10n.t('gana.que_hay_que_hacer')),
-      DropdownButtonFormField<String>(
+      separarCampoSolera(DropdownButtonFormField<String>(
         initialValue: tipo,
         decoration: InputDecoration(labelText: SoleraL10n.t('gana.tipo')),
         items: [
@@ -281,7 +281,7 @@ Future<void> mostrarAltaTareaSanitaria(
                 value: opcion, child: Text(nombreTipoTarea(opcion)))
         ],
         onChanged: (valor) => refrescar(() => tipo = valor ?? tipo),
-      ),
+      )),
       selectorLote(lotes, loteId, (valor) => refrescar(() => loteId = valor)),
       selectorFecha(context, SoleraL10n.t('gana.fecha_prevista'), fecha,
           (elegida) => refrescar(() => fecha = elegida)),

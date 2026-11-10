@@ -157,6 +157,28 @@ Lo esencial que no se toca (hard limits):
   IA de plagas). Solo cambia lo que se ve: los datos no se borran. Se elige
   en Ajustes y en la tarjeta «Primeros pasos» de Hoy.
 
+- **2026-11-10 — Guía del huerto** (`pantallas/pantalla_guia.dart`,
+  `dominio/guia.dart`, `content/huerta/guia_*.csv`): 42 fichas de cultivo
+  (una por cultivo del catálogo: calendario semillero/directa/trasplante,
+  siembra, riego, cosecha, asociaciones, plagas con enlace a la fauna que las
+  combate y una curiosidad), 17 de fauna auxiliar, 15 plantas que ayudan y 15
+  técnicas. Pensada sobre todo para el huerto de casa, vale para los dos
+  perfiles. Accesos: icono de libro en la cabecera de Hoy (sin pestaña nueva),
+  «Ver en la guía» en las acciones de una siembra del bancal, icono en cada
+  observación de plaga (fauna auxiliar que la combate) y tarjeta «Esta semana
+  en el huerto» al final de Hoy (hasta 3 cultivos que se siembran ese mes
+  según las fichas, primero los que ya tiene la persona; rota cada semana).
+  Apartado nuevo en la Ayuda. Sin fotos en la v1. **Contenido solo en
+  castellano**: eu/ca/gl pendientes (los rótulos sí van en 4 idiomas, en
+  `content/solera/traducciones/huerta_guia.csv`). Todas las filas
+  `revision-ia: 2026-11-10` con fuente; aviso fijo en cada ficha. Las
+  asociaciones de la tabla de Madrid se muestran como tradición sin ensayo y la
+  nota separa lo que tiene respaldo (trébol entre coles, Lobularia, milpa). La
+  ficha de técnica «Rotación» enseña los años mínimos del catálogo que usa la
+  app. Hard limits vigilados en `test/dominio/guia_test.dart` (términos de
+  dosis, productos, marcas y salud; los plaguicidas solo para desaconsejarlos).
+  Revisión: `content/huerta/revision-2026-11-10-guia.md`. 149 tests.
+
 ## Normativa y fuentes consultadas (2026-11-07)
 
 - **Reglamento (UE) 2018/848**, texto en EUR-Lex

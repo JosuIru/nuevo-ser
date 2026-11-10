@@ -137,8 +137,88 @@ Future<void> main() async {
       Campo('revisadoPor', 'revisado_por'),
     ],
   );
+  // Guía del huerto (contenido divulgativo, solo castellano en la v1).
+  await _compilar(
+    csvNombre: 'guia_cultivos.csv',
+    ficheroDart: 'catalogo_guia_cultivos.dart',
+    clase: 'FichaGuiaCultivo',
+    lista: 'catalogoGuiaCultivos',
+    campos: const [
+      Campo('id', 'id'),
+      Campo('calendario', 'calendario'),
+      Campo('mesesSemillero', 'meses_semillero', TipoCampo.lista),
+      Campo('mesesDirecta', 'meses_directa', TipoCampo.lista),
+      Campo('mesesTrasplante', 'meses_trasplante', TipoCampo.lista),
+      Campo('siembra', 'siembra'),
+      Campo('riego', 'riego'),
+      Campo('cosecha', 'cosecha'),
+      Campo('asociacionesFavorables', 'asociaciones_favorables',
+          TipoCampo.lista),
+      Campo('asociacionesDesfavorables', 'asociaciones_desfavorables',
+          TipoCampo.lista),
+      Campo('notaAsociaciones', 'nota_asociaciones'),
+      Campo('plagas', 'plagas', TipoCampo.lista),
+      Campo('curiosidad', 'curiosidad'),
+      Campo('fuente', 'fuente'),
+      Campo('revisadoPor', 'revisado_por'),
+    ],
+  );
+  await _compilar(
+    csvNombre: 'guia_fauna.csv',
+    ficheroDart: 'catalogo_guia_fauna.dart',
+    clase: 'FichaGuiaFauna',
+    lista: 'catalogoGuiaFauna',
+    campos: const [
+      Campo('id', 'id'),
+      Campo('nombre', 'nombre'),
+      Campo('nombreCientifico', 'nombre_cientifico'),
+      Campo('grupo', 'grupo'),
+      Campo('queHace', 'que_hace'),
+      Campo('comoReconocerla', 'como_reconocerla'),
+      Campo('comoAtraerla', 'como_atraerla'),
+      Campo('plagas', 'plagas', TipoCampo.lista),
+      Campo('fuente', 'fuente'),
+      Campo('revisadoPor', 'revisado_por'),
+    ],
+  );
+  await _compilar(
+    csvNombre: 'guia_plantas.csv',
+    ficheroDart: 'catalogo_guia_plantas.dart',
+    clase: 'FichaGuiaPlanta',
+    lista: 'catalogoGuiaPlantas',
+    campos: const [
+      Campo('id', 'id'),
+      Campo('nombre', 'nombre'),
+      Campo('nombreCientifico', 'nombre_cientifico'),
+      Campo('tipo', 'tipo'),
+      Campo('queAporta', 'que_aporta'),
+      Campo('cuandoSembrar', 'cuando_sembrar'),
+      Campo('cuidado', 'cuidado'),
+      Campo('fauna', 'fauna', TipoCampo.lista),
+      Campo('plagas', 'plagas', TipoCampo.lista),
+      Campo('cultivoId', 'cultivo_id'),
+      Campo('fuente', 'fuente'),
+      Campo('revisadoPor', 'revisado_por'),
+    ],
+  );
+  await _compilar(
+    csvNombre: 'guia_tecnicas.csv',
+    ficheroDart: 'catalogo_guia_tecnicas.dart',
+    clase: 'FichaGuiaTecnica',
+    lista: 'catalogoGuiaTecnicas',
+    campos: const [
+      Campo('id', 'id'),
+      Campo('titulo', 'titulo'),
+      Campo('resumen', 'resumen'),
+      Campo('pasos', 'pasos', TipoCampo.lista),
+      Campo('truco', 'truco'),
+      Campo('enlaceApp', 'enlace_app'),
+      Campo('fuente', 'fuente'),
+      Campo('revisadoPor', 'revisado_por'),
+    ],
+  );
   await compilador.escribirFlagRevision(
-    descripcionCatalogos: 'los 4 catálogos de Larrea Huerta',
+    descripcionCatalogos: 'los 8 catálogos de Larrea Huerta (4 de datos y 4 de la guía)',
     textoBanner: 'datos provisionales sin validar',
   );
   print('catalogosCompletamenteRevisados = ${compilador.todasRevisadas}');

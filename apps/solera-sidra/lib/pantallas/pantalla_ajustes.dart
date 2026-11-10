@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show SelectorIdioma, SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show PantallaEstadoActualizaciones, configActualizacionesMonorepo;
 
 import '../datos/base_datos.dart';
 import '../modelos/titular.dart';
@@ -102,6 +104,17 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
               const PantallaEconomia()),
           _apartado(Icons.auto_awesome_outlined, 'sidr.inteligencia_artificial',
               pantallaClaveSidra()),
+          ListTile(
+            leading: const Icon(Icons.system_update),
+            title: Text(SoleraL10n.t('comprobar_actualizaciones')),
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => PantallaEstadoActualizaciones(
+                          config: configActualizacionesMonorepo('solera-sidra'),
+                          nombreApp: 'Larrea Sagardoa',
+                        ))),
+          ),
           _apartado(Icons.help_outline, 'sidr.ayuda', const PantallaAyuda()),
           const SelectorIdioma(),
           const SizedBox(height: 24),

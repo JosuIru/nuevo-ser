@@ -3,6 +3,8 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart' show AvisoCatalogosProvision
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show CabeceraHoySolera, CifraCabecera, SoleraL10n, TituloBloqueSolera;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show AvisoActualizaciones, configActualizacionesMonorepo;
 
 import '../branding.dart';
 import '../datos/base_datos.dart';
@@ -142,6 +144,11 @@ class _PantallaHoyState extends State<PantallaHoy> {
                     onTap: () => _abrir(const PantallaBienvenida()),
                   ),
                 ),
+              // Aviso de versión nueva: si no la hay, no ocupa sitio.
+              AvisoActualizaciones(
+                config: configActualizacionesMonorepo('solera-sidra'),
+                nombreApp: 'Larrea Sagardoa',
+              ),
               if (!catalogosCompletamenteRevisados)
                 AvisoCatalogosProvisionales(texto: SoleraL10n.t('sidr.catalogos_provisionales')),
               if (instantanea.hasError)

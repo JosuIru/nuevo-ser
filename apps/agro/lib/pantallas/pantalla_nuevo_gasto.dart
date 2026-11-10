@@ -293,7 +293,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
               validator: (v) =>
                   (v ?? '').trim().isEmpty ? SoleraL10n.t('agro.concepto_obligatorio') : null,
             ),
-            SizedBox(height: 12),
+            SizedBox(height: separacionCamposSolera),
             TextFormField(
               controller: _importeBase,
               keyboardType:
@@ -368,7 +368,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
               ),
             ),
             if (_imputacion == 'finca_concreta') ...[
-              SizedBox(height: 8),
+              SizedBox(height: separacionCamposSolera),
               DropdownButtonFormField<int?>(
                 initialValue: _fincaId,
                 decoration: InputDecoration(
@@ -383,7 +383,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
               ),
             ],
             if (_imputacion == 'cultivo_general') ...[
-              SizedBox(height: 8),
+              SizedBox(height: separacionCamposSolera),
               DropdownButtonFormField<String>(
                 initialValue: _cultivoId.isEmpty ? null : _cultivoId,
                 decoration: InputDecoration(
@@ -417,7 +417,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
               ],
               onChanged: (v) => setState(() => _terceroId = v),
             ),
-            SizedBox(height: 12),
+            SizedBox(height: separacionCamposSolera),
             TextFormField(
               controller: _numeroFactura,
               decoration: InputDecoration(

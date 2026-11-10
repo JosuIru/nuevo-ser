@@ -163,7 +163,7 @@ class _PantallaEditarSigpacState extends State<PantallaEditarSigpac> {
               ),
             ],
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           Row(
             children: [
               Expanded(
@@ -197,7 +197,7 @@ class _PantallaEditarSigpacState extends State<PantallaEditarSigpac> {
               ),
             ],
           ),
-          SizedBox(height: 16),
+          SizedBox(height: separacionCamposSolera),
           TextField(
             controller: _controladorSuperficie,
             decoration: InputDecoration(

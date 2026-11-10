@@ -243,7 +243,7 @@ class _PantallaCuadernoMapaState extends State<PantallaCuadernoMapa> {
             ],
             onChanged: (v) => setState(() => _fincaSeleccionada = v),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           DropdownButtonFormField<int>(
             initialValue: _ano,
             decoration: InputDecoration(

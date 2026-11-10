@@ -529,7 +529,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             ],
             onChanged: (v) => setState(() => _tipoIncidencia = v ?? 'otro'),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           TextFormField(
             controller: _controladorDiagnostico,
             decoration: InputDecoration(
@@ -567,19 +567,19 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             ],
             onChanged: (v) => setState(() => _tipoTratamiento = v ?? 'otro'),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           _autocompleteProducto(),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           TextFormField(
             controller: _controladorDosis,
             decoration: InputDecoration(labelText: SoleraL10n.t('agro.dosis'), border: OutlineInputBorder()),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           TextFormField(
             controller: _controladorMotivo,
             decoration: InputDecoration(labelText: SoleraL10n.t('agro.motivo'), border: OutlineInputBorder()),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           TextFormField(
             controller: _controladorPlazoSeguridad,
             decoration: InputDecoration(
@@ -609,7 +609,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 12),
+            SizedBox(height: separacionCamposSolera),
             TextFormField(
               controller: _controladorSuperficieTratada,
               decoration: InputDecoration(
@@ -621,7 +621,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
               inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[\d.,]'))],
               validator: validarNumeroOpcional,
             ),
-            SizedBox(height: 12),
+            SizedBox(height: separacionCamposSolera),
             TextFormField(
               controller: _controladorNifAplicador,
               decoration: InputDecoration(

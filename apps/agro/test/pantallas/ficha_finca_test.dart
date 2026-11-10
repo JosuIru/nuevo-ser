@@ -3,7 +3,8 @@ import 'package:agro/pantallas/pantalla_editar_sigpac.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show SoleraL10n, separacionCamposSolera;
 import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart' show codificarContorno;
 
 Future<void> abrirFicha(WidgetTester tester, Finca finca) async {
@@ -72,5 +73,38 @@ void main() {
     final copiada = tester.widget<TextField>(campoSuperficie).controller!.text;
     expect(copiada, isNotEmpty);
     expect(double.parse(copiada.replaceAll(',', '.')), closeTo(91.8, 2));
+  });
+
+  testWidgets('entre dos filas de campos queda la separación común', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(1080, 4000);
+    tester.view.devicePixelRatio = 2;
+    addTearDown(tester.view.reset);
+    await abrirFicha(
+      tester,
+      Finca(id: 1, nombre: 'El Soto', colorEntero: 1, fechaCreacionMs: 1),
+    );
+    final cajas = tester
+        .widgetList(find.byType(InputDecorator))
+        .map((caja) => tester.getRect(find.byWidget(caja)))
+        .toList();
+    // Agrupa por fila (los campos de una Row comparten la parte de arriba).
+    final filas = <Rect>[];
+    for (final caja in cajas..sort((a, b) => a.top.compareTo(b.top))) {
+      if (filas.isNotEmpty && (caja.top - filas.last.top).abs() < 1) {
+        filas.last = filas.last.expandToInclude(caja);
+      } else {
+        filas.add(caja);
+      }
+    }
+    expect(filas.length, greaterThanOrEqualTo(3));
+    for (var indice = 1; indice < filas.length; indice++) {
+      expect(
+        filas[indice].top - filas[indice - 1].bottom,
+        greaterThanOrEqualTo(separacionCamposSolera),
+        reason: 'fila $indice',
+      );
+    }
   });
 }

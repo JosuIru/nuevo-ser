@@ -116,7 +116,6 @@ class _PantallaEconomiaState extends State<PantallaEconomia> {
           alCambiar: (valor) => refrescar(() => parcelaId = valor),
         ),
         campoNumero(base, SoleraL10n.t('huer.base_euros')),
-        const SizedBox(height: 8),
         if (compensacion > 0)
           Text(SoleraL10n.tf('huer.con_compensacion_reagp',
               {'n': formatearNumero(compensacion, decimales: 0)}))

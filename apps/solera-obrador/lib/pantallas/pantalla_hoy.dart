@@ -12,7 +12,9 @@ import '../datos/base_datos.dart';
 import '../datos/catalogos_generados/flag_revision.dart';
 import '../estado/cambios_datos.dart';
 import '../modelos/masa_madre.dart';
+import '../dominio/planificador_hornada.dart';
 import '../modelos/pedido_fijo.dart';
+import '../modelos/plan_hornada.dart';
 import '../modelos/receta.dart';
 import '../modelos/registro_autocontrol.dart';
 import '../utiles/textos_obrador.dart';
@@ -23,6 +25,7 @@ import 'pantalla_ingredientes.dart';
 import 'pantalla_recetas.dart';
 import 'pantalla_masa_madre.dart';
 import 'pantalla_pedidos_fijos.dart';
+import 'pantalla_plan_hornada.dart';
 
 /// Lo del día: qué hornear (pedidos fijos), controles apuntados y la masa
 /// madre.
@@ -35,13 +38,14 @@ class PantallaHoy extends StatefulWidget {
 
 class _DatosHoy {
   _DatosHoy(this.piezasPorReceta, this.recetas, this.controles,
-      this.ultimoRefresco, this.hayIngredientes);
+      this.ultimoRefresco, this.hayIngredientes, this.planesEnCurso);
 
   final Map<int, int> piezasPorReceta;
   final Map<int, Receta> recetas;
   final List<RegistroAutocontrol> controles;
   final (MasaMadre, RefrescoMasaMadre?)? ultimoRefresco;
   final bool hayIngredientes;
+  final List<PlanHornada> planesEnCurso;
 }
 
 class _PantallaHoyState extends State<PantallaHoy> {
@@ -84,7 +88,9 @@ class _PantallaHoyState extends State<PantallaHoy> {
       ultimo = (masas.first, refrescos.isEmpty ? null : refrescos.first);
     }
     final hayIngredientes = (await baseDatos.listarIngredientes()).isNotEmpty;
-    return _DatosHoy(piezas, recetas, controles, ultimo, hayIngredientes);
+    final planes = await baseDatos.listarPlanesEnCurso();
+    return _DatosHoy(
+        piezas, recetas, controles, ultimo, hayIngredientes, planes);
   }
 
   Future<void> _abrir(Widget pantalla) =>
@@ -206,6 +212,26 @@ class _PantallaHoyState extends State<PantallaHoy> {
     return [
       if (!datos.hayIngredientes || datos.recetas.isEmpty)
         _primerosPasos(context),
+      if (datos.planesEnCurso.isNotEmpty) ...[
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: TituloBloqueSolera(SoleraL10n.t('obra.plan_en_curso')),
+        ),
+        for (final plan in datos.planesEnCurso)
+          ListTile(
+            leading: const Icon(Icons.schedule),
+            title: Text(plan.nombre),
+            subtitle: Text(switch (siguienteFasePendiente(plan.fases)) {
+              final siguiente? => '${formatearHoraFase(siguiente.inicio)} · '
+                  '${nombreFaseHornada(siguiente.fase)}',
+              null => SoleraL10n.t('obra.plan_terminado'),
+            }),
+            trailing: plan.avisosProgramados
+                ? const Icon(Icons.notifications_active_outlined)
+                : null,
+            onTap: () => _abrir(PantallaPlanHornada(planId: plan.id!)),
+          ),
+      ],
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
         child: TituloBloqueSolera(SoleraL10n.t('obra.que_hornear')),

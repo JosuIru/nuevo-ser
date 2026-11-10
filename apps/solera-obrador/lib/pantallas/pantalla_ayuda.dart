@@ -8,6 +8,7 @@ const List<(String, String)> apartadosAyudaObrador = [
   ('obra.ayuda_guia_titulo', 'obra.ayuda_guia_texto'),
   ('obra.ayuda_autocontrol_titulo', 'obra.ayuda_autocontrol_texto'),
   ('obra.ayuda_hornadas_titulo', 'obra.ayuda_hornadas_texto'),
+  ('obra.plan_ayuda_titulo', 'obra.plan_ayuda_texto'),
   ('obra.ayuda_documentos_titulo', 'obra.ayuda_documentos_texto'),
   ('obra.ayuda_ia_titulo', 'obra.ayuda_ia_texto'),
   ('obra.ayuda_limites_titulo', 'obra.ayuda_limites_texto'),

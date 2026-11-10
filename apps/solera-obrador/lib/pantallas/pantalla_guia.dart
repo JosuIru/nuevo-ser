@@ -12,9 +12,11 @@ import '../datos/catalogos_generados/catalogo_guia_fichas.dart';
 import '../datos/catalogos_generados/catalogo_guia_recetas.dart';
 import '../dominio/comprobacion_denominacion.dart';
 import '../dominio/guia_obrador.dart';
+import '../dominio/tiempos_guia.dart';
 import '../estado/cambios_datos.dart';
 import '../servicios/copiar_receta_guia.dart';
 import '../utiles/textos_obrador.dart';
+import 'pantalla_plan_hornada.dart';
 import 'pantalla_recetas.dart';
 
 /// Clave literal por sección: el test de traducciones del core comprueba
@@ -326,6 +328,21 @@ class PantallaRecetaGuia extends StatelessWidget {
             icon: const Icon(Icons.content_copy_outlined),
             label: Text(SoleraL10n.t('obra.guia_copiar')),
           ),
+          if (tiemposRecetasGuia[receta.id] case final plantilla?)
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: OutlinedButton.icon(
+                onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => PantallaPlanificarHornada(
+                            nombre: receta.nombre,
+                            plantilla: plantilla,
+                            recetaGuiaId: receta.id))),
+                icon: const Icon(Icons.schedule),
+                label: Text(SoleraL10n.t('obra.plan_planificar')),
+              ),
+            ),
           _Apartado(SoleraL10n.t('obra.guia_autolisis'), receta.autolisis),
           _Apartado(SoleraL10n.t('obra.guia_amasado'), receta.amasado),
           _Apartado(SoleraL10n.t('obra.guia_primera_fermentacion'),

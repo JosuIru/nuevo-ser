@@ -14,6 +14,7 @@ import '../servicios/compartir_documento.dart';
 import '../servicios/generador_ficha_tecnica_pdf.dart';
 import '../utiles/textos_obrador.dart';
 import 'pantalla_guia.dart';
+import 'pantalla_plan_hornada.dart';
 
 /// Todo lo que hace falta para calcular composiciones de una vez.
 class _Recetario {
@@ -220,6 +221,12 @@ class _PantallaFichaRecetaState extends State<PantallaFichaReceta> {
                     ),
                   ),
                 ),
+              IconButton(
+                tooltip: SoleraL10n.t('obra.plan_planificar'),
+                icon: const Icon(Icons.schedule),
+                onPressed: () =>
+                    abrirPlanificadorRecetaPropia(context, receta),
+              ),
               IconButton(
                 tooltip: SoleraL10n.t('editar'),
                 icon: const Icon(Icons.edit_outlined),

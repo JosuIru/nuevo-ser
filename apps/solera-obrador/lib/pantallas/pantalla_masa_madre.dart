@@ -5,6 +5,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 import '../datos/base_datos.dart';
 import '../estado/cambios_datos.dart';
 import '../modelos/masa_madre.dart';
+import '../servicios/avisos_obrador.dart';
 import '../utiles/textos_obrador.dart';
 import 'hoja_formulario.dart';
 
@@ -88,20 +89,76 @@ class _PantallaMasaMadreState extends State<PantallaMasaMadre> {
         final harina = leerNumero(controladores['harina']!.text);
         final agua = leerNumero(controladores['agua']!.text);
         if (masaMadre == null || harina == null || agua == null) return false;
+        final fechaMs = DateTime.now().millisecondsSinceEpoch;
         await BaseDatosSoleraObrador.instancia
             .guardarRefresco(RefrescoMasaMadre(
           masaMadreId: masa.id!,
-          fechaMs: DateTime.now().millisecondsSinceEpoch,
+          fechaMs: fechaMs,
           gramosMasaMadre: masaMadre,
           gramosHarina: harina,
           gramosAgua: agua,
           temperaturaC: leerNumero(controladores['temperatura']!.text),
           horasHastaPico: leerNumero(controladores['pico']!.text),
         ));
+        // El recordatorio cuenta desde este refresco.
+        await programarRecordatorioRefresco(
+            masa, DateTime.fromMillisecondsSinceEpoch(fechaMs));
         return true;
       },
     );
     if (guardado) _recargar();
+  }
+
+  /// Opciones del recordatorio de refresco, en horas (null: sin aviso).
+  static const _opcionesRecordatorio = <int?>[null, 12, 24, 48, 72, 168];
+
+  String _textoRecordatorio(int? horas) => switch (horas) {
+        null => SoleraL10n.t('obra.plan_recordatorio_no'),
+        168 => SoleraL10n.t('obra.plan_recordatorio_semana'),
+        final int horas when horas % 24 == 0 && horas > 24 =>
+          SoleraL10n.tf('obra.plan_recordatorio_dias', {'n': horas ~/ 24}),
+        final int horas =>
+          SoleraL10n.tf('obra.plan_recordatorio_horas', {'n': horas}),
+      };
+
+  Future<void> _elegirRecordatorio(
+      MasaMadre masa, RefrescoMasaMadre? ultimo) async {
+    final elegido = await showDialog<(int?,)>(
+      context: context,
+      builder: (contexto) => SimpleDialog(
+        title: Text(SoleraL10n.t('obra.plan_recordatorio_titulo')),
+        children: [
+          for (final horas in _opcionesRecordatorio)
+            SimpleDialogOption(
+              onPressed: () => Navigator.pop(contexto, (horas,)),
+              child: Text(_textoRecordatorio(horas)),
+            ),
+        ],
+      ),
+    );
+    if (elegido == null || !mounted) return;
+    final mensajero = ScaffoldMessenger.of(context);
+    final actualizada = masa.conRecordatorio(elegido.$1);
+    await BaseDatosSoleraObrador.instancia.guardarMasaMadre(actualizada);
+    DateTime? programado;
+    if (actualizada.recordatorioHoras != null &&
+        await avisosObrador.pedirPermiso()) {
+      programado = await programarRecordatorioRefresco(
+          actualizada,
+          ultimo == null
+              ? null
+              : DateTime.fromMillisecondsSinceEpoch(ultimo.fechaMs));
+    } else {
+      await programarRecordatorioRefresco(actualizada.conRecordatorio(null), null);
+    }
+    if (actualizada.recordatorioHoras != null) {
+      mensajero.showSnackBar(SnackBar(
+          content: Text(programado == null
+              ? SoleraL10n.t('avisos.sin_permiso')
+              : SoleraL10n.tf('obra.plan_recordatorio_programado',
+                  {'hora': DateFormat.MMMEd(SoleraL10n.idioma).add_Hm().format(programado)}))));
+    }
+    _recargar();
   }
 
   @override
@@ -133,14 +190,31 @@ class _PantallaMasaMadreState extends State<PantallaMasaMadre> {
                     children: [
                       ListTile(
                         title: Text(masa.nombre),
-                        subtitle: masa.harinaBase.isEmpty
-                            ? null
-                            : Text(masa.harinaBase),
-                        trailing: FilledButton.tonalIcon(
-                          onPressed: () => _nuevoRefresco(
-                              masa, refrescos.isEmpty ? null : refrescos.first),
-                          icon: const Icon(Icons.water_drop_outlined),
-                          label: Text(SoleraL10n.t('obra.refrescar')),
+                        subtitle: Text([
+                          if (masa.harinaBase.isNotEmpty) masa.harinaBase,
+                          if (masa.recordatorioHoras != null)
+                            '${SoleraL10n.t('obra.plan_recordatorio_titulo')}: '
+                                '${_textoRecordatorio(masa.recordatorioHoras)}',
+                        ].join(' · ')),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              tooltip:
+                                  SoleraL10n.t('obra.plan_recordatorio_titulo'),
+                              icon: Icon(masa.recordatorioHoras == null
+                                  ? Icons.alarm_add_outlined
+                                  : Icons.alarm_on_outlined),
+                              onPressed: () => _elegirRecordatorio(masa,
+                                  refrescos.isEmpty ? null : refrescos.first),
+                            ),
+                            FilledButton.tonalIcon(
+                              onPressed: () => _nuevoRefresco(masa,
+                                  refrescos.isEmpty ? null : refrescos.first),
+                              icon: const Icon(Icons.water_drop_outlined),
+                              label: Text(SoleraL10n.t('obra.refrescar')),
+                            ),
+                          ],
                         ),
                       ),
                       for (final refresco in refrescos.take(7))

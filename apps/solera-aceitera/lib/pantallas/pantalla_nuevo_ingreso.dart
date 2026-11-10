@@ -180,6 +180,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
             ),
             const SizedBox(height: 8),
             DropdownButtonFormField<String>(
+              isExpanded: true,
               initialValue: _tipoIngreso,
               decoration: InputDecoration(
                 labelText: SoleraL10n.t('acei.tipo_de_ingreso'),
@@ -275,6 +276,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                 const SizedBox(width: 8),
                 Expanded(
                   child: DropdownButtonFormField<String>(
+                    isExpanded: true,
                     initialValue: _unidad,
                     decoration: InputDecoration(
                       labelText: SoleraL10n.t('acei.unidad'),
@@ -297,6 +299,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
             ),
             const SizedBox(height: 16),
             DropdownButtonFormField<Tercero?>(
+              isExpanded: true,
               initialValue: _terceroSeleccionado,
               decoration: InputDecoration(
                 labelText: SoleraL10n.t('acei.cliente_opcional'),
@@ -319,6 +322,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
             ),
             const SizedBox(height: 12),
             DropdownButtonFormField<Parcela?>(
+              isExpanded: true,
               initialValue: _parcelaSeleccionada,
               decoration: InputDecoration(
                 labelText: SoleraL10n.t('acei.parcela_opcional'),

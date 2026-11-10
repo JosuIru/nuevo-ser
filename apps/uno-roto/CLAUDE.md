@@ -4,7 +4,7 @@ Cerebro persistente del proyecto. Se lee al inicio de cada sesión. Se mantiene 
 
 ## Encuadre del programa
 
-Uno Roto es uno de los juegos de la línea **Colección Nuevo Ser Kids** (juegos digitales pedagógicos infantiles/escolares). La **Colección Nuevo Ser** madre es un proyecto editorial y de pensamiento más amplio: editorial de libros, plugins para colectivos y comunidades, y herramientas para favorecer alternativas y pensamiento crítico y constructivo (https://coleccion-nuevo-ser.com/). Cuando los docs dicen "la Colección" sin más, se refieren a Kids.
+Uno Roto es uno de los juegos de la línea **Colección Nuevo Ser Kids** (juegos digitales pedagógicos infantiles/escolares). La **Colección Nuevo Ser** madre es un proyecto editorial y de pensamiento más amplio: editorial de libros, plugins para colectivos y comunidades, y herramientas para favorecer alternativas y pensamiento crítico y constructivo (https://coleccion-nuevo-ser.gailu.net/). Cuando los docs dicen "la Colección" sin más, se refieren a Kids.
 
 ## Qué es Uno Roto
 

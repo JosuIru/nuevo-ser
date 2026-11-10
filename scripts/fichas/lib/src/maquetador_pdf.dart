@@ -212,7 +212,7 @@ pw.Widget _pie(ContenidoFicha ficha, pw.TextStyle base) => pw.Column(
         ),
         pw.SizedBox(height: 6),
         pw.Text(
-          'Colección Nuevo Ser Kids · coleccion-nuevo-ser.com · Contenido CC BY-SA 4.0 · '
+          'Colección Nuevo Ser Kids · coleccion-nuevo-ser.gailu.net · Contenido CC BY-SA 4.0 · '
           'Ficha ${ficha.idHabilidad}, semilla ${ficha.semilla}',
           style: base.copyWith(fontSize: 7.5, color: PaletaFicha.textoTenue),
         ),

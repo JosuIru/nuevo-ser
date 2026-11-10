@@ -4,7 +4,7 @@ Cerebro persistente del juego. Se lee al inicio de cada sesión. Detalle exhaust
 
 ## Encuadre del programa
 
-El Descifrador es el cuarto juego de la línea **Colección Nuevo Ser Kids**, tras Uno Roto, Las Versiones y El Cuaderno. La **Colección Nuevo Ser** madre es un proyecto editorial y de pensamiento más amplio (https://coleccion-nuevo-ser.com/). Cuando los docs dicen "la Colección" sin más, se refieren a Kids.
+El Descifrador es el cuarto juego de la línea **Colección Nuevo Ser Kids**, tras Uno Roto, Las Versiones y El Cuaderno. La **Colección Nuevo Ser** madre es un proyecto editorial y de pensamiento más amplio (https://coleccion-nuevo-ser.gailu.net/). Cuando los docs dicen "la Colección" sin más, se refieren a Kids.
 
 ## Qué es El Descifrador
 

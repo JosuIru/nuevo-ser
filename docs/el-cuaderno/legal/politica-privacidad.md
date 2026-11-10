@@ -15,7 +15,7 @@
 
 El Cuaderno es un juego digital pedagógico publicado por **Colección
 Nuevo Ser Kids**, la línea infantil/escolar de la **Colección Nuevo
-Ser** ([coleccion-nuevo-ser.com](https://coleccion-nuevo-ser.com/)). El
+Ser** ([coleccion-nuevo-ser.gailu.net](https://coleccion-nuevo-ser.gailu.net/)). El
 código fuente está bajo licencia **AGPL-3.0** y los contenidos
 pedagógicos bajo **CC-BY-SA 4.0**. Cualquiera puede auditar tanto el
 código como el contenido.

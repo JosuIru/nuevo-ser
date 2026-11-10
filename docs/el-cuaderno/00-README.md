@@ -5,7 +5,7 @@
 > Edad: 9-13 años.
 > Modelo: herramienta de campo digital con alma pedagógica, sin protagonista ni mundo ficticio.
 
-> **Encuadre del programa.** *El Cuaderno* se propone como tercer juego de la línea **Colección Nuevo Ser Kids** (juegos digitales pedagógicos infantiles/escolares). La **Colección Nuevo Ser** madre es un proyecto editorial y de pensamiento más amplio: editorial de libros, plugins para colectivos y comunidades, herramientas para favorecer alternativas y pensamiento crítico y constructivo (https://coleccion-nuevo-ser.com/). Cuando este paquete dice "la Colección" se refiere a Kids salvo aviso. *La Tierra que Despierta*, columna filosófica de El Cuaderno, viene de la Colección madre.
+> **Encuadre del programa.** *El Cuaderno* se propone como tercer juego de la línea **Colección Nuevo Ser Kids** (juegos digitales pedagógicos infantiles/escolares). La **Colección Nuevo Ser** madre es un proyecto editorial y de pensamiento más amplio: editorial de libros, plugins para colectivos y comunidades, herramientas para favorecer alternativas y pensamiento crítico y constructivo (https://coleccion-nuevo-ser.gailu.net/). Cuando este paquete dice "la Colección" se refiere a Kids salvo aviso. *La Tierra que Despierta*, columna filosófica de El Cuaderno, viene de la Colección madre.
 
 ---
 

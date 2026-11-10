@@ -5,7 +5,7 @@
 > Estado: borrador vivo. Sometido a Fase 1 del proceso de incorporación a **Colección Nuevo Ser Kids**.
 > Leer junto al manifiesto, los criterios de integración y *Educar para el Nuevo Ser* / *La Tierra que Despierta*.
 
-> **Encuadre del programa.** *El Cuaderno* aspira a entrar como tercer juego de la línea **Colección Nuevo Ser Kids** (juegos digitales pedagógicos infantiles/escolares). La **Colección Nuevo Ser** madre es un proyecto editorial y de pensamiento más amplio (editorial de libros, plugins para colectivos y comunidades, herramientas para alternativas y pensamiento crítico y constructivo): https://coleccion-nuevo-ser.com/. En esta biblia, "la Colección" se refiere a Kids salvo aviso.
+> **Encuadre del programa.** *El Cuaderno* aspira a entrar como tercer juego de la línea **Colección Nuevo Ser Kids** (juegos digitales pedagógicos infantiles/escolares). La **Colección Nuevo Ser** madre es un proyecto editorial y de pensamiento más amplio (editorial de libros, plugins para colectivos y comunidades, herramientas para alternativas y pensamiento crítico y constructivo): https://coleccion-nuevo-ser.gailu.net/. En esta biblia, "la Colección" se refiere a Kids salvo aviso.
 
 ---
 

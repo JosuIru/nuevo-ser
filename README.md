@@ -2,7 +2,7 @@
 
 Monorepo de los juegos digitales pedagógicos de **Colección Nuevo Ser Kids**, la línea infantil/escolar (9-14 años) de la **Colección Nuevo Ser**.
 
-> La Colección madre es un proyecto editorial y de pensamiento más amplio (editorial de libros, plugins para colectivos y comunidades, herramientas para favorecer alternativas y pensamiento crítico y constructivo): https://coleccion-nuevo-ser.com/. Aquí, "la Colección" se refiere a Kids salvo aviso.
+> La Colección madre es un proyecto editorial y de pensamiento más amplio (editorial de libros, plugins para colectivos y comunidades, herramientas para favorecer alternativas y pensamiento crítico y constructivo): https://coleccion-nuevo-ser.gailu.net/. Aquí, "la Colección" se refiere a Kids salvo aviso.
 
 ## Estructura
 

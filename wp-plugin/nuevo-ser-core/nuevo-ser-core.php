@@ -1,13 +1,13 @@
 <?php
 /**
  * Plugin Name: Nuevo Ser Core
- * Plugin URI:  https://coleccion-nuevo-ser.com/
+ * Plugin URI:  https://coleccion-nuevo-ser.gailu.net/
  * Description: Backend compartido de la Colección Nuevo Ser Kids: sync, auth y tutor IA
  *              para Uno Roto y futuros juegos. Expone /wp-json/nuevo-ser/v1/* (canónico)
  *              y /wp-json/uno-roto/v1/* (alias deprecado, vivo hasta v1.5) con JWT propios.
  * Version:     0.19.1
  * Author:      Equipo Colección Nuevo Ser
- * Author URI:  https://coleccion-nuevo-ser.com/
+ * Author URI:  https://coleccion-nuevo-ser.gailu.net/
  * License:     GPL-2.0-or-later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: nuevo-ser-core

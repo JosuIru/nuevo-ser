@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show AvisoCatalogosProvisionales;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show AvisoActualizaciones, configActualizacionesMonorepo;
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show CabeceraHoySolera, CifraCabecera, SoleraL10n, TituloBloqueSolera;
@@ -136,6 +138,11 @@ class _PantallaHoyState extends State<PantallaHoy> {
                       valor: '${datos?.controles.length ?? 0}',
                       etiqueta: SoleraL10n.t('obra.controles_de_hoy')),
                 ],
+              ),
+              // Aviso de versión nueva: si no la hay, no ocupa sitio.
+              AvisoActualizaciones(
+                config: configActualizacionesMonorepo('solera-obrador'),
+                nombreApp: 'Larrea Obrador',
               ),
               if (!catalogosCompletamenteRevisados)
                 AvisoCatalogosProvisionales(

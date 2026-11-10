@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show PantallaClaveAnthropic, SelectorIdioma, SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show PantallaEstadoActualizaciones, configActualizacionesMonorepo;
 
 import '../datos/base_datos.dart';
 import '../estado/clave_anthropic_obrador.dart';
@@ -93,6 +95,19 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
                           estado: estadoClaveObrador,
                           nombreApp: 'Larrea Obrador',
                           queIdentifica: SoleraL10n.t('obra.ia_que_hace'),
+                        ))),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.system_update),
+            title: Text(SoleraL10n.t('comprobar_actualizaciones')),
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => PantallaEstadoActualizaciones(
+                          config:
+                              configActualizacionesMonorepo('solera-obrador'),
+                          nombreApp: 'Larrea Obrador',
                         ))),
           ),
           ListTile(

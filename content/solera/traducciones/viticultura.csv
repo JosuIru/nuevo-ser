@@ -533,3 +533,5 @@ viti.vinedo_obligatorio_etiqueta,Viñedo *,Mahastia *,Vinya *,Viña *
 viti.zona,Zona,Eremua,Zona,Zona
 viti.zona_norte_atlantica,Norte (atlántica),Iparraldea (atlantikoa),Nord (atlàntica),Norte (atlántica)
 viti.zona_sur_mediterranea,Sur (mediterránea),Hegoaldea (mediterraneoa),Sud (mediterrània),Sur (mediterránea)
+viti.borrar_vinedo,Borrar viñedo,Mahastia ezabatu,Esborrar la vinya,Borrar viñedo
+viti.borrar_vinedo_aviso,"Se borrará «{nombre}». Sus cepas se conservan como puntos sueltos, con toda su historia (cosechas, observaciones, tratamientos).","«{nombre}» ezabatuko da. Bere mahatsondoak puntu solte gisa gordeko dira, historia osoarekin (uztak, behaketak, tratamenduak).","S'esborrarà «{nombre}». Els seus ceps es conserven com a punts solts, amb tota la seva història (collites, observacions, tractaments).","Borrarase «{nombre}». As súas cepas consérvanse como puntos soltos, con toda a súa historia (colleitas, observacións, tratamentos)."

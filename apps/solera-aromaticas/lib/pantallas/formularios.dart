@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, separarCampoSolera;
 
 import '../datos/base_datos.dart';
 import '../dominio/catalogos.dart';
@@ -126,7 +126,7 @@ Future<bool> mostrarAltaCosecha(BuildContext context,
       final zona = zonaDe(origen);
       final confundibles = confundiblesDe(especieId);
       return [
-        DropdownButtonFormField<String>(
+        separarCampoSolera(DropdownButtonFormField<String>(
           initialValue: origen,
           isExpanded: true,
           decoration: InputDecoration(labelText: SoleraL10n.t('arom.origen')),
@@ -143,7 +143,7 @@ Future<bool> mostrarAltaCosecha(BuildContext context,
                       '${SoleraL10n.t('arom.silvestre')}: ${zona.nombre}')),
           ],
           onChanged: (valor) => refrescar(() => origen = valor ?? origen),
-        ),
+        )),
         selectorFecha(context,
             fecha: fecha, alCambiar: (valor) => refrescar(() => fecha = valor)),
         CampoCatalogo(
@@ -253,7 +253,7 @@ Future<bool> mostrarAltaTratamiento(BuildContext context,
     context,
     titulo: SoleraL10n.t('arom.nuevo_tratamiento'),
     construir: (refrescar) => [
-      DropdownButtonFormField<int>(
+      separarCampoSolera(DropdownButtonFormField<int>(
         initialValue: parcela,
         isExpanded: true,
         decoration: InputDecoration(labelText: SoleraL10n.t('arom.parcela')),
@@ -265,7 +265,7 @@ Future<bool> mostrarAltaTratamiento(BuildContext context,
                     '${candidata.nombre} · ${nombreEspecie(candidata.especieId)}')),
         ],
         onChanged: (valor) => refrescar(() => parcela = valor),
-      ),
+      )),
       selectorFecha(context,
           fecha: fecha, alCambiar: (valor) => refrescar(() => fecha = valor)),
       CampoCatalogo(
@@ -443,12 +443,12 @@ Future<bool> mostrarAltaSecado(BuildContext context) async {
                 ? SoleraL10n.tf(
                     'arom.suma_cosechas', {'kg': formatearNumero(sumaMarcadas)})
                 : null),
-        TextField(
+        separarCampoSolera(TextField(
           controller: kgSecos,
           keyboardType: const TextInputType.numberWithOptions(decimal: true),
           decoration: InputDecoration(labelText: SoleraL10n.t('arom.kg_secos')),
           onChanged: (_) => refrescar(() {}),
-        ),
+        )),
         if (rendimiento != null && (leerNumero(kgSecos.text) ?? 0) > 0)
           textoAviso(
               context,
@@ -585,13 +585,13 @@ Future<bool> mostrarAltaDestilacion(BuildContext context) async {
             valor: estadoPlanta,
             nombre: nombreEstadoPlanta,
             alCambiar: (valor) => refrescar(() => estadoPlanta = valor)),
-        TextField(
+        separarCampoSolera(TextField(
           controller: mlAceite,
           keyboardType: const TextInputType.numberWithOptions(decimal: true),
           decoration:
               InputDecoration(labelText: SoleraL10n.t('arom.ml_aceite')),
           onChanged: (_) => refrescar(() {}),
-        ),
+        )),
         if (rendimiento != null && (leerNumero(mlAceite.text) ?? 0) > 0)
           textoAviso(
               context,

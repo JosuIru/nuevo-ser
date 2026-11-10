@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, margenHojaSegura;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, margenHojaSegura, separarCampoSolera;
 
 import '../utiles/textos_aromaticas.dart';
 
@@ -57,22 +57,22 @@ Future<bool> mostrarHojaFormulario(
   return guardado == true;
 }
 
-/// Campo de texto numérico de una línea.
+/// Campo de texto numérico de una línea, con el margen común debajo.
 Widget campoNumero(TextEditingController controlador, String etiqueta,
         {bool decimales = true, String? ayuda}) =>
-    TextField(
+    separarCampoSolera(TextField(
       controller: controlador,
       keyboardType: TextInputType.numberWithOptions(decimal: decimales),
       decoration: InputDecoration(labelText: etiqueta, helperText: ayuda),
-    );
+    ));
 
 /// Campo de texto de una línea.
 Widget campoTexto(TextEditingController controlador, String etiqueta,
         {String? ayuda}) =>
-    TextField(
+    separarCampoSolera(TextField(
       controller: controlador,
       decoration: InputDecoration(labelText: etiqueta, helperText: ayuda),
-    );
+    ));
 
 /// Fila con la fecha elegida; al tocarla abre el calendario. Los registros
 /// del cuaderno se apuntan a menudo días después.

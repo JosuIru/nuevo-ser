@@ -4,6 +4,8 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show CabeceraHoySolera, CifraCabecera, SoleraL10n, TituloBloqueSolera;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show AvisoActualizaciones, configActualizacionesMonorepo;
 
 import '../branding.dart';
 import '../datos/base_datos.dart';
@@ -109,6 +111,11 @@ class _PantallaHoyState extends State<PantallaHoy> {
                       valor: '${datos?.lotes ?? 0}',
                       etiqueta: SoleraL10n.t('arom.lotes')),
                 ],
+              ),
+              // Aviso de versión nueva: si no la hay, no ocupa sitio.
+              AvisoActualizaciones(
+                config: configActualizacionesMonorepo('solera-aromaticas'),
+                nombreApp: 'Larrea Aromáticas',
               ),
               if (!catalogosCompletamenteRevisados)
                 AvisoCatalogosProvisionales(

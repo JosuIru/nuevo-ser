@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show SelectorIdioma, SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show PantallaEstadoActualizaciones, configActualizacionesMonorepo;
 
 import '../datos/base_datos.dart';
 import '../modelos/titular.dart';
@@ -111,6 +113,17 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
             () => const PantallaEconomia()),
         _acceso(context, Icons.auto_awesome_outlined,
             'arom.inteligencia_artificial', pantallaClaveAromaticas),
+        ListTile(
+          leading: const Icon(Icons.system_update),
+          title: Text(SoleraL10n.t('comprobar_actualizaciones')),
+          onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (_) => PantallaEstadoActualizaciones(
+                        config: configActualizacionesMonorepo('solera-aromaticas'),
+                        nombreApp: 'Larrea Aromáticas',
+                      ))),
+        ),
         _acceso(context, Icons.help_outline, 'arom.ayuda',
             () => const PantallaAyuda()),
       ];

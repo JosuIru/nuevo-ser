@@ -45,7 +45,8 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
     final ti = _ingresos.fold(0.0, (s, i) => s + i.total);
     final tg = _gastos.fold(0.0, (s, g) => s + g.total);
     final bal = ti - tg;
-    return Scaffold(
+    // El TabBar necesita un controlador: sin él, la pantalla falla al abrirse.
+    return DefaultTabController(length: 3, child: Scaffold(
       appBar: AppBar(title: Text(SoleraL10n.t('libro_economico')),
         actions: [PopupMenuButton<int>(icon: const Icon(Icons.date_range), onSelected: (a) { setState(() => _anyo = a); _recargar(); },
           itemBuilder: (_) => List.generate(5, (i) { final y = DateTime.now().year - 2 + i; return PopupMenuItem(value: y, child: Text(y.toString(), style: TextStyle(fontWeight: y == _anyo ? FontWeight.bold : FontWeight.normal))); }))]),
@@ -58,7 +59,7 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
         ])),
       ]),
       floatingActionButton: FloatingActionButton(heroTag: 'fab_eco', onPressed: _tab == 0 ? _nuevoIng : _nuevoGas, child: Icon(_tab == 0 ? Icons.add_circle : Icons.remove_circle)),
-    );
+    ));
   }
 
   Widget _totalCard(ThemeData t, String tit, double v, Color c) => Card(color: c.withAlpha(15), child: Padding(padding: const EdgeInsets.all(16), child: Row(children: [Text(tit, style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)), const Spacer(), Text(formatearEuros(v), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: c))])));

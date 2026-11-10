@@ -5,12 +5,14 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show PantallaEstadoActualizaciones, configActualizacionesMonorepo;
 
 import '../datos/base_datos.dart';
+import '../estado/perfil_huerta.dart';
 import '../modelos/titular.dart';
 import 'hoja_formulario.dart';
 import 'identificar_plaga.dart';
 import 'pantalla_ayuda.dart';
 import 'pantalla_documentos.dart';
 import 'pantalla_economia.dart';
+import 'selector_perfil.dart';
 
 /// Ajustes: idioma, datos de la huerta para los cuadernos y accesos.
 class PantallaAjustes extends StatefulWidget {
@@ -110,15 +112,31 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
   @override
   Widget build(BuildContext context) {
     final estilo = Theme.of(context).textTheme.titleMedium;
+    return ValueListenableBuilder<PerfilHuerta>(
+      valueListenable: perfilHuerta,
+      builder: (context, perfil, _) =>
+          _construir(context, estilo, perfil == PerfilHuerta.casa),
+    );
+  }
+
+  Widget _construir(BuildContext context, TextStyle? estilo, bool deCasa) {
     return Scaffold(
       appBar: AppBar(title: Text(SoleraL10n.t('ajustes'))),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          _acceso(Icons.picture_as_pdf_outlined, 'huer.documentos',
-              const PantallaDocumentos()),
-          _acceso(Icons.euro_outlined, 'huer.ingresos_y_gastos',
-              const PantallaEconomia()),
+          Text(SoleraL10n.t('huer.perfil'), style: estilo),
+          const SizedBox(height: 8),
+          const SelectorPerfilHuerta(),
+          const SizedBox(height: 16),
+          // El huerto de casa no lleva cuadernos para el certificador ni
+          // cuentas: lo que ya hubiera sigue guardado.
+          if (!deCasa) ...[
+            _acceso(Icons.picture_as_pdf_outlined, 'huer.documentos',
+                const PantallaDocumentos()),
+            _acceso(Icons.euro_outlined, 'huer.ingresos_y_gastos',
+                const PantallaEconomia()),
+          ],
           _acceso(Icons.auto_awesome_outlined, 'huer.inteligencia_artificial',
               pantallaClaveHuerta()),
           ListTile(
@@ -137,10 +155,13 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
           const SizedBox(height: 24),
           Text(SoleraL10n.t('huer.datos_huerta'), style: estilo),
           campoTexto(_nombreHuerta, SoleraL10n.t('huer.nombre_huerta')),
-          campoTexto(_nombre, SoleraL10n.t('huer.nombre_titular')),
-          campoTexto(_nif, SoleraL10n.t('huer.nif')),
-          campoTexto(_registro, SoleraL10n.t('huer.registro_explotacion')),
+          if (!deCasa) ...[
+            campoTexto(_nombre, SoleraL10n.t('huer.nombre_titular')),
+            campoTexto(_nif, SoleraL10n.t('huer.nif')),
+            campoTexto(_registro, SoleraL10n.t('huer.registro_explotacion')),
+          ],
           campoTexto(_municipio, SoleraL10n.t('huer.municipio')),
+          if (!deCasa) ...[
           campoTexto(_comunidad, SoleraL10n.t('huer.comunidad_autonoma')),
           const SizedBox(height: 16),
           Text(SoleraL10n.t('huer.certificacion_ecologica'), style: estilo),
@@ -152,6 +173,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
           Text(SoleraL10n.t('huer.asesor'), style: estilo),
           campoTexto(_asesor, SoleraL10n.t('huer.asesor_nombre')),
           campoTexto(_ropo, SoleraL10n.t('huer.asesor_ropo')),
+          ],
           const SizedBox(height: 12),
           FilledButton(
               onPressed: _guardar, child: Text(SoleraL10n.t('guardar'))),

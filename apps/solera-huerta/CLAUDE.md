@@ -148,6 +148,15 @@ Lo esencial que no se toca (hard limits):
   Bancales y siembras, sin área. El texto `huer.mapa_sin_ubicaciones` aún
   habla de «Usar mi ubicación» (pendiente de retocar en las traducciones).
 
+- **2026-11-10 — Perfil «huerto de casa»** (`estado/perfil_huerta.dart`,
+  preferencia `solera_huerta.perfil`; por defecto profesional). Para
+  particulares: quita la pestaña Cestas, en Hoy las cestas y los pendientes
+  del certificador, y en Ajustes los documentos, ingresos y gastos, titular,
+  NIF, registro, comunidad, certificación y asesor. Se queda todo lo demás
+  (bancales, rotación, siembras, cosechas, insumos con plazos de seguridad,
+  IA de plagas). Solo cambia lo que se ve: los datos no se borran. Se elige
+  en Ajustes y en la tarjeta «Primeros pasos» de Hoy.
+
 ## Normativa y fuentes consultadas (2026-11-07)
 
 - **Reglamento (UE) 2018/848**, texto en EUR-Lex

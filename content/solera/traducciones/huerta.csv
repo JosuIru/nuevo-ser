@@ -395,3 +395,8 @@ huer.unidad_plantas,plantas,landareak,plantes,plantas
 huer.usar_mi_ubicacion,Usar mi ubicación,Nire kokapena erabili,Usa la meva ubicació,Usar a miña localización
 huer.variedad,Variedad,Barietatea,Varietat,Variedade
 huer.variedad_local,Variedad local o tradicional,Tokiko barietatea edo tradizionala,Varietat local o tradicional,Variedade local ou tradicional
+huer.perfil,Para qué la usas,Zertarako erabiltzen duzu,Per a què la fas servir,Para que a usas
+huer.perfil_profesional,Huerta profesional,Baratze profesionala,Horta professional,Horta profesional
+huer.perfil_casa,Huerto de casa,Etxeko baratzea,Hort de casa,Horta da casa
+huer.perfil_profesional_ayuda,"Con cestas por socio, cuaderno para el certificador ecológico e ingresos y gastos.","Bazkideen saskiekin, ziurtatzaile ekologikoarentzako koadernoarekin eta diru-sarrera eta gastuekin.","Amb cistelles per soci, quadern per al certificador ecològic i ingressos i despeses.","Con cestas por socio, caderno para o certificador ecolóxico e ingresos e gastos."
+huer.perfil_casa_ayuda,"Bancales, rotación, siembras, cosechas y plagas. Sin cestas, certificador ni cuentas; si cambias de opinión, lo apuntado sigue ahí.","Lur-sailak, txandakatzea, ereintzak, uztak eta izurriak. Saskirik, ziurtatzailerik eta konturik gabe; iritziz aldatzen baduzu, idatzitakoa hor egongo da.","Bancals, rotació, sembres, collites i plagues. Sense cistelles, certificador ni comptes; si canvies d'opinió, el que has apuntat continua allà.","Bancais, rotación, sementeiras, colleitas e pragas. Sen cestas, certificador nin contas; se cambias de opinión, o apuntado segue aí."

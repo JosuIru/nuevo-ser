@@ -11,10 +11,12 @@ import '../datos/base_datos.dart';
 import '../datos/catalogos_generados/flag_revision.dart';
 import '../estado/cambios_datos.dart';
 import '../estado/datos_huerta.dart';
+import '../estado/perfil_huerta.dart';
 import '../modelos/tratamiento.dart';
 import '../provisional_core/venta_directa/semanas.dart';
 import '../utiles/textos_huerta.dart';
 import 'formularios_huerta.dart';
+import 'selector_perfil.dart';
 import '../estado/semana_cestas.dart';
 
 typedef _DatosHoy = ({
@@ -40,11 +42,17 @@ class _PantallaHoyState extends State<PantallaHoy> {
     super.initState();
     _datos = _cargar();
     cambiosDatos.addListener(_recargar);
+    perfilHuerta.addListener(_alCambiarPerfil);
+  }
+
+  void _alCambiarPerfil() {
+    if (mounted) setState(() {});
   }
 
   @override
   void dispose() {
     cambiosDatos.removeListener(_recargar);
+    perfilHuerta.removeListener(_alCambiarPerfil);
     super.dispose();
   }
 
@@ -142,7 +150,9 @@ class _PantallaHoyState extends State<PantallaHoy> {
                 Text(SoleraL10n.t('huer.primeros_pasos'), style: estilo),
                 const SizedBox(height: 8),
                 Text(SoleraL10n.t('huer.primeros_pasos_texto')),
-                const SizedBox(height: 8),
+                const SizedBox(height: 12),
+                const SelectorPerfilHuerta(),
+                const SizedBox(height: 12),
                 Wrap(
                   spacing: 8,
                   runSpacing: 8,
@@ -241,6 +251,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
           ],
         ),
       ),
+      if (!esHuertoDeCasa)
       Card(
         child: ListTile(
           leading: const Icon(Icons.shopping_basket_outlined),
@@ -288,7 +299,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
             ],
           ),
         ),
-      if (pendientesCertificador.isNotEmpty)
+      if (pendientesCertificador.isNotEmpty && !esHuertoDeCasa)
         Card(
           child: Column(
             children: [

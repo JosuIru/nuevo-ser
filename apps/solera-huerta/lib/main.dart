@@ -5,6 +5,7 @@
 //     ├── Parcelas   parcelas → bancales con su plan de rotación
 //     ├── Cuaderno   siembras, cosechas y aplicaciones de insumos del año
 //     ├── Cestas     reparto de la cosecha de la semana y entregas
+//     │              (no sale en el perfil «huerto de casa»)
 //     └── Ajustes
 
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show SoleraL10n, cargarIdiomaSolera, PaletaSolera, temaSolera;
 
 import 'branding.dart';
+import 'estado/perfil_huerta.dart';
 import 'pantallas/pantalla_ajustes.dart';
 import 'pantallas/pantalla_cestas.dart';
 import 'pantallas/pantalla_cuaderno.dart';
@@ -23,6 +25,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await cargarIdiomaSolera();
   await initializeDateFormatting();
+  await cargarPerfilHuerta();
   runApp(const AppHuerta());
 }
 
@@ -57,20 +60,49 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   int _pestanaActual = 0;
 
   @override
+  void initState() {
+    super.initState();
+    perfilHuerta.addListener(_alCambiarPerfil);
+  }
+
+  @override
+  void dispose() {
+    perfilHuerta.removeListener(_alCambiarPerfil);
+    super.dispose();
+  }
+
+  /// El perfil se cambia en Ajustes, la última pestaña: se sigue en ella
+  /// aunque aparezca o desaparezca Cestas.
+  void _alCambiarPerfil() => setState(() => _pestanaActual =
+      perfilHuerta.value == PerfilHuerta.profesional ? 4 : 3);
+
+  @override
   Widget build(BuildContext context) {
+    return ValueListenableBuilder<PerfilHuerta>(
+      valueListenable: perfilHuerta,
+      builder: (context, perfil, _) => _construir(perfil),
+    );
+  }
+
+  Widget _construir(PerfilHuerta perfil) {
+    final conCestas = perfil == PerfilHuerta.profesional;
+    final pantallas = <Widget>[
+      // Con clave: al aparecer o desaparecer Cestas, cada pantalla conserva
+      // su estado (p. ej. lo escrito en Ajustes sin guardar).
+      const PantallaHoy(key: ValueKey('hoy')),
+      const PantallaParcelas(key: ValueKey('parcelas')),
+      const PantallaCuaderno(key: ValueKey('cuaderno')),
+      if (conCestas) const PantallaCestas(key: ValueKey('cestas')),
+      const PantallaAjustes(key: ValueKey('ajustes')),
+    ];
+    final pestana = _pestanaActual.clamp(0, pantallas.length - 1);
     return Scaffold(
       body: IndexedStack(
-        index: _pestanaActual,
-        children: const [
-          PantallaHoy(),
-          PantallaParcelas(),
-          PantallaCuaderno(),
-          PantallaCestas(),
-          PantallaAjustes(),
-        ],
+        index: pestana,
+        children: pantallas,
       ),
       bottomNavigationBar: NavigationBar(
-        selectedIndex: _pestanaActual,
+        selectedIndex: pestana,
         onDestinationSelected: (indice) =>
             setState(() => _pestanaActual = indice),
         destinations: [
@@ -86,6 +118,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
             icon: const Icon(Icons.menu_book_outlined),
             label: SoleraL10n.t('huer.cuaderno'),
           ),
+          if (conCestas)
           NavigationDestination(
             icon: const Icon(Icons.shopping_basket_outlined),
             label: SoleraL10n.t('huer.cestas'),

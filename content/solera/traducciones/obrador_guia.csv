@@ -1,0 +1,45 @@
+clave,es,eu,ca,gl
+obra.guia,Guía del obrador,Obradorearen gida,Guia de l'obrador,Guía do obradoiro
+obra.guia_aviso,"Orientativo, revisado con IA a partir de las fuentes citadas; pendiente de revisión por una persona experta.","Orientagarria, AArekin berrikusia aipatutako iturrietatik abiatuta; pertsona aditu batek berrikusteke.","Orientatiu, revisat amb IA a partir de les fonts citades; pendent de revisió per una persona experta.","Orientativo, revisado con IA a partir das fontes citadas; pendente de revisión por unha persoa experta."
+obra.guia_contenido_es,El contenido de la guía está de momento solo en castellano.,Gidaren edukia gaztelaniaz baino ez dago oraingoz.,"De moment, el contingut de la guia només és en castellà.",Polo de agora o contido da guía está só en castelán.
+obra.guia_buscar,Buscar en la guía,Bilatu gidan,Cerca a la guia,Buscar na guía
+obra.guia_sin_resultados,No hay nada en esta sección con esa búsqueda.,Ez dago ezer atal honetan bilaketa horrekin.,No hi ha res en aquesta secció amb aquesta cerca.,Non hai nada nesta sección con esa busca.
+obra.guia_seccion_recetas,Recetas base,Oinarrizko errezetak,Receptes base,Receitas base
+obra.guia_seccion_fermentacion,Fermentación,Hartzidura,Fermentació,Fermentación
+obra.guia_seccion_tiempos,Tiempos y temperaturas,Denborak eta tenperaturak,Temps i temperatures,Tempos e temperaturas
+obra.guia_seccion_coccion,Cocción,Erretzea,Cocció,Cocción
+obra.guia_seccion_harinas,Harinas,Irinak,Farines,Fariñas
+obra.guia_seccion_trucos,Trucos y problemas,Trikimailuak eta arazoak,Trucs i problemes,Trucos e problemas
+obra.guia_recetas_de_la_guia,Recetas de la guía,Gidako errezetak,Receptes de la guia,Receitas da guía
+obra.guia_ingredientes,Ingredientes (% sobre la harina),Osagaiak (irinaren gaineko %),Ingredients (% sobre la farina),Ingredientes (% sobre a fariña)
+obra.guia_hidratacion,Líquidos (hidratación),Likidoak (hidratazioa),Líquids (hidratació),Líquidos (hidratación)
+obra.guia_temperatura_masa,Temperatura de la masa,Orearen tenperatura,Temperatura de la massa,Temperatura da masa
+obra.guia_merma,Merma de cocción estimada,Erretzean galdutakoa (zenbatetsia),Minva de cocció estimada,Mingua de cocción estimada
+obra.guia_autolisis,Autólisis,Autolisia,Autòlisi,Autólise
+obra.guia_amasado,Amasado,Oratzea,Pastat,Amasado
+obra.guia_primera_fermentacion,Primera fermentación,Lehen hartzidura,Primera fermentació,Primeira fermentación
+obra.guia_formado,Formado,Itxuratzea,Formació,Formado
+obra.guia_fermentacion_final,Fermentación final,Azken hartzidura,Fermentació final,Fermentación final
+obra.guia_coccion,Cocción,Erretzea,Cocció,Cocción
+obra.guia_senal_hecho,Cómo saber que está hecho,Egina dagoen jakiteko,Com saber que està fet,Como saber que está feito
+obra.guia_notas,Notas,Oharrak,Notes,Notas
+obra.guia_fuente,Fuentes,Iturriak,Fonts,Fontes
+obra.guia_base,Base o relleno,Oinarria edo betegarria,Base o farciment,Base ou recheo
+obra.guia_copiar,Copiar a mis recetas,Kopiatu nire errezetetara,Copia a les meves receptes,Copiar ás miñas receitas
+obra.guia_copiar_explicacion,"Elige cuánto quieres hacer: la app pasa los porcentajes a gramos. Los ingredientes que no tengas se crean con sus alérgenos habituales: revísalos con la ficha del proveedor.","Aukeratu zenbat egin nahi duzun: aplikazioak ehunekoak gramo bihurtzen ditu. Ez dituzun osagaiak ohiko alergenoekin sortzen dira: berrikusi hornitzailearen fitxarekin.","Tria quant en vols fer: l'app passa els percentatges a grams. Els ingredients que no tinguis es creen amb els al·lèrgens habituals: revisa'ls amb la fitxa del proveïdor.","Escolle canto queres facer: a app pasa as porcentaxes a gramos. Os ingredientes que non teñas créanse cos seus alérxenos habituais: revísaos coa ficha do provedor."
+obra.guia_copiar_por_harina,Peso de harina (g),Irin pisua (g),Pes de farina (g),Peso de fariña (g)
+obra.guia_copiar_por_masa,Peso total de masa (g),Orearen pisu osoa (g),Pes total de massa (g),Peso total de masa (g)
+obra.guia_cancelar,Cancelar,Utzi,Cancel·la,Cancelar
+obra.guia_copiada,Receta copiada en tus recetas.,Errezeta zure errezetetan kopiatu da.,Recepta copiada a les teves receptes.,Receita copiada nas túas receitas.
+obra.guia_ingredientes_creados,Ingredientes nuevos (revisa sus alérgenos): {lista},Osagai berriak (berrikusi haien alergenoak): {lista},Ingredients nous (revisa'n els al·lèrgens): {lista},Ingredientes novos (revisa os seus alérxenos): {lista}
+obra.guia_calc_titulo,Calcular la temperatura del agua,Uraren tenperatura kalkulatu,Calcula la temperatura de l'aigua,Calcular a temperatura da auga
+obra.guia_calc_objetivo,Masa objetivo (°C),Helburuko orea (°C),Massa objectiu (°C),Masa obxectivo (°C)
+obra.guia_calc_harina,Harina (°C),Irina (°C),Farina (°C),Fariña (°C)
+obra.guia_calc_ambiente,Ambiente (°C),Giroa (°C),Ambient (°C),Ambiente (°C)
+obra.guia_calc_friccion,Fricción (°C),Marruskadura (°C),Fricció (°C),Fricción (°C)
+obra.guia_calc_prefermento,"Prefermento (°C, si lo hay)","Aurrehartzigarria (°C, baldin badago)","Prefermentació (°C, si n'hi ha)","Prefermento (°C, se o hai)"
+obra.guia_calc_resultado,Agua a {grados} °C,Ura {grados} °C-tan,Aigua a {grados} °C,Auga a {grados} °C
+obra.guia_calc_falta,"Escribe la masa objetivo, la harina y el ambiente.","Idatzi helburuko orea, irina eta giroa.","Escriu la massa objectiu, la farina i l'ambient.","Escribe a masa obxectivo, a fariña e o ambiente."
+obra.guia_calc_fuera_rango,"Sale fuera de lo que da el grifo: enfría o templa también la harina o el ambiente.","Txorrotak ematen duenetik kanpo dago: hoztu edo epeldu irina edo giroa ere.","Surt fora del que dona l'aixeta: refreda o tempera també la farina o l'ambient.","Sae fóra do que dá a billa: arrefría ou tempera tamén a fariña ou o ambiente."
+obra.ayuda_guia_titulo,Guía del obrador,Obradorearen gida,Guia de l'obrador,Guía do obradoiro
+obra.ayuda_guia_texto,"En Hoy, el icono del libro abre la guía: recetas base en porcentaje panadero (harina = 100 %), fermentación, tiempos y temperaturas, tipos de cocción, harinas y trucos para los problemas más comunes, con buscador. Cada receta base se puede copiar a tus recetas: dices cuánta harina o cuánta masa quieres y la app pasa los porcentajes a gramos (también desde Recetas → Recetas de la guía). La ficha de la temperatura del agua trae una calculadora. Todo es orientativo, revisado con IA a partir de las fuentes que cita cada ficha y pendiente de revisión por una persona experta; el contenido está de momento solo en castellano. La guía no dice nada de alérgenos (los calcula la app con tus ingredientes) ni da tiempos para conservas.","Gaur atalean, liburuaren ikonoak gida irekitzen du: oinarrizko errezetak okin-ehunekoetan (irina = % 100), hartzidura, denborak eta tenperaturak, erretzeko moduak, irinak eta ohiko arazoetarako trikimailuak, bilatzailearekin. Oinarrizko errezeta bakoitza zure errezetetara kopia daiteke: zenbat irin edo zenbat ore nahi duzun esaten duzu eta aplikazioak ehunekoak gramo bihurtzen ditu (Errezetak → Gidako errezetak ataletik ere bai). Uraren tenperaturaren fitxak kalkulagailu bat dakar. Dena orientagarria da, AArekin berrikusia fitxa bakoitzak aipatzen dituen iturrietatik abiatuta, eta pertsona aditu batek berrikusteke; edukia gaztelaniaz baino ez dago oraingoz. Gidak ez du alergenoei buruz ezer esaten (aplikazioak zure osagaiekin kalkulatzen ditu) eta ez du kontserbetarako denborarik ematen.","A Avui, la icona del llibre obre la guia: receptes base en percentatge de forner (farina = 100 %), fermentació, temps i temperatures, tipus de cocció, farines i trucs per als problemes més habituals, amb cercador. Cada recepta base es pot copiar a les teves receptes: dius quanta farina o quanta massa vols i l'app passa els percentatges a grams (també des de Receptes → Receptes de la guia). La fitxa de la temperatura de l'aigua porta una calculadora. Tot és orientatiu, revisat amb IA a partir de les fonts que cita cada fitxa i pendent de revisió per una persona experta; de moment el contingut només és en castellà. La guia no diu res d'al·lèrgens (els calcula l'app amb els teus ingredients) ni dona temps per a conserves.","En Hoxe, a icona do libro abre a guía: receitas base en porcentaxe panadeira (fariña = 100 %), fermentación, tempos e temperaturas, tipos de cocción, fariñas e trucos para os problemas máis comúns, con buscador. Cada receita base pódese copiar ás túas receitas: dis canta fariña ou canta masa queres e a app pasa as porcentaxes a gramos (tamén desde Receitas → Receitas da guía). A ficha da temperatura da auga trae unha calculadora. Todo é orientativo, revisado con IA a partir das fontes que cita cada ficha e pendente de revisión por unha persoa experta; polo de agora o contido está só en castelán. A guía non di nada de alérxenos (calcúlaos a app cos teus ingredientes) nin dá tempos para conservas."

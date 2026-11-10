@@ -99,7 +99,7 @@ class _PantallaFichaArbolState extends State<PantallaFichaArbol> {
         ],
       ),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
         children: [
           _BloqueDescriptivo(arbol: arbol, zona: _zona, formatoFecha: formatoFecha),
           const SizedBox(height: 16),

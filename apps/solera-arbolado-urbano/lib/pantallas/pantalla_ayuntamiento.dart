@@ -103,7 +103,7 @@ class _PantallaAyuntamientoState extends State<PantallaAyuntamiento> {
       body: Form(
         key: _claveFormulario,
         child: ListView(
-          padding: const EdgeInsets.all(16),
+          padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
           children: [
             _Cabecera(SoleraL10n.t('arb.datos_del_ayuntamiento')),
             _campo(_nombre, '${SoleraL10n.t('arb.nombre_del_ayuntamiento')} *',

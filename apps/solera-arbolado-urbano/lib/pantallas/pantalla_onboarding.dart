@@ -173,7 +173,7 @@ class _PaginaOnboarding extends StatelessWidget {
     // pantallas bajas no cabría.
     return Center(
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.symmetric(horizontal: 32, vertical: 24)),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

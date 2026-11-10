@@ -129,7 +129,7 @@ class _PantallaInformeMunicipalState extends State<PantallaInformeMunicipal> {
     return Scaffold(
       appBar: AppBar(title: Text(SoleraL10n.t('arb.informe_municipal'))),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
         children: [
           if (!aytoOk) ...[
             Card(

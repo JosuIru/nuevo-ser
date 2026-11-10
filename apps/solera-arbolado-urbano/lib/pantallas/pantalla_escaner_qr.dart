@@ -67,7 +67,7 @@ class _PantallaEscanerQrState extends State<PantallaEscanerQr> {
             onDetect: _alDetectar,
           ),
           Positioned(
-            bottom: 24,
+            bottom: 24 + MediaQuery.paddingOf(context).bottom,
             left: 24,
             right: 24,
             child: Container(

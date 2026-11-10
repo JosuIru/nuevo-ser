@@ -1,20 +1,27 @@
 clave,es,eu,ca,gl
-nat.cat_mamiferos,Mamíferos,Ugaztunak,Mamífers,Mamíferos
-nat.cat_aves,Aves,Hegaztiak,Ocells,Aves
-nat.cat_reptiles,Reptiles,Narrastiak,Rèptils,Réptiles
 nat.cat_anfibios,Anfibios,Anfibioak,Amfibis,Anfibios
-nat.cat_peces,Peces,Arrainak,Peixos,Peixes
+nat.cat_aves,Aves,Hegaztiak,Ocells,Aves
 nat.cat_insectos,Insectos y artrópodos,Intsektuak eta artropodoak,Insectes i artròpodes,Insectos e artrópodos
-nat.cat_plantas,Plantas,Landareak,Plantes,Plantas
-nat.cat_setas,Setas y hongos,Perretxikoak eta onddoak,Bolets i fongs,Cogomelos e fungos
+nat.cat_mamiferos,Mamíferos,Ugaztunak,Mamífers,Mamíferos
 nat.cat_otros_animales,Otros animales,Beste animalia batzuk,Altres animals,Outros animais
-nat.uso_medicinal,Medicinal,Sendagarria,Medicinal,Medicinal
-nat.uso_comestible,Comestible,Jangarria,Comestible,Comestible
+nat.cat_peces,Peces,Arrainak,Peixos,Peixes
+nat.cat_plantas,Plantas,Landareak,Plantes,Plantas
+nat.cat_reptiles,Reptiles,Narrastiak,Rèptils,Réptiles
+nat.cat_setas,Setas y hongos,Perretxikoak eta onddoak,Bolets i fongs,Cogomelos e fungos
+nat.ficha_aviso_consumo,"Esta guía ayuda a reconocer, pero no es una identificación segura. Nunca la uses para decidir si una planta o una seta se puede comer, beber o usar: compruébalo con una persona experta.","Gida honek ezagutzen laguntzen du, baina ez da identifikazio ziur bat. Ez erabili inoiz landare edo onddo bat jan, edan edo erabil daitekeen erabakitzeko: egiaztatu pertsona aditu batekin.","Aquesta guia ajuda a reconèixer, però no és una identificació segura. No la facis servir mai per decidir si una planta o un bolet es pot menjar, beure o fer servir: comprova-ho amb una persona experta.","Esta guía axuda a recoñecer, pero non é unha identificación segura. Non a uses nunca para decidir se unha planta ou un cogomelo se pode comer, beber ou usar: compróbao cunha persoa experta."
+nat.ficha_aviso_uso,"Información sobre medicamentos tradicionales, no consejo médico. Antes de usar una planta, consulta a tu médico o farmacéutico, sobre todo si tomas medicamentos, estás embarazada o es para un niño. La guía no da dosis.","Sendagai tradizionalei buruzko informazioa, ez aholku medikoa. Landare bat erabili aurretik, galdetu zure medikuari edo farmazialariari, batez ere sendagairik hartzen baduzu, haurdun bazaude edo haur batentzat bada. Gidak ez du dosirik ematen.","Informació sobre medicaments tradicionals, no consell mèdic. Abans de fer servir una planta, consulta el metge o el farmacèutic, sobretot si prens medicaments, estàs embarassada o és per a un infant. La guia no dona dosis.","Información sobre medicamentos tradicionais, non consello médico. Antes de usar unha planta, consulta o teu médico ou farmacéutico, sobre todo se tomas medicamentos, estás embarazada ou é para un neno. A guía non dá doses."
+nat.ficha_contraindicaciones,No usar si…,Ez erabili baldin…,No s’ha de fer servir si…,Non usar se…
+nat.ficha_precauciones,Precauciones,Neurriak,Precaucions,Precaucións
+nat.ficha_se_confunde,Se confunde con,Honekin nahas daiteke,Es confon amb,Confúndese con
+nat.ficha_sin_cotejar,"Resumen en castellano de la monografía en inglés, pendiente de revisión por una persona.","Ingelesezko monografiaren laburpena, pertsona batek berrikusi gabe.","Resum de la monografia en anglès, pendent de revisió per una persona.","Resumo da monografía en inglés, pendente de revisión por unha persoa."
+nat.ficha_uso,Uso,Erabilera,Ús,Uso
+nat.ficha_uso_tradicional,Uso tradicional según la Agencia Europea del Medicamento,"Ohiko erabilera, Sendagaien Europako Agentziaren arabera",Ús tradicional segons l’Agència Europea del Medicament,Uso tradicional segundo a Axencia Europea do Medicamento
+nat.ficha_ver_monografia,Ver la monografía de la EMA,EMAren monografia ikusi,Mira la monografia de l’EMA,Ver a monografía da EMA
 nat.uso_aromatica,Aromática / culinaria,Usaintsua / sukaldekoa,Aromàtica / culinària,Aromática / culinaria
+nat.uso_endemica,Endémica,Endemikoa,Endèmica,Endémica
+nat.uso_invasora,Invasora,Inbaditzailea,Invasora,Invasora
 nat.uso_melifera,Melífera,Eztigilea,Mel·lífera,Melífera
 nat.uso_ornamental,Ornamental,Apaingarria,Ornamental,Ornamental
+nat.uso_protegida,Protegida,Babestua,Protegida,Protexida
 nat.uso_toxica,Tóxica,Toxikoa,Tòxica,Tóxica
 nat.uso_urticante,Urticante / irritante,Azkura-eragilea / narritagarria,Urticant / irritant,Urticante / irritante
-nat.uso_protegida,Protegida,Babestua,Protegida,Protexida
-nat.uso_invasora,Invasora,Inbaditzailea,Invasora,Invasora
-nat.uso_endemica,Endémica,Endemikoa,Endèmica,Endémica

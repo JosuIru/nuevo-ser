@@ -1,0 +1,52 @@
+# Guía del obrador — ingredientes de las recetas base, en % sobre la harina (harina = 100 %). ORIENTATIVOS.
+# ingrediente_id = id de ingredientes_base.csv (lo comprueba un test). Las harinas suman 100.
+# La masa madre cuenta como un ingrediente más (su harina y su agua no se suman a las de la masa).
+receta_id,ingrediente_id,porcentaje,nota,fuente,revisado_por
+rustico,harina_trigo,100,Panificable o media fuerza,"Hamelman, J., «Bread» (Wiley, 2.ª ed.); Real Decreto 677/2016, anexo (BOE-A-2016-11951)",revision-ia: 2026-11-10
+rustico,agua,68,,"Hamelman, J., «Bread» (Wiley, 2.ª ed.)",revision-ia: 2026-11-10
+rustico,sal,1.8,,Real Decreto 308/2019 art. 11.2.c (BOE-A-2019-6994),revision-ia: 2026-11-10
+rustico,levadura_fresca,1.5,,"Hamelman, J., «Bread» (Wiley, 2.ª ed.)",revision-ia: 2026-11-10
+chapata,harina_trigo,100,Media fuerza o fuerza,"Hamelman, J., «Bread» (Wiley, 2.ª ed.); Real Decreto 677/2016, anexo (BOE-A-2016-11951)",revision-ia: 2026-11-10
+chapata,agua,78,,"Hamelman, J., «Bread» (Wiley, 2.ª ed.)",revision-ia: 2026-11-10
+chapata,sal,1.8,,Real Decreto 308/2019 art. 11.2.c (BOE-A-2019-6994),revision-ia: 2026-11-10
+chapata,levadura_fresca,0.8,,"Hamelman, J., «Bread» (Wiley, 2.ª ed.)",revision-ia: 2026-11-10
+baguette,harina_trigo,100,Panificable o media fuerza,"Calvel, R., «Le goût du pain» (Jérôme Villette); Real Decreto 677/2016, anexo (BOE-A-2016-11951)",revision-ia: 2026-11-10
+baguette,agua,68,,"Calvel, R., «Le goût du pain» (Jérôme Villette); Hamelman, J., «Bread» (Wiley, 2.ª ed.)",revision-ia: 2026-11-10
+baguette,sal,1.6,Por debajo del 2 % clásico francés para el máximo de sal del pan común,Real Decreto 308/2019 art. 11.2.c (BOE-A-2019-6994),revision-ia: 2026-11-10
+baguette,levadura_fresca,1.2,,"Hamelman, J., «Bread» (Wiley, 2.ª ed.)",revision-ia: 2026-11-10
+integral,harina_trigo_integral,100,,"Hamelman, J., «Bread» (Wiley, 2.ª ed.); Real Decreto 308/2019 art. 4.3 (BOE-A-2019-6994)",revision-ia: 2026-11-10
+integral,agua,75,Añade los últimos 5-10 puntos poco a poco,"Hamelman, J., «Bread» (Wiley, 2.ª ed.)",revision-ia: 2026-11-10
+integral,sal,1.8,,Real Decreto 308/2019 art. 11.2.c (BOE-A-2019-6994),revision-ia: 2026-11-10
+integral,levadura_fresca,1.5,,"Hamelman, J., «Bread» (Wiley, 2.ª ed.)",revision-ia: 2026-11-10
+centeno,harina_centeno,100,,"Hamelman, J., «Bread» (Wiley, 2.ª ed.); Real Decreto 308/2019 art. 4.4 (BOE-A-2019-6994)",revision-ia: 2026-11-10
+centeno,agua,80,,"Hamelman, J., «Bread» (Wiley, 2.ª ed.)",revision-ia: 2026-11-10
+centeno,masa_madre,40,Masa madre refrescada con harina de centeno,"Hamelman, J., «Bread» (Wiley, 2.ª ed.)",revision-ia: 2026-11-10
+centeno,sal,1.8,,Real Decreto 308/2019 art. 11.2.c (BOE-A-2019-6994),revision-ia: 2026-11-10
+molde,harina_trigo,100,Fuerza o media fuerza,"Suas, M., «Advanced Bread and Pastry» (Delmar Cengage); Real Decreto 677/2016, anexo (BOE-A-2016-11951)",revision-ia: 2026-11-10
+molde,agua,40,,"Suas, M., «Advanced Bread and Pastry» (Delmar Cengage)",revision-ia: 2026-11-10
+molde,leche,25,,"Suas, M., «Advanced Bread and Pastry» (Delmar Cengage)",revision-ia: 2026-11-10
+molde,mantequilla,8,,"Suas, M., «Advanced Bread and Pastry» (Delmar Cengage)",revision-ia: 2026-11-10
+molde,azucar,6,,"Suas, M., «Advanced Bread and Pastry» (Delmar Cengage)",revision-ia: 2026-11-10
+molde,sal,1.8,,"Suas, M., «Advanced Bread and Pastry» (Delmar Cengage)",revision-ia: 2026-11-10
+molde,levadura_fresca,3,,"Suas, M., «Advanced Bread and Pastry» (Delmar Cengage)",revision-ia: 2026-11-10
+brioche,harina_trigo,100,Fuerza,"Suas, M., «Advanced Bread and Pastry» (Delmar Cengage); Real Decreto 677/2016, anexo (BOE-A-2016-11951)",revision-ia: 2026-11-10
+brioche,huevo,50,Huevo entero sin cáscara,"Suas, M., «Advanced Bread and Pastry» (Delmar Cengage)",revision-ia: 2026-11-10
+brioche,leche,10,,"Suas, M., «Advanced Bread and Pastry» (Delmar Cengage)",revision-ia: 2026-11-10
+brioche,mantequilla,50,Fría,"Suas, M., «Advanced Bread and Pastry» (Delmar Cengage)",revision-ia: 2026-11-10
+brioche,azucar,12,,"Suas, M., «Advanced Bread and Pastry» (Delmar Cengage)",revision-ia: 2026-11-10
+brioche,sal,2,,"Suas, M., «Advanced Bread and Pastry» (Delmar Cengage)",revision-ia: 2026-11-10
+brioche,levadura_fresca,3,,"Suas, M., «Advanced Bread and Pastry» (Delmar Cengage)",revision-ia: 2026-11-10
+focaccia,harina_trigo,100,Media fuerza o fuerza,"Hamelman, J., «Bread» (Wiley, 2.ª ed.)",revision-ia: 2026-11-10
+focaccia,agua,75,,"Hamelman, J., «Bread» (Wiley, 2.ª ed.)",revision-ia: 2026-11-10
+focaccia,aceite_oliva,5,Solo el de la masa,"Hamelman, J., «Bread» (Wiley, 2.ª ed.)",revision-ia: 2026-11-10
+focaccia,sal,2,,"Hamelman, J., «Bread» (Wiley, 2.ª ed.)",revision-ia: 2026-11-10
+focaccia,levadura_fresca,1.5,,"Hamelman, J., «Bread» (Wiley, 2.ª ed.)",revision-ia: 2026-11-10
+empanada,harina_trigo,100,,"Consumer Eroski, «Las empanadas gallegas» (consumer.es)",revision-ia: 2026-11-10
+empanada,agua,45,Templada; ajustar hasta que no se pegue,"Consumer Eroski, «Las empanadas gallegas» (consumer.es)",revision-ia: 2026-11-10
+empanada,aceite_oliva,18,Puede ser el del sofrito,"Consumer Eroski, «Las empanadas gallegas» (consumer.es)",revision-ia: 2026-11-10
+empanada,sal,1.6,,"Consumer Eroski, «Las empanadas gallegas» (consumer.es)",revision-ia: 2026-11-10
+empanada,levadura_fresca,2,,"Consumer Eroski, «Las empanadas gallegas» (consumer.es)",revision-ia: 2026-11-10
+masa_madre,harina_trigo,100,Panificable o media fuerza,"Hamelman, J., «Bread» (Wiley, 2.ª ed.)",revision-ia: 2026-11-10
+masa_madre,agua,72,,"Hamelman, J., «Bread» (Wiley, 2.ª ed.)",revision-ia: 2026-11-10
+masa_madre,masa_madre,20,En el pico de actividad (ver Fermentación),"Hamelman, J., «Bread» (Wiley, 2.ª ed.); Real Decreto 308/2019 art. 14.5 (BOE-A-2019-6994)",revision-ia: 2026-11-10
+masa_madre,sal,1.8,,Real Decreto 308/2019 art. 11.2.c (BOE-A-2019-6994),revision-ia: 2026-11-10

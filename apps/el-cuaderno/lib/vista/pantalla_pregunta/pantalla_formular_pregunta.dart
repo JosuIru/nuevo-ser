@@ -74,9 +74,15 @@ class _EstadoPantallaFormularPregunta
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
       ),
+      // Con la barra de navegación de Android (edge-to-edge, Android 15+)
+      // las cinco ideas no cabían en el alto por defecto de la hoja y la
+      // última quedaba cortada: la hoja crece lo que necesite (sin pasar
+      // de la barra de estado) y, si aún no cabe, se desplaza.
+      isScrollControlled: true,
+      useSafeArea: true,
       builder: (sheetContext) {
         return SafeArea(
-          child: Padding(
+          child: SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
             child: Column(
               mainAxisSize: MainAxisSize.min,

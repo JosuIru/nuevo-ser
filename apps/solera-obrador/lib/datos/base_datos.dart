@@ -2,6 +2,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show BaseDatosSolera, PasoMigracionSolera;
 import 'package:sqflite/sqflite.dart';
 
+import '../dominio/etiqueta_venta.dart';
 import '../dominio/planificador_hornada.dart';
 import '../modelos/apunte_economico.dart';
 import '../modelos/hornada.dart';
@@ -19,7 +20,7 @@ import '../modelos/titular.dart';
 const String nombreFicheroBaseDatosObrador = 'solera_obrador.db';
 
 /// Versión del esquema: el número del último paso de [pasosMigracion].
-const int versionEsquemaObrador = 2;
+const int versionEsquemaObrador = 3;
 
 /// Base de datos local de Larrea Obrador. La apertura, el cerrojo, las FK y
 /// las migraciones las pone BaseDatosSolera (core). **Migraciones
@@ -41,7 +42,16 @@ class BaseDatosSoleraObrador extends BaseDatosSolera {
   DatabaseFactory get fabricaBaseDatos => databaseFactory;
 
   @override
-  Map<int, PasoMigracionSolera> get pasosMigracion => {2: _crearEsquemaV2};
+  Map<int, PasoMigracionSolera> get pasosMigracion =>
+      {2: _crearEsquemaV2, 3: _crearEsquemaV3};
+
+  /// v3 (2026-11-10): etiqueta de venta (dirección del titular y datos de
+  /// la etiqueta de cada receta).
+  Future<void> _crearEsquemaV3(Database db) async {
+    for (final sentencia in sentenciasEsquemaV3Obrador) {
+      await db.execute(sentencia);
+    }
+  }
 
   /// v2 (2026-11-10): planificador de hornadas y recordatorio de refresco.
   Future<void> _crearEsquemaV2(Database db) async {
@@ -215,6 +225,24 @@ class BaseDatosSoleraObrador extends BaseDatosSolera {
 
   Future<void> borrarPlanHornada(int planId) =>
       _borrar('planes_hornada', planId);
+
+  // ─── Etiqueta de venta (v3) ──────────────────────────────────────
+
+  /// Datos de la etiqueta de una receta; null si no se han puesto.
+  Future<DatosEtiquetaReceta?> obtenerDatosEtiqueta(int recetaId) async {
+    final filas = await _listar('etiquetas_receta',
+        donde: 'receta_id = ?', argumentos: [recetaId]);
+    if (filas.isEmpty) return null;
+    return DatosEtiquetaReceta.deJson(filas.first['datos_json'] as String);
+  }
+
+  Future<void> guardarDatosEtiqueta(
+      int recetaId, DatosEtiquetaReceta datos) async {
+    final db = await basedatos;
+    await db.insert(
+        'etiquetas_receta', {'receta_id': recetaId, 'datos_json': datos.aJson()},
+        conflictAlgorithm: ConflictAlgorithm.replace);
+  }
 
   // ─── Hornadas ────────────────────────────────────────────────────
 
@@ -456,4 +484,13 @@ const sentenciasEsquemaV2Obrador = [
     creado_ms INTEGER NOT NULL
   )''',
   'ALTER TABLE masas_madre ADD COLUMN recordatorio_horas INTEGER',
+];
+
+/// Paso a la v3: etiqueta de venta. Solo añade.
+const sentenciasEsquemaV3Obrador = [
+  "ALTER TABLE titulares ADD COLUMN direccion TEXT NOT NULL DEFAULT ''",
+  '''CREATE TABLE etiquetas_receta (
+    receta_id INTEGER PRIMARY KEY REFERENCES recetas(id) ON DELETE CASCADE,
+    datos_json TEXT NOT NULL
+  )''',
 ];

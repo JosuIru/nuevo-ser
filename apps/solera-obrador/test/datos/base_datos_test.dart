@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:solera_obrador/datos/base_datos.dart';
+import 'package:solera_obrador/dominio/etiqueta_venta.dart';
 import 'package:solera_obrador/dominio/planificador_hornada.dart';
 import 'package:solera_obrador/dominio/tiempos_guia.dart';
 import 'package:solera_obrador/modelos/plan_hornada.dart';
@@ -106,7 +107,7 @@ void main() {
     await v1.close();
 
     final db = await baseDatos.basedatos;
-    expect(await db.getVersion(), 2);
+    expect(await db.getVersion(), versionEsquemaObrador);
     final masa = (await baseDatos.listarMasasMadre()).single;
     expect(masa.nombre, 'Centeno');
     expect(masa.recordatorioHoras, isNull);
@@ -142,5 +143,46 @@ void main() {
     await baseDatos.borrarReceta(pan);
     expect((await baseDatos.obtenerPlanHornada(planId))!.recetaId, isNull);
     expect(await baseDatos.obtenerTiemposReceta(pan), isNull);
+  });
+
+  test('migra de la v2 a la v3: dirección del titular y datos de etiqueta',
+      () async {
+    final ruta = entorno.ruta(nombreFicheroBaseDatosObrador);
+    final v2 = await databaseFactoryFfi.openDatabase(ruta,
+        options: OpenDatabaseOptions(
+            version: 2,
+            singleInstance: false,
+            onCreate: (db, _) async {
+              for (final sentencia in [
+                ...sentenciasEsquemaV1Obrador,
+                ...sentenciasEsquemaV2Obrador
+              ]) {
+                await db.execute(sentencia);
+              }
+            }));
+    await v2.insert('titulares', {'nombre': 'Obrador'});
+    final recetaId = await v2.insert('recetas', {'nombre': 'Hogaza'});
+    await v2.close();
+
+    final db = await baseDatos.basedatos;
+    expect(await db.getVersion(), 3);
+    final titular = await baseDatos.obtenerTitular();
+    expect(titular.nombre, 'Obrador');
+    expect(titular.direccion, '');
+    await baseDatos.guardarTitular(
+        Titular(nombre: 'Obrador', direccion: 'Calle Mayor 1'));
+    expect((await baseDatos.obtenerTitular()).direccion, 'Calle Mayor 1');
+
+    expect(await baseDatos.obtenerDatosEtiqueta(recetaId), isNull);
+    await baseDatos.guardarDatosEtiqueta(
+        recetaId, const DatosEtiquetaReceta(diasDuracion: 3));
+    await baseDatos.guardarDatosEtiqueta(recetaId,
+        const DatosEtiquetaReceta(diasDuracion: 5, trazasIndicadas: {'soja'}));
+    final datos = (await baseDatos.obtenerDatosEtiqueta(recetaId))!;
+    expect(datos.diasDuracion, 5);
+    expect(datos.trazasIndicadas, {'soja'});
+    // Borrar la receta se lleva sus datos de etiqueta.
+    await baseDatos.borrarReceta(recetaId);
+    expect(await baseDatos.obtenerDatosEtiqueta(recetaId), isNull);
   });
 }

@@ -23,6 +23,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
   final _controladorNombre = TextEditingController();
   final _controladorNif = TextEditingController();
   final _controladorRegistro = TextEditingController();
+  final _controladorDireccion = TextEditingController();
 
   @override
   void initState() {
@@ -37,6 +38,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
       _controladorNombre.text = titular.nombre;
       _controladorNif.text = titular.nif;
       _controladorRegistro.text = titular.registroSanitario;
+      _controladorDireccion.text = titular.direccion;
     } catch (error) {
       debugPrint('No se pudo leer el titular: $error');
     }
@@ -47,6 +49,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
       nombre: _controladorNombre.text.trim(),
       nif: _controladorNif.text.trim(),
       registroSanitario: _controladorRegistro.text.trim(),
+      direccion: _controladorDireccion.text.trim(),
     ));
     if (!mounted) return;
     ScaffoldMessenger.of(context)
@@ -58,6 +61,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
     _controladorNombre.dispose();
     _controladorNif.dispose();
     _controladorRegistro.dispose();
+    _controladorDireccion.dispose();
     super.dispose();
   }
 
@@ -132,10 +136,17 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
             controller: _controladorNif,
             decoration: const InputDecoration(labelText: 'NIF'),
           )),
-          TextField(
+          separarCampoSolera(TextField(
             controller: _controladorRegistro,
             decoration: InputDecoration(
                 labelText: SoleraL10n.t('obra.registro_sanitario')),
+          )),
+          TextField(
+            controller: _controladorDireccion,
+            maxLines: 2,
+            decoration: InputDecoration(
+                labelText: SoleraL10n.t('obra.etiq_direccion_obrador'),
+                helperText: SoleraL10n.t('obra.etiq_direccion_ayuda')),
           ),
           const SizedBox(height: 12),
           FilledButton(

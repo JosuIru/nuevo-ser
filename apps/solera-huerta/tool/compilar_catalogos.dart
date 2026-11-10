@@ -91,6 +91,9 @@ Future<void> main() async {
       Campo('marco', 'marco'),
       Campo('porUnidades', 'por_unidades', TipoCampo.siNo),
       Campo('revisadoPor', 'revisado_por'),
+      // Avisos del tiempo (2026-11-10): null = sin dato, no se nombra.
+      Campo('sensibleHelada', 'sensible_helada', TipoCampo.siNo),
+      Campo('fuenteHelada', 'fuente_helada'),
     ],
   );
   await _compilar(

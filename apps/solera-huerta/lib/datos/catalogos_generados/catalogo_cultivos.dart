@@ -1,7 +1,7 @@
 // GENERADO AUTOMÁTICAMENTE — NO EDITAR A MANO.
 //
 // Fuente: content/huerta/cultivos_huerta.csv
-// Generado: 2026-11-07
+// Generado: 2026-11-10
 // Filas: 42 (0 firmadas por persona, 33 con alguna revisión, 9 sin revisar)
 //
 // ⚠ DATOS PROVISIONALES SIN VALIDAR.
@@ -19,6 +19,8 @@ class CultivoCatalogo {
     required this.marco,
     required this.porUnidades,
     required this.revisadoPor,
+    required this.sensibleHelada,
+    required this.fuenteHelada,
   });
 
   final String id;
@@ -30,6 +32,8 @@ class CultivoCatalogo {
   final String marco;
   final bool? porUnidades;
   final String revisadoPor;
+  final bool? sensibleHelada;
+  final String fuenteHelada;
 }
 
 const List<CultivoCatalogo> catalogoCultivos = [
@@ -43,7 +47,10 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '30 x 80 cm',
       porUnidades: false,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 6 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 6 del PDF',
+      sensibleHelada: true,
+      fuenteHelada:
+          'Ayto. Madrid, «Curso Huerto urbano ecológico», 4.ª ed. 2023, p. 39: «no soportan las heladas»; Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 6: «cuando ya no hiela»'),
   CultivoCatalogo(
       id: 'pimiento',
       nombre: 'Pimiento',
@@ -54,7 +61,10 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '60 x 80 cm',
       porUnidades: false,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 5 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 5 del PDF',
+      sensibleHelada: true,
+      fuenteHelada:
+          'Ayto. Madrid, «Curso Huerto urbano ecológico», 4.ª ed. 2023, p. 39: «no soportan las heladas»'),
   CultivoCatalogo(
       id: 'berenjena',
       nombre: 'Berenjena',
@@ -65,7 +75,10 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '60 x 80 cm',
       porUnidades: false,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 2 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 2 del PDF',
+      sensibleHelada: true,
+      fuenteHelada:
+          'Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 2: «trasplantar cuando haya pasado el frío, ya que es exigente en calor»'),
   CultivoCatalogo(
       id: 'patata',
       nombre: 'Patata',
@@ -76,7 +89,10 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '30 x 50 cm',
       porUnidades: false,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 5 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 5 del PDF',
+      sensibleHelada: true,
+      fuenteHelada:
+          'Ayto. Madrid, «Curso Huerto urbano ecológico», 4.ª ed. 2023, p. 38: «los brotes tiernos [...] no soportan las heladas»'),
   CultivoCatalogo(
       id: 'calabacin',
       nombre: 'Calabacín',
@@ -87,7 +103,10 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '100 x 100 cm',
       porUnidades: true,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF',
+      sensibleHelada: true,
+      fuenteHelada:
+          'Ayto. Madrid, «Curso Huerto urbano ecológico», 4.ª ed. 2023, p. 36: se siembra «para evitar las últimas heladas del año»'),
   CultivoCatalogo(
       id: 'pepino',
       nombre: 'Pepino',
@@ -98,7 +117,10 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '80 x 80 cm',
       porUnidades: true,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 5 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 5 del PDF',
+      sensibleHelada: true,
+      fuenteHelada:
+          'Ayto. Madrid, «Curso Huerto urbano ecológico», 4.ª ed. 2023, p. 38: se siembra «para evitar las últimas heladas del año»'),
   CultivoCatalogo(
       id: 'calabaza',
       nombre: 'Calabaza',
@@ -109,7 +131,10 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '120 x 120 cm',
       porUnidades: true,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF',
+      sensibleHelada: true,
+      fuenteHelada:
+          'Ayto. Madrid, «Curso Huerto urbano ecológico», 4.ª ed. 2023, p. 36: se siembra «para evitar las últimas heladas del año»'),
   CultivoCatalogo(
       id: 'melon',
       nombre: 'Melón',
@@ -120,7 +145,9 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '100 x 100 cm',
       porUnidades: true,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 5 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 5 del PDF',
+      sensibleHelada: null,
+      fuenteHelada: ''),
   CultivoCatalogo(
       id: 'sandia',
       nombre: 'Sandía',
@@ -131,7 +158,9 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '100 x 100 cm',
       porUnidades: true,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 6 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 6 del PDF',
+      sensibleHelada: null,
+      fuenteHelada: ''),
   CultivoCatalogo(
       id: 'lechuga',
       nombre: 'Lechuga',
@@ -142,7 +171,9 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '25 x 40 cm',
       porUnidades: true,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 5 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 5 del PDF',
+      sensibleHelada: null,
+      fuenteHelada: ''),
   CultivoCatalogo(
       id: 'escarola',
       nombre: 'Escarola',
@@ -153,7 +184,9 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '25 x 40 cm',
       porUnidades: true,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 4 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 4 del PDF',
+      sensibleHelada: null,
+      fuenteHelada: ''),
   CultivoCatalogo(
       id: 'alcachofa',
       nombre: 'Alcachofa',
@@ -164,7 +197,9 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '100 x 100 cm',
       porUnidades: true,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 2 del PDF (solo marco)'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 2 del PDF (solo marco)',
+      sensibleHelada: null,
+      fuenteHelada: ''),
   CultivoCatalogo(
       id: 'acelga',
       nombre: 'Acelga',
@@ -175,7 +210,9 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '30 x 40 cm',
       porUnidades: true,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 2 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 2 del PDF',
+      sensibleHelada: null,
+      fuenteHelada: ''),
   CultivoCatalogo(
       id: 'espinaca',
       nombre: 'Espinaca',
@@ -186,7 +223,9 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '20 x 40 cm',
       porUnidades: false,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 4 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 4 del PDF',
+      sensibleHelada: null,
+      fuenteHelada: ''),
   CultivoCatalogo(
       id: 'remolacha',
       nombre: 'Remolacha',
@@ -197,7 +236,9 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '30 x 40 cm',
       porUnidades: true,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 6 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 6 del PDF',
+      sensibleHelada: null,
+      fuenteHelada: ''),
   CultivoCatalogo(
       id: 'zanahoria',
       nombre: 'Zanahoria',
@@ -208,7 +249,9 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '15 x 20 cm',
       porUnidades: true,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 6 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 6 del PDF',
+      sensibleHelada: null,
+      fuenteHelada: ''),
   CultivoCatalogo(
       id: 'apio',
       nombre: 'Apio',
@@ -219,7 +262,9 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '30 x 40 cm',
       porUnidades: true,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 2 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 2 del PDF',
+      sensibleHelada: null,
+      fuenteHelada: ''),
   CultivoCatalogo(
       id: 'chirivia',
       nombre: 'Chirivía',
@@ -229,7 +274,9 @@ const List<CultivoCatalogo> catalogoCultivos = [
       semanasCosecha: 6,
       marco: '10 x 30 cm',
       porUnidades: false,
-      revisadoPor: ''),
+      revisadoPor: '',
+      sensibleHelada: null,
+      fuenteHelada: ''),
   CultivoCatalogo(
       id: 'perejil',
       nombre: 'Perejil',
@@ -239,7 +286,9 @@ const List<CultivoCatalogo> catalogoCultivos = [
       semanasCosecha: 12,
       marco: '15 x 25 cm',
       porUnidades: true,
-      revisadoPor: ''),
+      revisadoPor: '',
+      sensibleHelada: null,
+      fuenteHelada: ''),
   CultivoCatalogo(
       id: 'cebolla',
       nombre: 'Cebolla',
@@ -250,7 +299,10 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '15 x 20 cm',
       porUnidades: false,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF',
+      sensibleHelada: false,
+      fuenteHelada:
+          'Ayto. Madrid, «Curso Huerto urbano ecológico», 4.ª ed. 2023, p. 36: «soportan las heladas»'),
   CultivoCatalogo(
       id: 'cebolleta',
       nombre: 'Cebolleta',
@@ -260,7 +312,10 @@ const List<CultivoCatalogo> catalogoCultivos = [
       semanasCosecha: 3,
       marco: '15 x 20 cm',
       porUnidades: true,
-      revisadoPor: ''),
+      revisadoPor: '',
+      sensibleHelada: false,
+      fuenteHelada:
+          'Ayto. Madrid, «Curso Huerto urbano ecológico», 4.ª ed. 2023, p. 36: «soportan las heladas»'),
   CultivoCatalogo(
       id: 'ajo',
       nombre: 'Ajo',
@@ -271,7 +326,10 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '10 x 20 cm',
       porUnidades: false,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 2 del PDF (solo marco)'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 2 del PDF (solo marco)',
+      sensibleHelada: false,
+      fuenteHelada:
+          'Ayto. Madrid, «Curso Huerto urbano ecológico», 4.ª ed. 2023, p. 35: «aguantar fríos extremos»'),
   CultivoCatalogo(
       id: 'puerro',
       nombre: 'Puerro',
@@ -282,7 +340,9 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '15 x 20 cm',
       porUnidades: true,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 6 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 6 del PDF',
+      sensibleHelada: null,
+      fuenteHelada: ''),
   CultivoCatalogo(
       id: 'judia_verde',
       nombre: 'Judía verde',
@@ -293,7 +353,10 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '20 x 50 cm',
       porUnidades: false,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 4 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 4 del PDF',
+      sensibleHelada: true,
+      fuenteHelada:
+          'Ayto. Madrid, «Curso Huerto urbano ecológico», 4.ª ed. 2023, p. 37: «no soporta las heladas tardías»'),
   CultivoCatalogo(
       id: 'haba',
       nombre: 'Haba',
@@ -304,7 +367,10 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '20 x 50 cm',
       porUnidades: false,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 4 del PDF (solo marco)'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 4 del PDF (solo marco)',
+      sensibleHelada: false,
+      fuenteHelada:
+          'Ayto. Madrid, «Curso Huerto urbano ecológico», 4.ª ed. 2023, p. 37: una vez germinadas «las soportan»; Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026: «una vez nacidas soportan las heladas»'),
   CultivoCatalogo(
       id: 'tirabeque',
       nombre: 'Tirabeque (bisalto)',
@@ -315,7 +381,9 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '20 x 80 cm',
       porUnidades: false,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 2 del PDF (solo marco)'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 2 del PDF (solo marco)',
+      sensibleHelada: null,
+      fuenteHelada: ''),
   CultivoCatalogo(
       id: 'guisante',
       nombre: 'Guisante',
@@ -325,7 +393,10 @@ const List<CultivoCatalogo> catalogoCultivos = [
       semanasCosecha: 4,
       marco: '5 x 60 cm',
       porUnidades: false,
-      revisadoPor: ''),
+      revisadoPor: '',
+      sensibleHelada: false,
+      fuenteHelada:
+          'Ayto. Madrid, «Curso Huerto urbano ecológico», 4.ª ed. 2023, p. 37: una vez germinados «las soportan»'),
   CultivoCatalogo(
       id: 'coliflor',
       nombre: 'Coliflor',
@@ -336,7 +407,10 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '60 x 80 cm',
       porUnidades: true,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF',
+      sensibleHelada: false,
+      fuenteHelada:
+          'Ayto. Madrid, «Curso Huerto urbano ecológico», 4.ª ed. 2023, p. 36: las coles «soportan las heladas tardías»'),
   CultivoCatalogo(
       id: 'brocoli',
       nombre: 'Brócoli',
@@ -347,7 +421,9 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '60 x 80 cm',
       porUnidades: true,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF',
+      sensibleHelada: null,
+      fuenteHelada: ''),
   CultivoCatalogo(
       id: 'romanesco',
       nombre: 'Romanesco',
@@ -358,7 +434,9 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '60 x 80 cm',
       porUnidades: true,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF',
+      sensibleHelada: null,
+      fuenteHelada: ''),
   CultivoCatalogo(
       id: 'repollo',
       nombre: 'Repollo',
@@ -369,7 +447,10 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '50 x 80 cm',
       porUnidades: true,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF',
+      sensibleHelada: false,
+      fuenteHelada:
+          'Ayto. Madrid, «Curso Huerto urbano ecológico», 4.ª ed. 2023, p. 36: las coles «soportan las heladas tardías»'),
   CultivoCatalogo(
       id: 'col_lombarda',
       nombre: 'Col lombarda',
@@ -380,7 +461,10 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '50 x 80 cm',
       porUnidades: true,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF',
+      sensibleHelada: false,
+      fuenteHelada:
+          'Ayto. Madrid, «Curso Huerto urbano ecológico», 4.ª ed. 2023, p. 36: las coles «soportan las heladas tardías»'),
   CultivoCatalogo(
       id: 'col_rizada',
       nombre: 'Col rizada (de Milán)',
@@ -391,7 +475,9 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '50 x 80 cm',
       porUnidades: true,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF',
+      sensibleHelada: null,
+      fuenteHelada: ''),
   CultivoCatalogo(
       id: 'kale',
       nombre: 'Kale',
@@ -401,7 +487,9 @@ const List<CultivoCatalogo> catalogoCultivos = [
       semanasCosecha: 12,
       marco: '40 x 60 cm',
       porUnidades: true,
-      revisadoPor: ''),
+      revisadoPor: '',
+      sensibleHelada: null,
+      fuenteHelada: ''),
   CultivoCatalogo(
       id: 'col_bruselas',
       nombre: 'Col de Bruselas',
@@ -411,7 +499,10 @@ const List<CultivoCatalogo> catalogoCultivos = [
       semanasCosecha: 8,
       marco: '50 x 80 cm',
       porUnidades: false,
-      revisadoPor: ''),
+      revisadoPor: '',
+      sensibleHelada: false,
+      fuenteHelada:
+          'Ayto. Madrid, «Curso Huerto urbano ecológico», 4.ª ed. 2023, p. 36: las coles «soportan las heladas tardías»'),
   CultivoCatalogo(
       id: 'rabano',
       nombre: 'Rábano',
@@ -422,7 +513,9 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '15 x 20 cm',
       porUnidades: true,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 6 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 6 del PDF',
+      sensibleHelada: null,
+      fuenteHelada: ''),
   CultivoCatalogo(
       id: 'nabo',
       nombre: 'Nabo',
@@ -432,7 +525,9 @@ const List<CultivoCatalogo> catalogoCultivos = [
       semanasCosecha: 4,
       marco: '10 x 30 cm',
       porUnidades: true,
-      revisadoPor: ''),
+      revisadoPor: '',
+      sensibleHelada: null,
+      fuenteHelada: ''),
   CultivoCatalogo(
       id: 'rucula',
       nombre: 'Rúcula',
@@ -442,7 +537,9 @@ const List<CultivoCatalogo> catalogoCultivos = [
       semanasCosecha: 3,
       marco: '5 x 20 cm',
       porUnidades: true,
-      revisadoPor: ''),
+      revisadoPor: '',
+      sensibleHelada: null,
+      fuenteHelada: ''),
   CultivoCatalogo(
       id: 'maiz_dulce',
       nombre: 'Maíz dulce',
@@ -453,7 +550,9 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '20 x 40 cm',
       porUnidades: true,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 5 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 5 del PDF',
+      sensibleHelada: null,
+      fuenteHelada: ''),
   CultivoCatalogo(
       id: 'fresa',
       nombre: 'Fresa',
@@ -464,7 +563,9 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '30 x 40 cm',
       porUnidades: false,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 4 del PDF (solo marco)'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 4 del PDF (solo marco)',
+      sensibleHelada: null,
+      fuenteHelada: ''),
   CultivoCatalogo(
       id: 'canonigo',
       nombre: 'Canónigo',
@@ -474,7 +575,9 @@ const List<CultivoCatalogo> catalogoCultivos = [
       semanasCosecha: 4,
       marco: '10 x 15 cm',
       porUnidades: false,
-      revisadoPor: ''),
+      revisadoPor: '',
+      sensibleHelada: null,
+      fuenteHelada: ''),
   CultivoCatalogo(
       id: 'borraja',
       nombre: 'Borraja',
@@ -485,5 +588,7 @@ const List<CultivoCatalogo> catalogoCultivos = [
       marco: '30 x 40 cm',
       porUnidades: true,
       revisadoPor:
-          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF'),
+          'fuente_publica: Ayto. Zaragoza (RHEAZ), «Los cultivos del huerto escolar», 2026, p. 3 del PDF',
+      sensibleHelada: null,
+      fuenteHelada: ''),
 ];

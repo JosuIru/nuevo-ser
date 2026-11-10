@@ -1,7 +1,7 @@
 name: solera_obrador
 description: "Larrea Obrador — vertical de la suite Larrea (Colección Nuevo Ser)."
 publish_to: 'none'
-version: 0.1.2+3
+version: 0.1.3+4
 
 environment:
   sdk: ^3.5.0

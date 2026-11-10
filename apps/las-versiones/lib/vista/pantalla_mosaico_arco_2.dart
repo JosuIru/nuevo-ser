@@ -73,6 +73,12 @@ class _PantallaMosaicoArco2State extends State<PantallaMosaicoArco2> {
       context: context,
       backgroundColor: PaletaArchivo.fondoMedio,
       barrierColor: Colors.black.withOpacity(0.6),
+      // Con la barra de navegación de Android (edge-to-edge, Android 15+)
+      // el selector no cabía en el alto por defecto de la hoja y lo último
+      // quedaba cortado: la hoja crece lo que necesite (sin pasar de la
+      // barra de estado) y, si aún no cabe, se desplaza.
+      isScrollControlled: true,
+      useSafeArea: true,
       builder: (contexto) => _SelectorConfianzaM2(
         fragmento: fragmento,
         nivelActual: _marcas[fragmento.id],
@@ -339,7 +345,7 @@ class _SelectorConfianzaM2 extends StatelessWidget {
   @override
   Widget build(BuildContext contexto) {
     return SafeArea(
-      child: Padding(
+      child: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(20, 18, 20, 14),
         child: Column(
           mainAxisSize: MainAxisSize.min,

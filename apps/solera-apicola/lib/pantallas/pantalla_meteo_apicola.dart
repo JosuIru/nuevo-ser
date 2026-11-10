@@ -129,6 +129,7 @@ class _PantallaMeteoApicolaState extends State<PantallaMeteoApicola> {
                   _TarjetaDia(dia: dia),
                   const SizedBox(height: 8),
                 ],
+                const AtribucionMeteo(),
               ],
             ),
           );

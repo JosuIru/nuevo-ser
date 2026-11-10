@@ -127,6 +127,7 @@ class _PantallaMeteoAgroState extends State<PantallaMeteoAgro> {
                   _TarjetaDiaMeteo(dia: dia),
                   const SizedBox(height: 8),
                 ],
+                const AtribucionMeteo(),
               ],
             ),
           );

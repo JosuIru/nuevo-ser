@@ -9,7 +9,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
         SoleraL10n,
         TituloBloqueSolera;
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
-    show AvisoActualizaciones, configActualizacionesMonorepo;
+    show AtribucionMeteo, AvisoActualizaciones, configActualizacionesMonorepo;
 
 import '../branding.dart';
 import '../datos/base_datos.dart';
@@ -234,6 +234,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
                         '${formatearFecha(aviso.fecha.millisecondsSinceEpoch)} · ${aviso.parcela.nombre} · ${formatearNumero(aviso.minimaC)} °C'),
                     subtitle: Text(aviso.estados.join(', ')),
                   ),
+                const AtribucionMeteo(),
               ],
             ),
           );

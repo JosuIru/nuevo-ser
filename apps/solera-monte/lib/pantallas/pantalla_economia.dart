@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro, separarCampoSolera;
 
 import '../datos/base_datos.dart';
 import '../dominio/resumen_economico.dart';
@@ -73,7 +73,7 @@ class _PantallaEconomiaState extends State<PantallaEconomia> {
         selectorFecha(context,
             fecha: fecha, alCambiar: (valor) => refrescar(() => fecha = valor)),
         campoTexto(concepto, SoleraL10n.t('mont.concepto')),
-        DropdownButtonFormField<String>(
+        separarCampoSolera(DropdownButtonFormField<String>(
           initialValue: categoria,
           isExpanded: true,
           decoration:
@@ -90,7 +90,7 @@ class _PantallaEconomiaState extends State<PantallaEconomia> {
                   impuestosVenta(datos.regimen, categoria);
             }
           }),
-        ),
+        )),
         selectorId(
             etiqueta: SoleraL10n.t('mont.rodal'),
             valor: rodalId,

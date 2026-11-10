@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
-    show SelectorIdioma, SoleraL10n, TituloBloqueSolera, rellenoInferiorSeguro;
+    show SelectorIdioma, SoleraL10n, TituloBloqueSolera, rellenoInferiorSeguro,
+        separarCampoSolera;
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show PantallaEstadoActualizaciones, configActualizacionesMonorepo;
 
@@ -258,7 +259,7 @@ class _PantallaDatosMonteState extends State<PantallaDatosMonte> {
                 etiquetaGrupo(context, SoleraL10n.t('mont.epoca_peligro')),
                 Text(SoleraL10n.t('mont.epoca_peligro_ca'),
                     style: Theme.of(context).textTheme.bodySmall),
-                Row(
+                separarCampoSolera(Row(
                   children: [
                     Expanded(
                       child: DropdownButtonFormField<int?>(
@@ -294,7 +295,7 @@ class _PantallaDatosMonteState extends State<PantallaDatosMonte> {
                       ),
                     ),
                   ],
-                ),
+                )),
                 campoTexto(_tecnico, SoleraL10n.t('mont.tecnico_forestal')),
                 campoTexto(_notas, SoleraL10n.t('mont.notas'), lineas: 2),
                 const SizedBox(height: 16),

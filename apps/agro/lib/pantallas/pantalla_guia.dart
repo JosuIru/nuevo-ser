@@ -170,7 +170,7 @@ class PantallaDetalleCultivo extends StatelessWidget {
         foregroundColor: Colors.white,
       ),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
         children: [
           if (cultivo.nombreCientifico.isNotEmpty)
             ImagenCommonsWidget(
@@ -444,7 +444,7 @@ class PantallaDetallePlaga extends StatelessWidget {
         foregroundColor: Colors.white,
       ),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
         children: [
           if (plaga.nombreCientifico.isNotEmpty || plaga.nombreComun.isNotEmpty)
             ImagenCommonsWidget(

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show ErrorClaude, SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show ErrorClaude, SoleraL10n, margenHojaSegura;
 
 import '../../datos/catalogo_cultivos.dart';
 import '../../datos/catalogo_plagas.dart';
@@ -232,7 +232,7 @@ class _ModalResultadoIA extends StatelessWidget {
       expand: false,
       builder: (ctx, scrollController) => SingleChildScrollView(
         controller: scrollController,
-        padding: const EdgeInsets.all(16),
+        padding: margenHojaSegura(ctx, const EdgeInsets.all(16)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

@@ -125,7 +125,7 @@ class _PantallaTitularState extends State<PantallaTitular> {
       body: Form(
         key: _formulario,
         child: ListView(
-          padding: const EdgeInsets.all(16),
+          padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
           children: [
             _Seccion(SoleraL10n.t('agro.titular_de_la_explotacion')),
             TextFormField(

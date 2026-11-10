@@ -66,7 +66,7 @@ class _PantallaReportesState extends State<PantallaReportes> {
       body: AbsorbPointer(
         absorbing: _generando,
         child: ListView(
-          padding: const EdgeInsets.all(16),
+          padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
           children: [
             DropdownButtonFormField<Finca?>(
               initialValue: _fincaSeleccionada,

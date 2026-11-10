@@ -131,7 +131,7 @@ class _PantallaEditarSigpacState extends State<PantallaEditarSigpac> {
     return Scaffold(
       appBar: AppBar(title: Text('SIGPAC — ${widget.finca.nombre}')),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
         children: [
           Text(
             SoleraL10n.t('agro.sigpac_explicacion'),

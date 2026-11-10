@@ -78,7 +78,7 @@ class _PantallaImportarCsvState extends State<PantallaImportarCsv> {
       body: AbsorbPointer(
         absorbing: _trabajando,
         child: ListView(
-          padding: const EdgeInsets.all(16),
+          padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
           children: [
             Text(SoleraL10n.t('agro.importar_csv'), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             const SizedBox(height: 4),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, formatearNumero;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, formatearNumero, rellenoInferiorSeguro;
 
 import '../datos/base_datos.dart';
 import '../datos/catalogo_cultivos.dart';
@@ -100,7 +100,7 @@ class _PantallaEstadisticasState extends State<PantallaEstadisticas> {
       body: RefreshIndicator(
         onRefresh: _cargar,
         child: ListView(
-          padding: const EdgeInsets.all(16),
+          padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
           children: [
             _Tarjeta(
               titulo: SoleraL10n.t('agro.total_de_plantas'),

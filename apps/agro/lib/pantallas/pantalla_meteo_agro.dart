@@ -117,7 +117,7 @@ class _PantallaMeteoAgroState extends State<PantallaMeteoAgro> {
           return RefreshIndicator(
             onRefresh: _refrescar,
             child: ListView(
-              padding: const EdgeInsets.all(16),
+              padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
               children: [
                 _CabeceraMeteo(origen: _origen, prevision: prevision),
                 const SizedBox(height: 12),

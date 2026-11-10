@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, formatearEuros;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, formatearEuros, rellenoInferiorSeguro;
 
 import '../datos/base_datos.dart';
 import '../datos/catalogo_cultivos.dart';
@@ -246,7 +246,7 @@ class _ListaIngresos extends StatelessWidget {
       );
     }
     return ListView.separated(
-      padding: const EdgeInsets.only(top: 8, bottom: 80),
+      padding: rellenoInferiorSeguro(context, const EdgeInsets.only(top: 8, bottom: 80)),
       itemCount: ingresos.length,
       separatorBuilder: (_, __) => const Divider(height: 1),
       itemBuilder: (_, i) {
@@ -343,7 +343,7 @@ class _ListaGastos extends StatelessWidget {
       );
     }
     return ListView.separated(
-      padding: const EdgeInsets.only(top: 8, bottom: 80),
+      padding: rellenoInferiorSeguro(context, const EdgeInsets.only(top: 8, bottom: 80)),
       itemCount: gastos.length,
       separatorBuilder: (_, __) => const Divider(height: 1),
       itemBuilder: (_, i) {
@@ -464,7 +464,7 @@ class _ResumenTrimestral extends StatelessWidget {
     );
 
     return ListView(
-      padding: const EdgeInsets.all(16),
+      padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
       children: [
         Text(
           SoleraL10n.t('agro.resumen_fiscal_trimestral'),
@@ -755,7 +755,7 @@ class _ResumenAnual extends StatelessWidget {
     final diferenciaOrdinaria = ingresosOrdinarios - gastosBase;
 
     return ListView(
-      padding: const EdgeInsets.all(16),
+      padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
       children: [
         _Card(
           titulo: '${SoleraL10n.t('agro.ingresos_ordinarios')} $ano',

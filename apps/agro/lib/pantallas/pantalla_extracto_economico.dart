@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
 import 'package:printing/printing.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -72,7 +72,7 @@ class _PantallaExtractoEconomicoState extends State<PantallaExtractoEconomico> {
     return Scaffold(
       appBar: AppBar(title: Text(SoleraL10n.t('agro.extracto_economico_anual'))),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
         children: [
           Container(
             padding: const EdgeInsets.all(12),

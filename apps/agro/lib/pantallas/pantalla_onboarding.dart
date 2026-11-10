@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SelectorIdioma, SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SelectorIdioma, SoleraL10n, rellenoInferiorSeguro;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../datos/base_datos.dart';
@@ -115,8 +115,9 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
               ],
             ),
           ),
+          // El pie lleva el botón: deja el hueco de la barra del sistema.
           Padding(
-            padding: const EdgeInsets.all(16),
+            padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
             child: Row(
               children: [
                 for (var i = 0; i < 4; i++)
@@ -151,7 +152,7 @@ class _PaginaBienvenida extends StatelessWidget {
     // el texto no cabe entero.
     return Center(
       child: SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+      padding: rellenoInferiorSeguro(context, const EdgeInsets.symmetric(horizontal: 24, vertical: 16)),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,

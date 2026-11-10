@@ -184,7 +184,7 @@ class _PantallaCuadernoMapaState extends State<PantallaCuadernoMapa> {
     return Scaffold(
       appBar: AppBar(title: Text(SoleraL10n.t('agro.cuaderno_de_explotacion'))),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
         children: [
           Card(
             color: Theme.of(context).colorScheme.primaryContainer,

@@ -17,6 +17,7 @@ import '../modelos/receta.dart';
 import '../servicios/compartir_documento.dart';
 import '../servicios/generador_ficha_tecnica_pdf.dart';
 import '../utiles/textos_obrador.dart';
+import 'pantalla_etiqueta_venta.dart';
 import 'pantalla_guia.dart';
 import 'pantalla_plan_hornada.dart';
 
@@ -224,6 +225,15 @@ class _PantallaFichaRecetaState extends State<PantallaFichaReceta> {
                       tema: tema,
                     ),
                   ),
+                ),
+              if (composicion != null && !receta.esSubreceta)
+                IconButton(
+                  tooltip: SoleraL10n.t('obra.etiq_titulo'),
+                  icon: const Icon(Icons.label_outline),
+                  onPressed: () => abrirEtiquetaVenta(context,
+                      receta: receta,
+                      composicion: composicion,
+                      ingredientes: recetario.ingredientes),
                 ),
               IconButton(
                 tooltip: SoleraL10n.t('obra.plan_planificar'),

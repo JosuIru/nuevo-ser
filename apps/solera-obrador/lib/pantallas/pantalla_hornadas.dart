@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro, separarCampoSolera;
 
 import '../datos/base_datos.dart';
+import '../dominio/composicion_receta.dart';
 import '../estado/cambios_datos.dart';
 import '../modelos/hornada.dart';
 import '../modelos/ingrediente.dart';
@@ -11,6 +12,7 @@ import '../modelos/pedido_fijo.dart';
 import '../modelos/receta.dart';
 import '../utiles/textos_obrador.dart';
 import 'hoja_formulario.dart';
+import 'pantalla_etiqueta_venta.dart';
 
 /// Hornadas de los últimos 30 días, con los lotes de ingrediente usados.
 class PantallaHornadas extends StatefulWidget {
@@ -154,6 +156,29 @@ class _PantallaHornadasState extends State<PantallaHornadas> {
     }
   }
 
+  /// Etiqueta de venta con el lote y la fecha de la hornada.
+  void _abrirEtiqueta(_DatosHornadas datos, Hornada hornada) {
+    final receta = datos.recetas[hornada.recetaId];
+    if (receta == null) return;
+    final ComposicionReceta composicion;
+    try {
+      composicion = ComposicionReceta.calcular(
+          recetaId: receta.id!,
+          recetas: datos.recetas,
+          lineasPorReceta: datos.lineas,
+          ingredientes: datos.ingredientes);
+    } on StateError {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(SoleraL10n.t('obra.error_receta'))));
+      return;
+    }
+    abrirEtiquetaVenta(context,
+        receta: receta,
+        composicion: composicion,
+        ingredientes: datos.ingredientes,
+        hornada: hornada);
+  }
+
   @override
   Widget build(BuildContext context) {
     final formato = DateFormat.MMMd(SoleraL10n.idioma).add_Hm();
@@ -184,6 +209,11 @@ class _PantallaHornadasState extends State<PantallaHornadas> {
                             subtitle: Text(
                                 '${formato.format(DateTime.fromMillisecondsSinceEpoch(hornada.fechaMs))}'
                                 ' · ${SoleraL10n.t('obra.lote')} ${hornada.codigoLote}'),
+                            trailing: IconButton(
+                              tooltip: SoleraL10n.t('obra.etiq_titulo'),
+                              icon: const Icon(Icons.label_outline),
+                              onPressed: () => _abrirEtiqueta(datos, hornada),
+                            ),
                           ),
                       ],
                     ),

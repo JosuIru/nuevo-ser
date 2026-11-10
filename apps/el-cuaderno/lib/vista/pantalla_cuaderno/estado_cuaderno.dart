@@ -1,13 +1,16 @@
 import 'package:flutter/foundation.dart';
 
+import '../../datos_simulados/cargador_pistas_campo.dart';
 import '../../dominio/contexto_misterio.dart';
 import '../../dominio/eco_temporal.dart';
 import '../../dominio/fenologia.dart';
 import '../../dominio/geolocalizacion_privacy_first.dart';
 import '../../dominio/misterio.dart';
 import '../../dominio/observacion.dart';
+import '../../dominio/pista_campo.dart';
 import '../../dominio/pregunta_del_nino.dart';
 import '../../dominio/repositorio_local.dart';
+import '../../dominio/seleccion_del_dia.dart';
 import '../../dominio/sit_spot.dart';
 
 /// `ChangeNotifier` que mantiene la vista del cuaderno sincronizada
@@ -34,12 +37,22 @@ class EstadoCuaderno extends ChangeNotifier {
     required this.repositorio,
     DateTime Function()? proveedorAhora,
     String? Function(SitSpot? sitSpot)? proveedorRegion,
+    Future<List<PistaCampo>> Function()? cargadorPistasCampo,
   })  : _proveedorAhora = proveedorAhora ?? DateTime.now,
-        _proveedorRegion = proveedorRegion ?? _regionPorDefecto;
+        _proveedorRegion = proveedorRegion ?? _regionPorDefecto,
+        _cargadorPistasCampo = cargadorPistasCampo ?? cargarCatalogoPistasCampo;
 
   final RepositorioLocal repositorio;
   final DateTime Function() _proveedorAhora;
   final String? Function(SitSpot? sitSpot) _proveedorRegion;
+
+  /// Cargador del catálogo de pistas de campo. Inyectable para tests
+  /// sin asset bundle (los tests pueden devolver una lista hardcoded
+  /// o vacía para verificar el comportamiento sin pista). En runtime
+  /// se carga una sola vez tras el primer `cargar()` exitoso y se
+  /// cachea — las pistas son contenido estático del repositorio, no
+  /// cambian entre cargas.
+  final Future<List<PistaCampo>> Function() _cargadorPistasCampo;
 
   bool _cargando = false;
   SitSpot? _sitSpot;
@@ -55,6 +68,13 @@ class EstadoCuaderno extends ChangeNotifier {
   Estacion? _estacionActual;
   String? _regionActual;
   DateTime? _fechaContexto;
+  // Catálogo completo de Misterios abiertos antes del filtro fenológico
+  // — necesario como fallback del "Misterio del día" cuando el filtrado
+  // queda vacío (más amable proponer algo fuera de temporada que dejar
+  // la tarjeta sin contenido).
+  List<Misterio> _misteriosAbiertosSinFiltro = const [];
+  // Pistas de campo cargadas una sola vez (asset estático).
+  List<PistaCampo>? _pistasCampo;
 
   bool get cargando => _cargando;
   SitSpot? get sitSpot => _sitSpot;
@@ -128,6 +148,32 @@ class EstadoCuaderno extends ChangeNotifier {
   /// fila. Sin presión, sin push.
   List<Eco> get ecos => _ecos;
 
+  /// Misterio "del día" — uno destacado en la cabecera del home,
+  /// rotando con la fecha. Prioriza los Misterios filtrados al contexto
+  /// (estación + región); cae al catálogo entero abierto si el filtrado
+  /// queda vacío. Null sólo si el catálogo entero también está vacío.
+  /// El cambio de día es a medianoche local del dispositivo, sin push.
+  Misterio? get misterioDelDia {
+    final fecha = _fechaContexto;
+    if (fecha == null) return null;
+    return seleccionarMisterioDelDia(
+      candidatosEnContexto: _misteriosAbiertos,
+      fallbackEnteroAbierto: _misteriosAbiertosSinFiltro,
+      fecha: fecha,
+    );
+  }
+
+  /// Pista de campo "del día" — invitación corta a observar algo
+  /// concreto del lugar. Garantiza que el home tenga siempre algo que
+  /// proponer aunque el catálogo de Misterios esté vacío. Null si el
+  /// asset no se ha cargado todavía o si la lista carga vacía.
+  PistaCampo? get pistaDelDia {
+    final fecha = _fechaContexto;
+    final pistas = _pistasCampo;
+    if (fecha == null || pistas == null) return null;
+    return seleccionarPistaDelDia(pistas: pistas, fecha: fecha);
+  }
+
   Future<void> cargar() async {
     _cargando = true;
     notifyListeners();
@@ -185,8 +231,19 @@ class EstadoCuaderno extends ChangeNotifier {
         observaciones: observacionesParaContexto,
         ahora: ahora,
       );
+      // Pistas: una sola carga en la primera invocación exitosa. Si
+      // el asset falla (caso de tests sin bundle), se cachea lista
+      // vacía y el getter devuelve null sin romper el home.
+      if (_pistasCampo == null) {
+        try {
+          _pistasCampo = await _cargadorPistasCampo();
+        } catch (_) {
+          _pistasCampo = const [];
+        }
+      }
       _sitSpot = sitSpotResultado;
       _misteriosAbiertos = misteriosFiltrados;
+      _misteriosAbiertosSinFiltro = misteriosCrudo;
       _misteriosCerrados = cerrados;
       _totalMisteriosAbiertosSinFiltro = misteriosCrudo.length;
       _ultimasObservaciones = ultimas;

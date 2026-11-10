@@ -1,0 +1,206 @@
+{
+  "version": "0.1",
+  "notas": "25 pistas de campo abiertas para que el home siempre tenga una invitación a observar aunque el catálogo de Misterios filtrado por estación/región esté vacío. Voz adulta amable (doc 04). Sin gamificación, sin emojis. Traducciones eu/ca BORRADOR — pendientes de revisión por hablantes nativos con criterio terminológico naturalista (B2 del plan). Mantenido a mano por el operador.",
+  "pistas": [
+    {
+      "id": "pista-nubes-forma",
+      "texto": "Hoy, ¿qué forma tienen las nubes? ¿Se mueven rápido o despacio?",
+      "traducciones": {
+        "eu": "Gaur, zer forma dute hodeiek? Azkar ala astiro mugitzen dira?",
+        "ca": "Avui, quina forma tenen els núvols? Es mouen ràpid o a poc a poc?"
+      }
+    },
+    {
+      "id": "pista-viento",
+      "texto": "Hoy, ¿hace viento? Mira lo que mueve. Las hojas, una bolsa, el pelo.",
+      "traducciones": {
+        "eu": "Gaur, haizea egiten du? Begiratu zer mugitzen duen. Hostoak, poltsa bat, ilea.",
+        "ca": "Avui, fa vent? Mira què mou. Les fulles, una bossa, els cabells."
+      }
+    },
+    {
+      "id": "pista-oidos",
+      "texto": "Cierra los ojos un minuto. ¿Cuántos sonidos distintos cuentas?",
+      "traducciones": {
+        "eu": "Itxi begiak minutu batez. Zenbat soinu desberdin zenbatzen dituzu?",
+        "ca": "Tanca els ulls un minut. Quants sons diferents comptes?"
+      }
+    },
+    {
+      "id": "pista-olores",
+      "texto": "Acércate a una planta. ¿Huele a algo? ¿Cómo describirías el olor?",
+      "traducciones": {
+        "eu": "Hurbildu landare batera. Zerbaitera usaintzen du? Nola deskribatuko zenuke usaina?",
+        "ca": "Acosta't a una planta. Fa olor d'alguna cosa? Com descriuries l'olor?"
+      }
+    },
+    {
+      "id": "pista-cielo-color",
+      "texto": "Mira el cielo ahora mismo. ¿De qué color es exactamente? ¿Es del mismo color en todas partes?",
+      "traducciones": {
+        "eu": "Begiratu zerura orain. Zer kolore zehazki du? Kolore berekoa al da nonahi?",
+        "ca": "Mira el cel ara mateix. De quin color és exactament? És del mateix color a tot arreu?"
+      }
+    },
+    {
+      "id": "pista-grietas",
+      "texto": "Busca una grieta en el suelo o en la pared. ¿Crece algo dentro?",
+      "traducciones": {
+        "eu": "Bilatu pitzadura bat lurrean edo horman. Zerbait hazten al da barruan?",
+        "ca": "Busca una esquerda al terra o a la paret. Hi creix alguna cosa a dins?"
+      }
+    },
+    {
+      "id": "pista-charco",
+      "texto": "Si ha llovido, busca un charco. ¿Hay algo flotando? ¿Hay algo dentro?",
+      "traducciones": {
+        "eu": "Euria egin badu, bilatu putzu bat. Zerbait flotatzen al da? Zerbait dago barruan?",
+        "ca": "Si ha plogut, busca un toll. Hi flota alguna cosa? Hi ha alguna cosa a dins?"
+      }
+    },
+    {
+      "id": "pista-arbol-corteza",
+      "texto": "Toca la corteza de un árbol que tengas cerca. ¿Es lisa, rugosa, blanda, dura?",
+      "traducciones": {
+        "eu": "Ukitu hurbil duzun zuhaitz baten azala. Leuna, latza, biguna, gogorra al da?",
+        "ca": "Toca l'escorça d'un arbre que tinguis a prop. És llisa, rugosa, tova, dura?"
+      }
+    },
+    {
+      "id": "pista-piedra-debajo",
+      "texto": "Levanta una piedra pequeña con cuidado y vuélvela a poner. ¿Qué viste debajo?",
+      "traducciones": {
+        "eu": "Altxatu harri txiki bat kontuz eta jarri berriz. Zer ikusi zenuen azpian?",
+        "ca": "Aixeca una pedra petita amb compte i torna-la a posar. Què vas veure a sota?"
+      }
+    },
+    {
+      "id": "pista-luz-sombras",
+      "texto": "Mira tu sombra. ¿Cómo es de larga? ¿Apunta hacia dónde?",
+      "traducciones": {
+        "eu": "Begiratu zure itzala. Zenbat luze da? Norantz seinalatzen du?",
+        "ca": "Mira la teva ombra. Com de llarga és? Cap a on apunta?"
+      }
+    },
+    {
+      "id": "pista-temperatura",
+      "texto": "Pon la mano un rato en una piedra al sol y luego en otra a la sombra. ¿Notas la diferencia?",
+      "traducciones": {
+        "eu": "Jarri eskua tarte batez eguzkitan dagoen harri batean eta gero itzalean dagoen beste batean. Igartzen al duzu aldea?",
+        "ca": "Posa la mà una estona en una pedra al sol i després en una altra a l'ombra. Notes la diferència?"
+      }
+    },
+    {
+      "id": "pista-hojas-suelo",
+      "texto": "Mira el suelo bajo un árbol. ¿Qué hay? ¿Hojas, ramitas, frutos, semillas?",
+      "traducciones": {
+        "eu": "Begiratu lurrari zuhaitz baten azpian. Zer dago? Hostoak, adartxoak, fruituak, haziak?",
+        "ca": "Mira el terra sota un arbre. Què hi ha? Fulles, branquetes, fruits, llavors?"
+      }
+    },
+    {
+      "id": "pista-bicho-suelo",
+      "texto": "Mira el suelo un minuto sin moverte. ¿Aparece algún bicho? ¿Cómo se mueve?",
+      "traducciones": {
+        "eu": "Begiratu lurrari minutu batez mugitu gabe. Zomorroren bat agertzen al da? Nola mugitzen da?",
+        "ca": "Mira el terra un minut sense moure't. Apareix algun bitxo? Com es mou?"
+      }
+    },
+    {
+      "id": "pista-pajaros-cerca",
+      "texto": "Quédate quieto y escucha. ¿Oyes pájaros? ¿Uno, dos, varios distintos?",
+      "traducciones": {
+        "eu": "Geldi geratu eta entzun. Txoriak entzuten al dituzu? Bat, bi, hainbat desberdin?",
+        "ca": "Queda't quiet i escolta. Sents ocells? Un, dos, diversos diferents?"
+      }
+    },
+    {
+      "id": "pista-ventana-vecino",
+      "texto": "Mira por una ventana o desde un balcón. ¿Qué hay vivo a la vista? Cuenta lo que veas.",
+      "traducciones": {
+        "eu": "Begiratu leiho batetik edo balkoi batetik. Zer dago bizirik bistan? Zenbatu ikusten duzuna.",
+        "ca": "Mira per una finestra o des d'un balcó. Què hi ha viu a la vista? Compta el que vegis."
+      }
+    },
+    {
+      "id": "pista-misma-planta",
+      "texto": "Busca una planta que veas todos los días. ¿Está igual que ayer? ¿Algo ha cambiado?",
+      "traducciones": {
+        "eu": "Bilatu egunero ikusten duzun landare bat. Atzo bezala dago? Zerbait aldatu da?",
+        "ca": "Busca una planta que vegis cada dia. Està igual que ahir? Ha canviat alguna cosa?"
+      }
+    },
+    {
+      "id": "pista-lluvia-recien",
+      "texto": "Después de una lluvia, sal a la calle. ¿A qué huele el aire?",
+      "traducciones": {
+        "eu": "Euria egin ondoren, irten kalera. Zer usaintzen du aireak?",
+        "ca": "Després d'una pluja, surt al carrer. A què fa olor l'aire?"
+      }
+    },
+    {
+      "id": "pista-superficie-agua",
+      "texto": "Si hay una fuente, un río o un charco grande, mira la superficie. ¿Está quieta? ¿Hay ondas?",
+      "traducciones": {
+        "eu": "Iturririk, ibairik edo putzu handirik badago, begiratu gainazalari. Geldi al dago? Uhinik al dago?",
+        "ca": "Si hi ha una font, un riu o un toll gran, mira la superfície. Està quieta? Hi ha ones?"
+      }
+    },
+    {
+      "id": "pista-tronco-musgo",
+      "texto": "Mira un tronco con musgo. ¿De qué lado del tronco hay más musgo? ¿Por qué será?",
+      "traducciones": {
+        "eu": "Begiratu goroldioarekin dagoen enbor bati. Enborraren zein aldetan dago goroldio gehiago? Zergatik izango da?",
+        "ca": "Mira un tronc amb molsa. A quin costat del tronc hi ha més molsa? Per què deu ser?"
+      }
+    },
+    {
+      "id": "pista-camino-huellas",
+      "texto": "Mira el suelo de un camino de tierra o arena. ¿Ves huellas de algún animal?",
+      "traducciones": {
+        "eu": "Begiratu lurrezko edo hareazko bide baten lurrari. Animalia baten arrastorik ikusten al duzu?",
+        "ca": "Mira el terra d'un camí de terra o sorra. Veus petjades d'algun animal?"
+      }
+    },
+    {
+      "id": "pista-hierba-altura",
+      "texto": "Busca un trozo de hierba. ¿Cuál es la planta más alta? ¿Y la más pequeña?",
+      "traducciones": {
+        "eu": "Bilatu belar puska bat. Zein da landarerik altuena? Eta txikiena?",
+        "ca": "Busca un tros d'herba. Quina és la planta més alta? I la més petita?"
+      }
+    },
+    {
+      "id": "pista-papel-suelo",
+      "texto": "Mira lo que el viento ha dejado por el suelo. ¿Hojas, papeles, semillas? ¿De dónde vendrá cada cosa?",
+      "traducciones": {
+        "eu": "Begiratu haizeak lurrean utzi duenari. Hostoak, paperak, haziak? Nondik etorriko da bakoitza?",
+        "ca": "Mira el que el vent ha deixat per terra. Fulles, papers, llavors? D'on deu venir cada cosa?"
+      }
+    },
+    {
+      "id": "pista-bicho-aire",
+      "texto": "Mira el aire delante de ti un minuto. ¿Pasa volando algo? ¿Una mosca, una mariposa, un pájaro?",
+      "traducciones": {
+        "eu": "Begiratu zure aurrean dagoen aireari minutu batez. Zerbait pasatzen al da hegan? Eulia, tximeleta, txoria?",
+        "ca": "Mira l'aire davant teu un minut. Passa alguna cosa volant? Una mosca, una papallona, un ocell?"
+      }
+    },
+    {
+      "id": "pista-mismo-banco",
+      "texto": "Vuelve al mismo sitio que ayer y siéntate un rato. ¿Qué está distinto hoy?",
+      "traducciones": {
+        "eu": "Itzuli atzo bezalako tokira eta eseri tarte batez. Zer dago desberdin gaur?",
+        "ca": "Torna al mateix lloc que ahir i seu una estona. Què està diferent avui?"
+      }
+    },
+    {
+      "id": "pista-respirar",
+      "texto": "Respira hondo tres veces. ¿Qué notas en el aire? ¿Frío, caliente, seco, húmedo?",
+      "traducciones": {
+        "eu": "Hartu arnasa sakon hiru aldiz. Zer igartzen duzu airean? Hotza, beroa, lehorra, hezea?",
+        "ca": "Respira fondo tres vegades. Què notes a l'aire? Fred, calent, sec, humit?"
+      }
+    }
+  ]
+}

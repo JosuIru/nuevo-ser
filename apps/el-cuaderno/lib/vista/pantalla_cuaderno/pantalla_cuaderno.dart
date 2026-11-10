@@ -668,6 +668,11 @@ class _VistaCuaderno extends StatelessWidget {
               ),
             ),
             ..._tipFenologico(estado),
+            ..._tarjetaHoy(
+              estado,
+              contexto: context,
+              alAbrirMisterio: alAbrirMisterio,
+            ),
             if (hayMisteriosVisibles) ...[
               const SizedBox(height: 12),
               Text(
@@ -785,6 +790,130 @@ List<Widget> _tipFenologico(EstadoCuaderno estado) {
       ),
     ),
   ];
+}
+
+/// Tarjeta "Hoy" del home: misterio del día rotativo + pista de campo
+/// abierta. Garantiza que el niño siempre encuentre algo concreto que
+/// observar al abrir el cuaderno, aunque el catálogo de Misterios
+/// filtrado por estación y región del lugar quede vacío.
+///
+/// La rotación es **determinista por fecha** — el mismo día devuelve
+/// la misma propuesta sin importar cuántas veces se abra el cuaderno.
+///
+/// Tres casos:
+/// - Misterio del día + pista del día: ambos bloques, separador.
+/// - Solo uno de los dos: muestra ese bloque.
+/// - Nada: la tarjeta entera no se monta (no genera placeholders).
+List<Widget> _tarjetaHoy(
+  EstadoCuaderno estado, {
+  required BuildContext contexto,
+  required void Function(Misterio) alAbrirMisterio,
+}) {
+  final misterioHoy = estado.misterioDelDia;
+  final pistaHoy = estado.pistaDelDia;
+  if (misterioHoy == null && pistaHoy == null) return const [];
+  final locale = Localizations.localeOf(contexto);
+  return [
+    const SizedBox(height: 16),
+    Container(
+      decoration: BoxDecoration(
+        color: PaletaCuaderno.papelClaro,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: PaletaCuaderno.tintaTenue.withValues(alpha: 0.15),
+          width: 1,
+        ),
+      ),
+      padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            'HOY',
+            style: TipografiaCuaderno.sans(
+              color: PaletaCuaderno.tintaTenue,
+              tamano: TipografiaCuaderno.tamano11,
+              peso: TipografiaCuaderno.pesoMedio,
+            ),
+          ),
+          if (misterioHoy != null) ...[
+            const SizedBox(height: 8),
+            _BloqueMisterioHoy(
+              misterio: misterioHoy,
+              locale: locale,
+              alAbrir: () => alAbrirMisterio(misterioHoy),
+            ),
+          ],
+          if (pistaHoy != null) ...[
+            if (misterioHoy != null) ...[
+              const SizedBox(height: 12),
+              Container(
+                height: 1,
+                color: PaletaCuaderno.tintaTenue.withValues(alpha: 0.1),
+              ),
+              const SizedBox(height: 12),
+            ] else
+              const SizedBox(height: 8),
+            Text(
+              pistaHoy.textoEnLocale(locale.languageCode),
+              style: TipografiaCuaderno.serif(
+                color: PaletaCuaderno.tinta,
+                tamano: TipografiaCuaderno.tamano14,
+                altoLinea: 1.45,
+              ),
+            ),
+          ],
+        ],
+      ),
+    ),
+  ];
+}
+
+class _BloqueMisterioHoy extends StatelessWidget {
+  final Misterio misterio;
+  final Locale locale;
+  final VoidCallback alAbrir;
+
+  const _BloqueMisterioHoy({
+    required this.misterio,
+    required this.locale,
+    required this.alAbrir,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final traduccion = misterio.traducciones[locale.languageCode];
+    final pregunta = traduccion?.pregunta ?? misterio.pregunta;
+    return InkWell(
+      onTap: alAbrir,
+      borderRadius: BorderRadius.circular(8),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              pregunta,
+              style: TipografiaCuaderno.serif(
+                color: PaletaCuaderno.tinta,
+                tamano: TipografiaCuaderno.tamano14,
+                peso: TipografiaCuaderno.pesoMedio,
+                altoLinea: 1.35,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              'Toca para abrir este Misterio',
+              style: TipografiaCuaderno.sans(
+                color: PaletaCuaderno.tintaTenue,
+                tamano: TipografiaCuaderno.tamano11,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 /// Constructor del mapa por defecto: `FlutterMap` real con tiles OSM.

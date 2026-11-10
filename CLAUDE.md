@@ -89,6 +89,8 @@ Cinco forks de Larrea por vertical. Comparten widgets (`CampoAutocompleteCatalog
 
 Plan de las nuevas verticales (fases, calles de trabajo, contrato de autonomía): `docs/plan-verticales-larrea.md`. Una vertical nueva se crea con `scripts/nueva_vertical.sh`.
 
+**Barra de navegación de Android (edge-to-edge, 2026-11-10)**: con targetSdk ≥ 35 la app dibuja bajo la barra del sistema. En pantallas nuevas, el `padding:` explícito de todo scroll que llegue al borde inferior va por `rellenoInferiorSeguro(context, …)` y toda hoja inferior por `mostrarHojaSolera`/`ContenidoHojaSegura`/`margenHojaSegura` (core, `ui/hueco_barra_sistema.dart`: teclado o barra, el mayor, sin sumarlos); pies fijos con `SafeArea` o `BarraGuardarSolera`. Las pestañas bajo `NavigationBar` ya tienen el hueco consumido.
+
 Detalle de cada una en su `CLAUDE.md` + `BLOQUEOS-PENDIENTES.md`.
 
 **Contabilidad**: planificado por vertical (agro/viticultura/apícola como gastos REAGP, arbolado como facturación B2B Facturae). Bloqueado por asesor fiscal humano.

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
 
 import '../datos/base_datos.dart';
 import '../datos/estado_bodega.dart';
@@ -275,7 +275,7 @@ class _PantallaKupelaState extends State<PantallaKupela> {
             ],
           ),
           body: ListView(
-            padding: const EdgeInsets.only(bottom: 32),
+            padding: rellenoInferiorSeguro(context, const EdgeInsets.only(bottom: 32)),
             children: [
               TarjetaKupela(kupela: kupela, litros: litros),
               if (estado.saldo.quedaEnNegativo(kupela.id!))

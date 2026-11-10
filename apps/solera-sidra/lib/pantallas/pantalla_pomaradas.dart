@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
 import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart';
 
 import '../datos/base_datos.dart';
@@ -240,7 +240,7 @@ class _PantallaEditarPomaradaState extends State<PantallaEditarPomarada> {
               ? 'sidr.nueva_pomarada'
               : 'sidr.editar_pomarada'))),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
         children: [
           campoTexto(_nombre, SoleraL10n.t('sidr.nombre')),
           campoDesplegable<String>(
@@ -425,7 +425,7 @@ class _PantallaFichaPomaradaState extends State<PantallaFichaPomarada> {
           }
           final (tratamientos, manzanos) = datos;
           return ListView(
-            padding: const EdgeInsets.only(bottom: 96),
+            padding: rellenoInferiorSeguro(context, const EdgeInsets.only(bottom: 96)),
             children: [
               ListTile(
                 title: Text(nombreValor('cultivo', _pomarada.cultivo)),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
 
 import '../datos/base_datos.dart';
 import '../dominio/catalogos.dart';
@@ -68,7 +68,7 @@ class _PantallaPartidasState extends State<PantallaPartidas> {
             return Center(child: Text(SoleraL10n.t('sidr.sin_entradas')));
           }
           return ListView(
-            padding: const EdgeInsets.only(bottom: 88),
+            padding: rellenoInferiorSeguro(context, const EdgeInsets.only(bottom: 88)),
             children: [
               for (final partida in datos.partidas)
                 ListTile(
@@ -218,7 +218,7 @@ class _PantallaEditarPartidaState extends State<PantallaEditarPartida> {
               ? 'sidr.nueva_entrada'
               : 'sidr.editar_entrada'))),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
         children: [
           SelectorFecha(
             etiqueta: SoleraL10n.t('sidr.fecha_entrega'),

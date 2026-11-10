@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
 
 import '../datos/base_datos.dart';
 import '../dominio/catalogos.dart';
@@ -86,7 +86,7 @@ class _PantallaBienvenidaState extends State<PantallaBienvenida> {
       body: !_cargada
           ? const Center(child: CircularProgressIndicator())
           : ListView(
-              padding: const EdgeInsets.all(16),
+              padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
               children: [
                 if (_sagardotegi.estaSinConfigurar)
                   Text(SoleraL10n.t('sidr.bienvenida_explicacion')),

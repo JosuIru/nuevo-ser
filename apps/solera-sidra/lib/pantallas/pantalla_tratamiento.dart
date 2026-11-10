@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
 
 import '../datos/catalogos_generados/catalogo_plagas_manzano.dart';
 import '../datos/base_datos.dart';
@@ -121,7 +121,7 @@ class _PantallaEditarTratamientoState extends State<PantallaEditarTratamiento> {
         ],
       ),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
         children: [
           SelectorFecha(
             etiqueta: SoleraL10n.t('sidr.fecha'),

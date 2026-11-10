@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
 
 import '../datos/base_datos.dart';
 import '../datos/estado_bodega.dart';
@@ -165,7 +165,7 @@ class _PantallaPrensadosState extends State<PantallaPrensados> {
               : datos.estado.prensados.isEmpty
                   ? Center(child: Text(SoleraL10n.t('sidr.sin_prensados')))
                   : ListView(
-                      padding: const EdgeInsets.only(bottom: 88),
+                      padding: rellenoInferiorSeguro(context, const EdgeInsets.only(bottom: 88)),
                       children: [
                         for (final prensado in datos.estado.prensados)
                           _filaPrensado(datos, prensado),

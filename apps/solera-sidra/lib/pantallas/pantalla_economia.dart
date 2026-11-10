@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
 
 import '../datos/base_datos.dart';
 import '../dominio/resumen_economico.dart';
@@ -187,7 +187,7 @@ class _PantallaEconomiaState extends State<PantallaEconomia> {
       BuildContext context, Titular titular, List<ApunteEconomico> apuntes) {
     final resumen = ResumenEconomico.calcular(apuntes);
     return ListView(
-      padding: const EdgeInsets.only(bottom: 88),
+      padding: rellenoInferiorSeguro(context, const EdgeInsets.only(bottom: 88)),
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,

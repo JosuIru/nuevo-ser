@@ -147,7 +147,7 @@ class _PantallaAyuntamientoState extends State<PantallaAyuntamiento> {
     String? Function(String?)? validador,
   }) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.only(bottom: separacionCamposSolera),
       child: TextFormField(
         controller: controlador,
         keyboardType: tipo,

@@ -232,7 +232,6 @@ class _DialogoEditarTecnicoState extends State<_DialogoEditarTecnico> {
               _campo(_cifEmpresa, SoleraL10n.t('arb.cif_de_la_empresa')),
               _campo(_telefono, SoleraL10n.t('arb.telefono'), tipo: TextInputType.phone),
               _campo(_email, SoleraL10n.t('arb.email'), tipo: TextInputType.emailAddress),
-              SizedBox(height: 8),
               _campo(_carnet, SoleraL10n.t('arb.carnet_de_aplicador'),
                   hint: SoleraL10n.t('arb.carnet_de_aplicador_hint')),
               DropdownButtonFormField<String>(
@@ -261,7 +260,7 @@ class _DialogoEditarTecnicoState extends State<_DialogoEditarTecnico> {
   Widget _campo(TextEditingController c, String etiqueta,
       {String? hint, TextInputType? tipo, String? Function(String?)? validador}) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
+      padding: const EdgeInsets.only(bottom: separacionCamposSolera),
       child: TextFormField(
         controller: c,
         keyboardType: tipo,

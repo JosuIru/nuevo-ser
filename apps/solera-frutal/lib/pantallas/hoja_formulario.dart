@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, margenHojaSegura;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, margenHojaSegura, separarCampoSolera;
 
 import '../modelos/parcela.dart';
 import '../utiles/textos_frutal.dart';
@@ -61,19 +61,19 @@ Future<bool> mostrarHojaFormulario(
 /// Campo de texto numérico de una línea.
 Widget campoNumero(TextEditingController controlador, String etiqueta,
         {bool decimales = true, String? ayuda}) =>
-    TextField(
+    separarCampoSolera(TextField(
       controller: controlador,
       keyboardType: TextInputType.numberWithOptions(decimal: decimales),
       decoration: InputDecoration(labelText: etiqueta, helperText: ayuda),
-    );
+    ));
 
 /// Campo de texto de una línea.
 Widget campoTexto(TextEditingController controlador, String etiqueta,
         {String? ayuda}) =>
-    TextField(
+    separarCampoSolera(TextField(
       controller: controlador,
       decoration: InputDecoration(labelText: etiqueta, helperText: ayuda),
-    );
+    ));
 
 /// Fila con la fecha elegida; al tocarla abre el calendario. Los registros
 /// del cuaderno se apuntan a menudo días después.
@@ -105,7 +105,7 @@ Widget selectorParcela({
   required int? parcelaId,
   required ValueChanged<int?> alCambiar,
 }) =>
-    DropdownButtonFormField<int>(
+    separarCampoSolera(DropdownButtonFormField<int>(
       initialValue: parcelaId,
       decoration: InputDecoration(labelText: SoleraL10n.t('frut.parcela')),
       items: [
@@ -116,4 +116,4 @@ Widget selectorParcela({
                   '${parcela.nombre} · ${nombreEspecie(parcela.especieId)}')),
       ],
       onChanged: alCambiar,
-    );
+    ));

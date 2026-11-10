@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
-    show SelectorIdioma, SoleraL10n;
+    show SelectorIdioma, SoleraL10n, separarCampoSolera;
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show PantallaEstadoActualizaciones, configActualizacionesMonorepo;
 
@@ -73,10 +73,10 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
   }
 
   Widget _campo(TextEditingController controlador, String etiqueta) =>
-      TextField(
+      separarCampoSolera(TextField(
         controller: controlador,
         decoration: InputDecoration(labelText: etiqueta),
-      );
+      ));
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
 
 import '../datos/base_datos.dart';
 import '../dominio/stock.dart';
@@ -202,7 +202,7 @@ class PantallaFichaPartida extends StatelessWidget {
             ],
           ),
           body: ListView(
-            padding: const EdgeInsets.only(bottom: 24),
+            padding: rellenoInferiorSeguro(context, const EdgeInsets.only(bottom: 24)),
             children: [
               ListTile(
                 title: Text(etiquetaPartida(partida)),

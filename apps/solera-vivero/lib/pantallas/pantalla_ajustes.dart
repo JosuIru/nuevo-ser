@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
-    show SelectorIdioma, SoleraL10n;
+    show SelectorIdioma, SoleraL10n, rellenoInferiorSeguro;
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show PantallaEstadoActualizaciones, configActualizacionesMonorepo;
 
@@ -105,7 +105,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
     return Scaffold(
       appBar: AppBar(title: Text(SoleraL10n.t('ajustes'))),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
         children: [
           ListTile(
             contentPadding: EdgeInsets.zero,

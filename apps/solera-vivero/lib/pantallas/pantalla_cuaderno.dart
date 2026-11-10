@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
 
 import '../datos/base_datos.dart';
 import '../dominio/catalogos.dart' show exigeAvisoAutoridad;
@@ -84,7 +84,7 @@ class _PantallaCuadernoState extends State<PantallaCuaderno> {
         key: ValueKey(_anyo),
         cargar: _cargar,
         construir: (context, datos) => ListView(
-          padding: const EdgeInsets.only(bottom: 88),
+          padding: rellenoInferiorSeguro(context, const EdgeInsets.only(bottom: 88)),
           children: [
             TituloSeccion(SoleraL10n.t('vive.tratamientos'),
                 accion: IconButton(

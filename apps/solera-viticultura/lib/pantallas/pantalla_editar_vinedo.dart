@@ -130,6 +130,33 @@ class _PantallaEditarVinedoState extends State<PantallaEditarVinedo> {
     if (mounted) Navigator.of(context).pop(true);
   }
 
+  /// Borra el viñedo; sus cepas quedan como puntos sueltos con su historia.
+  Future<void> _borrar() async {
+    final id = widget.vinedo?.id;
+    if (id == null) return;
+    final confirmado = await showDialog<bool>(
+      context: context,
+      builder: (contextoDialogo) => AlertDialog(
+        title: Text(SoleraL10n.t('viti.borrar_vinedo')),
+        content: Text(SoleraL10n.tf('viti.borrar_vinedo_aviso',
+            {'nombre': widget.vinedo!.nombre})),
+        actions: [
+          TextButton(
+              onPressed: () => Navigator.pop(contextoDialogo, false),
+              child: Text(SoleraL10n.t('cancelar'))),
+          FilledButton(
+            style: FilledButton.styleFrom(backgroundColor: Colors.red),
+            onPressed: () => Navigator.pop(contextoDialogo, true),
+            child: Text(SoleraL10n.t('viti.eliminar')),
+          ),
+        ],
+      ),
+    );
+    if (confirmado != true || !mounted) return;
+    await BaseDatosSoleraViticultura.instancia.borrarVinedo(id);
+    if (mounted) Navigator.of(context).pop(true);
+  }
+
   Widget _campoTexto(TextEditingController controlador, String etiqueta,
           {String? ayuda, TextInputType? teclado, int lineas = 1}) =>
       TextField(
@@ -149,6 +176,14 @@ class _PantallaEditarVinedoState extends State<PantallaEditarVinedo> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.vinedo?.nombre ?? SoleraL10n.t('viti.nuevo_vinedo')),
+        actions: [
+          if (widget.vinedo?.id != null)
+            IconButton(
+              icon: const Icon(Icons.delete_outline),
+              tooltip: SoleraL10n.t('viti.borrar_vinedo'),
+              onPressed: _guardando ? null : _borrar,
+            ),
+        ],
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),

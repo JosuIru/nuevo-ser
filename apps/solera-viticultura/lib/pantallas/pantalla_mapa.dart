@@ -102,7 +102,13 @@ class _PantallaMapaState extends State<PantallaMapa> {
 
   Future<void> _cargarTodo() async {
     final vinedos = await BaseDatosSoleraViticultura.instancia.listarVinedos();
-    final vinedoActivoId = await _persistenciaVinedo.cargar();
+    var vinedoActivoId = await _persistenciaVinedo.cargar();
+    // El viñedo activo pudo borrarse desde su ficha: se vuelve a «todos».
+    if (vinedoActivoId != null &&
+        !vinedos.any((vinedo) => vinedo.id == vinedoActivoId)) {
+      vinedoActivoId = null;
+      await _persistenciaVinedo.guardar(null);
+    }
     final cepas = await BaseDatosSoleraViticultura.instancia
         .listarCepas(vinedoId: vinedoActivoId);
     if (!mounted) return;

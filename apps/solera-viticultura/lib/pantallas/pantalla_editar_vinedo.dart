@@ -186,7 +186,7 @@ class _PantallaEditarVinedoState extends State<PantallaEditarVinedo> {
         ],
       ),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
         children: [
           _campoTexto(_controladorNombre, '${SoleraL10n.t('viti.nombre')} *'),
           const SizedBox(height: 16),

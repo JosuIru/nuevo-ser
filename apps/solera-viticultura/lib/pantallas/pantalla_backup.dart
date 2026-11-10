@@ -178,7 +178,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
       body: AbsorbPointer(
         absorbing: _trabajando,
         child: ListView(
-          padding: const EdgeInsets.all(16),
+          padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
           children: [
             Card(
               child: Padding(

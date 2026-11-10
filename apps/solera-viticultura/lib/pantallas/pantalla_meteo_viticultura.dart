@@ -119,7 +119,7 @@ class _PantallaMeteoViticulturaState extends State<PantallaMeteoViticultura> {
           return RefreshIndicator(
             onRefresh: _refrescar,
             child: ListView(
-              padding: const EdgeInsets.all(16),
+              padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
               children: [
                 _Cabecera(origen: _origen, prevision: prevision),
                 const SizedBox(height: 12),

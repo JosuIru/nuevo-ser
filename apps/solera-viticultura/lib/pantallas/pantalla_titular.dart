@@ -115,7 +115,7 @@ class _PantallaTitularState extends State<PantallaTitular> {
       body: Form(
         key: _claveFormulario,
         child: ListView(
-          padding: const EdgeInsets.all(16),
+          padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
           children: [
             _Cabecera(SoleraL10n.t('viti.datos_personales')),
             _campo(_nif, SoleraL10n.t('viti.nif_obligatorio_etiqueta'), validador: _obligatorio(SoleraL10n.t('viti.nif'))),

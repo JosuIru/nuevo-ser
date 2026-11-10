@@ -130,7 +130,7 @@ class _PantallaFichaCepaState extends State<PantallaFichaCepa> {
         ],
       ),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 12, 16, 80),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.fromLTRB(16, 12, 16, 80)),
         children: [
           if (fotos.isNotEmpty)
             ClipRRect(

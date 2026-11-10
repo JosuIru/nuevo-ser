@@ -87,7 +87,7 @@ class _PantallaConfiguracionFiscalState
     return Scaffold(
       appBar: AppBar(title: Text(SoleraL10n.t('configuracion_fiscal'))),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
         children: [
           Container(
             padding: const EdgeInsets.all(12),

@@ -200,7 +200,7 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
           : RefreshIndicator(
               onRefresh: _recargar,
               child: ListView.builder(
-                padding: const EdgeInsets.all(8),
+                padding: rellenoInferiorSeguro(context, const EdgeInsets.all(8)),
                 itemCount: _facturas.length,
                 itemBuilder: (_, i) => _buildItem(_facturas[i], theme),
               ),
@@ -436,7 +436,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
       body: Form(
         key: _formKey,
         child: ListView(
-          padding: const EdgeInsets.all(16),
+          padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
           children: [
             // Nº factura
             TextFormField(

@@ -168,8 +168,8 @@ class _PantallaSimulacionTrazabilidadState extends State<PantallaSimulacionTraza
   Widget _archivo(ThemeData t) => Card(child: Padding(padding: const EdgeInsets.all(16), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
     Row(children: [Icon(Icons.description_outlined, color: t.colorScheme.primary), const SizedBox(width: 8), Text(SoleraL10n.t('ques.archivar'), style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold))]),
     TextFormField(controller: _realC, decoration: InputDecoration(labelText: SoleraL10n.t('ques.realizado_por'), border: const OutlineInputBorder(), isDense: true, hintText: SoleraL10n.t('ques.tu_nombre'))),
-    const SizedBox(height: 8), TextFormField(controller: _inspC, decoration: InputDecoration(labelText: SoleraL10n.t('ques.inspector'), border: const OutlineInputBorder(), isDense: true, hintText: SoleraL10n.t('ques.nombre_opcional'))),
-    const SizedBox(height: 8), TextFormField(controller: _notasC, decoration: InputDecoration(labelText: SoleraL10n.t('ques.notas'), border: const OutlineInputBorder(), isDense: true), maxLines: 2),
+    const SizedBox(height: separacionCamposSolera), TextFormField(controller: _inspC, decoration: InputDecoration(labelText: SoleraL10n.t('ques.inspector'), border: const OutlineInputBorder(), isDense: true, hintText: SoleraL10n.t('ques.nombre_opcional'))),
+    const SizedBox(height: separacionCamposSolera), TextFormField(controller: _notasC, decoration: InputDecoration(labelText: SoleraL10n.t('ques.notas'), border: const OutlineInputBorder(), isDense: true), maxLines: 2),
     const SizedBox(height: 16),
     FilledButton.icon(onPressed: _guardarSim, icon: Icon(Icons.save), label: Text(SoleraL10n.t('guardar'))),
     SizedBox(height: 8),

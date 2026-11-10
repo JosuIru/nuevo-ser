@@ -77,7 +77,7 @@ class _PantallaCavaState extends State<PantallaCava> {
           Text(SoleraL10n.t('ques.registro_de_temperatura'), style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           TextFormField(controller: _cavaC, decoration: InputDecoration(labelText: SoleraL10n.t('ques.cava_camara'), border: const OutlineInputBorder(), isDense: true)),
-          const SizedBox(height: 8),
+          const SizedBox(height: separacionCamposSolera),
           Row(children: [Expanded(child: TextFormField(controller: _tempC, decoration: InputDecoration(labelText: SoleraL10n.t('ques.temperatura_c'), border: const OutlineInputBorder(), isDense: true), keyboardType: TextInputType.number)), const SizedBox(width: 12), Expanded(child: TextFormField(controller: _hrC, decoration: InputDecoration(labelText: SoleraL10n.t('ques.humedad_pct'), border: const OutlineInputBorder(), isDense: true), keyboardType: TextInputType.number))]),
           const SizedBox(height: 8),
           FilledButton.icon(onPressed: _regTemp, icon: const Icon(Icons.thermostat), label: Text(SoleraL10n.t('ques.registrar'))),

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
-    show DialogoConfirmacion, SoleraL10n, rellenoInferiorSeguro;
+    show
+        DialogoConfirmacion,
+        SoleraL10n,
+        rellenoInferiorSeguro,
+        separarCampoSolera;
 
 import '../datos/base_datos.dart';
 import '../datos/catalogos_generados/catalogo_denominaciones_pan.dart';
@@ -437,32 +441,32 @@ class _PantallaEditarRecetaState extends State<PantallaEditarReceta> {
           return ListView(
             padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
             children: [
-              TextField(
+              separarCampoSolera(TextField(
                 controller: _nombre,
                 decoration:
                     InputDecoration(labelText: SoleraL10n.t('obra.nombre')),
-              ),
-              TextField(
+              )),
+              separarCampoSolera(TextField(
                 controller: _piezas,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                     labelText: SoleraL10n.t('obra.piezas_por_masa')),
-              ),
-              TextField(
+              )),
+              separarCampoSolera(TextField(
                 controller: _merma,
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
                 decoration: InputDecoration(
                     labelText: SoleraL10n.t('obra.merma_coccion')),
-              ),
-              TextField(
+              )),
+              separarCampoSolera(TextField(
                 controller: _precioVenta,
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
                 decoration: InputDecoration(
                     labelText: SoleraL10n.t('obra.precio_venta_pieza')),
-              ),
-              DropdownButtonFormField<String>(
+              )),
+              separarCampoSolera(DropdownButtonFormField<String>(
                 initialValue: denominacionPorId(_denominacion) == null
                     ? ''
                     : _denominacion,
@@ -480,7 +484,7 @@ class _PantallaEditarRecetaState extends State<PantallaEditarReceta> {
                 ],
                 onChanged: (valor) =>
                     setState(() => _denominacion = valor ?? ''),
-              ),
+              )),
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
                 title: Text(SoleraL10n.t('obra.es_subreceta')),
@@ -491,7 +495,7 @@ class _PantallaEditarRecetaState extends State<PantallaEditarReceta> {
               Text(SoleraL10n.t('obra.lineas'),
                   style: Theme.of(context).textTheme.titleSmall),
               for (final linea in _lineas)
-                Row(
+                separarCampoSolera(Row(
                   children: [
                     Expanded(
                       flex: 3,
@@ -526,7 +530,7 @@ class _PantallaEditarRecetaState extends State<PantallaEditarReceta> {
                       }),
                     ),
                   ],
-                ),
+                )),
               Align(
                 alignment: Alignment.centerLeft,
                 child: TextButton.icon(

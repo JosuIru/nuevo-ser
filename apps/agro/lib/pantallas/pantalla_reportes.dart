@@ -80,7 +80,7 @@ class _PantallaReportesState extends State<PantallaReportes> {
               ],
               onChanged: (v) => setState(() => _fincaSeleccionada = v),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: separacionCamposSolera),
             DropdownButtonFormField<int?>(
               initialValue: _ano,
               decoration: InputDecoration(
@@ -93,7 +93,7 @@ class _PantallaReportesState extends State<PantallaReportes> {
               ],
               onChanged: (v) => setState(() => _ano = v),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: separacionCamposSolera),
             TextFormField(
               controller: _controladorOperador,
               decoration: InputDecoration(

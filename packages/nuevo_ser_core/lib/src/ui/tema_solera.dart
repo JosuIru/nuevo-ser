@@ -50,6 +50,11 @@ const String familiaTextoSolera = 'Inter';
 /// Radio de chips y campos de formulario.
 const double radioCampoSolera = 8;
 
+/// Separación vertical entre dos campos de formulario seguidos. Con los
+/// bordes outline del tema, la etiqueta flotante sobresale por arriba del
+/// campo: con menos hueco casi toca el borde del campo anterior.
+const double separacionCamposSolera = 12;
+
 /// Radio de tarjetas y listas agrupadas.
 const double radioTarjetaSolera = 16;
 

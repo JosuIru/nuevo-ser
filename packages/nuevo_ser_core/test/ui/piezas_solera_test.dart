@@ -67,4 +67,25 @@ void main() {
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
     expect(find.text('Guardar'), findsNothing);
   });
+
+  testWidgets('separarCampoSolera deja la separación común entre dos campos',
+      (tester) async {
+    await tester.pumpWidget(_app(Scaffold(
+      body: Column(children: [
+        separarCampoSolera(
+            const TextField(decoration: InputDecoration(labelText: 'Uno'))),
+        separarCampoSolera(DropdownButtonFormField<int>(
+          decoration: const InputDecoration(labelText: 'Dos'),
+          items: const [DropdownMenuItem(value: 1, child: Text('1'))],
+          onChanged: (_) {},
+        )),
+      ]),
+    )));
+    final cajas = find.byType(InputDecorator);
+    expect(cajas, findsNWidgets(2));
+    final hueco =
+        tester.getRect(cajas.at(1)).top - tester.getRect(cajas.at(0)).bottom;
+    expect(hueco, greaterThanOrEqualTo(separacionCamposSolera));
+    expect(separacionCamposSolera, inInclusiveRange(12, 16));
+  });
 }

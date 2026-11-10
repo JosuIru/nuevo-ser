@@ -157,9 +157,8 @@ class _PantallaApicultorState extends State<PantallaApicultor> {
     TextInputType? tipo,
     String? Function(String?)? validador,
   }) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: TextFormField(
+    return separarCampoSolera(
+      TextFormField(
         controller: controlador,
         keyboardType: tipo,
         decoration: InputDecoration(

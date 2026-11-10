@@ -136,7 +136,7 @@ class _PantallaTitularState extends State<PantallaTitular> {
               ),
               validator: (v) => (v == null || v.trim().isEmpty) ? SoleraL10n.t('agro.requerido_por_mapa') : null,
             ),
-            SizedBox(height: 12),
+            SizedBox(height: separacionCamposSolera),
             TextFormField(
               controller: _controladorNif,
               decoration: InputDecoration(
@@ -146,7 +146,7 @@ class _PantallaTitularState extends State<PantallaTitular> {
               ),
               validator: (v) => (v == null || v.trim().isEmpty) ? SoleraL10n.t('agro.requerido_por_mapa') : null,
             ),
-            SizedBox(height: 12),
+            SizedBox(height: separacionCamposSolera),
             TextFormField(
               controller: _controladorDireccion,
               decoration: InputDecoration(
@@ -155,7 +155,7 @@ class _PantallaTitularState extends State<PantallaTitular> {
               ),
               maxLines: 2,
             ),
-            SizedBox(height: 12),
+            SizedBox(height: separacionCamposSolera),
             TextFormField(
               controller: _controladorRegepa,
               decoration: InputDecoration(
@@ -164,7 +164,7 @@ class _PantallaTitularState extends State<PantallaTitular> {
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 12),
+            SizedBox(height: separacionCamposSolera),
             Row(
               children: [
                 Expanded(
@@ -206,7 +206,7 @@ class _PantallaTitularState extends State<PantallaTitular> {
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 12),
+              SizedBox(height: separacionCamposSolera),
               TextFormField(
                 controller: _controladorNifAsesor,
                 decoration: InputDecoration(
@@ -214,7 +214,7 @@ class _PantallaTitularState extends State<PantallaTitular> {
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 12),
+              SizedBox(height: separacionCamposSolera),
               TextFormField(
                 controller: _controladorRegistroAsesor,
                 decoration: InputDecoration(
@@ -239,7 +239,7 @@ class _PantallaTitularState extends State<PantallaTitular> {
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 12),
+              SizedBox(height: separacionCamposSolera),
               TextFormField(
                 controller: _controladorNifAplicador,
                 decoration: InputDecoration(
@@ -247,7 +247,7 @@ class _PantallaTitularState extends State<PantallaTitular> {
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 12),
+              SizedBox(height: separacionCamposSolera),
               TextFormField(
                 controller: _controladorCarnetAplicador,
                 decoration: InputDecoration(
@@ -255,7 +255,7 @@ class _PantallaTitularState extends State<PantallaTitular> {
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 12),
+              SizedBox(height: separacionCamposSolera),
               DropdownButtonFormField<String>(
                 initialValue: _nivelCarnet.isEmpty ? null : _nivelCarnet,
                 decoration: InputDecoration(

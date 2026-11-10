@@ -220,7 +220,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                 return null;
               },
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: separacionCamposSolera),
             Row(
               children: [
                 Expanded(

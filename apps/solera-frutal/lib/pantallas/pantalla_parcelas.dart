@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro, separarCampoSolera;
 import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart';
 
 import '../datos/base_datos.dart';
@@ -223,11 +223,11 @@ class _PantallaEditarParcelaState extends State<PantallaEditarParcela> {
       body: ListView(
         padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
         children: [
-          TextField(
+          separarCampoSolera(TextField(
             controller: _nombre,
             decoration: InputDecoration(labelText: SoleraL10n.t('frut.nombre')),
-          ),
-          DropdownButtonFormField<String>(
+          )),
+          separarCampoSolera(DropdownButtonFormField<String>(
             initialValue: _especie,
             decoration:
                 InputDecoration(labelText: SoleraL10n.t('frut.especie')),
@@ -237,19 +237,19 @@ class _PantallaEditarParcelaState extends State<PantallaEditarParcela> {
                     value: especie, child: Text(nombreEspecie(especie))),
             ],
             onChanged: (valor) => setState(() => _especie = valor ?? _especie),
-          ),
+          )),
           CampoCatalogo(
             controlador: _variedad,
             opciones: opcionesVariedades(_especie),
             etiqueta: SoleraL10n.t('frut.variedad_principal'),
           ),
-          TextField(
+          separarCampoSolera(TextField(
             controller: _superficie,
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             decoration:
                 InputDecoration(labelText: SoleraL10n.t('frut.superficie_ha')),
-          ),
-          TextField(
+          )),
+          separarCampoSolera(TextField(
             controller: _marco,
             onChanged: (_) => setState(() {}),
             decoration: InputDecoration(
@@ -259,19 +259,19 @@ class _PantallaEditarParcelaState extends State<PantallaEditarParcela> {
                   : SoleraL10n.tf('frut.arboles_por_ha',
                       {'n': formatearNumero(arbolesPorHa, decimales: 0)}),
             ),
-          ),
-          TextField(
+          )),
+          separarCampoSolera(TextField(
             controller: _anyo,
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
                 labelText: SoleraL10n.t('frut.anyo_plantacion')),
-          ),
-          TextField(
+          )),
+          separarCampoSolera(TextField(
             controller: _sigpac,
             decoration: InputDecoration(
                 labelText: SoleraL10n.t('frut.codigo_sigpac'),
                 helperText: SoleraL10n.t('frut.sigpac_ayuda')),
-          ),
+          )),
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
             title: Text(SoleraL10n.t('frut.regadio')),

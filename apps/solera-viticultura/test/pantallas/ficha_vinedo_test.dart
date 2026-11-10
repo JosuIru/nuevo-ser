@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show SoleraL10n, separacionCamposSolera;
 import 'package:solera_viticultura/modelos/vinedo.dart';
 import 'package:solera_viticultura/pantallas/pantalla_editar_vinedo.dart';
 
@@ -20,6 +21,38 @@ void main() {
     expect(marcarArea, findsOneWidget);
     expect(find.text(SoleraL10n.t('mapa.sin_area')), findsOneWidget);
     expect(find.text(SoleraL10n.t('mapa.marcar_punto')), findsOneWidget);
+  });
+
+  testWidgets('entre dos filas de campos queda la separación común', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(1080, 4000);
+    tester.view.devicePixelRatio = 2;
+    addTearDown(tester.view.reset);
+    await tester.pumpWidget(const MaterialApp(home: PantallaEditarVinedo()));
+    await tester.pumpAndSettle();
+    final cajas = find.byType(InputDecorator);
+    final rectangulos = [
+      for (var indice = 0; indice < cajas.evaluate().length; indice++)
+        tester.getRect(cajas.at(indice)),
+    ]..sort((a, b) => a.top.compareTo(b.top));
+    // Agrupa por fila (los campos de una Row comparten la parte de arriba).
+    final filas = <Rect>[];
+    for (final caja in rectangulos) {
+      if (filas.isNotEmpty && (caja.top - filas.last.top).abs() < 1) {
+        filas.last = filas.last.expandToInclude(caja);
+      } else {
+        filas.add(caja);
+      }
+    }
+    expect(filas.length, greaterThanOrEqualTo(3));
+    for (var indice = 1; indice < filas.length; indice++) {
+      expect(
+        filas[indice].top - filas[indice - 1].bottom,
+        greaterThanOrEqualTo(separacionCamposSolera),
+        reason: 'fila $indice',
+      );
+    }
   });
 
   testWidgets('borrar solo aparece al editar un viñedo guardado', (

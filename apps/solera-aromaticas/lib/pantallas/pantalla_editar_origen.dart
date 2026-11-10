@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro, separacionCamposSolera;
 import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart';
 
 import '../datos/base_datos.dart';
@@ -327,6 +327,7 @@ class _PantallaEditarZonaState extends State<PantallaEditarZona> {
           const SizedBox(height: 16),
           Text(SoleraL10n.t('arom.permiso'),
               style: Theme.of(context).textTheme.titleMedium),
+          const SizedBox(height: separacionCamposSolera),
           campoTexto(_permiso, SoleraL10n.t('arom.numero_permiso'),
               ayuda: SoleraL10n.t('arom.numero_permiso_ayuda')),
           campoTexto(_organismo, SoleraL10n.t('arom.organismo_permiso')),
@@ -371,10 +372,15 @@ class _PantallaEditarZonaState extends State<PantallaEditarZona> {
                   alElegir: (_) => _anadirEspecie(),
                 ),
               ),
-              IconButton(
-                tooltip: SoleraL10n.t('arom.anadir_especie'),
-                onPressed: _anadirEspecie,
-                icon: const Icon(Icons.add),
+              // El mismo margen inferior que el campo, para seguir centrado.
+              Padding(
+                padding:
+                    const EdgeInsets.only(bottom: separacionCamposSolera),
+                child: IconButton(
+                  tooltip: SoleraL10n.t('arom.anadir_especie'),
+                  onPressed: _anadirEspecie,
+                  icon: const Icon(Icons.add),
+                ),
               ),
             ],
           ),

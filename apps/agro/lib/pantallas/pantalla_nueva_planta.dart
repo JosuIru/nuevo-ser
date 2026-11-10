@@ -190,7 +190,7 @@ class _PantallaNuevaPlantaState extends State<PantallaNuevaPlanta> {
                 ],
                 onChanged: (v) => setState(() => _cultivoId = v ?? 'generico'),
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: separacionCamposSolera),
               DropdownButtonFormField<int?>(
                 initialValue: _fincaId,
                 decoration: InputDecoration(
@@ -203,7 +203,7 @@ class _PantallaNuevaPlantaState extends State<PantallaNuevaPlanta> {
                 ],
                 onChanged: (v) => setState(() => _fincaId = v),
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: separacionCamposSolera),
               if (cultivo.variedadesSugeridas.isNotEmpty)
                 _AutocompleteCampo(
                   controlador: _controladorVariedad,
@@ -215,7 +215,7 @@ class _PantallaNuevaPlantaState extends State<PantallaNuevaPlanta> {
                   controller: _controladorVariedad,
                   decoration: InputDecoration(labelText: SoleraL10n.t('agro.variedad'), border: const OutlineInputBorder()),
                 ),
-              const SizedBox(height: 12),
+              const SizedBox(height: separacionCamposSolera),
               if (cultivo.patronesSugeridos.isNotEmpty)
                 _AutocompleteCampo(
                   controlador: _controladorPatron,
@@ -227,7 +227,7 @@ class _PantallaNuevaPlantaState extends State<PantallaNuevaPlanta> {
                   controller: _controladorPatron,
                   decoration: InputDecoration(labelText: SoleraL10n.t('agro.patron'), border: const OutlineInputBorder()),
                 ),
-              const SizedBox(height: 12),
+              const SizedBox(height: separacionCamposSolera),
               TextFormField(
                 controller: _controladorEtiqueta,
                 decoration: InputDecoration(

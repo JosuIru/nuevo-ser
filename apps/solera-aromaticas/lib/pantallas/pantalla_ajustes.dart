@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
-    show SelectorIdioma, SoleraL10n;
+    show SelectorIdioma, SoleraL10n, separacionCamposSolera, separarCampoSolera;
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show PantallaEstadoActualizaciones, configActualizacionesMonorepo;
 
@@ -89,10 +89,10 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
 
   Widget _campo(TextEditingController controlador, String etiqueta,
           {String? ayuda}) =>
-      TextField(
+      separarCampoSolera(TextField(
         controller: controlador,
         decoration: InputDecoration(labelText: etiqueta, helperText: ayuda),
-      );
+      ));
 
   Widget _acceso(BuildContext context, IconData icono, String clave,
           Widget Function() destino) =>
@@ -140,6 +140,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
           const SizedBox(height: 24),
           Text(SoleraL10n.t('arom.titular'),
               style: Theme.of(context).textTheme.titleMedium),
+          const SizedBox(height: separacionCamposSolera),
           _campo(_nombre, SoleraL10n.t('arom.nombre_titular')),
           _campo(_nif, 'NIF'),
           _campo(_registro, SoleraL10n.t('arom.registro_explotacion')),
@@ -149,7 +150,6 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
           _campo(_comunidad, SoleraL10n.t('arom.comunidad_autonoma')),
           _campo(_asesor, SoleraL10n.t('arom.asesor')),
           _campo(_ropo, SoleraL10n.t('arom.asesor_ropo')),
-          const SizedBox(height: 12),
           FilledButton(
               onPressed: _guardar, child: Text(SoleraL10n.t('guardar'))),
         ],

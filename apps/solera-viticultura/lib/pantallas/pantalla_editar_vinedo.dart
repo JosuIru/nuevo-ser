@@ -208,7 +208,7 @@ class _PantallaEditarVinedoState extends State<PantallaEditarVinedo> {
                       ayuda: codigoIne)),
             ],
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: separacionCamposSolera),
           Row(
             children: [
               Expanded(
@@ -224,7 +224,7 @@ class _PantallaEditarVinedoState extends State<PantallaEditarVinedo> {
                       _controladorRecinto, SoleraL10n.t('agro.recinto'))),
             ],
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: separacionCamposSolera),
           _campoTexto(
               _controladorSuperficie, SoleraL10n.t('agro.superficie_hectareas'),
               ayuda: SoleraL10n.t('agro.ejemplo_superficie'),

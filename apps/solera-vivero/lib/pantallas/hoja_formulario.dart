@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, margenHojaSegura;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, margenHojaSegura, separarCampoSolera;
 
 import '../utiles/textos_vivero.dart';
 
@@ -61,20 +61,20 @@ Future<bool> mostrarHojaFormulario(
 /// Campo de texto numérico de una línea.
 Widget campoNumero(TextEditingController controlador, String etiqueta,
         {bool decimales = true, String? ayuda}) =>
-    TextField(
+    separarCampoSolera(TextField(
       controller: controlador,
       keyboardType: TextInputType.numberWithOptions(decimal: decimales),
       decoration: InputDecoration(labelText: etiqueta, helperText: ayuda),
-    );
+    ));
 
 /// Campo de texto de una línea.
 Widget campoTexto(TextEditingController controlador, String etiqueta,
         {String? ayuda}) =>
-    TextField(
+    separarCampoSolera(TextField(
       controller: controlador,
       decoration: InputDecoration(
           labelText: etiqueta, helperText: ayuda, helperMaxLines: 3),
-    );
+    ));
 
 /// Fila con la fecha elegida; al tocarla abre el calendario.
 Widget selectorFecha(
@@ -107,7 +107,7 @@ Widget selectorOpcion<T>({
   required String Function(T) nombre,
   required ValueChanged<T?> alCambiar,
 }) =>
-    DropdownButtonFormField<T>(
+    separarCampoSolera(DropdownButtonFormField<T>(
       initialValue: valor,
       isExpanded: true,
       decoration: InputDecoration(labelText: etiqueta),
@@ -116,7 +116,7 @@ Widget selectorOpcion<T>({
           DropdownMenuItem(value: opcion, child: Text(nombre(opcion))),
       ],
       onChanged: alCambiar,
-    );
+    ));
 
 /// Pide confirmación antes de borrar o anular algo.
 Future<bool> confirmar(BuildContext context, String pregunta) async =>

@@ -275,7 +275,7 @@ class _SheetEditarTerceroState extends State<_SheetEditarTercero> {
                 validator: (v) =>
                     (v ?? '').trim().isEmpty ? SoleraL10n.t('api.ter_nombre_obligatorio') : null,
               ),
-              SizedBox(height: 12),
+              SizedBox(height: separacionCamposSolera),
               TextFormField(
                 controller: _nif,
                 decoration: InputDecoration(
@@ -284,7 +284,7 @@ class _SheetEditarTerceroState extends State<_SheetEditarTercero> {
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 12),
+              SizedBox(height: separacionCamposSolera),
               DropdownButtonFormField<String>(
                 initialValue: _tipo,
                 decoration: InputDecoration(
@@ -299,7 +299,7 @@ class _SheetEditarTerceroState extends State<_SheetEditarTercero> {
                 ],
                 onChanged: (v) => setState(() => _tipo = v ?? 'ambos'),
               ),
-              SizedBox(height: 12),
+              SizedBox(height: separacionCamposSolera),
               TextFormField(
                 controller: _direccion,
                 decoration: InputDecoration(
@@ -307,7 +307,7 @@ class _SheetEditarTerceroState extends State<_SheetEditarTercero> {
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 12),
+              SizedBox(height: separacionCamposSolera),
               Row(
                 children: [
                   Expanded(
@@ -333,7 +333,7 @@ class _SheetEditarTerceroState extends State<_SheetEditarTercero> {
                   ),
                 ],
               ),
-              SizedBox(height: 12),
+              SizedBox(height: separacionCamposSolera),
               TextFormField(
                 controller: _notas,
                 maxLines: 2,

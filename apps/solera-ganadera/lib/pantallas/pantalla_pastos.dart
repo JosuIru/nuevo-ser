@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show SoleraL10n, separarCampoSolera;
 import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart';
 
 import '../branding.dart';
@@ -163,7 +164,7 @@ Future<void> mostrarEdicionPieza(BuildContext context,
         alUsarSuperficie: (hectareas) => refrescar(
             () => superficie.text = formatearNumero(hectareas, decimales: 2)),
       ),
-      DropdownButtonFormField<String>(
+      separarCampoSolera(DropdownButtonFormField<String>(
         initialValue: tipoPasto,
         decoration: InputDecoration(labelText: SoleraL10n.t('gana.tipo_pasto')),
         items: [
@@ -172,8 +173,8 @@ Future<void> mostrarEdicionPieza(BuildContext context,
                 value: opcion, child: Text(nombreTipoPasto(opcion)))
         ],
         onChanged: (valor) => refrescar(() => tipoPasto = valor ?? tipoPasto),
-      ),
-      DropdownButtonFormField<String>(
+      )),
+      separarCampoSolera(DropdownButtonFormField<String>(
         initialValue: titularidad,
         decoration:
             InputDecoration(labelText: SoleraL10n.t('gana.titularidad')),
@@ -184,7 +185,7 @@ Future<void> mostrarEdicionPieza(BuildContext context,
         ],
         onChanged: (valor) =>
             refrescar(() => titularidad = valor ?? titularidad),
-      ),
+      )),
       if (existente != null)
         SwitchListTile(
           contentPadding: EdgeInsets.zero,

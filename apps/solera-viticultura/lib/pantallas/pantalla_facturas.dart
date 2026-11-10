@@ -446,7 +446,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
                   border: OutlineInputBorder(),
                   isDense: true),
             ),
-            SizedBox(height: 12),
+            SizedBox(height: separacionCamposSolera),
 
             // Cliente
             TextFormField(
@@ -458,7 +458,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
               validator: (v) =>
                   v == null || v.trim().isEmpty ? SoleraL10n.t('viti.requerido') : null,
             ),
-            SizedBox(height: 8),
+            SizedBox(height: separacionCamposSolera),
             Row(
               children: [
                 Expanded(
@@ -517,7 +517,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
                 ),
               ],
             ),
-            SizedBox(height: 8),
+            SizedBox(height: separacionCamposSolera),
             Row(
               children: [
                 Expanded(
@@ -548,7 +548,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            SizedBox(height: separacionCamposSolera),
 
             // IVA
             DropdownButtonFormField<double>(

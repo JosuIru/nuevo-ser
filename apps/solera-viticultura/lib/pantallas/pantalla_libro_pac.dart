@@ -166,7 +166,7 @@ class _PantallaLibroPacState extends State<PantallaLibroPac> {
             ],
             onChanged: (v) => setState(() => _vinedoSeleccionado = v),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           DropdownButtonFormField<int>(
             initialValue: _ano,
             decoration: InputDecoration(

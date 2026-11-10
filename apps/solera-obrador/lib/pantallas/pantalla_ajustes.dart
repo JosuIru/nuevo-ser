@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
-    show PantallaClaveAnthropic, SelectorIdioma, SoleraL10n;
+    show
+        PantallaClaveAnthropic, SelectorIdioma, SoleraL10n, separarCampoSolera;
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show PantallaEstadoActualizaciones, configActualizacionesMonorepo;
 
@@ -122,15 +123,15 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
           const SizedBox(height: 24),
           Text(SoleraL10n.t('obra.titular'),
               style: Theme.of(context).textTheme.titleMedium),
-          TextField(
+          separarCampoSolera(TextField(
             controller: _controladorNombre,
             decoration:
                 InputDecoration(labelText: SoleraL10n.t('obra.nombre_titular')),
-          ),
-          TextField(
+          )),
+          separarCampoSolera(TextField(
             controller: _controladorNif,
             decoration: const InputDecoration(labelText: 'NIF'),
-          ),
+          )),
           TextField(
             controller: _controladorRegistro,
             decoration: InputDecoration(

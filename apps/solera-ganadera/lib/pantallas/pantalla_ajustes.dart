@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
-    show SelectorIdioma, SoleraL10n;
+    show SelectorIdioma, SoleraL10n, separarCampoSolera;
 import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart' show CampoPunto;
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show PantallaEstadoActualizaciones, configActualizacionesMonorepo;
@@ -141,11 +141,11 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
 
   Widget _campo(TextEditingController controlador, String clave,
           {TextInputType? teclado}) =>
-      TextField(
+      separarCampoSolera(TextField(
         controller: controlador,
         keyboardType: teclado,
         decoration: InputDecoration(labelText: SoleraL10n.t(clave)),
-      );
+      ));
 
   @override
   Widget build(BuildContext context) {
@@ -238,7 +238,6 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
           _campo(_clasificacion, 'gana.clasificacion'),
           _campo(_capacidad, 'gana.capacidad_maxima',
               teclado: TextInputType.number),
-          const SizedBox(height: 8),
           Text(SoleraL10n.t('gana.especies_autorizadas'),
               style: estilos.bodySmall),
           Wrap(

@@ -6,7 +6,7 @@
 // ficha). Sin promesas de salud; los alérgenos solo los calcula la app.
 
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro, separacionCamposSolera;
 
 import '../datos/catalogos_generados/catalogo_guia_fichas.dart';
 import '../datos/catalogos_generados/catalogo_guia_recetas.dart';
@@ -510,7 +510,7 @@ class _CalculadoraTemperaturaAguaState
   }
 
   Widget _campo(TextEditingController controlador, String clave) => Padding(
-        padding: const EdgeInsets.only(top: 8),
+        padding: const EdgeInsets.only(top: separacionCamposSolera),
         child: TextField(
           controller: controlador,
           keyboardType: const TextInputType.numberWithOptions(

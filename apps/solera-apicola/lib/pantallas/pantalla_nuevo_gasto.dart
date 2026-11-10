@@ -234,7 +234,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
               validator: (v) =>
                   (v ?? '').trim().isEmpty ? SoleraL10n.t('api.eco_concepto_obligatorio') : null,
             ),
-            SizedBox(height: 12),
+            SizedBox(height: separacionCamposSolera),
             TextFormField(
               controller: _importeBase,
               keyboardType:
@@ -314,7 +314,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
               ),
             ),
             if (_imputacion == 'colmenar_concreto') ...[
-              SizedBox(height: 8),
+              SizedBox(height: separacionCamposSolera),
               DropdownButtonFormField<int?>(
                 initialValue: _apiarioId,
                 decoration: InputDecoration(
@@ -346,7 +346,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
               ],
               onChanged: (v) => setState(() => _terceroId = v),
             ),
-            SizedBox(height: 12),
+            SizedBox(height: separacionCamposSolera),
             TextFormField(
               controller: _numeroFactura,
               decoration: InputDecoration(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, margenHojaSegura;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, margenHojaSegura, separarCampoSolera;
 
 import '../utiles/textos_sidra.dart';
 
@@ -92,19 +92,19 @@ class _LiberaControladoresState extends State<_LiberaControladores> {
 /// Campo de texto numérico de una línea.
 Widget campoNumero(TextEditingController controlador, String etiqueta,
         {bool decimales = true, String? sufijo}) =>
-    TextField(
+    separarCampoSolera(TextField(
       controller: controlador,
       keyboardType: TextInputType.numberWithOptions(decimal: decimales),
       decoration: InputDecoration(labelText: etiqueta, suffixText: sufijo),
-    );
+    ));
 
 /// Campo de texto de una línea.
 Widget campoTexto(TextEditingController controlador, String etiqueta,
         {String? ayuda}) =>
-    TextField(
+    separarCampoSolera(TextField(
       controller: controlador,
       decoration: InputDecoration(labelText: etiqueta, helperText: ayuda),
-    );
+    ));
 
 /// Desplegable de una lista cerrada con su texto visible.
 Widget campoDesplegable<T>({
@@ -114,7 +114,7 @@ Widget campoDesplegable<T>({
   required ValueChanged<T?> alCambiar,
   Key? key,
 }) =>
-    DropdownButtonFormField<T>(
+    separarCampoSolera(DropdownButtonFormField<T>(
       key: key,
       initialValue: valor,
       isExpanded: true,
@@ -126,7 +126,7 @@ Widget campoDesplegable<T>({
               child: Text(texto, overflow: TextOverflow.ellipsis)),
       ],
       onChanged: alCambiar,
-    );
+    ));
 
 /// Fila con la fecha elegida y un botón para cambiarla.
 class SelectorFecha extends StatelessWidget {

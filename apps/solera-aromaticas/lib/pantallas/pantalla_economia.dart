@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
-    show DialogoConfirmacion, SoleraL10n, rellenoInferiorSeguro;
+    show
+        DialogoConfirmacion,
+        SoleraL10n,
+        rellenoInferiorSeguro,
+        separarCampoSolera;
 
 import '../datos/base_datos.dart';
 import '../dominio/resumen_economico.dart';
@@ -82,7 +86,7 @@ class _PantallaEconomiaState extends State<PantallaEconomia> {
         selectorFecha(context,
             fecha: fecha, alCambiar: (valor) => refrescar(() => fecha = valor)),
         campoTexto(concepto, SoleraL10n.t('arom.concepto')),
-        DropdownButtonFormField<String>(
+        separarCampoSolera(DropdownButtonFormField<String>(
           initialValue: categoria,
           decoration:
               InputDecoration(labelText: SoleraL10n.t('arom.categoria')),
@@ -99,8 +103,8 @@ class _PantallaEconomiaState extends State<PantallaEconomia> {
                   datos.configuracion.impuestosVenta(categoria);
             }
           }),
-        ),
-        DropdownButtonFormField<int?>(
+        )),
+        separarCampoSolera(DropdownButtonFormField<int?>(
           initialValue: parcelaId,
           decoration: InputDecoration(labelText: SoleraL10n.t('arom.parcela')),
           items: [
@@ -112,9 +116,8 @@ class _PantallaEconomiaState extends State<PantallaEconomia> {
                   value: parcela.id, child: Text(parcela.nombre)),
           ],
           onChanged: (valor) => refrescar(() => parcelaId = valor),
-        ),
+        )),
         campoNumero(base, SoleraL10n.t('arom.base_euros')),
-        const SizedBox(height: 8),
         if (esIngreso && datos.configuracion.avisoTransformacion(categoria))
           textoAviso(context, SoleraL10n.t('arom.aviso_transformacion')),
         if (compensacion > 0)

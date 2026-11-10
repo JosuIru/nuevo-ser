@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, margenHojaSegura;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, margenHojaSegura, separarCampoSolera;
 
 import '../utiles/textos_monte.dart';
 
@@ -92,22 +92,22 @@ class _LiberaControladoresState extends State<_LiberaControladores> {
 /// Campo de texto numérico de una línea.
 Widget campoNumero(TextEditingController controlador, String etiqueta,
         {bool decimales = true, String? ayuda}) =>
-    TextField(
+    separarCampoSolera(TextField(
       controller: controlador,
       keyboardType: TextInputType.numberWithOptions(decimal: decimales),
       decoration: InputDecoration(labelText: etiqueta, helperText: ayuda),
-    );
+    ));
 
 /// Campo de texto (de una línea, o de [lineas] si se pasa).
 Widget campoTexto(TextEditingController controlador, String etiqueta,
         {String? ayuda, int lineas = 1}) =>
-    TextField(
+    separarCampoSolera(TextField(
       controller: controlador,
       minLines: lineas,
       maxLines: lineas == 1 ? 1 : lineas + 4,
       decoration: InputDecoration(
           labelText: etiqueta, helperText: ayuda, helperMaxLines: 3),
-    );
+    ));
 
 /// Fila con la fecha elegida; al tocarla abre el calendario.
 Widget selectorFecha(
@@ -171,7 +171,7 @@ Widget selectorId({
   required ValueChanged<int?> alCambiar,
   String? textoNinguno,
 }) =>
-    DropdownButtonFormField<int?>(
+    separarCampoSolera(DropdownButtonFormField<int?>(
       initialValue: opciones.any((opcion) => opcion.$1 == valor) ? valor : null,
       isExpanded: true,
       decoration: InputDecoration(labelText: etiqueta),
@@ -184,7 +184,7 @@ Widget selectorId({
               value: id, child: Text(nombre, overflow: TextOverflow.ellipsis)),
       ],
       onChanged: alCambiar,
-    );
+    ));
 
 /// Etiqueta pequeña encima de un grupo de chips.
 Widget etiquetaGrupo(BuildContext context, String texto) => Padding(

@@ -277,7 +277,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
               validator: (v) =>
                   (v ?? '').trim().isEmpty ? SoleraL10n.t('viti.concepto_obligatorio') : null,
             ),
-            SizedBox(height: 12),
+            SizedBox(height: separacionCamposSolera),
             if (_tipoActual.unidad.isNotEmpty)
               TextFormField(
                 controller: _cantidad,
@@ -289,7 +289,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                 ),
                 validator: (texto) => validarNumeroOpcional(texto, nullSiAmbiguo: true),
               ),
-            if (_tipoActual.unidad.isNotEmpty) SizedBox(height: 12),
+            if (_tipoActual.unidad.isNotEmpty) SizedBox(height: separacionCamposSolera),
             TextFormField(
               controller: _importeBase,
               keyboardType:
@@ -373,7 +373,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
               ],
               onChanged: (v) => setState(() => _terceroId = v),
             ),
-            SizedBox(height: 12),
+            SizedBox(height: separacionCamposSolera),
             DropdownButtonFormField<int?>(
               initialValue: _vinedoId,
               decoration: InputDecoration(
@@ -389,7 +389,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
               ],
               onChanged: (v) => setState(() => _vinedoId = v),
             ),
-            SizedBox(height: 12),
+            SizedBox(height: separacionCamposSolera),
             DropdownButtonFormField<String>(
               initialValue: _variedadId.isEmpty ? null : _variedadId,
               decoration: InputDecoration(
@@ -416,7 +416,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                   border: OutlineInputBorder(),
                 ),
               ),
-            if (_esVentaVino) SizedBox(height: 12),
+            if (_esVentaVino) SizedBox(height: separacionCamposSolera),
             TextFormField(
               controller: _numeroFactura,
               decoration: InputDecoration(

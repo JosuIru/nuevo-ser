@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, separarCampoSolera;
 
 import '../datos/base_datos.dart';
 import '../dominio/catalogos.dart';
@@ -128,7 +128,6 @@ Future<bool> mostrarAltaTratamiento(BuildContext context,
       campoTexto(aplicador, SoleraL10n.t('frut.aplicador')),
       campoTexto(carnet, SoleraL10n.t('frut.carnet_aplicador')),
       campoTexto(equipo, SoleraL10n.t('frut.equipo_aplicacion')),
-      const SizedBox(height: 8),
       Text(SoleraL10n.t('frut.eficacia')),
       Wrap(
         spacing: 6,
@@ -213,7 +212,6 @@ Future<bool> mostrarAltaAbonado(BuildContext context, {int? parcelaId}) async {
       campoTexto(riqueza, SoleraL10n.t('frut.riqueza_npk')),
       campoNumero(cantidad, SoleraL10n.t('frut.cantidad_kg_ha')),
       campoNumero(superficie, SoleraL10n.t('frut.superficie_ha')),
-      const SizedBox(height: 8),
       Wrap(
         spacing: 6,
         children: [
@@ -399,7 +397,7 @@ Future<bool> mostrarAltaHelada(BuildContext context, {int? parcelaId}) async {
     context,
     titulo: SoleraL10n.t('frut.nueva_helada'),
     construir: (refrescar) => [
-      DropdownButtonFormField<int?>(
+      separarCampoSolera(DropdownButtonFormField<int?>(
         initialValue: parcela,
         decoration: InputDecoration(labelText: SoleraL10n.t('frut.parcela')),
         items: [
@@ -410,7 +408,7 @@ Future<bool> mostrarAltaHelada(BuildContext context, {int? parcelaId}) async {
                 value: candidata.id, child: Text(candidata.nombre)),
         ],
         onChanged: (valor) => refrescar(() => parcela = valor),
-      ),
+      )),
       selectorFecha(context,
           fecha: fecha, alCambiar: (valor) => refrescar(() => fecha = valor)),
       SwitchListTile(

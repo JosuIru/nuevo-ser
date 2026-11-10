@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, margenHojaSegura;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, margenHojaSegura, separarCampoSolera;
 
 /// Hoja inferior con un formulario corto y un botón Guardar.
 ///
@@ -66,18 +66,18 @@ Future<bool> mostrarHojaFormulario(
 /// Campo de texto numérico de una línea.
 Widget campoNumero(TextEditingController controlador, String etiqueta,
         {bool decimales = true}) =>
-    TextField(
+    separarCampoSolera(TextField(
       controller: controlador,
       keyboardType: TextInputType.numberWithOptions(decimal: decimales),
       decoration: InputDecoration(labelText: etiqueta),
-    );
+    ));
 
 /// Campo de texto de una línea.
 Widget campoTexto(TextEditingController controlador, String etiqueta) =>
-    TextField(
+    separarCampoSolera(TextField(
       controller: controlador,
       decoration: InputDecoration(labelText: etiqueta),
-    );
+    ));
 
 /// Libera los controladores de la hoja cuando el widget sale del árbol.
 class _LiberaControladores extends StatefulWidget {

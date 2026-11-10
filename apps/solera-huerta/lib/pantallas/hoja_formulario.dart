@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, margenHojaSegura;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, margenHojaSegura, separarCampoSolera;
 
 import '../utiles/textos_huerta.dart';
 
@@ -67,20 +67,20 @@ Future<bool> mostrarHojaFormulario(
 /// Campo de texto numérico de una línea.
 Widget campoNumero(TextEditingController controlador, String etiqueta,
         {bool decimales = true, String? ayuda}) =>
-    TextField(
+    separarCampoSolera(TextField(
       controller: controlador,
       keyboardType: TextInputType.numberWithOptions(decimal: decimales),
       decoration: InputDecoration(labelText: etiqueta, helperText: ayuda),
-    );
+    ));
 
 /// Campo de texto de una línea.
 Widget campoTexto(TextEditingController controlador, String etiqueta,
         {String? ayuda}) =>
-    TextField(
+    separarCampoSolera(TextField(
       controller: controlador,
       decoration: InputDecoration(
           labelText: etiqueta, helperText: ayuda, helperMaxLines: 3),
-    );
+    ));
 
 /// Desplegable de una lista cerrada de ids con su nombre visible.
 Widget desplegable<T>({
@@ -91,7 +91,7 @@ Widget desplegable<T>({
   required ValueChanged<T?> alCambiar,
   Key? key,
 }) =>
-    DropdownButtonFormField<T>(
+    separarCampoSolera(DropdownButtonFormField<T>(
       key: key,
       initialValue: valor,
       isExpanded: true,
@@ -103,7 +103,7 @@ Widget desplegable<T>({
               child: Text(nombre(opcion), overflow: TextOverflow.ellipsis)),
       ],
       onChanged: alCambiar,
-    );
+    ));
 
 /// Fila con la fecha elegida; al tocarla abre el calendario. Los registros
 /// del cuaderno se apuntan a menudo días después, y el plan va por delante.

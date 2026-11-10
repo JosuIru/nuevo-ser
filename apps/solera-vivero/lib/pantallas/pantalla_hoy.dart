@@ -3,6 +3,8 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart' show AvisoCatalogosProvision
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show CabeceraHoySolera, CifraCabecera, SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show AvisoActualizaciones, configActualizacionesMonorepo;
 
 import '../branding.dart';
 
@@ -140,6 +142,11 @@ class PantallaHoy extends StatelessWidget {
             const SizedBox(height: 8),
             ...[
               if (datos.faltanPrimerosPasos) _primerosPasos(context, datos),
+              // Aviso de versión nueva: si no la hay, no ocupa sitio.
+              AvisoActualizaciones(
+                config: configActualizacionesMonorepo('solera-vivero'),
+                nombreApp: 'Larrea Vivero',
+              ),
               if (!catalogosCompletamenteRevisados)
                 AvisoCatalogosProvisionales(texto: SoleraL10n.t('vive.banner_datos_provisionales')),
               for (final inspeccion in datos.inspeccionesPendientes)

@@ -1,6 +1,8 @@
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 
+import '../dominio/planificador_hornada.dart';
+
 /// Nombre visible de un alérgeno del anexo II (el id no cambia nunca).
 String nombreAlergeno(String id) => switch (id) {
       'gluten' => SoleraL10n.t('obra.alergeno_gluten'),
@@ -66,3 +68,33 @@ String nombreCategoriaEconomica(String categoria) => switch (categoria) {
       'otros_gastos' => SoleraL10n.t('obra.categoria_otros_gastos'),
       _ => categoria,
     };
+
+/// Nombre visible de una fase de la hornada.
+String nombreFaseHornada(FaseHornada fase) => switch (fase) {
+      FaseHornada.refrescoMasaMadre => SoleraL10n.t('obra.plan_fase_refresco'),
+      FaseHornada.autolisis => SoleraL10n.t('obra.plan_fase_autolisis'),
+      FaseHornada.amasado => SoleraL10n.t('obra.plan_fase_amasado'),
+      FaseHornada.primeraFermentacion =>
+        SoleraL10n.t('obra.plan_fase_primera_fermentacion'),
+      FaseHornada.formado => SoleraL10n.t('obra.plan_fase_formado'),
+      FaseHornada.fermentacionFinal =>
+        SoleraL10n.t('obra.plan_fase_fermentacion_final'),
+      FaseHornada.precalentarHorno => SoleraL10n.t('obra.plan_fase_precalentar'),
+      FaseHornada.coccion => SoleraL10n.t('obra.plan_fase_coccion'),
+      FaseHornada.enfriado => SoleraL10n.t('obra.plan_fase_enfriado'),
+    };
+
+/// 95 min → «1 h 35 min»; 40 → «40 min».
+String formatearDuracion(Duration duracion) {
+  final minutos = duracion.inMinutes;
+  if (minutos < 60) return '$minutos min';
+  final horas = minutos ~/ 60;
+  final resto = minutos % 60;
+  return resto == 0 ? '$horas h' : '$horas h $resto min';
+}
+
+/// Rango de minutos como «1 h 30 min – 2 h».
+String formatearRangoMinutos(int minimo, int maximo) => minimo == maximo
+    ? formatearDuracion(Duration(minutes: minimo))
+    : '${formatearDuracion(Duration(minutes: minimo))} – '
+        '${formatearDuracion(Duration(minutes: maximo))}';

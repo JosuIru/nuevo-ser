@@ -60,7 +60,7 @@ class _PantallaFichaLoteState extends State<PantallaFichaLote> {
         if (snap.connectionState == ConnectionState.waiting) return const Center(child: CircularProgressIndicator());
         final d = snap.data; if (d == null || d.lote == null) return Center(child: Text(SoleraL10n.t('ques.lote_no_encontrado')));
         final l = d.lote!; final f = DateTime.fromMillisecondsSinceEpoch(l.fechaMs);
-        return RefreshIndicator(onRefresh: () async { setState(() => _datos = _cargar()); }, child: ListView(padding: const EdgeInsets.all(16), children: [
+        return RefreshIndicator(onRefresh: () async { setState(() => _datos = _cargar()); }, child: ListView(padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)), children: [
           Card(child: Padding(padding: const EdgeInsets.all(16), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Row(children: [_IconoEstadoLote(l.estado), const SizedBox(width: 12), Expanded(child: Text(l.numeroLote, style: t.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)))]),
             const Divider(),

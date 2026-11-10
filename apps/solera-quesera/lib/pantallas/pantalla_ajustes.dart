@@ -177,7 +177,7 @@ class _PantallaEditarQueseriaState extends State<_PantallaEditarQueseria> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(SoleraL10n.t('ques.editar_queseria'))),
-      body: ListView(padding: const EdgeInsets.all(16), children: [
+      body: ListView(padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)), children: [
         TextFormField(
             controller: _razonCtrl,
             decoration: InputDecoration(

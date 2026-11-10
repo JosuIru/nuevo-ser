@@ -63,19 +63,19 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
 
   Widget _totalCard(ThemeData t, String tit, double v, Color c) => Card(color: c.withAlpha(15), child: Padding(padding: const EdgeInsets.all(16), child: Row(children: [Text(tit, style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)), const Spacer(), Text(formatearEuros(v), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: c))])));
 
-  Widget _listaIng(ThemeData t, double tot) => ListView(padding: const EdgeInsets.all(16), children: [
+  Widget _listaIng(ThemeData t, double tot) => ListView(padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)), children: [
     _totalCard(t, SoleraL10n.tf('ques.ingresos_anyo', {'anyo': _anyo}), tot, Colors.green),
     if (_ingresos.isEmpty) Card(child: Padding(padding: const EdgeInsets.all(24), child: Text(SoleraL10n.t('ques.sin_ingresos'), textAlign: TextAlign.center, style: const TextStyle(color: Colors.grey))))
     else ..._ingresos.map((i) => Card(child: ListTile(dense: true, leading: CircleAvatar(backgroundColor: Colors.green.withAlpha(30), child: const Icon(Icons.arrow_downward, color: Colors.green, size: 18)), title: Text('${textoCategoriaApunte(i.categoria)} · ${formatearEuros(i.total)}', style: const TextStyle(fontSize: 13)), subtitle: Text('${_fd.format(DateTime.fromMillisecondsSinceEpoch(i.fechaMs))} · ${i.numeroFactura}', style: const TextStyle(fontSize: 11))))),
   ]);
 
-  Widget _listaGas(ThemeData t, double tot) => ListView(padding: const EdgeInsets.all(16), children: [
+  Widget _listaGas(ThemeData t, double tot) => ListView(padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)), children: [
     _totalCard(t, SoleraL10n.tf('ques.gastos_anyo', {'anyo': _anyo}), tot, Colors.red),
     if (_gastos.isEmpty) Card(child: Padding(padding: const EdgeInsets.all(24), child: Text(SoleraL10n.t('ques.sin_gastos'), textAlign: TextAlign.center, style: const TextStyle(color: Colors.grey))))
     else ..._gastos.map((g) => Card(child: ListTile(dense: true, leading: CircleAvatar(backgroundColor: Colors.red.withAlpha(30), child: const Icon(Icons.arrow_upward, color: Colors.red, size: 18)), title: Text('${textoCategoriaApunte(g.categoria)} · ${formatearEuros(g.total)}', style: const TextStyle(fontSize: 13)), subtitle: Text('${_fd.format(DateTime.fromMillisecondsSinceEpoch(g.fechaMs))} · ${g.numeroFactura}', style: const TextStyle(fontSize: 11))))),
   ]);
 
-  Widget _resumen(ThemeData t, double bal, double ti, double tg) => ListView(padding: const EdgeInsets.all(16), children: [
+  Widget _resumen(ThemeData t, double bal, double ti, double tg) => ListView(padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)), children: [
     _totalCard(t, SoleraL10n.tf('ques.balance_anyo', {'anyo': _anyo}), bal, bal >= 0 ? Colors.green : Colors.red),
     const Divider(),
     Text('⚠️ ${SoleraL10n.t('ques.datos_provisionales_asesor_fiscal')}', style: const TextStyle(color: Colors.orange, fontSize: 12), textAlign: TextAlign.center),
@@ -126,7 +126,7 @@ class _NuevoApunteState extends State<_NuevoApunte> {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(title: Text(widget.tipo == 'ingreso' ? SoleraL10n.t('ques.nuevo_ingreso') : SoleraL10n.t('ques.nuevo_gasto'))),
-    body: Form(key: _fk, child: ListView(padding: const EdgeInsets.all(16), children: [
+    body: Form(key: _fk, child: ListView(padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)), children: [
       DropdownButtonFormField<String>(decoration: InputDecoration(labelText: SoleraL10n.t('ques.categoria'), border: const OutlineInputBorder()), initialValue: _cat,
         items: (widget.tipo == 'ingreso' ? _catsIng : _catsGas).map((c) => DropdownMenuItem(value: c, child: Text(textoCategoriaApunte(c)))).toList(),
         onChanged: (v) => setState(() => _cat = v ?? _cat)),

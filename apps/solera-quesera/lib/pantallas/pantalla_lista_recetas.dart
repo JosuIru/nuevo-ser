@@ -33,7 +33,7 @@ class _PantallaListaRecetasState extends State<PantallaListaRecetas> {
       appBar: AppBar(title: Text(SoleraL10n.t('recetas')), actions: [if (_recetas.isNotEmpty) Text('${_recetas.length}', style: t.textTheme.bodyMedium)]),
       body: _recetas.isEmpty
         ? Center(child: Column(mainAxisSize: MainAxisSize.min, children: [Icon(Icons.restaurant_menu_outlined, size: 64, color: t.colorScheme.outline), const SizedBox(height: 16), Text(SoleraL10n.t('no_hay_recetas'), style: t.textTheme.titleMedium), const SizedBox(height: 8), FilledButton.icon(onPressed: () => _editar(null), icon: const Icon(Icons.add), label: Text(SoleraL10n.t('crear_primera_receta')))]))
-        : RefreshIndicator(onRefresh: _recargar, child: ListView.builder(padding: const EdgeInsets.all(8), itemCount: _recetas.length, itemBuilder: (_, i) { final r = _recetas[i];
+        : RefreshIndicator(onRefresh: _recargar, child: ListView.builder(padding: rellenoInferiorSeguro(context, const EdgeInsets.all(8)), itemCount: _recetas.length, itemBuilder: (_, i) { final r = _recetas[i];
             return Card(child: ListTile(
               leading: CircleAvatar(backgroundColor: r.doId != null ? Colors.green.withAlpha(30) : t.colorScheme.primary.withAlpha(30), child: Icon(Icons.restaurant_menu, color: r.doId != null ? Colors.green : t.colorScheme.primary)),
               title: Text(r.nombre, style: const TextStyle(fontWeight: FontWeight.bold)),
@@ -89,7 +89,7 @@ class _EditarRecetaState extends State<_EditarReceta> {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(title: Text(widget.r != null ? SoleraL10n.t('ques.editar_receta') : SoleraL10n.t('ques.nueva_receta'))),
-    body: Form(key: _fk, child: ListView(padding: const EdgeInsets.all(16), children: [
+    body: Form(key: _fk, child: ListView(padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)), children: [
       TextFormField(controller: _nomC, decoration: InputDecoration(labelText: SoleraL10n.t('ques.nombre_de_la_receta'), border: const OutlineInputBorder(), hintText: SoleraL10n.t('ques.nombre_receta_ejemplo')), validator: (v) => (v == null || v.trim().isEmpty) ? SoleraL10n.t('ques.requerido') : null),
       const SizedBox(height: 12),
       Row(children: [Expanded(child: TextFormField(decoration: InputDecoration(labelText: SoleraL10n.t('ques.id_tipo_de_queso'), border: const OutlineInputBorder(), helperText: 'idiazabal_semicurado…'), initialValue: _tipoQuesoId, onChanged: (v) => _tipoQuesoId = v)), const SizedBox(width: 8), Expanded(child: TextFormField(decoration: InputDecoration(labelText: SoleraL10n.t('ques.do_opcional'), border: const OutlineInputBorder(), helperText: 'idiazabal…'), initialValue: _doId, onChanged: (v) => _doId = v))]),

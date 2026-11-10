@@ -82,7 +82,7 @@ class _PantallaListaProveedoresState extends State<PantallaListaProveedores> {
               : RefreshIndicator(
                   onRefresh: _recargar,
                   child: ListView.builder(
-                      padding: const EdgeInsets.all(8),
+                      padding: rellenoInferiorSeguro(context, const EdgeInsets.all(8)),
                       itemCount: f.length,
                       itemBuilder: (_, i) {
                         final p = f[i];
@@ -239,7 +239,7 @@ class _EditarProveedorState extends State<_EditarProveedor> {
                 : SoleraL10n.t('ques.nuevo_proveedor'))),
         body: Form(
             key: _fk,
-            child: ListView(padding: const EdgeInsets.all(16), children: [
+            child: ListView(padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)), children: [
               SwitchListTile(
                   title: Text(SoleraL10n.t('rebano_propio')),
                   subtitle: Text(SoleraL10n.t('ques.rebano_propio_ayuda')),

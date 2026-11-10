@@ -52,7 +52,7 @@ class _PantallaNuevoLoteState extends State<PantallaNuevoLote> {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(title: Text(SoleraL10n.t('ques.nuevo_lote'))),
-    body: _cargando ? const Center(child: CircularProgressIndicator()) : Form(key: _fk, child: ListView(padding: const EdgeInsets.all(16), children: [
+    body: _cargando ? const Center(child: CircularProgressIndicator()) : Form(key: _fk, child: ListView(padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)), children: [
       ListTile(leading: const Icon(Icons.calendar_today), title: Text(_ff.format(_fecha)), trailing: const Icon(Icons.edit), onTap: () async { final p = await showDatePicker(context: context, initialDate: _fecha, firstDate: DateTime(2020), lastDate: DateTime.now()); if (p != null) setState(() => _fecha = p); }),
       const SizedBox(height: 12),
       DropdownButtonFormField<int>(decoration: InputDecoration(labelText: SoleraL10n.t('ques.receta'), border: const OutlineInputBorder()), items: _recetas.map((r) => DropdownMenuItem<int>(value: r.id as int, child: Text(r.nombre as String))).toList(), onChanged: (id) { setState(() { _recetaId = id; final r = _recetas.firstWhere((r) => r.id == id, orElse: () => null); if (r != null) { _tipoQueso = r.tipoQuesoId ?? ''; _doId = r.doId ?? ''; _rendEsp = r.rendimientoEsperado ?? 8; _tempCoagC.text = (r.tempCoagulacion ?? 30).toString(); _tiempoCoagC.text = (r.tiempoCoagMinutos ?? 30).toString(); _cuajoC.text = r.tipoCuajo ?? 'animal'; } }); }),

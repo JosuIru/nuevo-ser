@@ -35,7 +35,7 @@ class _PantallaTrazabilidadState extends State<PantallaTrazabilidad> {
     final t = Theme.of(context);
     return Scaffold(
       appBar: AppBar(title: Text(SoleraL10n.t('libro_de_trazabilidad_appcc'))),
-      body: ListView(padding: const EdgeInsets.all(16), children: [
+      body: ListView(padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)), children: [
         Card(child: Padding(padding: const EdgeInsets.all(16), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [Icon(Icons.description, color: t.colorScheme.primary), const SizedBox(width: 8), Text(SoleraL10n.t('libro_de_trazabilidad_appcc'), style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold))]),
           Text(SoleraL10n.t('ques.pdf_inspeccionable_7_secciones'), style: const TextStyle(color: Colors.grey)),

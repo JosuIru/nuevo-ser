@@ -103,7 +103,7 @@ class _PantallaSimulacionTrazabilidadState extends State<PantallaSimulacionTraza
       ),
       body: _lotes.isEmpty
         ? _empty(t)
-        : ListView(padding: const EdgeInsets.all(16), children: [
+        : ListView(padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)), children: [
             _pasoInd(t), const SizedBox(height: 16),
             if (_paso == 0) _paso1(t),
             if (_paso >= 2 && _result != null) ...[_resultados(t), _verificacion(t), _archivo(t)],

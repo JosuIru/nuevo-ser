@@ -116,7 +116,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
     final tema = Theme.of(context);
     return Scaffold(
       appBar: AppBar(title: Text(SoleraL10n.t('backup'))),
-      body: ListView(padding: const EdgeInsets.all(16), children: [
+      body: ListView(padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)), children: [
         Card(
           child: Padding(
             padding: const EdgeInsets.all(16),

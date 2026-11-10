@@ -45,7 +45,7 @@ class _PantallaRegistroAppccState extends State<PantallaRegistroAppcc> {
 
   final _tCavaC = TextEditingController(text: 'Cava principal'), _tValC = TextEditingController(), _tHrC = TextEditingController();
 
-  Widget _secTemp(ThemeData t) => ListView(padding: const EdgeInsets.all(16), children: [
+  Widget _secTemp(ThemeData t) => ListView(padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)), children: [
     Card(child: Padding(padding: const EdgeInsets.all(12), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(SoleraL10n.t('ques.nuevo_registro'), style: t.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold)),
       TextFormField(controller: _tCavaC, decoration: InputDecoration(labelText: SoleraL10n.t('ques.cava_camara'), border: const OutlineInputBorder(), isDense: true)),

@@ -78,7 +78,7 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
       ]),
       body: _facturas.isEmpty
         ? Center(child: Column(mainAxisSize: MainAxisSize.min, children: [Icon(Icons.receipt_long_outlined, size: 64, color: t.colorScheme.outline), const SizedBox(height: 16), Text(SoleraL10n.t('ques.no_hay_facturas'), style: t.textTheme.titleMedium), const SizedBox(height: 8), FilledButton.icon(onPressed: _nueva, icon: const Icon(Icons.add), label: Text(SoleraL10n.t('emitir_primera_factura')))]))
-        : RefreshIndicator(onRefresh: _recargar, child: ListView.builder(padding: const EdgeInsets.all(8), itemCount: _facturas.length, itemBuilder: (_, i) { final f = _facturas[i];
+        : RefreshIndicator(onRefresh: _recargar, child: ListView.builder(padding: rellenoInferiorSeguro(context, const EdgeInsets.all(8)), itemCount: _facturas.length, itemBuilder: (_, i) { final f = _facturas[i];
             final c = f.estado == 'pagada' ? Colors.green : f.estado == 'vencida' ? Colors.red : Colors.blue;
             return Card(child: ListTile(
               leading: CircleAvatar(backgroundColor: c.withAlpha(30), child: Icon(f.estado == 'pagada' ? Icons.check_circle : f.estado == 'vencida' ? Icons.error : Icons.pending, color: c, size: 20)),
@@ -155,7 +155,7 @@ class _NuevaFacturaState extends State<_NuevaFactura> {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(title: Text(SoleraL10n.t('nueva_factura'))),
-    body: Form(key: _fk, child: ListView(padding: const EdgeInsets.all(16), children: [
+    body: Form(key: _fk, child: ListView(padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)), children: [
       TextFormField(controller: _numC, decoration: InputDecoration(labelText: SoleraL10n.t('ques.numero_factura'), border: const OutlineInputBorder(), isDense: true)),
       const SizedBox(height: 12),
       TextFormField(controller: _cliC, decoration: InputDecoration(labelText: SoleraL10n.t('ques.cliente'), border: const OutlineInputBorder()), validator: (v) => v == null || v.isEmpty ? SoleraL10n.t('ques.requerido') : null),

@@ -30,7 +30,7 @@ class _PantallaPerfilDoState extends State<PantallaPerfilDo> {
     final t = Theme.of(context);
     return Scaffold(
       appBar: AppBar(title: Text(SoleraL10n.t('perfiles_do'))),
-      body: ListView(padding: const EdgeInsets.all(16), children: [
+      body: ListView(padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)), children: [
         Card(color: t.colorScheme.primaryContainer, child: Padding(padding: const EdgeInsets.all(16), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [Icon(Icons.verified, color: t.colorScheme.primary), const SizedBox(width: 8), Text(SoleraL10n.t('denominaciones_de_origen'), style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold))]),
           const SizedBox(height: 8),
@@ -55,7 +55,7 @@ class _PantallaPerfilDoState extends State<PantallaPerfilDo> {
     );
   }
 
-  void _detalle(DoQueso dq) => showModalBottomSheet(context: context, isScrollControlled: true, builder: (_) => DraggableScrollableSheet(initialChildSize: 0.5, expand: false, builder: (_, s) => ListView(controller: s, padding: const EdgeInsets.all(16), children: [
+  void _detalle(DoQueso dq) => showModalBottomSheet(context: context, isScrollControlled: true, builder: (_) => DraggableScrollableSheet(initialChildSize: 0.5, expand: false, builder: (contextoHoja, s) => ListView(controller: s, padding: margenHojaSegura(contextoHoja, const EdgeInsets.all(16)), children: [
     Text(dq.nombre, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
     const SizedBox(height: 4), Text(dq.tipo, style: const TextStyle(color: Colors.grey)), const Divider(),
     _det(SoleraL10n.t('ques.zona_geografica'), dq.zona_geografica), _det(SoleraL10n.t('ques.tipo_de_leche'), dq.tipo_leche), _det(SoleraL10n.t('ques.razas_permitidas'), dq.razas_permitidas),

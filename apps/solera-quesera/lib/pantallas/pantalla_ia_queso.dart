@@ -62,7 +62,7 @@ class _PantallaIaQuesoState extends State<PantallaIaQueso> {
     final tk = _claveApi != null && _claveApi!.isNotEmpty;
     return Scaffold(
       appBar: AppBar(title: Text(SoleraL10n.t('ques.ia_defectos_en_queso')), actions: [IconButton(icon: const Icon(Icons.key), tooltip: SoleraL10n.t('ques.configurar_clave_api'), onPressed: _configClave)]),
-      body: ListView(padding: const EdgeInsets.all(16), children: [
+      body: ListView(padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)), children: [
         Card(color: tk ? Colors.green.withAlpha(15) : Colors.orange.withAlpha(15), child: Padding(padding: const EdgeInsets.all(12), child: Row(children: [
           Icon(tk ? Icons.check_circle : Icons.warning, color: tk ? Colors.green : Colors.orange),
           const SizedBox(width: 8), Expanded(child: Text(tk ? SoleraL10n.t('ques.clave_anthropic_configurada') : SoleraL10n.t('ques.configura_clave_anthropic'), style: TextStyle(color: tk ? Colors.green : Colors.orange))),

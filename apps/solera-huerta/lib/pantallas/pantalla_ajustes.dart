@@ -151,7 +151,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
                 final quedo = await cambiarAvisarHeladas(nuevo);
                 if (nuevo && !quedo && context.mounted) {
                   avisar(context,
-                      SoleraL10n.t('huer.tiempo_avisar_heladas_sin_permiso'));
+                      SoleraL10n.t('avisos.sin_permiso'));
                 }
               },
             ),

@@ -3,55 +3,27 @@
 // a programar cada vez que Hoy carga la previsión (un único aviso, con id
 // estable). Lo activa la persona en Ajustes («Avisarme de heladas»).
 //
-// La notificación en sí va detrás de [ProgramadorAvisos]: la app no
-// depende aquí de ningún plugin y en los tests se usa uno de memoria.
+// La notificación la pone `nuevo_ser_avisos` (flutter_local_notifications);
+// en los tests se usa su `ServicioAvisosEnMemoria`.
 
 import 'package:flutter/foundation.dart';
+import 'package:nuevo_ser_avisos/nuevo_ser_avisos.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../dominio/avisos_tiempo.dart';
 
 const String clavePreferenciaAvisarHeladas = 'solera_huerta.avisar_heladas';
 
-/// Id fijo del recordatorio de helada (uno solo a la vez).
-const int idAvisoHeladaHuerta = 41001;
+/// Clave fija del recordatorio de helada (uno solo a la vez): de ella sale
+/// el id estable de la notificación.
+const String claveAvisoHeladaHuerta = 'huerta.helada';
 
-/// Lo que la app necesita de las notificaciones locales programadas.
-abstract class ProgramadorAvisos {
-  /// Pide permiso si hace falta; false si la persona lo niega.
-  Future<bool> pedirPermiso();
+/// Id estable del canal de Android de la app (cambiarlo crea otro canal).
+const String idCanalAvisosHuerta = 'huerta_avisos';
 
-  Future<void> programar({
-    required int id,
-    required DateTime cuando,
-    required String titulo,
-    required String cuerpo,
-  });
-
-  Future<void> cancelar(int id);
-}
-
-/// Sin notificaciones (hasta que haya un programador real, y en tests).
-class ProgramadorAvisosNulo implements ProgramadorAvisos {
-  const ProgramadorAvisosNulo();
-
-  @override
-  Future<bool> pedirPermiso() async => false;
-
-  @override
-  Future<void> programar({
-    required int id,
-    required DateTime cuando,
-    required String titulo,
-    required String cuerpo,
-  }) async {}
-
-  @override
-  Future<void> cancelar(int id) async {}
-}
-
-/// El programador que usa la app (se fija en `main.dart`).
-ProgramadorAvisos programadorAvisosHuerta = const ProgramadorAvisosNulo();
+/// El servicio que usa la app: `main.dart` pone el real
+/// (`ServicioAvisosLocales`); hasta entonces, y en los tests, uno en memoria.
+ServicioAvisos avisosHuerta = ServicioAvisosEnMemoria();
 
 /// Interruptor de Ajustes. Por defecto apagado: pide permiso de
 /// notificaciones y no todo el mundo lo quiere.
@@ -73,13 +45,13 @@ Future<bool> cambiarAvisarHeladas(bool activar) async {
   var activo = activar;
   if (activar) {
     try {
-      activo = await programadorAvisosHuerta.pedirPermiso();
+      activo = await avisosHuerta.pedirPermiso();
     } catch (error) {
       debugPrint('Sin permiso de notificaciones: $error');
       activo = false;
     }
   } else {
-    await programadorAvisosHuerta.cancelar(idAvisoHeladaHuerta);
+    await avisosHuerta.cancelar(claveAvisoHeladaHuerta);
   }
   avisarHeladas.value = activo;
   try {
@@ -100,7 +72,7 @@ Future<DateTime?> reprogramarAvisoHelada({
   DateTime? ahora,
 }) async {
   try {
-    await programadorAvisosHuerta.cancelar(idAvisoHeladaHuerta);
+    await avisosHuerta.cancelar(claveAvisoHeladaHuerta);
     if (!avisarHeladas.value ||
         helada == null ||
         helada.cultivosSensibles.isEmpty) {
@@ -109,13 +81,13 @@ Future<DateTime?> reprogramarAvisoHelada({
     final cuando =
         momentoRecordatorioHelada(helada.fecha, ahora ?? DateTime.now());
     if (cuando == null) return null;
-    await programadorAvisosHuerta.programar(
-      id: idAvisoHeladaHuerta,
+    final programado = await avisosHuerta.programar(
+      clave: claveAvisoHeladaHuerta,
       cuando: cuando,
       titulo: titulo(helada),
       cuerpo: cuerpo(helada),
     );
-    return cuando;
+    return programado ? cuando : null;
   } catch (error) {
     debugPrint('No se pudo programar el aviso de helada: $error');
     return null;

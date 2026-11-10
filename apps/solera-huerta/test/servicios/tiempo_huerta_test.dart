@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_avisos/nuevo_ser_avisos.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show DiaMeteoAgro, PrevisionAgro;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,30 +10,6 @@ import 'package:solera_huerta/dominio/avisos_tiempo.dart';
 import 'package:solera_huerta/estado/aviso_helada_programado.dart';
 import 'package:solera_huerta/pantallas/tarjeta_tiempo.dart';
 import 'package:solera_huerta/servicios/tiempo_huerta.dart';
-
-class _ProgramadorDePrueba implements ProgramadorAvisos {
-  bool permiso = true;
-  final programados = <int, ({DateTime cuando, String cuerpo})>{};
-  var cancelaciones = 0;
-
-  @override
-  Future<bool> pedirPermiso() async => permiso;
-
-  @override
-  Future<void> programar({
-    required int id,
-    required DateTime cuando,
-    required String titulo,
-    required String cuerpo,
-  }) async =>
-      programados[id] = (cuando: cuando, cuerpo: cuerpo);
-
-  @override
-  Future<void> cancelar(int id) async {
-    cancelaciones++;
-    programados.remove(id);
-  }
-}
 
 void main() {
   setUpAll(() => initializeDateFormatting());
@@ -76,14 +53,13 @@ void main() {
   });
 
   group('recordatorio de helada', () {
-    late _ProgramadorDePrueba programador;
+    late ServicioAvisosEnMemoria avisos;
     setUp(() {
       SharedPreferences.setMockInitialValues({});
-      programador = _ProgramadorDePrueba();
-      programadorAvisosHuerta = programador;
+      avisos = ServicioAvisosEnMemoria(reloj: () => ahora);
+      avisosHuerta = avisos;
       avisarHeladas.value = false;
     });
-    tearDown(() => programadorAvisosHuerta = const ProgramadorAvisosNulo());
 
     AvisoHeladaHuerta helada(List<String> sensibles) => AvisoHeladaHuerta(
         fecha: DateTime(2026, 4, 22),
@@ -98,23 +74,27 @@ void main() {
             cuerpo: (h) => h.cultivosSensibles.join(', '),
             ahora: ahora);
 
-    test('apagado: solo cancela', () async {
+    test('apagado: no programa (y quita el que hubiera)', () async {
+      await avisos.programar(
+          clave: claveAvisoHeladaHuerta,
+          cuando: DateTime(2026, 4, 21, 20),
+          titulo: 'viejo');
       expect(await reprogramar(helada(['Tomate'])), isNull);
-      expect(programador.programados, isEmpty);
-      expect(programador.cancelaciones, 1);
+      expect(await avisos.pendientes(), isEmpty);
     });
 
-    test('encendido: víspera a las 20:00 con id estable, y se reemplaza',
+    test('encendido: víspera a las 20:00 con clave fija, y se reemplaza',
         () async {
       expect(await cambiarAvisarHeladas(true), isTrue);
       expect(await reprogramar(helada(['Tomate'])), DateTime(2026, 4, 21, 20));
       await reprogramar(helada(['Tomate', 'Pimiento']));
-      expect(programador.programados.keys, [idAvisoHeladaHuerta]);
-      expect(programador.programados[idAvisoHeladaHuerta]!.cuerpo,
-          'Tomate, Pimiento');
+      final pendientes = await avisos.pendientes();
+      expect(pendientes.map((aviso) => aviso.clave), [claveAvisoHeladaHuerta]);
+      expect(pendientes.single.cuerpo, 'Tomate, Pimiento');
+      expect(pendientes.single.cuando, DateTime(2026, 4, 21, 20));
       // Ya no hay helada: se quita.
       await reprogramar(null);
-      expect(programador.programados, isEmpty);
+      expect(await avisos.pendientes(), isEmpty);
     });
 
     test('sin nada sensible no se avisa', () async {
@@ -123,7 +103,7 @@ void main() {
     });
 
     test('sin permiso queda apagado', () async {
-      programador.permiso = false;
+      avisos.permisoConcedido = false;
       expect(await cambiarAvisarHeladas(true), isFalse);
       expect(avisarHeladas.value, isFalse);
     });

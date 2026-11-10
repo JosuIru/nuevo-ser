@@ -10,6 +10,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:nuevo_ser_avisos/nuevo_ser_avisos.dart'
+    show ConfiguracionAvisos, ServicioAvisosLocales;
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show SoleraL10n, cargarIdiomaSolera, PaletaSolera, temaSolera;
 
@@ -28,6 +30,12 @@ Future<void> main() async {
   await initializeDateFormatting();
   await cargarPerfilHuerta();
   await cargarAvisarHeladas();
+  // Recordatorio de helada (Ajustes → «Avisarme de heladas»).
+  avisosHuerta = ServicioAvisosLocales(ConfiguracionAvisos(
+    idCanal: idCanalAvisosHuerta,
+    nombreCanal: SoleraL10n.t('avisos.canal_nombre'),
+  ));
+  await avisosHuerta.inicializar();
   runApp(const AppHuerta());
 }
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
 
 import '../datos/base_datos.dart';
 import '../dominio/catalogos.dart';
@@ -182,7 +182,7 @@ class _PantallaFichaBancalState extends State<PantallaFichaBancal> {
             label: Text(SoleraL10n.t('huer.nueva_siembra')),
           ),
           body: ListView(
-            padding: const EdgeInsets.only(bottom: 88),
+            padding: rellenoInferiorSeguro(context, const EdgeInsets.only(bottom: 88)),
             children: [
               ListTile(
                 title: Text(SoleraL10n.t('huer.plan_rotacion'),

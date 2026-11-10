@@ -8,7 +8,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
 
 import '../datos/catalogos_generados/catalogo_guia_cultivos.dart';
 import '../datos/catalogos_generados/catalogo_guia_fauna.dart';
@@ -162,7 +162,7 @@ class _ListaGuia extends StatelessWidget {
       );
     }
     return ListView.builder(
-      padding: const EdgeInsets.fromLTRB(8, 4, 8, 24),
+      padding: rellenoInferiorSeguro(context, const EdgeInsets.fromLTRB(8, 4, 8, 24)),
       itemCount: entradas.length,
       itemBuilder: (contexto, indice) {
         final entrada = entradas[indice];
@@ -283,7 +283,7 @@ class _EsqueletoFicha extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(titulo)),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.fromLTRB(16, 8, 16, 32)),
         children: [
           const _AvisoGuia(),
           if (subtitulo.isNotEmpty)

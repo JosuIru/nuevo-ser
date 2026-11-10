@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
 
 import '../datos/base_datos.dart';
 import '../estado/cambios_datos.dart';
@@ -93,7 +93,7 @@ class _PantallaFichaParcelaState extends State<PantallaFichaParcela> {
             label: Text(SoleraL10n.t('huer.nuevo_bancal')),
           ),
           body: ListView(
-            padding: const EdgeInsets.only(bottom: 88),
+            padding: rellenoInferiorSeguro(context, const EdgeInsets.only(bottom: 88)),
             children: [
               ListTile(
                 title: Text(nombreEstadoEcologico(parcela.estadoEcologico)),

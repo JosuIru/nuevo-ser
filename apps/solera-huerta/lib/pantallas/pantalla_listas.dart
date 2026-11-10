@@ -1,7 +1,7 @@
 // Listas de lo que la huerta usa: cultivos, banco de semillas e insumos.
 
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
 
 import '../datos/base_datos.dart';
 import '../dominio/catalogos.dart';
@@ -84,7 +84,7 @@ class _ListaRecargableState<T> extends State<_ListaRecargable<T>> {
         builder: (context, instantanea) {
           final elementos = instantanea.data ?? <T>[];
           return ListView(
-            padding: const EdgeInsets.only(bottom: 88),
+            padding: rellenoInferiorSeguro(context, const EdgeInsets.only(bottom: 88)),
             children: [
               if (widget.cabecera != null) widget.cabecera!,
               if (instantanea.connectionState == ConnectionState.done &&

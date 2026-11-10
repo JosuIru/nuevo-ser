@@ -173,3 +173,12 @@ nat.hall_un_hallazgo,1 hallazgo,Aurkikuntza 1,1 troballa,1 achado
 nat.hall_un_sin_revisar,"Tienes 1 hallazgo sin revisar. Abre cualquiera desde la lista y pulsa ""Confirmar"" o ""Corregir"" tras revisar fotos o consultar bibliografía.","Berrikusi gabeko aurkikuntza 1 duzu. Ireki zerrendatik eta sakatu ""Berretsi"" edo ""Zuzendu"" argazkiak berrikusi edo bibliografia kontsultatu ondoren.",Tens 1 troballa sense revisar. Obre-la des de la llista i prem «Confirmar» o «Corregir» després de revisar fotos o consultar bibliografia.,Tes 1 achado sen revisar. Ábreo desde a lista e preme «Confirmar» ou «Corrixir» tras revisar fotos ou consultar bibliografía.
 nat.hall_validar_identificacion,Validar identificación,Identifikazioa baieztatu,Validar la identificació,Validar a identificación
 nat.hall_volver_a_sin_revisar,Volver a sin revisar,Berrikusi gabe utzi,Tornar a sense revisar,Volver a sen revisar
+nat.voz_nota,Nota de voz,Ahots-oharra,Nota de veu,Nota de voz
+nat.voz_grabar,Grabar una nota de voz,Ahots-ohar bat grabatu,Enregistrar una nota de veu,Gravar unha nota de voz
+nat.voz_volver_a_grabar,Volver a grabar,Berriro grabatu,Tornar a enregistrar,Volver gravar
+nat.voz_parar,Parar,Gelditu,Aturar,Parar
+nat.voz_grabando,Grabando… {tiempo} (máx. {maximo}),Grabatzen… {tiempo} (geh. {maximo}),Enregistrant… {tiempo} (màx. {maximo}),Gravando… {tiempo} (máx. {maximo})
+nat.voz_borrar,Borrar la nota de voz,Ahots-oharra ezabatu,Esborrar la nota de veu,Borrar a nota de voz
+nat.voz_borrar_titulo,¿Borrar la nota de voz?,Ahots-oharra ezabatu?,Vols esborrar la nota de veu?,Borrar a nota de voz?
+nat.voz_borrar_texto,Se borra al guardar el hallazgo.,Aurkikuntza gordetzean ezabatuko da.,S'esborra en desar la troballa.,Bórrase ao gardar o achado.
+nat.voz_error_grabar,No se ha podido grabar: {error},Ezin izan da grabatu: {error},No s'ha pogut enregistrar: {error},Non se puido gravar: {error}

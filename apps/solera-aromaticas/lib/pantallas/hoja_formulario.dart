@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, margenHojaSegura;
 
 import '../utiles/textos_aromaticas.dart';
 
@@ -21,8 +21,7 @@ Future<bool> mostrarHojaFormulario(
       var guardando = false;
       return StatefulBuilder(
         builder: (contextoHoja, refrescar) => Padding(
-          padding: EdgeInsets.fromLTRB(
-              16, 16, 16, 16 + MediaQuery.viewInsetsOf(contextoHoja).bottom),
+          padding: margenHojaSegura(contextoHoja, const EdgeInsets.all(16)),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,

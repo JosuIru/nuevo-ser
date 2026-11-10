@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
-    show SoleraL10n, TituloBloqueSolera;
+    show SoleraL10n, TituloBloqueSolera, rellenoInferiorSeguro;
 
 import '../datos/base_datos.dart';
 import '../dominio/catalogos.dart';
@@ -196,7 +196,7 @@ class _PantallaFichaLoteState extends State<PantallaFichaLote> {
   Widget _cuerpo(BuildContext context, LoteProducto lote, OrigenLote origen) {
     final especie = especiePorId(lote.especieId);
     return ListView(
-      padding: const EdgeInsets.all(12),
+      padding: rellenoInferiorSeguro(context, const EdgeInsets.all(12)),
       children: [
         ListTile(
           leading: Icon(_iconoLote(lote.tipo)),

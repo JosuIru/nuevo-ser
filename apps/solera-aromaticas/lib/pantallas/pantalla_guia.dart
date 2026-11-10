@@ -91,7 +91,7 @@ class _PantallaGuiaState extends State<PantallaGuia> {
           ),
           Expanded(
             child: ListView.builder(
-              padding: const EdgeInsets.fromLTRB(8, 4, 8, 24),
+              padding: rellenoInferiorSeguro(context, const EdgeInsets.fromLTRB(8, 4, 8, 24)),
               itemCount: elementos.length,
               itemBuilder: (_, indice) => elementos[indice],
             ),
@@ -309,7 +309,8 @@ class _FichasDeslizablesState extends State<_FichasDeslizables> {
             onPageChanged: (indice) => setState(() => _indiceActual = indice),
             itemBuilder: (_, indice) => SingleChildScrollView(
               controller: widget.controladorScroll,
-              padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
+              padding: margenHojaSegura(
+                  context, const EdgeInsets.fromLTRB(16, 8, 16, 32)),
               child: _ContenidoFicha(
                   entrada: widget.lista[indice],
                   buscarFotos: widget.buscarFotos),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
 import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart';
 
 import '../datos/base_datos.dart';
@@ -121,7 +121,7 @@ class _PantallaEditarParcelaState extends State<PantallaEditarParcela> {
               ? SoleraL10n.t('arom.nueva_parcela')
               : widget.parcela!.nombre)),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
         children: [
           campoTexto(_nombre, SoleraL10n.t('arom.nombre')),
           CampoCatalogo(
@@ -305,7 +305,7 @@ class _PantallaEditarZonaState extends State<PantallaEditarZona> {
               ? SoleraL10n.t('arom.nueva_zona')
               : widget.zona!.nombre)),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
         children: [
           Card(
             color: Theme.of(context).colorScheme.tertiaryContainer,

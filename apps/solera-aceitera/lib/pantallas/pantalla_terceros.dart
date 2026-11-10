@@ -67,7 +67,7 @@ class _PantallaTercerosState extends State<PantallaTerceros> {
                   ),
                 )
               : ListView.separated(
-                  padding: const EdgeInsets.all(8),
+                  padding: rellenoInferiorSeguro(context, const EdgeInsets.all(8)),
                   itemCount: _terceros.length,
                   separatorBuilder: (_, __) => const Divider(height: 1),
                   itemBuilder: (_, i) {
@@ -173,12 +173,7 @@ class _EditorTerceroState extends State<_EditorTercero> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(
-        left: 16,
-        right: 16,
-        top: 16,
-        bottom: MediaQuery.of(context).viewInsets.bottom + 16,
-      ),
+      padding: margenHojaSegura(context, const EdgeInsets.all(16)),
       child: ListView(
         shrinkWrap: true,
         children: [

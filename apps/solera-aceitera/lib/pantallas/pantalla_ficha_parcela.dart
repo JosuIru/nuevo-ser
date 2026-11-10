@@ -123,7 +123,7 @@ class _PantallaFichaParcelaState extends State<PantallaFichaParcela> {
               ? SoleraL10n.t('acei.parcela_sin_nombre')
               : p.nombre)),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
         children: [
           Card(
             child: Padding(

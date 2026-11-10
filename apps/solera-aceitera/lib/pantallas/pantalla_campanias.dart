@@ -69,7 +69,7 @@ class _PantallaCampaniasState extends State<PantallaCampanias> {
           : RefreshIndicator(
               onRefresh: _cargar,
               child: ListView(
-                padding: const EdgeInsets.fromLTRB(0, 8, 0, 96),
+                padding: rellenoInferiorSeguro(context, const EdgeInsets.fromLTRB(0, 8, 0, 96)),
                 children: [
                   if (_campanias.isEmpty)
                     Card(

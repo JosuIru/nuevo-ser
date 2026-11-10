@@ -89,7 +89,7 @@ class _PantallaLibroAceiteState extends State<PantallaLibroAceite> {
           : RefreshIndicator(
               onRefresh: _cargar,
               child: ListView.separated(
-                padding: const EdgeInsets.all(8),
+                padding: rellenoInferiorSeguro(context, const EdgeInsets.all(8)),
                 itemCount: _filas.length,
                 separatorBuilder: (_, __) => const Divider(height: 1),
                 itemBuilder: (_, i) {
@@ -275,7 +275,7 @@ class _PantallaExportLibroAceiteState
     return Scaffold(
       appBar: AppBar(title: Text(SoleraL10n.t('acei.exportar_libro_aica'))),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
         children: [
           if (!_titularConfigurado)
             Card(

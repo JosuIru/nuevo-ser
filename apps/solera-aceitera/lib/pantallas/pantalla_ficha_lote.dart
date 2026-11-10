@@ -47,7 +47,7 @@ class _PantallaFichaLoteState extends State<PantallaFichaLote> {
     return Scaffold(
       appBar: AppBar(title: Text(SoleraL10n.tf('acei.lote_id', {'lote': l.identificadorLote}))),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
         children: [
           Card(
             child: Padding(

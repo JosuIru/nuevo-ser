@@ -213,7 +213,7 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
       );
     }
     return ListView.separated(
-      padding: const EdgeInsets.all(8),
+      padding: rellenoInferiorSeguro(context, const EdgeInsets.all(8)),
       itemCount: _ingresos.length,
       separatorBuilder: (_, __) => const Divider(height: 1),
       itemBuilder: (_, i) {
@@ -253,7 +253,7 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
       );
     }
     return ListView.separated(
-      padding: const EdgeInsets.all(8),
+      padding: rellenoInferiorSeguro(context, const EdgeInsets.all(8)),
       itemCount: _gastos.length,
       separatorBuilder: (_, __) => const Divider(height: 1),
       itemBuilder: (_, i) {
@@ -282,7 +282,7 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
   Widget _construirResumen() {
     final resultadoBruto = _totalBaseIngresos - _totalBaseGastos;
     return ListView(
-      padding: const EdgeInsets.all(16),
+      padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
       children: [
         Container(
           padding: const EdgeInsets.all(12),

@@ -68,7 +68,7 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
     return Scaffold(
       appBar: AppBar(title: Text(SoleraL10n.t('acei.bienvenida'))),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(24)),
         child: Form(
           key: _formKey,
           child: Column(

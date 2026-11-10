@@ -148,7 +148,7 @@ class _PantallaCuadernoPacState extends State<PantallaCuadernoPac> {
     return Scaffold(
       appBar: AppBar(title: Text(SoleraL10n.t('acei.cuaderno_pac_olivar'))),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
         children: [
           if (!_titularConfigurado)
             Card(

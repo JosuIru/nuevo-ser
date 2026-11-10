@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show rellenoInferiorSeguro;
 import 'package:share_plus/share_plus.dart';
 
 import '../datos/catalogo_habilidades.dart';
@@ -64,7 +65,7 @@ class _PantallaAcercaDeState extends State<PantallaAcercaDe> {
       body: Container(
         decoration: const BoxDecoration(gradient: PaletaNeon.fondoCiudad),
         child: ListView(
-          padding: const EdgeInsets.fromLTRB(24, 24, 24, 40),
+          padding: rellenoInferiorSeguro(context, const EdgeInsets.fromLTRB(24, 24, 24, 40)),
           children: [
             const _Hero(),
             const SizedBox(height: 28),

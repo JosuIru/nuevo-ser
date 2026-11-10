@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show rellenoInferiorSeguro;
 import 'package:share_plus/share_plus.dart';
 
 import '../datos/dibujos_taller.dart';
@@ -181,7 +182,7 @@ class _PantallaCopiaSeguridadState extends State<PantallaCopiaSeguridad> {
         iconTheme: const IconThemeData(color: PaletaNeon.textoTenue),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(20)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [

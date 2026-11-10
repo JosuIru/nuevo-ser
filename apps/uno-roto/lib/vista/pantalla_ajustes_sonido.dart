@@ -88,7 +88,7 @@ class _PantallaAjustesSonidoState extends State<PantallaAjustesSonido> {
               child: CircularProgressIndicator(color: PaletaNeon.azulNeon),
             )
           : ListView(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 40),
+              padding: rellenoInferiorSeguro(context, const EdgeInsets.fromLTRB(20, 20, 20, 40)),
               children: [
                 _ModoSilencioTile(
                   activo: _modoSilencio,

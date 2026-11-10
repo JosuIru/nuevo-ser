@@ -214,7 +214,7 @@ class _FormularioAuthState extends State<_FormularioAuth> {
     final textos = AppLocalizations.of(context);
     return Center(
       child: SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(24, 32, 24, 32),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.fromLTRB(24, 32, 24, 32)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.min,
@@ -379,6 +379,16 @@ class _Panel extends StatelessWidget {
               ),
             ),
           ),
+        // CustomScrollView no deja solo el hueco de la barra de navegación
+        // del sistema (edge-to-edge, Android 15+): lo último quedaba debajo.
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: rellenoInferiorSeguro(
+              context,
+              const EdgeInsets.only(bottom: 16),
+            ).bottom,
+          ),
+        ),
       ],
     );
   }

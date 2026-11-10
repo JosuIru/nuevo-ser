@@ -84,7 +84,7 @@ class _PantallaSolicitarResetState extends State<PantallaSolicitarReset> {
         decoration: const BoxDecoration(gradient: PaletaNeon.fondoCiudad),
         child: Center(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(24, 24, 24, 32),
+            padding: rellenoInferiorSeguro(context, const EdgeInsets.fromLTRB(24, 24, 24, 32)),
             child: _enviado ? _confirmacion(textos) : _formulario(textos),
           ),
         ),

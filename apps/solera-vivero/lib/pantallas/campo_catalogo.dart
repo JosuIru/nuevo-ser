@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show separarCampoSolera;
 
 import '../dominio/catalogos.dart';
 
@@ -37,7 +38,9 @@ class _CampoCatalogoState extends State<CampoCatalogo> {
   @override
   Widget build(BuildContext context) {
     final opciones = widget.opciones;
-    return RawAutocomplete<OpcionCatalogo>(
+    // El margen va por fuera del autocompletado: dentro del campo bajaría
+    // también la lista de sugerencias.
+    return separarCampoSolera(RawAutocomplete<OpcionCatalogo>(
       textEditingController: widget.controlador,
       focusNode: _foco,
       optionsBuilder: (valor) {
@@ -75,6 +78,6 @@ class _CampoCatalogoState extends State<CampoCatalogo> {
           ),
         ),
       ),
-    );
+    ));
   }
 }

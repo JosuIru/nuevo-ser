@@ -36,6 +36,8 @@ class _PantallaEditarZonaState extends State<PantallaEditarZona> {
   final _claveFormulario = GlobalKey<FormState>();
   late final _nombre = TextEditingController(text: widget.zona?.nombre ?? '');
   late final _notas = TextEditingController(text: widget.zona?.notas ?? '');
+  late final _codigoMunicipal =
+      TextEditingController(text: widget.zona?.codigoMunicipal ?? '');
   late List<LatLng> _area = widget.zona?.vertices ?? const [];
   bool _guardando = false;
 
@@ -43,6 +45,7 @@ class _PantallaEditarZonaState extends State<PantallaEditarZona> {
   void dispose() {
     _nombre.dispose();
     _notas.dispose();
+    _codigoMunicipal.dispose();
     super.dispose();
   }
 
@@ -68,6 +71,7 @@ class _PantallaEditarZonaState extends State<PantallaEditarZona> {
       await baseDatos.actualizarZona(original!.id!, {
         'nombre': _nombre.text.trim(),
         'notas': _notas.text.trim(),
+        'codigo_municipal': _codigoMunicipal.text.trim(),
         'contorno': contorno,
         'latitud_centroide': latitud,
         'longitud_centroide': longitud,
@@ -76,6 +80,7 @@ class _PantallaEditarZonaState extends State<PantallaEditarZona> {
       await baseDatos.guardarZona(Zona(
         nombre: _nombre.text.trim(),
         notas: _notas.text.trim(),
+        codigoMunicipal: _codigoMunicipal.text.trim(),
         contorno: contorno,
         latitudCentroide: latitud,
         longitudCentroide: longitud,
@@ -108,6 +113,15 @@ class _PantallaEditarZonaState extends State<PantallaEditarZona> {
                     ? SoleraL10n.tf('arb.campo_obligatorio',
                         {'campo': SoleraL10n.t('arb.nombre')})
                     : null,
+              ),
+              const SizedBox(height: 12),
+              TextFormField(
+                controller: _codigoMunicipal,
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('arb.codigo_municipal'),
+                  helperText: SoleraL10n.t('arb.codigo_municipal_ayuda'),
+                  border: const OutlineInputBorder(),
+                ),
               ),
               const SizedBox(height: 12),
               CampoArea(

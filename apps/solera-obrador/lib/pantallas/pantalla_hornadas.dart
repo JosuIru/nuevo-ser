@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro, separarCampoSolera;
 
 import '../datos/base_datos.dart';
 import '../estado/cambios_datos.dart';
@@ -87,7 +87,7 @@ class _PantallaHornadasState extends State<PantallaHornadas> {
         final lotesPosibles = datos.lotes
             .where((lote) => ingredientesReceta.contains(lote.ingredienteId));
         return [
-          DropdownButtonFormField<int>(
+          separarCampoSolera(DropdownButtonFormField<int>(
             initialValue: recetaId,
             decoration:
                 InputDecoration(labelText: SoleraL10n.t('obra.producto')),
@@ -102,7 +102,7 @@ class _PantallaHornadasState extends State<PantallaHornadas> {
               if (pedidas != null && piezas.text.isEmpty)
                 piezas.text = '$pedidas';
             }),
-          ),
+          )),
           campoNumero(piezas, SoleraL10n.t('obra.piezas'), decimales: false),
           campoNumero(temperatura, SoleraL10n.t('obra.temperatura_horno')),
           campoNumero(minutos, SoleraL10n.t('obra.minutos_horno'),

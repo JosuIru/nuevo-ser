@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, margenHojaSegura;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, margenHojaSegura, separarCampoSolera;
 
 import '../datos/base_datos.dart';
 import '../datos/catalogos_generados/catalogo_controles_tipo.dart';
@@ -193,19 +193,19 @@ class _HojaAltaAutocontrolState extends State<_HojaAltaAutocontrol> {
                   ),
               ],
             ),
-            TextField(
+            separarCampoSolera(TextField(
               controller: _elemento,
               decoration:
                   InputDecoration(labelText: SoleraL10n.t('obra.elemento')),
-            ),
+            )),
             if (_tipo == 'temperatura' || _tipo == 'proveedor')
-              TextField(
+              separarCampoSolera(TextField(
                 controller: _valor,
                 keyboardType: const TextInputType.numberWithOptions(
                     decimal: true, signed: true),
                 decoration: InputDecoration(
                     labelText: SoleraL10n.t('obra.temperatura_c')),
-              ),
+              )),
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
               title: Text(SoleraL10n.t('obra.correcto')),
@@ -213,11 +213,11 @@ class _HojaAltaAutocontrolState extends State<_HojaAltaAutocontrol> {
               onChanged: (valor) => setState(() => _correcto = valor),
             ),
             if (!_correcto)
-              TextField(
+              separarCampoSolera(TextField(
                 controller: _accion,
                 decoration: InputDecoration(
                     labelText: SoleraL10n.t('obra.accion_correctora')),
-              ),
+              )),
             TextField(
               controller: _responsable,
               decoration:

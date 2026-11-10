@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
-    show DialogoConfirmacion, SoleraL10n, rellenoInferiorSeguro;
+    show
+        DialogoConfirmacion,
+        SoleraL10n,
+        rellenoInferiorSeguro,
+        separarCampoSolera;
 
 import '../datos/base_datos.dart';
 import '../dominio/resumen_economico.dart';
@@ -48,7 +52,7 @@ class _PantallaEconomiaState extends State<PantallaEconomia> {
           SoleraL10n.t(esIngreso ? 'obra.nuevo_ingreso' : 'obra.nuevo_gasto'),
       construir: (refrescar) => [
         campoTexto(concepto, SoleraL10n.t('obra.concepto')),
-        DropdownButtonFormField<String>(
+        separarCampoSolera(DropdownButtonFormField<String>(
           initialValue: categoria,
           decoration:
               InputDecoration(labelText: SoleraL10n.t('obra.categoria')),
@@ -58,7 +62,7 @@ class _PantallaEconomiaState extends State<PantallaEconomia> {
                   value: opcion, child: Text(nombreCategoriaEconomica(opcion))),
           ],
           onChanged: (valor) => refrescar(() => categoria = valor ?? categoria),
-        ),
+        )),
         campoNumero(base, SoleraL10n.t('obra.base_euros')),
         const SizedBox(height: 8),
         Wrap(

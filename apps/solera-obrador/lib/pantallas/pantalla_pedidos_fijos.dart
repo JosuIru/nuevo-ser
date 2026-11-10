@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro, separarCampoSolera;
 
 import '../datos/base_datos.dart';
 import '../estado/cambios_datos.dart';
@@ -55,7 +55,7 @@ class _PantallaPedidosFijosState extends State<PantallaPedidosFijos> {
           : pedido.cliente,
       construir: (refrescar) => [
         campoTexto(cliente, SoleraL10n.t('obra.cliente')),
-        DropdownButtonFormField<int>(
+        separarCampoSolera(DropdownButtonFormField<int>(
           initialValue: recetaId,
           decoration: InputDecoration(labelText: SoleraL10n.t('obra.producto')),
           items: [
@@ -63,7 +63,7 @@ class _PantallaPedidosFijosState extends State<PantallaPedidosFijos> {
               DropdownMenuItem(value: receta.id, child: Text(receta.nombre)),
           ],
           onChanged: (valor) => refrescar(() => recetaId = valor),
-        ),
+        )),
         campoNumero(piezas, SoleraL10n.t('obra.piezas'), decimales: false),
         const SizedBox(height: 12),
         Wrap(

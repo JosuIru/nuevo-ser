@@ -7,7 +7,8 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
         ImagenClaude,
         PantallaClaveAnthropic,
         SoleraL10n,
-        rellenoInferiorSeguro;
+        rellenoInferiorSeguro,
+        separarCampoSolera;
 
 import '../datos/base_datos.dart';
 import '../datos/catalogos_generados/catalogo_ingredientes_base.dart';
@@ -306,7 +307,8 @@ class _PantallaEditarIngredienteState extends State<PantallaEditarIngrediente> {
         padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
         children: [
           if (widget.ingrediente == null)
-            Autocomplete<IngredienteBase>(
+            // El margen por fuera: dentro del campo bajaría las sugerencias.
+            separarCampoSolera(Autocomplete<IngredienteBase>(
               optionsBuilder: (valor) => valor.text.trim().length < 2
                   ? const []
                   : catalogoIngredientesBase.where((base) => base.nombre
@@ -329,36 +331,36 @@ class _PantallaEditarIngredienteState extends State<PantallaEditarIngrediente> {
                           SoleraL10n.t('obra.ayuda_catalogo_ingredientes')),
                 );
               },
-            )
+            ))
           else
-            TextField(
+            separarCampoSolera(TextField(
               controller: _nombre,
               decoration:
                   InputDecoration(labelText: SoleraL10n.t('obra.nombre')),
-            ),
+            )),
           if (_desdeCatalogo)
             Padding(
               padding: const EdgeInsets.only(top: 8),
               child: Text(SoleraL10n.t('obra.confirmar_con_proveedor'),
                   style: TextStyle(color: Theme.of(context).colorScheme.error)),
             ),
-          TextField(
+          separarCampoSolera(TextField(
             controller: _proveedor,
             decoration:
                 InputDecoration(labelText: SoleraL10n.t('obra.proveedor')),
-          ),
-          TextField(
+          )),
+          separarCampoSolera(TextField(
             controller: _precio,
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             decoration:
                 InputDecoration(labelText: SoleraL10n.t('obra.precio_kg')),
-          ),
-          TextField(
+          )),
+          separarCampoSolera(TextField(
             controller: _sal,
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             decoration:
                 InputDecoration(labelText: SoleraL10n.t('obra.sal_100g')),
-          ),
+          )),
           _selectorAlergenos(SoleraL10n.t('obra.alergenos'), _alergenos),
           _selectorAlergenos(SoleraL10n.t('obra.trazas'), _trazas),
           if (widget.ingrediente?.id != null)

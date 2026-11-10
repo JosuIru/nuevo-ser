@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
-    show SoleraL10n, TituloBloqueSolera;
+    show SoleraL10n, TituloBloqueSolera, rellenoInferiorSeguro;
 
 import '../branding.dart';
 import '../estado/cambios_datos.dart';
@@ -93,7 +93,7 @@ class _PantallaFichaAnimalState extends State<PantallaFichaAnimal> {
                   label: Text(SoleraL10n.t('gana.nuevo_evento')),
                 ),
           body: ListView(
-            padding: const EdgeInsets.only(bottom: 96),
+            padding: rellenoInferiorSeguro(context, const EdgeInsets.only(bottom: 96)),
             children: [
               ListTile(
                 title: Text(animal.rotulo),

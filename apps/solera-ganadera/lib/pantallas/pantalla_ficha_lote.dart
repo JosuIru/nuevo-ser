@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
-    show SoleraL10n, TituloBloqueSolera;
+    show SoleraL10n, TituloBloqueSolera, rellenoInferiorSeguro;
 
 import '../branding.dart';
 import '../estado/cambios_datos.dart';
@@ -98,7 +98,7 @@ class _PantallaFichaLoteState extends State<PantallaFichaLote> {
         ],
       ),
       body: ListView(
-        padding: const EdgeInsets.only(bottom: 32),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.only(bottom: 32)),
         children: [
           ListTile(
             leading: const Icon(Icons.place_outlined),

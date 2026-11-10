@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
-    show DialogoConfirmacion, SoleraL10n;
+    show DialogoConfirmacion, SoleraL10n, rellenoInferiorSeguro;
 
 import '../datos/base_datos.dart';
 import '../dominio/resumen_economico.dart';
@@ -185,7 +185,7 @@ class _PantallaEconomiaState extends State<PantallaEconomia> {
           final resumen = ResumenEconomico.calcular(apuntes);
           final esquema = Theme.of(context).colorScheme;
           return ListView(
-            padding: const EdgeInsets.only(bottom: 140),
+            padding: rellenoInferiorSeguro(context, const EdgeInsets.only(bottom: 140)),
             children: [
               Row(
                 children: [

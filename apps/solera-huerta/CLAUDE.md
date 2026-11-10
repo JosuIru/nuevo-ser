@@ -179,6 +179,35 @@ Lo esencial que no se toca (hard limits):
   dosis, productos, marcas y salud; los plaguicidas solo para desaconsejarlos).
   Revisión: `content/huerta/revision-2026-11-10-guia.md`. 149 tests.
 
+- **2026-11-10 — Avisos del tiempo en Hoy** (`dominio/avisos_tiempo.dart`,
+  `servicios/tiempo_huerta.dart`, `pantallas/tarjeta_tiempo.dart`). Previsión
+  de 7 días con `ServicioMeteoAgro` del core (Open-Meteo, como Frutal) en el
+  punto de la parcela o el centroide de su área (primero las parcelas con
+  algo en tierra); caché en memoria de 1 h por lugar (el servicio no cachea).
+  Sin ubicación: una línea discreta; sin red, sin previsión o sin nada en
+  tierra (siembra hecha y sin levantar): nada. Umbrales sencillos y
+  orientativos, constantes en el dominio: **helada** mínima ≤ 2 °C (el de
+  `riesgoHelada` del core y Frutal; la de esta madrugada no se avisa después
+  de las 6:00), **calor** máxima ≥ 35 °C y «ola» con 3 días seguidos (no es la
+  definición de AEMET), **riego** con 5 días seguidos de < 1 mm desde hoy (un
+  día sin dato corta la cuenta). La helada nombra lo sensible plantado al
+  aire libre (los bancales de invernadero no se nombran) según la columna
+  nueva `sensible_helada` + `fuente_helada` de `cultivos_huerta.csv`: «si» en
+  tomate, pimiento, berenjena, patata, calabacín, calabaza, pepino y judía
+  verde; «no» en ajo, cebolla, cebolleta, haba, guisante, repollo, coliflor,
+  lombarda y col de Bruselas; vacío (no se nombra) en el resto, también
+  melón y sandía (las fichas no hablan de heladas) y puerro (Madrid dice que
+  su plantel no las soporta, pero hay variedades de invierno). Fuentes: Ayto.
+  Madrid, «Curso Huerto urbano ecológico» 2023, pp. 35-39, y Ayto. Zaragoza,
+  pp. 2 y 6, leídas el 2026-11-10. Atribución «Open-Meteo.com (CC BY 4.0)» al
+  pie de la tarjeta (Frutal no la pone: pendiente allí). **Recordatorio de
+  helada** con `nuevo_ser_avisos` (Ajustes → «Avisarme de heladas», apagado
+  por defecto, pide permiso): clave fija `huerta.helada`, la víspera a las
+  20:00, solo si hay algo sensible que nombrar; se cancela y reprograma cada
+  vez que Hoy carga la previsión; sin red se deja el que hubiera. Apartado
+  nuevo en la Ayuda; textos `huer.tiempo_*` en
+  `content/solera/traducciones/huerta_tiempo.csv`. 171 tests.
+
 ## Normativa y fuentes consultadas (2026-11-07)
 
 - **Reglamento (UE) 2018/848**, texto en EUR-Lex

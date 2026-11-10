@@ -6,7 +6,8 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
         GestorFotos,
         ImagenClaude,
         PantallaClaveAnthropic,
-        SoleraL10n;
+        SoleraL10n,
+        rellenoInferiorSeguro;
 
 import '../datos/base_datos.dart';
 import '../datos/catalogos_generados/catalogo_ingredientes_base.dart';
@@ -302,7 +303,7 @@ class _PantallaEditarIngredienteState extends State<PantallaEditarIngrediente> {
             : widget.ingrediente!.nombre),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
         children: [
           if (widget.ingrediente == null)
             Autocomplete<IngredienteBase>(

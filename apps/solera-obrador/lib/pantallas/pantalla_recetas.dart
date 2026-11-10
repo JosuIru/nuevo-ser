@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
-    show DialogoConfirmacion, SoleraL10n;
+    show DialogoConfirmacion, SoleraL10n, rellenoInferiorSeguro;
 
 import '../datos/base_datos.dart';
 import '../datos/catalogos_generados/catalogo_denominaciones_pan.dart';
@@ -243,7 +243,7 @@ class _PantallaFichaRecetaState extends State<PantallaFichaReceta> {
           body: composicion == null
               ? Center(child: Text(SoleraL10n.t('obra.error_receta')))
               : ListView(
-                  padding: const EdgeInsets.all(16),
+                  padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
                   children: [
                     Text(SoleraL10n.t('obra.alergenos'),
                         style: estilo.titleSmall),
@@ -435,7 +435,7 @@ class _PantallaEditarRecetaState extends State<PantallaEditarReceta> {
           ];
           final valores = opciones.map((opcion) => opcion.value).toSet();
           return ListView(
-            padding: const EdgeInsets.all(16),
+            padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
             children: [
               TextField(
                 controller: _nombre,

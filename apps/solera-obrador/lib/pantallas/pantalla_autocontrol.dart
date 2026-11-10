@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, margenHojaSegura;
 
 import '../datos/base_datos.dart';
 import '../datos/catalogos_generados/catalogo_controles_tipo.dart';
@@ -160,8 +160,7 @@ class _HojaAltaAutocontrolState extends State<_HojaAltaAutocontrol> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(
-          16, 16, 16, 16 + MediaQuery.viewInsetsOf(context).bottom),
+      padding: margenHojaSegura(context, const EdgeInsets.all(16)),
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,

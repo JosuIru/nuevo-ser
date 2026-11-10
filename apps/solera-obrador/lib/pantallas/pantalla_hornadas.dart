@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
 
 import '../datos/base_datos.dart';
 import '../estado/cambios_datos.dart';
@@ -175,7 +175,7 @@ class _PantallaHornadasState extends State<PantallaHornadas> {
               : datos.hornadas.isEmpty
                   ? Center(child: Text(SoleraL10n.t('obra.sin_hornadas')))
                   : ListView(
-                      padding: const EdgeInsets.only(bottom: 88),
+                      padding: rellenoInferiorSeguro(context, const EdgeInsets.only(bottom: 88)),
                       children: [
                         for (final hornada in datos.hornadas)
                           ListTile(

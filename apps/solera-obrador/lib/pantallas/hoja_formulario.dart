@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, margenHojaSegura;
 
 /// Hoja inferior con un formulario corto y un botón Guardar.
 ///
@@ -26,8 +26,7 @@ Future<bool> mostrarHojaFormulario(
         controladores: controladores,
         child: StatefulBuilder(
           builder: (contextoHoja, refrescar) => Padding(
-            padding: EdgeInsets.fromLTRB(
-                16, 16, 16, 16 + MediaQuery.viewInsetsOf(contextoHoja).bottom),
+            padding: margenHojaSegura(contextoHoja, const EdgeInsets.all(16)),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.min,

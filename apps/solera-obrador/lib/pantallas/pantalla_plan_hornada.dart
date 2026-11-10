@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
-    show DialogoConfirmacion, SoleraL10n;
+    show DialogoConfirmacion, SoleraL10n, rellenoInferiorSeguro;
 
 import '../datos/base_datos.dart';
 import '../dominio/planificador_hornada.dart';
@@ -193,7 +193,7 @@ class _PantallaPlanificarHornadaState extends State<PantallaPlanificarHornada> {
         ],
       ),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.fromLTRB(16, 8, 16, 32)),
         children: [
           Text(widget.nombre, style: estilo.titleMedium),
           const SizedBox(height: 8),
@@ -480,7 +480,7 @@ class _PantallaPlanHornadaState extends State<PantallaPlanHornada> {
         ],
       ),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.fromLTRB(16, 8, 16, 32)),
         children: [
           Text(
               '${formatearNumero(plan.temperaturaCocinaC, decimales: 0)} °C · '
@@ -596,7 +596,7 @@ class _PantallaTiemposRecetaState extends State<PantallaTiemposReceta> {
     return Scaffold(
       appBar: AppBar(title: Text(SoleraL10n.t('obra.plan_tiempos_titulo'))),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.fromLTRB(16, 8, 16, 32)),
         children: [
           Text(widget.nombre, style: estilo.titleMedium),
           const SizedBox(height: 4),

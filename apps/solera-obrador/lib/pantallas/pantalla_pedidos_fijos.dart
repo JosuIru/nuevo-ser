@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
 
 import '../datos/base_datos.dart';
 import '../estado/cambios_datos.dart';
@@ -133,7 +133,7 @@ class _PantallaPedidosFijosState extends State<PantallaPedidosFijos> {
               : datos.$1.isEmpty
                   ? Center(child: Text(SoleraL10n.t('obra.sin_pedidos_fijos')))
                   : ListView(
-                      padding: const EdgeInsets.only(bottom: 88),
+                      padding: rellenoInferiorSeguro(context, const EdgeInsets.only(bottom: 88)),
                       children: [
                         for (final pedido in datos.$1)
                           ListTile(

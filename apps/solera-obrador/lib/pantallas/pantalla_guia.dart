@@ -6,7 +6,7 @@
 // ficha). Sin promesas de salud; los alérgenos solo los calcula la app.
 
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
 
 import '../datos/catalogos_generados/catalogo_guia_fichas.dart';
 import '../datos/catalogos_generados/catalogo_guia_recetas.dart';
@@ -160,7 +160,7 @@ class _PantallaGuiaObradorState extends State<PantallaGuiaObrador> {
             ),
           Expanded(
             child: ListView.builder(
-              padding: const EdgeInsets.only(bottom: 24),
+              padding: rellenoInferiorSeguro(context, const EdgeInsets.only(bottom: 24)),
               itemCount: elementos.length,
               itemBuilder: (_, indice) => elementos[indice],
             ),
@@ -281,7 +281,7 @@ class PantallaRecetaGuia extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(receta.nombre)),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.fromLTRB(16, 0, 16, 32)),
         children: [
           const AvisoGuiaObrador(),
           if (denominacion != null)
@@ -461,7 +461,7 @@ class PantallaFichaGuiaObrador extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(ficha.titulo)),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.fromLTRB(16, 0, 16, 32)),
         children: [
           const AvisoGuiaObrador(),
           for (final parrafo in ficha.parrafos)

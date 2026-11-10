@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- El icono de las notificaciones solo se nombra desde Dart: que el
+     encogido de recursos de la compilación release no lo quite. -->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@drawable/ic_aviso" />

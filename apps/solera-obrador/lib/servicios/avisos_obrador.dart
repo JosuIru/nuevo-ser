@@ -11,6 +11,7 @@ import '../utiles/textos_obrador.dart';
 ServicioAvisos avisosObrador = ServicioAvisosLocales(ConfiguracionAvisos(
   idCanal: 'obrador_avisos',
   nombreCanal: SoleraL10n.t('avisos.canal_nombre'),
+  iconoAndroid: '@drawable/ic_aviso',
 ));
 
 /// Programa un aviso al empezar cada fase que falte del [plan] (quita antes

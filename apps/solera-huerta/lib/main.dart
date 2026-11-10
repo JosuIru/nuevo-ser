@@ -34,6 +34,7 @@ Future<void> main() async {
   avisosHuerta = ServicioAvisosLocales(ConfiguracionAvisos(
     idCanal: idCanalAvisosHuerta,
     nombreCanal: SoleraL10n.t('avisos.canal_nombre'),
+    iconoAndroid: '@drawable/ic_aviso',
   ));
   await avisosHuerta.inicializar();
   runApp(const AppHuerta());

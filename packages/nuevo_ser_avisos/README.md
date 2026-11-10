@@ -7,6 +7,16 @@ con hora: fases de una hornada, refresco de la masa madre…). Fuera de
 (`apps/solera-zunbeltz/lib/servicios/servicio_notificaciones.dart`), que conserva
 su copia.
 
+## Icono de la notificación
+
+Android pinta el icono pequeño como silueta: el del lanzador sale como un
+cuadrado. Cada app pone el suyo, blanco sobre transparente, en
+`res/drawable-{mdpi,hdpi,xhdpi,xxhdpi,xxxhdpi}/ic_aviso.png` (24, 36, 48,
+72 y 96 px) y `res/raw/keep.xml` con `tools:keep="@drawable/ic_aviso"`
+(solo se nombra desde Dart y el encogido de recursos lo quitaría), y pasa
+`iconoAndroid: '@drawable/ic_aviso'`. Referencia: Huerta (brote) y Obrador
+(hogaza).
+
 ## API
 
 ```dart

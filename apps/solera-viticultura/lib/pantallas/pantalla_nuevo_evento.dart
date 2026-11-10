@@ -295,14 +295,14 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]'))],
             validator: (texto) => validarNumeroOpcional(texto, nullSiAmbiguo: true),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           TextFormField(
             controller: _controladorUnidades,
             decoration: InputDecoration(labelText: SoleraL10n.t('viti.unidades'), border: OutlineInputBorder()),
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           _selectorNumero1A5(
             etiqueta: SoleraL10n.t('viti.calidad'),
             valor: _calidad,
@@ -316,7 +316,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             valor: _salud,
             alCambiar: (v) => setState(() => _salud = v),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           TextFormField(
             controller: _controladorEtiquetasObs,
             decoration: InputDecoration(
@@ -343,7 +343,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             ],
             onChanged: (v) => setState(() => _tipoIncidencia = v ?? 'otro'),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           CampoAutocompleteCatalogo<PlagaVid>(
             controlador: _controladorDiagnostico,
             labelText: SoleraL10n.t('viti.diagnostico'),
@@ -378,12 +378,12 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             ],
             onChanged: (v) => setState(() => _tipoTratamiento = v ?? 'otro'),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           TextFormField(
             controller: _controladorProducto,
             decoration: InputDecoration(labelText: SoleraL10n.t('viti.producto'), border: OutlineInputBorder()),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           TextFormField(
             controller: _controladorDosis,
             decoration: InputDecoration(
@@ -392,7 +392,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
               border: OutlineInputBorder(),
             ),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           TextFormField(
             controller: _controladorMotivo,
             decoration: InputDecoration(
@@ -401,7 +401,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
               border: OutlineInputBorder(),
             ),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           TextFormField(
             controller: _controladorPlazoSeguridad,
             decoration: InputDecoration(
@@ -423,7 +423,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 12),
+            SizedBox(height: separacionCamposSolera),
             TextFormField(
               controller: _controladorNifAplicador,
               decoration: InputDecoration(
@@ -431,7 +431,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 12),
+            SizedBox(height: separacionCamposSolera),
             TextFormField(
               controller: _controladorSuperficieTratada,
               decoration: InputDecoration(

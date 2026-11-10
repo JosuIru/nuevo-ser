@@ -193,7 +193,7 @@ class _PantallaNuevaCepaState extends State<PantallaNuevaCepa> {
               displayStringForOption: (v) => v.nombreCanonico,
               validator: (v) => (v ?? '').trim().isEmpty ? SoleraL10n.t('viti.variedad_obligatoria') : null,
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: separacionCamposSolera),
             CampoAutocompleteCatalogo<Portainjerto>(
               controlador: _controladorPortainjerto,
               labelText: SoleraL10n.t('viti.portainjerto'),
@@ -202,7 +202,7 @@ class _PantallaNuevaCepaState extends State<PantallaNuevaCepa> {
               buscar: buscarPortainjertos,
               displayStringForOption: (p) => p.nombreCanonico,
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: separacionCamposSolera),
             TextFormField(
               controller: _controladorEtiqueta,
               decoration: InputDecoration(

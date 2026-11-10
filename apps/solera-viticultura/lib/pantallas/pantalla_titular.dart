@@ -135,7 +135,6 @@ class _PantallaTitularState extends State<PantallaTitular> {
             _campo(_nifAplicador, SoleraL10n.t('viti.nif_del_aplicador'),
                 hint: SoleraL10n.t('viti.puede_ser_distinto_del_titular')),
             _campo(_carnetAplicador, SoleraL10n.t('viti.numero_carnet_aplicador')),
-            SizedBox(height: 8),
             DropdownButtonFormField<String>(
               initialValue: _nivelCarnet.isEmpty ? null : _nivelCarnet,
               decoration: InputDecoration(
@@ -174,9 +173,8 @@ class _PantallaTitularState extends State<PantallaTitular> {
     TextInputType? tipo,
     String? Function(String?)? validador,
   }) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: TextFormField(
+    return separarCampoSolera(
+      TextFormField(
         controller: controlador,
         keyboardType: tipo,
         decoration: InputDecoration(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show SelectorIdioma, SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show PantallaEstadoActualizaciones, configActualizacionesMonorepo;
 
 import '../datos/base_datos.dart';
 import '../modelos/titular.dart';
@@ -106,6 +108,17 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
             trailing: const Icon(Icons.chevron_right),
             onTap: () => Navigator.push(context,
                 MaterialPageRoute(builder: (_) => pantallaClaveFrutal())),
+          ),
+          ListTile(
+            leading: const Icon(Icons.system_update),
+            title: Text(SoleraL10n.t('comprobar_actualizaciones')),
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => PantallaEstadoActualizaciones(
+                          config: configActualizacionesMonorepo('solera-frutal'),
+                          nombreApp: 'Larrea Frutal',
+                        ))),
           ),
           ListTile(
             contentPadding: EdgeInsets.zero,

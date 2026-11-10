@@ -8,6 +8,8 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
         ServicioMeteoAgro,
         SoleraL10n,
         TituloBloqueSolera;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show AvisoActualizaciones, configActualizacionesMonorepo;
 
 import '../branding.dart';
 import '../datos/base_datos.dart';
@@ -154,6 +156,11 @@ class _PantallaHoyState extends State<PantallaHoy> {
                       valor: '${datos?.tratamientosDelAnyo ?? 0}',
                       etiqueta: SoleraL10n.t('frut.tratamientos_del_anyo')),
                 ],
+              ),
+              // Aviso de versión nueva: si no la hay, no ocupa sitio.
+              AvisoActualizaciones(
+                config: configActualizacionesMonorepo('solera-frutal'),
+                nombreApp: 'Larrea Frutal',
               ),
               if (!catalogosCompletamenteRevisados)
                 AvisoCatalogosProvisionales(texto: SoleraL10n.t('frut.catalogos_provisionales')),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
-    show SoleraL10n, TituloBloqueSolera;
+    show SoleraL10n, TituloBloqueSolera, rellenoInferiorSeguro;
 import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart'
     show CampoPunto, leerPosicionActual;
 
@@ -491,7 +491,7 @@ class _PantallaInfraestructuraState extends State<PantallaInfraestructura> {
           body: infraestructura == null
               ? const SizedBox.shrink()
               : ListView(
-                  padding: const EdgeInsets.only(bottom: 96),
+                  padding: rellenoInferiorSeguro(context, const EdgeInsets.only(bottom: 96)),
                   children: [
                     ListTile(
                       title:

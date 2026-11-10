@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
-    show SoleraL10n, TituloBloqueSolera;
+    show SoleraL10n, TituloBloqueSolera, rellenoInferiorSeguro;
 
 import '../datos/base_datos.dart';
 import '../dominio/sorteo_lena.dart';
@@ -181,7 +181,7 @@ class _PantallaSorteoState extends State<PantallaSorteo> {
         ],
       ),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.fromLTRB(16, 8, 16, 32)),
         children: [
           Text(SoleraL10n.t('mont.sorteo_explicacion'),
               style: estilo.bodySmall),

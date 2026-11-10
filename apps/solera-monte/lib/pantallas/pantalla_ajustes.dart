@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
-    show SelectorIdioma, SoleraL10n, TituloBloqueSolera;
+    show SelectorIdioma, SoleraL10n, TituloBloqueSolera, rellenoInferiorSeguro;
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show PantallaEstadoActualizaciones, configActualizacionesMonorepo;
 
@@ -210,7 +210,7 @@ class _PantallaDatosMonteState extends State<PantallaDatosMonte> {
       body: !_cargado
           ? const Center(child: CircularProgressIndicator())
           : ListView(
-              padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
+              padding: rellenoInferiorSeguro(context, const EdgeInsets.fromLTRB(16, 8, 16, 32)),
               children: [
                 campoTexto(_nombre, SoleraL10n.t('mont.nombre_monte')),
                 campoTexto(_titular, SoleraL10n.t('mont.titular'),

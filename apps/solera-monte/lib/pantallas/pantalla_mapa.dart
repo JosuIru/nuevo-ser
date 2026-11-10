@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, rellenoInferiorSeguro;
 import 'package:nuevo_ser_mapa/nuevo_ser_mapa.dart';
 
 import '../branding.dart';
@@ -244,7 +244,7 @@ class _PantallaTrazadoState extends State<PantallaTrazado> {
     return Scaffold(
       appBar: AppBar(title: Text(widget.titulo)),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.all(16)),
         children: [
           Text(SoleraL10n.t('mont.explicacion_traza'),
               style: Theme.of(context).textTheme.bodySmall),

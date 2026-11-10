@@ -41,6 +41,16 @@ class BarraGuardarSolera extends StatelessWidget {
   }
 }
 
+/// [campo] con el margen inferior común de los formularios
+/// ([separacionCamposSolera]). Los helpers de campo de las apps lo usan para
+/// que dos campos seguidos no se peguen, estén en una hoja, en Ajustes o en
+/// una pantalla; dentro de una `Row`, todos los campos llevan el mismo margen
+/// y siguen alineados.
+Widget separarCampoSolera(Widget campo) => Padding(
+      padding: const EdgeInsets.only(bottom: separacionCamposSolera),
+      child: campo,
+    );
+
 /// Contenido del botón de guardar: el texto o, mientras guarda, una rueda.
 Widget textoOGuardando(String texto, {required bool guardando}) => guardando
     ? const SizedBox(

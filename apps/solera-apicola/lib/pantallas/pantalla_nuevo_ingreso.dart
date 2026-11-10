@@ -247,7 +247,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
               validator: (v) =>
                   (v ?? '').trim().isEmpty ? SoleraL10n.t('api.eco_concepto_obligatorio') : null,
             ),
-            SizedBox(height: 12),
+            SizedBox(height: separacionCamposSolera),
             if (_tipoActual.unidad.isNotEmpty)
               TextFormField(
                 controller: _cantidad,
@@ -260,7 +260,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                 validator: (texto) =>
                 validarNumeroOpcional(texto, nullSiAmbiguo: true),
               ),
-            if (_tipoActual.unidad.isNotEmpty) SizedBox(height: 12),
+            if (_tipoActual.unidad.isNotEmpty) SizedBox(height: separacionCamposSolera),
             TextFormField(
               controller: _importeBase,
               keyboardType:
@@ -349,7 +349,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
               ],
               onChanged: (v) => setState(() => _terceroId = v),
             ),
-            SizedBox(height: 12),
+            SizedBox(height: separacionCamposSolera),
             DropdownButtonFormField<int?>(
               initialValue: _apiarioId,
               decoration: InputDecoration(
@@ -366,7 +366,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
               ],
               onChanged: (v) => setState(() => _apiarioId = v),
             ),
-            SizedBox(height: 12),
+            SizedBox(height: separacionCamposSolera),
             TextFormField(
               controller: _numeroFactura,
               decoration: InputDecoration(

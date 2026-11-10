@@ -168,7 +168,7 @@ class _PantallaLibroRegaState extends State<PantallaLibroRega> {
             ],
             onChanged: (v) => setState(() => _apiarioSeleccionado = v),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           DropdownButtonFormField<int>(
             initialValue: _ano,
             decoration: InputDecoration(

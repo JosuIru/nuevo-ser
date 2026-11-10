@@ -241,7 +241,7 @@ class _PantallaNuevaColmenaState extends State<PantallaNuevaColmena> {
               validator: (v) => (v ?? '').trim().isEmpty ? SoleraL10n.t('api.matricula_obligatoria') : null,
               textInputAction: TextInputAction.next,
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: separacionCamposSolera),
             CampoAutocompleteCatalogo<TipoColmena>(
               controlador: _controladorTipo,
               labelText: SoleraL10n.t('api.tipo_de_colmena'),
@@ -250,7 +250,7 @@ class _PantallaNuevaColmenaState extends State<PantallaNuevaColmena> {
               buscar: buscarTiposColmena,
               displayStringForOption: (t) => t.nombreCanonico,
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: separacionCamposSolera),
             CampoAutocompleteCatalogo<RazaAbeja>(
               controlador: _controladorRaza,
               labelText: SoleraL10n.t('api.raza'),
@@ -259,7 +259,7 @@ class _PantallaNuevaColmenaState extends State<PantallaNuevaColmena> {
               buscar: buscarRazasAbeja,
               displayStringForOption: (r) => r.nombreCanonico,
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: separacionCamposSolera),
             TextFormField(
               controller: _controladorAnoReina,
               decoration: InputDecoration(
@@ -270,7 +270,7 @@ class _PantallaNuevaColmenaState extends State<PantallaNuevaColmena> {
               keyboardType: TextInputType.number,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: separacionCamposSolera),
             DropdownButtonFormField<EstadoColmena>(
               initialValue: _estado,
               decoration: InputDecoration(

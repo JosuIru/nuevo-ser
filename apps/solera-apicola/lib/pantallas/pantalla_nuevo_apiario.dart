@@ -138,7 +138,7 @@ class _PantallaNuevoApiarioState extends State<PantallaNuevoApiario> {
                   ? SoleraL10n.t('api.nombre_obligatorio')
                   : null,
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: separacionCamposSolera),
             TextFormField(
               controller: _codigoSitran,
               decoration: InputDecoration(
@@ -146,7 +146,7 @@ class _PantallaNuevoApiarioState extends State<PantallaNuevoApiario> {
                 border: const OutlineInputBorder(),
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: separacionCamposSolera),
             TextFormField(
               controller: _superficie,
               decoration: InputDecoration(
@@ -157,7 +157,7 @@ class _PantallaNuevoApiarioState extends State<PantallaNuevoApiario> {
                   const TextInputType.numberWithOptions(decimal: true),
               validator: (texto) => validarNumeroOpcional(texto),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: separacionCamposSolera),
             DropdownButtonFormField<int>(
               initialValue: _colorEntero,
               decoration: InputDecoration(
@@ -175,7 +175,7 @@ class _PantallaNuevoApiarioState extends State<PantallaNuevoApiario> {
               onChanged: (v) =>
                   setState(() => _colorEntero = v ?? _colorEntero),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: separacionCamposSolera),
             TextFormField(
               controller: _notas,
               decoration: InputDecoration(

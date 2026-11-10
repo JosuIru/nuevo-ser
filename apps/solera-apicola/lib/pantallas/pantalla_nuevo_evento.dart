@@ -388,7 +388,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             validator: (texto) =>
                 validarNumeroOpcional(texto, nullSiAmbiguo: true),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           TextFormField(
             controller: _controladorKilosCera,
             decoration: InputDecoration(labelText: SoleraL10n.t('api.kilos_de_cera'), border: OutlineInputBorder()),
@@ -397,7 +397,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             validator: (texto) =>
                 validarNumeroOpcional(texto, nullSiAmbiguo: true),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           TextFormField(
             controller: _controladorKilosPolen,
             decoration: InputDecoration(labelText: SoleraL10n.t('api.kilos_de_polen'), border: OutlineInputBorder()),
@@ -406,7 +406,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             validator: (texto) =>
                 validarNumeroOpcional(texto, nullSiAmbiguo: true),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           TextFormField(
             controller: _controladorKilosPropoleo,
             decoration: InputDecoration(labelText: SoleraL10n.t('api.kilos_de_propoleo'), border: OutlineInputBorder()),
@@ -415,7 +415,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             validator: (texto) =>
                 validarNumeroOpcional(texto, nullSiAmbiguo: true),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           TextFormField(
             controller: _controladorAlza,
             decoration: InputDecoration(labelText: SoleraL10n.t('api.numero_alza_opcional'), border: OutlineInputBorder()),
@@ -437,7 +437,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             ],
             onChanged: (v) => setState(() => _tipoTratamiento = v ?? 'otro'),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           CampoAutocompleteCatalogo<SustanciaVarroa>(
             controlador: _controladorSustancia,
             labelText: SoleraL10n.t('api.sustancia_activa'),
@@ -446,7 +446,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             buscar: buscarSustanciasVarroa,
             displayStringForOption: (s) => s.nombreCanonico,
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           TextFormField(
             controller: _controladorDosis,
             decoration: InputDecoration(
@@ -455,7 +455,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
               border: OutlineInputBorder(),
             ),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           DropdownButtonFormField<String>(
             initialValue: _vehiculo,
             decoration: InputDecoration(labelText: SoleraL10n.t('api.vehiculo'), border: OutlineInputBorder()),
@@ -490,7 +490,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           TextFormField(
             controller: _controladorLote,
             decoration: InputDecoration(
@@ -499,7 +499,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
               border: OutlineInputBorder(),
             ),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           TextFormField(
             controller: _controladorFactura,
             decoration: InputDecoration(
@@ -524,7 +524,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             ],
             onChanged: (v) => setState(() => _tipoIncidencia = v ?? 'otro'),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           CampoAutocompleteCatalogo<PlagaApicola>(
             controlador: _controladorDiagnostico,
             labelText: SoleraL10n.t('api.diagnostico'),
@@ -577,7 +577,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             ],
             onChanged: (v) => setState(() => _motivoMovimiento = v ?? 'otro'),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           DropdownButtonFormField<int?>(
             initialValue: _apiarioOrigenId,
             decoration: InputDecoration(labelText: SoleraL10n.t('api.apiario_origen'), border: OutlineInputBorder()),
@@ -588,7 +588,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             ],
             onChanged: (v) => setState(() => _apiarioOrigenId = v),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           DropdownButtonFormField<int?>(
             initialValue: _apiarioDestinoId,
             decoration: InputDecoration(labelText: SoleraL10n.t('api.apiario_destino'), border: OutlineInputBorder()),
@@ -599,7 +599,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             ],
             onChanged: (v) => setState(() => _apiarioDestinoId = v),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: separacionCamposSolera),
           TextFormField(
             controller: _controladorNumeroColmenas,
             decoration: InputDecoration(

@@ -4,6 +4,8 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show CabeceraHoySolera, CifraCabecera, SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show AvisoActualizaciones, configActualizacionesMonorepo;
 
 import '../datos/base_datos.dart';
 import '../datos/catalogos_generados/flag_revision.dart';
@@ -101,6 +103,11 @@ class _PantallaHoyState extends State<PantallaHoy> {
             padding: const EdgeInsets.only(bottom: 24),
             children: [
               cabecera,
+              // Aviso de versión nueva: si no la hay, no ocupa sitio.
+              AvisoActualizaciones(
+                config: configActualizacionesMonorepo('solera-huerta'),
+                nombreApp: 'Larrea Huerta',
+              ),
               if (!catalogosCompletamenteRevisados)
                 AvisoCatalogosProvisionales(
                   texto: SoleraL10n.t('huer.catalogos_provisionales'),

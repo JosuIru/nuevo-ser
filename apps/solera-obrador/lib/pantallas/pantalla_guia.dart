@@ -17,8 +17,16 @@ import '../servicios/copiar_receta_guia.dart';
 import '../utiles/textos_obrador.dart';
 import 'pantalla_recetas.dart';
 
-String _tituloSeccion(String seccion) =>
-    SoleraL10n.t('obra.guia_seccion_$seccion');
+/// Clave literal por sección: el test de traducciones del core comprueba
+/// que cada clave usada existe, y no ve las que se arman con `$`.
+String _tituloSeccion(String seccion) => SoleraL10n.t(switch (seccion) {
+      'recetas' => 'obra.guia_seccion_recetas',
+      'fermentacion' => 'obra.guia_seccion_fermentacion',
+      'tiempos' => 'obra.guia_seccion_tiempos',
+      'coccion' => 'obra.guia_seccion_coccion',
+      'harinas' => 'obra.guia_seccion_harinas',
+      _ => 'obra.guia_seccion_trucos',
+    });
 
 class PantallaGuiaObrador extends StatefulWidget {
   const PantallaGuiaObrador({super.key, this.seccionInicial = 'recetas'});

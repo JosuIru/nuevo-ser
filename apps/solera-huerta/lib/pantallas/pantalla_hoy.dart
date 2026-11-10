@@ -8,6 +8,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show AvisoActualizaciones, configActualizacionesMonorepo;
 
 import '../datos/base_datos.dart';
+import '../dominio/guia.dart';
 import '../datos/catalogos_generados/flag_revision.dart';
 import '../estado/cambios_datos.dart';
 import '../estado/datos_huerta.dart';
@@ -16,6 +17,7 @@ import '../modelos/tratamiento.dart';
 import '../provisional_core/venta_directa/semanas.dart';
 import '../utiles/textos_huerta.dart';
 import 'formularios_huerta.dart';
+import 'pantalla_guia.dart';
 import 'selector_perfil.dart';
 import '../estado/semana_cestas.dart';
 
@@ -92,6 +94,16 @@ class _PantallaHoyState extends State<PantallaHoy> {
               SoleraL10n.idioma,
             ).format(DateTime.now()),
             rutaLogo: 'assets/icono-logo-huerta.png',
+            acciones: [
+              IconButton(
+                key: const ValueKey('abrir-guia'),
+                tooltip: SoleraL10n.t('huer.guia_abrir'),
+                icon: const Icon(Icons.menu_book_outlined),
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(builder: (_) => const PantallaGuia()),
+                ),
+              ),
+            ],
             cifras: [
               CifraCabecera(
                 valor: '${datos?.parcelas.length ?? 0}',
@@ -139,6 +151,13 @@ class _PantallaHoyState extends State<PantallaHoy> {
     final datos = cargado.datos;
     final ahora = DateTime.now();
     final estilo = Theme.of(context).textTheme.titleMedium;
+    final tarjetaGuia = TarjetaSemanaGuia(
+      mes: ahora.month,
+      especiesPropias: {
+        for (final cultivo in datos.cultivos) cultivo.especieId,
+      },
+      giro: ahora.difference(DateTime(ahora.year)).inDays ~/ 7,
+    );
     if (datos.parcelas.isEmpty || datos.cultivos.isEmpty) {
       return [
         Card(
@@ -175,6 +194,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
             ),
           ),
         ),
+        tarjetaGuia,
       ];
     }
     final limite = ahora.add(const Duration(days: 14)).millisecondsSinceEpoch;
@@ -320,6 +340,54 @@ class _PantallaHoyState extends State<PantallaHoy> {
             ],
           ),
         ),
+      tarjetaGuia,
     ];
+  }
+}
+
+/// «Esta semana en el huerto»: hasta tres cultivos que, según las fichas de
+/// la guía, se siembran o plantan este mes (primero los que ya tiene la
+/// persona). Cada uno abre su ficha. Si no hay ninguno, no ocupa sitio.
+class TarjetaSemanaGuia extends StatelessWidget {
+  const TarjetaSemanaGuia({
+    super.key,
+    required this.mes,
+    this.especiesPropias = const {},
+    this.giro = 0,
+  });
+
+  final int mes;
+  final Set<String> especiesPropias;
+  final int giro;
+
+  @override
+  Widget build(BuildContext context) {
+    final sugerencias = sugerenciasDelMes(mes,
+        especiesPropias: especiesPropias, giro: giro);
+    if (sugerencias.isEmpty) return const SizedBox.shrink();
+    return Card(
+      key: const ValueKey('tarjeta-semana-guia'),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          ListTile(
+            leading: const Icon(Icons.menu_book_outlined),
+            title: Text(SoleraL10n.t('huer.guia_semana_titulo'),
+                style: Theme.of(context).textTheme.titleMedium),
+            subtitle: Text(SoleraL10n.t('huer.guia_semana_texto')),
+          ),
+          for (final sugerencia in sugerencias)
+            ListTile(
+              dense: true,
+              leading: const Icon(Icons.spa_outlined),
+              title: Text(nombreCultivoGuia(sugerencia.cultivoId)),
+              subtitle: Text(nombreFormaSiembraGuia(sugerencia.forma)),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () =>
+                  abrirFichaCultivoGuia(context, sugerencia.cultivoId),
+            ),
+        ],
+      ),
+    );
   }
 }

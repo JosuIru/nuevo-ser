@@ -12,6 +12,7 @@ import 'package:solera_huerta/pantallas/pantalla_ayuda.dart';
 import 'package:solera_huerta/pantallas/pantalla_cestas.dart';
 import 'package:solera_huerta/pantallas/pantalla_cuaderno.dart';
 import 'package:solera_huerta/pantallas/pantalla_ficha_bancal.dart';
+import 'package:solera_huerta/pantallas/pantalla_guia.dart';
 import 'package:solera_huerta/pantallas/pantalla_hoy.dart';
 import 'package:solera_huerta/pantallas/pantalla_parcelas.dart';
 import 'package:solera_huerta/pantallas/pantalla_socios.dart';
@@ -122,8 +123,44 @@ void main() {
       await tester.pumpWidget(const MaterialApp(home: PantallaHoy()));
       await esperar(tester);
     });
-    expect(find.text('Tomate'), findsOneWidget);
+    // findsWidgets: según el mes, «Esta semana en el huerto» también puede
+    // sugerir el tomate.
+    expect(find.text('Tomate'), findsWidgets);
     expect(find.text(SoleraL10n.t('huer.cestas_esta_semana')), findsOneWidget);
+  });
+
+  testWidgets('Hoy: el icono de libro abre la guía del huerto', (tester) async {
+    await tester.runAsync(() async {
+      await tester.pumpWidget(const MaterialApp(home: PantallaHoy()));
+      await esperar(tester);
+    });
+    await tester.tap(find.byKey(const ValueKey('abrir-guia')));
+    await tester.pumpAndSettle();
+    expect(find.byType(PantallaGuia), findsOneWidget);
+  });
+
+  testWidgets('ficha de bancal: una siembra del catálogo abre su ficha de la guía',
+      (tester) async {
+    await tester.runAsync(() async {
+      final parcela = await baseDatos.guardarParcela(Parcela(nombre: 'Vega'));
+      final bancal = await baseDatos
+          .guardarBancal(Bancal(parcelaId: parcela, nombre: 'B1'));
+      final cultivo = await baseDatos.guardarCultivo(
+          Cultivo(especieId: 'haba', familiaId: 'fabaceas'));
+      await baseDatos.guardarSiembra(Siembra(
+          bancalId: bancal,
+          cultivoId: cultivo,
+          fechaPrevistaMs: DateTime.now().millisecondsSinceEpoch));
+      await tester
+          .pumpWidget(MaterialApp(home: PantallaFichaBancal(bancalId: bancal)));
+      await esperar(tester);
+    });
+    await tester.tap(find.text('Haba'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text(SoleraL10n.t('huer.guia_ver_ficha')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const ValueKey('aviso-guia')), findsOneWidget);
+    expect(find.text(SoleraL10n.t('huer.guia_calendario')), findsOneWidget);
   });
 
   testWidgets('ficha de bancal: familia bloqueada por la rotación',
@@ -201,10 +238,15 @@ void main() {
 
   testWidgets('ayuda: todos los apartados, con lo que la app no hace',
       (tester) async {
+    // Pantalla alta: con la guía ya no caben todos los apartados en 800 px.
+    tester.view.physicalSize = const Size(800, 1600);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
     await tester.pumpWidget(const MaterialApp(home: PantallaAyuda()));
     expect(
         find.byType(ExpansionTile), findsNWidgets(apartadosAyudaHuerta.length));
     expect(
         find.text(SoleraL10n.t('huer.ayuda_limites_titulo')), findsOneWidget);
+    expect(find.text(SoleraL10n.t('huer.ayuda_guia_titulo')), findsOneWidget);
   });
 }

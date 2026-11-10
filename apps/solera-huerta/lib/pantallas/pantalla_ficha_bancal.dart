@@ -3,6 +3,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 
 import '../datos/base_datos.dart';
 import '../dominio/catalogos.dart';
+import '../dominio/guia.dart';
 import '../dominio/rotacion.dart';
 import '../estado/cambios_datos.dart';
 import '../estado/datos_huerta.dart';
@@ -13,6 +14,7 @@ import '../utiles/textos_huerta.dart';
 import 'formularios_huerta.dart';
 import 'hoja_formulario.dart';
 import 'identificar_plaga.dart';
+import 'pantalla_guia.dart';
 
 /// Ficha de un bancal: el plan de rotación (qué familias no pueden volver
 /// todavía), sus siembras planificadas y hechas, y sus cosechas.
@@ -81,6 +83,14 @@ class _PantallaFichaBancalState extends State<PantallaFichaBancal> {
               title: Text(SoleraL10n.t('huer.levantar_hoy')),
               onTap: () => Navigator.pop(contexto, 'levantar'),
             ),
+          if (fichaGuiaCultivo(
+                  datos.cultivo(siembra.cultivoId)?.especieId ?? '') !=
+              null)
+            ListTile(
+              leading: const Icon(Icons.menu_book_outlined),
+              title: Text(SoleraL10n.t('huer.guia_ver_ficha')),
+              onTap: () => Navigator.pop(contexto, 'guia'),
+            ),
           ListTile(
             leading: const Icon(Icons.edit_outlined),
             title: Text(SoleraL10n.t('editar')),
@@ -105,6 +115,9 @@ class _PantallaFichaBancalState extends State<PantallaFichaBancal> {
         avisarCambioDatos();
       case 'cosecha':
         await mostrarFormularioCosecha(context, datos: datos, siembra: siembra);
+      case 'guia':
+        await abrirFichaCultivoGuia(
+            context, datos.cultivo(siembra.cultivoId)?.especieId ?? '');
       case 'editar':
         await mostrarFormularioSiembra(context, datos: datos, siembra: siembra);
       case 'borrar':
@@ -258,6 +271,14 @@ class _PantallaFichaBancalState extends State<PantallaFichaBancal> {
                 ListTile(
                   leading: const Icon(Icons.bug_report_outlined),
                   title: Text(nombrePlaga(observacion.plagaId)),
+                  trailing: auxiliaresDePlaga(observacion.plagaId).isEmpty
+                      ? null
+                      : IconButton(
+                          tooltip: SoleraL10n.t('huer.guia_ver_auxiliares'),
+                          icon: const Icon(Icons.menu_book_outlined),
+                          onPressed: () => mostrarAuxiliaresDePlaga(
+                              context, observacion.plagaId),
+                        ),
                   subtitle: Text([
                     formatearFecha(observacion.fechaMs),
                     if (observacion.cultivoId != null)

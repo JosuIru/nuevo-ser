@@ -1,0 +1,55 @@
+clave,es,eu,ca,gl
+huer.guia,Guía del huerto,Baratzeko gida,Guia de l'hort,Guía da horta
+huer.guia_abrir,Abrir la guía del huerto,Ireki baratzeko gida,Obre la guia de l'hort,Abrir a guía da horta
+huer.guia_buscar,"Buscar (tomate, mariquita, compost…)","Bilatu (tomatea, marigorringoa, konposta…)","Cerca (tomàquet, marieta, compost…)","Buscar (tomate, xoaniña, compost…)"
+huer.guia_sin_resultados,No hay nada con esa búsqueda.,Ez dago ezer bilaketa horrekin.,No hi ha res amb aquesta cerca.,Non hai nada con esa busca.
+huer.guia_cultivos,Cultivos,Laboreak,Cultius,Cultivos
+huer.guia_fauna,Fauna auxiliar,Fauna laguntzailea,Fauna auxiliar,Fauna auxiliar
+huer.guia_plantas,Plantas que ayudan,Laguntzen duten landareak,Plantes que ajuden,Plantas que axudan
+huer.guia_tecnicas,Técnicas y trucos,Teknikak eta trikimailuak,Tècniques i trucs,Técnicas e trucos
+huer.guia_aviso,"Orientativo, revisado con IA a partir de las fuentes citadas; pendiente de revisión por una persona experta.","Orientagarria, AArekin berrikusia aipatutako iturrietatik abiatuta; aditu batek berrikusteke.","Orientatiu, revisat amb IA a partir de les fonts citades; pendent de revisió per una persona experta.","Orientativo, revisado con IA a partir das fontes citadas; pendente de revisión por unha persoa experta."
+huer.guia_calendario,Calendario,Egutegia,Calendari,Calendario
+huer.guia_calendario_de,"Calendario orientativo de {zona}: en zonas más frías va más tarde y en las más cálidas, antes.","{zona}(e)ko egutegi orientagarria: leku hotzagoetan beranduago da, eta beroagoetan lehenago.","Calendari orientatiu de {zona}: a les zones més fredes va més tard i a les més càlides, abans.","Calendario orientativo de {zona}: nas zonas máis frías vai máis tarde e nas máis cálidas, antes."
+huer.guia_sin_calendario,La fuente no da meses de siembra para este cultivo.,Iturriak ez du laborantza honen ereiteko hilabeterik ematen.,La font no dona mesos de sembra per a aquest cultiu.,A fonte non dá meses de sementeira para este cultivo.
+huer.guia_semillero,Semillero,Haztegia,Planter,Semente
+huer.guia_directa,Siembra directa,Zuzeneko ereintza,Sembra directa,Sementeira directa
+huer.guia_trasplante,Trasplante,Transplantea,Trasplantament,Transplante
+huer.guia_marco,Marco (entre plantas x entre líneas),Landaketa-markoa (landareen artean x lerroen artean),Marc (entre plantes x entre línies),Marco (entre plantas x entre liñas)
+huer.guia_siembra,Cómo sembrar,Nola erein,Com sembrar,Como sementar
+huer.guia_riego,Riego,Ureztatzea,Reg,Rega
+huer.guia_cosecha,Cosecha,Uzta,Collita,Colleita
+huer.guia_asociaciones,Asociaciones (orientativas),Elkarketak (orientagarriak),Associacions (orientatives),Asociacións (orientativas)
+huer.guia_favorables,Suelen ir bien con:,Hauekin ondo moldatu ohi da:,Solen anar bé amb:,Adoitan ir ben con:
+huer.guia_desfavorables,Mejor lejos de:,Hobe hauetatik urrun:,Millor lluny de:,Mellor lonxe de:
+huer.guia_asociaciones_tradicion,"Estas listas recogen la tradición hortícola (guía del Ayto. de Madrid): casi ninguna pareja tiene ensayos que la respalden.","Zerrenda hauek baratzeko tradizioa jasotzen dute (Madrilgo Udalaren gida): ia bikote batek ere ez du entsegurik atzean.","Aquestes llistes recullen la tradició hortícola (guia de l'Ajuntament de Madrid): gairebé cap parella no té assajos que la avalin.","Estas listas recollen a tradición hortícola (guía do Concello de Madrid): case ningunha parella ten ensaios que a respalden."
+huer.guia_plagas,Plagas y problemas habituales,Ohiko izurriak eta arazoak,Plagues i problemes habituals,Pragas e problemas habituais
+huer.guia_no_tratar,"La guía no recomienda tratar con nada. Si tienes que actuar, consulta las categorías de insumos permitidos de la app y a una persona técnica.","Gidak ez du ezerekin tratatzea gomendatzen. Zerbait egin behar baduzu, kontsultatu aplikazioko baimendutako intsumoen kategoriak eta teknikari bat.","La guia no recomana tractar amb res. Si has d'actuar, consulta les categories d'insums permesos de l'app i una persona tècnica.","A guía non recomenda tratar con nada. Se tes que actuar, consulta as categorías de insumos permitidos da app e unha persoa técnica."
+huer.guia_auxiliares,Fauna auxiliar que la combate,Hari aurre egiten dion fauna laguntzailea,Fauna auxiliar que la combat,Fauna auxiliar que a combate
+huer.guia_ver_auxiliares,Ver la fauna auxiliar que la combate,Ikusi hari aurre egiten dion fauna,Mostra la fauna auxiliar que la combat,Ver a fauna auxiliar que a combate
+huer.guia_sin_auxiliares,La guía todavía no tiene fauna auxiliar para esta plaga.,Gidak oraindik ez du izurri honetarako fauna laguntzailerik.,La guia encara no té fauna auxiliar per a aquesta plaga.,A guía aínda non ten fauna auxiliar para esta praga.
+huer.guia_curiosidad,Curiosidad,Bitxikeria,Curiositat,Curiosidade
+huer.guia_fuentes,Fuentes,Iturriak,Fonts,Fontes
+huer.guia_que_hace,Qué hace,Zer egiten du,Què fa,Que fai
+huer.guia_reconocer,Cómo reconocerla,Nola ezagutu,Com reconèixer-la,Como recoñecela
+huer.guia_atraer,Cómo atraerla,Nola erakarri,Com atraure-la,Como atraela
+huer.guia_plagas_que_controla,Plagas que ayuda a controlar,Kontrolatzen laguntzen dituen izurriak,Plagues que ajuda a controlar,Pragas que axuda a controlar
+huer.guia_plantas_que_atraen,Plantas que la atraen,Erakartzen duten landareak,Plantes que l'atrauen,Plantas que a atraen
+huer.guia_que_aporta,Qué aporta,Zer ematen du,Què aporta,Que achega
+huer.guia_cuando,Cuándo sembrar,Noiz erein,Quan sembrar,Cando sementar
+huer.guia_cuidado,Ojo,Kontuz,Compte,Ollo
+huer.guia_fauna_que_atrae,Fauna que atrae,Erakartzen duen fauna,Fauna que atrau,Fauna que atrae
+huer.guia_ver_cultivo,Ver la ficha de {cultivo},Ikusi {cultivo} fitxa,Mostra la fitxa de {cultivo},Ver a ficha de {cultivo}
+huer.guia_ver_ficha,Ver en la guía,Ikusi gidan,Mostra a la guia,Ver na guía
+huer.guia_pasos,Cómo se hace,Nola egiten da,Com es fa,Como se fai
+huer.guia_truco,Truco,Trikimailua,Truc,Truco
+huer.guia_rotacion_tabla,Años mínimos por familia que usa la app,Aplikazioak familiako erabiltzen dituen gutxieneko urteak,Anys mínims per família que fa servir l'app,Anos mínimos por familia que usa a app
+huer.guia_anios,{n} años,{n} urte,{n} anys,{n} anos
+huer.guia_sin_dato,sin dato,daturik ez,sense dada,sen dato
+huer.guia_tipo_flor,Flores para la fauna auxiliar,Fauna laguntzailearentzako loreak,Flors per a la fauna auxiliar,Flores para a fauna auxiliar
+huer.guia_tipo_abono_verde,Abono verde,Ongarri berdea,Adob verd,Abono verde
+huer.guia_tipo_cobertura,Cultivo de cobertura,Estaldura-laborea,Cultiu de cobertura,Cultivo de cobertura
+huer.guia_tipo_reservorio,Reservorio de fauna auxiliar,Fauna laguntzailearen gordelekua,Reservori de fauna auxiliar,Reservorio de fauna auxiliar
+huer.guia_semana_titulo,Esta semana en el huerto,Aste honetan baratzean,Aquesta setmana a l'hort,Esta semana na horta
+huer.guia_semana_texto,"Según las fichas de la guía, este mes toca:","Gidako fitxen arabera, hilabete honetan:","Segons les fitxes de la guia, aquest mes toca:","Segundo as fichas da guía, este mes toca:"
+huer.ayuda_guia_titulo,Guía del huerto,Baratzeko gida,Guia de l'hort,Guía da horta
+huer.ayuda_guia_texto,"Desde el icono de libro de Hoy se abre la guía: fichas de 42 cultivos (calendario de siembra, riego, cosecha, asociaciones, plagas y una curiosidad), fauna auxiliar que conviene reconocer para no matarla por error, plantas que la atraen o mejoran el suelo, y técnicas como el compost, el semillero, el riego o la rotación. También se llega desde una siembra del bancal (Ver en la guía) y desde una observación de plaga (la fauna que la combate). Es orientativa: sale de guías públicas (Aytos. de Zaragoza y Madrid, guías de Gestión Integrada de Plagas del MAPA, RHS…), está revisada con IA y falta la revisión de una persona experta. Muchas asociaciones de cultivos son tradición sin ensayos, y la ficha lo dice. Nunca recomienda tratar con productos ni dosis. Por ahora el contenido de las fichas está solo en castellano.","Gaurko liburu-ikonotik irekitzen da gida: 42 laboreren fitxak (ereite-egutegia, ureztatzea, uzta, elkarketak, izurriak eta bitxikeria bat), nahi gabe ez hiltzeko ezagutu beharreko fauna laguntzailea, hura erakartzen duten edo lurra hobetzen duten landareak, eta konposta, haztegia, ureztatzea edo txandaketa bezalako teknikak. Lur-saileko ereintza batetik (Ikusi gidan) eta izurri-behaketa batetik ere iristen da. Orientagarria da: iturri publikoetatik dator, AArekin berrikusia dago eta aditu baten berrikuspena falta da. Elkarketa asko entsegurik gabeko tradizioa dira, eta fitxak hala dio. Ez du inoiz produktuekin edo dosiekin tratatzea gomendatzen. Oraingoz fitxen edukia gaztelaniaz bakarrik dago.","Des de la icona del llibre d'Avui s'obre la guia: fitxes de 42 cultius (calendari de sembra, reg, collita, associacions, plagues i una curiositat), fauna auxiliar que convé reconèixer per no matar-la per error, plantes que l'atrauen o milloren el sòl, i tècniques com el compost, el planter, el reg o la rotació. També s'hi arriba des d'una sembra del bancal (Mostra a la guia) i des d'una observació de plaga. És orientativa: surt de guies públiques, està revisada amb IA i falta la revisió d'una persona experta. Moltes associacions de cultius són tradició sense assajos, i la fitxa ho diu. No recomana mai tractar amb productes ni dosis. De moment el contingut de les fitxes només és en castellà.","Desde a icona do libro de Hoxe ábrese a guía: fichas de 42 cultivos (calendario de sementeira, rega, colleita, asociacións, pragas e unha curiosidade), fauna auxiliar que convén recoñecer para non matala por erro, plantas que a atraen ou melloran o solo, e técnicas como o compost, o semente, a rega ou a rotación. Tamén se chega desde unha sementeira do bancal (Ver na guía) e desde unha observación de praga. É orientativa: sae de guías públicas, está revisada con IA e falta a revisión dunha persoa experta. Moitas asociacións de cultivos son tradición sen ensaios, e a ficha dio. Nunca recomenda tratar con produtos nin doses. Polo de agora o contido das fichas está só en castelán."

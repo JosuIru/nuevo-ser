@@ -5,6 +5,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 const List<(String, String)> apartadosAyudaObrador = [
   ('obra.ayuda_empezar_titulo', 'obra.ayuda_empezar_texto'),
   ('obra.ayuda_recetas_titulo', 'obra.ayuda_recetas_texto'),
+  ('obra.ayuda_guia_titulo', 'obra.ayuda_guia_texto'),
   ('obra.ayuda_autocontrol_titulo', 'obra.ayuda_autocontrol_texto'),
   ('obra.ayuda_hornadas_titulo', 'obra.ayuda_hornadas_texto'),
   ('obra.ayuda_documentos_titulo', 'obra.ayuda_documentos_texto'),

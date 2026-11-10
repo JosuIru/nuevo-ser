@@ -17,6 +17,7 @@ import '../modelos/receta.dart';
 import '../modelos/registro_autocontrol.dart';
 import '../utiles/textos_obrador.dart';
 import 'pantalla_autocontrol.dart';
+import 'pantalla_guia.dart';
 import 'pantalla_hornadas.dart';
 import 'pantalla_ingredientes.dart';
 import 'pantalla_recetas.dart';
@@ -114,6 +115,11 @@ class _PantallaHoyState extends State<PantallaHoy> {
                 rutaLogo: rutaLogoObrador,
                 fecha: fecha,
                 acciones: [
+                  IconButton(
+                    tooltip: SoleraL10n.t('obra.guia'),
+                    icon: const Icon(Icons.menu_book_outlined),
+                    onPressed: () => _abrir(const PantallaGuiaObrador()),
+                  ),
                   IconButton(
                     tooltip: SoleraL10n.t('obra.hornadas'),
                     icon: const Icon(Icons.local_fire_department_outlined),

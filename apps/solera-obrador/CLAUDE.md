@@ -45,6 +45,7 @@ un producto apto** para alérgicos ni celíacos, y la sal y los nutrientes son
 - **2026-11-07 — IA con el modelo equilibrado** y no el rápido: un error de lectura de alérgenos tiene consecuencias para una persona alérgica.
 - **2026-11-07 — Economía mínima**: un solo libro de apuntes (sin terceros como entidad ni facturas) mientras el asesor fiscal no fije el régimen; ingreso por defecto al 4 % (pan común) y gasto al 21 %, editables.
 - **2026-11-07 — Importes en céntimos** (como aceitera), no en REAL como la quesera.
+- **2026-11-10 — Guía del obrador** (Hoy → icono de libro; Recetas → «Recetas de la guía»; apartado en la Ayuda). 10 recetas base en porcentaje panadero y 41 fichas (fermentación 9, tiempos 6, cocción 7, harinas 6, trucos 13) en `content/obrador/guia_*.csv`, todas con `fuente` y `revisado_por = revision-ia: 2026-11-10` (no es firma: aviso fijo «pendiente de revisión por una persona experta»). **El contenido va solo en castellano en la v1** (la interfaz, en los 4 idiomas: `content/solera/traducciones/obrador_guia.csv`, claves `obra.guia_*`). Decisiones: la guía **no cuenta** para `catalogosCompletamenteRevisados` (tiene su propio aviso); «Copiar a mis recetas» pide peso de harina o de masa, casa los ingredientes por nombre con los del obrador y crea los que falten desde `ingredientes_base.csv` con una nota para revisar la ficha del proveedor; `dominio/guia_obrador.dart` comprueba que ningún nombre prometa una denominación o mención del RD 308/2019 que la receta no cumpla (integral, de centeno, masa madre ≥ 5 % y levadura ≤ 0,2 %, solo ingredientes de pan común, sal estimada) y un test lo pasa por las 10. Sal de las recetas de pan común en 1,6-1,8 % sobre harina para quedar bajo 1,31 g/100 g con la merma estimada. Conservas: solo se remiten a AESAN y al APPCC (test: ninguna cifra). Calculadora de la temperatura del agua en su ficha (× 3, o × 4 con prefermento; King Arthur Baking). Sin fotos en la v1.
 
 ## Datos técnicos
 
@@ -55,4 +56,4 @@ un producto apto** para alérgicos ni celíacos, y la sal y los nutrientes son
 - Recarga entre pestañas: `estado/cambios_datos.dart` (`avisarCambioDatos()` tras guardar).
 - **Ojo**: `setState(() => _futuro = cargar())` devuelve el Future y Flutter lo rechaza; usar cuerpo con llaves. Lo cazó el test de pantalla.
 - Lógica pura en `lib/dominio/` (sin Flutter, con tests).
-- Catálogos: `content/obrador/` → `dart run tool/compilar_catalogos.dart`.
+- Catálogos: `content/obrador/` → `dart run tool/compilar_catalogos.dart` (también los tres de la guía, con `_compilarGuia`).

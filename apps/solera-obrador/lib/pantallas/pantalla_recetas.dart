@@ -13,6 +13,7 @@ import '../modelos/receta.dart';
 import '../servicios/compartir_documento.dart';
 import '../servicios/generador_ficha_tecnica_pdf.dart';
 import '../utiles/textos_obrador.dart';
+import 'pantalla_guia.dart';
 
 /// Todo lo que hace falta para calcular composiciones de una vez.
 class _Recetario {
@@ -84,7 +85,16 @@ class _PantallaRecetasState extends State<PantallaRecetas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(SoleraL10n.t('obra.recetas'))),
+      appBar: AppBar(
+        title: Text(SoleraL10n.t('obra.recetas')),
+        actions: [
+          IconButton(
+            tooltip: SoleraL10n.t('obra.guia_recetas_de_la_guia'),
+            icon: const Icon(Icons.menu_book_outlined),
+            onPressed: () => _abrir(const PantallaGuiaObrador()),
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         tooltip: SoleraL10n.t('obra.nueva_receta'),
         onPressed: () => _abrir(const PantallaEditarReceta()),

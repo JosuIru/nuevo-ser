@@ -9,6 +9,7 @@
 define( 'ABSPATH', __DIR__ );
 
 require_once __DIR__ . '/../includes/class-ns-instalador-juegos-web.php';
+require_once __DIR__ . '/../includes/class-ns-juegos-web.php';
 
 $fallos = 0;
 
@@ -67,6 +68,18 @@ $hash = str_repeat( 'ab12', 16 );
 afirmar( $hash, NS_Instalador_Juegos_Web::leer_sha256( $hash . "  uno-roto-web-1.0.0+20.zip\n" ), 'formato de sha256sum' );
 afirmar( $hash, NS_Instalador_Juegos_Web::leer_sha256( strtoupper( $hash ) ), 'en mayúsculas, se normaliza' );
 afirmar( null, NS_Instalador_Juegos_Web::leer_sha256( 'Not Found' ), 'sin hash, null' );
+
+// El Taller (web hecha con Vite, no con Flutter): mismo formato de release.
+$releases_taller = array( release( 'web-el-taller-0.1.0', array( 'el-taller-web-0.1.0.zip', 'el-taller-web-0.1.0.zip.sha256' ) ) );
+afirmar( '0.1.0', NS_Instalador_Juegos_Web::elegir_build( $releases_taller, 'el-taller' )['version'] ?? null, 'El Taller se elige por su tag' );
+afirmar( null, NS_Instalador_Juegos_Web::elegir_build( $releases_taller, 'el' ), 'el prefijo «el» no se queda con El Taller' );
+afirmar( array( 'taller', 'El Taller', 'el_taller' ), NS_Instalador_Juegos_Web::PAGINAS['el-taller'] ?? null, 'El Taller tiene página /taller/ con [el_taller]' );
+afirmar( true, isset( NS_Juegos_Web::JUEGOS['el-taller'] ), 'El Taller es un juego web' );
+afirmar( true, NS_Juegos_Web::es_apaisado( 'el-taller' ), 'El Taller va a todo el ancho' );
+afirmar( false, NS_Juegos_Web::es_apaisado( 'uno-roto' ), 'Uno Roto sigue en columna de móvil' );
+foreach ( array( 'index.html', 'sw.js', 'assets/index-mKeKT5lK.js', 'manifest.webmanifest' ) as $ruta ) {
+	afirmar( true, NS_Instalador_Juegos_Web::ruta_segura_en_zip( $ruta ), "ruta segura de El Taller: $ruta" );
+}
 
 foreach ( array( 'index.html', 'assets/fonts/Roboto.ttf', 'canvaskit/', 'sw_uno_roto.js' ) as $ruta ) {
 	afirmar( true, NS_Instalador_Juegos_Web::ruta_segura_en_zip( $ruta ), "ruta segura: $ruta" );

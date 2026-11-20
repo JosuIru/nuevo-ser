@@ -5,6 +5,7 @@
  *
  *   [uno_roto]
  *   [las_versiones]
+ *   [el_taller]
  *   [nuevo_ser_juego juego="uno-roto" alto="100vh"]
  *
  * El build NO va dentro del plugin (pesa ~50 MB y muchos WordPress
@@ -27,7 +28,14 @@ class NS_Juegos_Web {
 	const JUEGOS = array(
 		'uno-roto'      => 'Uno Roto',
 		'las-versiones' => 'Las Versiones',
+		'el-taller'     => 'El Taller',
 	);
+
+	/**
+	 * Juegos que se usan a todo el ancho (El Taller es una mesa de dibujo,
+	 * no un juego de móvil en vertical). El resto va en una columna de 480 px.
+	 */
+	const APAISADOS = array( 'el-taller' );
 
 	public static function registrar(): void {
 		add_filter( 'body_class', array( __CLASS__, 'clase_de_pagina' ) );
@@ -51,6 +59,14 @@ class NS_Juegos_Web {
 				if ( ! isset( $atributos['portada'] ) ) {
 					$atributos['portada'] = 'si';
 				}
+				return self::shortcode( $atributos );
+			}
+		);
+		add_shortcode(
+			'el_taller',
+			static function ( $atributos ) {
+				$atributos          = is_array( $atributos ) ? $atributos : array();
+				$atributos['juego'] = 'el-taller';
 				return self::shortcode( $atributos );
 			}
 		);
@@ -171,9 +187,10 @@ class NS_Juegos_Web {
 		}
 
 		$titulo = self::JUEGOS[ $juego ];
-		// Formato de móvil también en escritorio: el juego es vertical.
+		// Formato de móvil también en escritorio (el juego es vertical), salvo los apaisados.
+		$ancho_maximo = self::es_apaisado( $juego ) ? '100%' : '480px';
 		return sprintf(
-			'<div class="ns-juego-web" style="width:100%%;max-width:480px;margin:0 auto;height:%1$s;">'
+			'<div class="ns-juego-web" style="width:100%%;max-width:%5$s;margin:0 auto;height:%1$s;">'
 			. '<iframe src="%2$s" title="%3$s" style="border:0;width:100%%;height:100%%;display:block;" '
 			. 'allow="fullscreen; autoplay" allowfullscreen></iframe>'
 			. '<p style="text-align:center;font-size:.85em;margin:.5em 0 0;">'
@@ -181,8 +198,14 @@ class NS_Juegos_Web {
 			esc_attr( $alto ),
 			esc_url( $ubicacion['url'] . 'index.html' ),
 			esc_attr( $titulo ),
-			esc_html__( 'Abrir a pantalla completa', 'nuevo-ser-core' )
+			esc_html__( 'Abrir a pantalla completa', 'nuevo-ser-core' ),
+			esc_attr( $ancho_maximo )
 		);
+	}
+
+	/** Si [juego] se muestra a todo el ancho en vez de en columna de móvil. */
+	public static function es_apaisado( string $juego ): bool {
+		return in_array( $juego, self::APAISADOS, true );
 	}
 
 	/**

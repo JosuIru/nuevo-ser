@@ -34,6 +34,7 @@ class NS_Instalador_Juegos_Web {
 	const PAGINAS = array(
 		'uno-roto'      => array( 'jugar', 'Uno Roto', 'uno_roto' ),
 		'las-versiones' => array( 'las-versiones', 'Las Versiones', 'las_versiones' ),
+		'el-taller'     => array( 'taller', 'El Taller', 'el_taller' ),
 	);
 
 	/** Plantilla del tema Uno Roto que deja la portada a todo el ancho. */

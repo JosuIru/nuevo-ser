@@ -1,0 +1,49 @@
+[
+  {
+    "titulo": "dos dispositivos con historia común",
+    "a": {
+      "version": 1, "nombre": "Ane", "tinta": 30,
+      "practicas": { "gesto": 2, "ideas": 1 },
+      "diasActivos": ["2026-11-18", "2026-11-19"], "logros": ["primer-paso"],
+      "registro": [
+        { "id": "c1", "fecha": "2026-11-18", "idHabilidad": "gesto", "tinta": 10 },
+        { "id": "a1", "fecha": "2026-11-19", "idHabilidad": "gesto", "tinta": 10 },
+        { "id": "a2", "fecha": "2026-11-19", "idHabilidad": "ideas", "tinta": 10 }
+      ]
+    },
+    "b": {
+      "version": 1, "nombre": "", "tinta": 22,
+      "practicas": { "gesto": 1, "codigo-formas": 1 },
+      "diasActivos": ["2026-11-18", "2026-11-20"], "logros": ["primer-paso", "racha-3"],
+      "registro": [
+        { "id": "c1", "fecha": "2026-11-18", "idHabilidad": "gesto", "tinta": 10 },
+        { "id": "b1", "fecha": "2026-11-20", "idHabilidad": "codigo-formas", "tinta": 12 }
+      ]
+    },
+    "esperado": {
+      "version": 1, "nombre": "Ane", "tinta": 42,
+      "practicas": { "gesto": 2, "ideas": 1, "codigo-formas": 1 },
+      "diasActivos": ["2026-11-18", "2026-11-19", "2026-11-20"], "logros": ["primer-paso", "racha-3"],
+      "registro": [
+        { "id": "c1", "fecha": "2026-11-18", "idHabilidad": "gesto", "tinta": 10 },
+        { "id": "a1", "fecha": "2026-11-19", "idHabilidad": "gesto", "tinta": 10 },
+        { "id": "a2", "fecha": "2026-11-19", "idHabilidad": "ideas", "tinta": 10 },
+        { "id": "b1", "fecha": "2026-11-20", "idHabilidad": "codigo-formas", "tinta": 12 }
+      ]
+    }
+  },
+  {
+    "titulo": "estado vacío del servidor",
+    "a": { "version": 1, "nombre": "", "tinta": 0, "practicas": {}, "diasActivos": [], "logros": [], "registro": [] },
+    "b": {
+      "version": 1, "nombre": "Ane", "tinta": 10, "practicas": { "trazo-lineas": 1 },
+      "diasActivos": ["2026-11-20"], "logros": ["primer-paso"],
+      "registro": [{ "id": "x1", "fecha": "2026-11-20", "idHabilidad": "trazo-lineas", "tinta": 10 }]
+    },
+    "esperado": {
+      "version": 1, "nombre": "Ane", "tinta": 10, "practicas": { "trazo-lineas": 1 },
+      "diasActivos": ["2026-11-20"], "logros": ["primer-paso"],
+      "registro": [{ "id": "x1", "fecha": "2026-11-20", "idHabilidad": "trazo-lineas", "tinta": 10 }]
+    }
+  }
+]

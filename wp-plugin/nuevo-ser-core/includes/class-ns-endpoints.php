@@ -50,6 +50,8 @@ class NS_Endpoints {
 		// Endpoints específicos del juego El Cuaderno. Solo en canónico —
 		// el alias `uno-roto/v1` no debería llevar deuda nueva.
 		self::registrar_el_cuaderno_real( self::NAMESPACE_CANONICO );
+		// El Taller: progreso sincronizado y sensei IA. Solo canónico.
+		self::registrar_el_taller( self::NAMESPACE_CANONICO );
 		// Endpoints del módulo de ciencia ciudadana de la app Fósiles
 		// (`/nuevo-ser/v1/fosiles/*`). Mismo principio: solo canónico.
 		self::registrar_fosiles_comunidad( self::NAMESPACE_CANONICO );
@@ -414,6 +416,41 @@ class NS_Endpoints {
 				array(
 					'methods'             => 'POST',
 					'callback'            => array( 'NS_El_Cuaderno', 'tutor_responder' ),
+					'permission_callback' => array( __CLASS__, 'permiso_jwt' ),
+				),
+			)
+		);
+	}
+
+	/**
+	 * Endpoints de El Taller (NS_El_Taller), con el JWT del niño:
+	 *   GET|POST /el-taller/progreso  — leer / fusionar el progreso.
+	 *   POST     /el-taller/sensei    — comentario del sensei IA sobre un dibujo.
+	 */
+	private static function registrar_el_taller( string $namespace ): void {
+		register_rest_route(
+			$namespace,
+			'/el-taller/progreso',
+			array(
+				array(
+					'methods'             => 'GET',
+					'callback'            => array( 'NS_El_Taller', 'obtener_progreso' ),
+					'permission_callback' => array( __CLASS__, 'permiso_jwt' ),
+				),
+				array(
+					'methods'             => 'POST',
+					'callback'            => array( 'NS_El_Taller', 'sincronizar_progreso' ),
+					'permission_callback' => array( __CLASS__, 'permiso_jwt' ),
+				),
+			)
+		);
+		register_rest_route(
+			$namespace,
+			'/el-taller/sensei',
+			array(
+				array(
+					'methods'             => 'POST',
+					'callback'            => array( 'NS_El_Taller', 'sensei_responder' ),
 					'permission_callback' => array( __CLASS__, 'permiso_jwt' ),
 				),
 			)

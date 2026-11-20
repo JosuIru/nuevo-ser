@@ -74,6 +74,10 @@ class NS_Esquema {
 		'fosiles_fotos_blob'           => 'ns_fosiles_fotos_blob',
 		'fosiles_formaciones_catalogadas' => 'ns_fosiles_formaciones_catalogadas',
 		'fosiles_borrados_rgpd'        => 'ns_fosiles_borrados_rgpd',
+		// El Taller: el progreso del niño (JSON pequeño, sin dibujos) y el
+		// contador diario del sensei. Las imágenes del sensei no se guardan.
+		'el_taller_progreso'           => 'ns_el_taller_progreso',
+		'el_taller_sensei'             => 'ns_el_taller_sensei',
 	);
 
 	/** Mapeo del prefijo viejo al nuevo. Lo usa la migración M001. */
@@ -131,6 +135,8 @@ class NS_Esquema {
 		$fosiles_fotos_blob        = self::nombre_tabla( 'fosiles_fotos_blob' );
 		$fosiles_formaciones       = self::nombre_tabla( 'fosiles_formaciones_catalogadas' );
 		$fosiles_borrados_rgpd     = self::nombre_tabla( 'fosiles_borrados_rgpd' );
+		$el_taller_progreso        = self::nombre_tabla( 'el_taller_progreso' );
+		$el_taller_sensei          = self::nombre_tabla( 'el_taller_sensei' );
 
 		return array(
 			"CREATE TABLE {$games} (
@@ -470,6 +476,22 @@ class NS_Esquema {
 				UNIQUE KEY token_hash (token_hash),
 				KEY email_expira (email_contacto, expira_en)
 			) {$charset_collate};",
+
+			// El Taller: un progreso por niño (fusionado en cada sincronización).
+			"CREATE TABLE {$el_taller_progreso} (
+				nino_id BIGINT UNSIGNED NOT NULL,
+				progreso_json LONGTEXT NOT NULL,
+				actualizado_en DATETIME NOT NULL,
+				PRIMARY KEY  (nino_id)
+			) {$charset_collate};",
+
+			// El Taller: consultas al sensei por niño y día (cuota).
+			"CREATE TABLE {$el_taller_sensei} (
+				nino_id BIGINT UNSIGNED NOT NULL,
+				fecha DATE NOT NULL,
+				turnos SMALLINT UNSIGNED NOT NULL DEFAULT 0,
+				PRIMARY KEY  (nino_id,fecha)
+			) {$charset_collate};",
 		);
 	}
 
@@ -515,6 +537,13 @@ class NS_Esquema {
 			// implícitamente (multi-tenancy del plugin); el age_min/max
 			// no se aplica al ser adulto, pero respetan el formato de la
 			// columna (TINYINT UNSIGNED NOT NULL).
+			array(
+				'id'             => 'el-taller',
+				'name'           => 'El Taller',
+				'age_min'        => 10,
+				'age_max'        => 16,
+				'schema_version' => '1.0',
+			),
 			array(
 				'id'             => 'fosiles',
 				'name'           => 'Fósiles',

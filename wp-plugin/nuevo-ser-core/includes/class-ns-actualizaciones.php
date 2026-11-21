@@ -1,18 +1,22 @@
 <?php
 /**
- * Actualizaciones del propio plugin desde GitHub Releases del monorepo,
- * como cualquier otro plugin (Escritorio → Actualizaciones, «Actualizar
- * ahora» en Plugins y actualizaciones automáticas si se activan).
+ * Actualizaciones del propio plugin y de los temas de la Colección desde
+ * GitHub Releases del monorepo, como cualquier otro plugin o tema
+ * (Escritorio → Actualizaciones y actualizaciones automáticas si se activan).
  *
- * El release lo publica `scripts/wp/publicar_plugin.sh`:
- *   tag     nuevo-ser-core-<versión>         p. ej. nuevo-ser-core-0.21.0
+ * Plugin, publicado con `scripts/wp/publicar_plugin.sh`:
+ *   tag     nuevo-ser-core-<versión>         p. ej. nuevo-ser-core-0.22.0
  *   assets  nuevo-ser-core-<versión>.zip     con la carpeta nuevo-ser-core/ dentro
  *           nuevo-ser-core-<versión>.zip.sha256
+ * Temas (TEMAS), publicados con `scripts/wp/publicar_tema.sh <tema>`:
+ *   tag     tema-<tema>-<versión>            p. ej. tema-uno-roto-0.2.0
+ *   assets  tema-<tema>-<versión>.zip        con la carpeta <tema>/ dentro
+ *           tema-<tema>-<versión>.zip.sha256
  *
- * Se engancha con la cabecera `Update URI` (WordPress 5.8+): WordPress pide
- * la información al filtro `update_plugins_github.com` en vez de a
- * wordpress.org. Antes de instalar se comprueba el sha256 del zip: si no
- * coincide, la actualización se cancela y el plugin que había sigue igual.
+ * Se engancha con la cabecera `Update URI` (plugins: WordPress 5.8+; temas:
+ * 6.1+): WordPress pide la información a los filtros `update_plugins_github.com`
+ * y `update_themes_github.com` en vez de a wordpress.org. Antes de instalar se
+ * comprueba el sha256 del zip: si no coincide, se cancela y todo sigue igual.
  *
  * @package NuevoSerCore
  */
@@ -25,9 +29,14 @@ class NS_Actualizaciones {
 
 	const PREFIJO_TAG = 'nuevo-ser-core-';
 	const SLUG        = 'nuevo-ser-core';
+	/** Temas que se actualizan desde aquí: carpeta del tema => prefijo de sus tags. */
+	const TEMAS = array(
+		'uno-roto' => 'tema-uno-roto-',
+	);
 
 	public static function registrar(): void {
 		add_filter( 'update_plugins_github.com', array( __CLASS__, 'comprobar' ), 10, 3 );
+		add_filter( 'update_themes_github.com', array( __CLASS__, 'comprobar_tema' ), 10, 3 );
 		add_filter( 'plugins_api', array( __CLASS__, 'informacion' ), 10, 3 );
 		add_filter( 'upgrader_pre_download', array( __CLASS__, 'descargar_comprobando' ), 10, 3 );
 	}
@@ -42,17 +51,17 @@ class NS_Actualizaciones {
 	 *
 	 * @return array|null version, url, url_sha256, fecha, notas; o null.
 	 */
-	public static function elegir_release( array $releases ): ?array {
+	public static function elegir_release( array $releases, string $prefijo = self::PREFIJO_TAG ): ?array {
 		$mejor = null;
 		foreach ( $releases as $release ) {
 			if ( ! is_array( $release ) || ! empty( $release['draft'] ) || ! empty( $release['prerelease'] ) ) {
 				continue;
 			}
 			$tag = (string) ( $release['tag_name'] ?? '' );
-			if ( 0 !== strpos( $tag, self::PREFIJO_TAG ) ) {
+			if ( 0 !== strpos( $tag, $prefijo ) ) {
 				continue;
 			}
-			$version = substr( $tag, strlen( self::PREFIJO_TAG ) );
+			$version = substr( $tag, strlen( $prefijo ) );
 			if ( ! preg_match( '/^\d+\.\d+\.\d+$/', $version ) ) {
 				continue;
 			}
@@ -64,9 +73,9 @@ class NS_Actualizaciones {
 				if ( '' === $url ) {
 					continue;
 				}
-				if ( self::PREFIJO_TAG . $version . '.zip' === $nombre ) {
+				if ( $prefijo . $version . '.zip' === $nombre ) {
 					$zip = $url;
-				} elseif ( self::PREFIJO_TAG . $version . '.zip.sha256' === $nombre ) {
+				} elseif ( $prefijo . $version . '.zip.sha256' === $nombre ) {
 					$sha256 = $url;
 				}
 			}
@@ -92,9 +101,15 @@ class NS_Actualizaciones {
 		return '' !== $remota && version_compare( $remota, $instalada, '>' );
 	}
 
-	/** Si [url] es un zip de un release del plugin (para no tocar otras descargas). */
+	/** Si [url] es un zip de un release del plugin o de uno de sus temas (para no tocar otras descargas). */
 	public static function es_paquete_del_plugin( string $url ): bool {
-		return (bool) preg_match( '#^https://github\.com/' . preg_quote( NS_Descargas_Apk::REPOSITORIO, '#' ) . '/releases/download/' . preg_quote( self::PREFIJO_TAG, '#' ) . '\d+\.\d+\.\d+/' . preg_quote( self::PREFIJO_TAG, '#' ) . '\d+\.\d+\.\d+\.zip$#', $url );
+		foreach ( array_merge( array( self::PREFIJO_TAG ), array_values( self::TEMAS ) ) as $prefijo ) {
+			$patron = '#^https://github\.com/' . preg_quote( NS_Descargas_Apk::REPOSITORIO, '#' ) . '/releases/download/' . preg_quote( $prefijo, '#' ) . '(\d+\.\d+\.\d+)/' . preg_quote( $prefijo, '#' ) . '\1\.zip$#';
+			if ( preg_match( $patron, $url ) ) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	// =================================================================
@@ -130,6 +145,32 @@ class NS_Actualizaciones {
 			'url'          => 'https://github.com/' . NS_Descargas_Apk::REPOSITORIO . '/releases/tag/' . self::PREFIJO_TAG . $ultimo['version'],
 			'package'      => $ultimo['url'],
 			'requires_php' => '8.1',
+		);
+	}
+
+	/**
+	 * Responde a WordPress si hay versión nueva de un tema de la Colección
+	 * (filtro `update_themes_github.com`).
+	 *
+	 * @param array|false $actualizacion Lo que haya respondido otro filtro.
+	 * @param array       $datos         Cabeceras del tema.
+	 * @param string      $tema          Carpeta del tema.
+	 * @return array|false
+	 */
+	public static function comprobar_tema( $actualizacion, $datos, $tema ) {
+		$prefijo = self::TEMAS[ $tema ] ?? null;
+		if ( null === $prefijo ) {
+			return $actualizacion;
+		}
+		$ultimo = self::elegir_release( NS_Descargas_Apk::releases(), $prefijo );
+		if ( null === $ultimo ) {
+			return $actualizacion;
+		}
+		return array(
+			'theme'        => $tema,
+			'version'      => $ultimo['version'],
+			'url'          => 'https://github.com/' . NS_Descargas_Apk::REPOSITORIO . '/releases/tag/' . $prefijo . $ultimo['version'],
+			'package'      => $ultimo['url'],
 		);
 	}
 
@@ -182,7 +223,7 @@ class NS_Actualizaciones {
 		$respuesta_sha = wp_remote_get( $paquete . '.sha256', array( 'timeout' => 15 ) );
 		$esperado      = is_wp_error( $respuesta_sha ) ? null : NS_Instalador_Juegos_Web::leer_sha256( wp_remote_retrieve_body( $respuesta_sha ) );
 		if ( null === $esperado ) {
-			return new WP_Error( 'ns_sin_sha256', 'No se pudo leer el sha256 de la actualización de Nuevo Ser Core. No se ha cambiado nada.' );
+			return new WP_Error( 'ns_sin_sha256', 'No se pudo leer el sha256 de la actualización. No se ha cambiado nada.' );
 		}
 		require_once ABSPATH . 'wp-admin/includes/file.php';
 		$zip = download_url( $paquete, 300 );
@@ -191,7 +232,7 @@ class NS_Actualizaciones {
 		}
 		if ( ! hash_equals( $esperado, (string) hash_file( 'sha256', $zip ) ) ) {
 			wp_delete_file( $zip );
-			return new WP_Error( 'ns_sha256', 'La actualización de Nuevo Ser Core no coincide con su sha256 (descarga incompleta o alterada). No se ha cambiado nada.' );
+			return new WP_Error( 'ns_sha256', 'La actualización no coincide con su sha256 (descarga incompleta o alterada). No se ha cambiado nada.' );
 		}
 		return $zip;
 	}

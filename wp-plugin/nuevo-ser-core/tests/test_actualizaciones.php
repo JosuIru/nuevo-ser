@@ -59,6 +59,21 @@ afirmar( false, NS_Actualizaciones::es_paquete_del_plugin( 'https://github.com/J
 afirmar( false, NS_Actualizaciones::es_paquete_del_plugin( 'https://downloads.wordpress.org/plugin/akismet.zip' ), 'No toca las descargas de otros plugins' );
 afirmar( false, NS_Actualizaciones::es_paquete_del_plugin( 'https://github.com/otro/repo/releases/download/nuevo-ser-core-0.21.0/nuevo-ser-core-0.21.0.zip' ), 'Sólo el repositorio del monorepo' );
 
+// Temas.
+function release_tema( string $version ): array {
+	$base = 'https://github.com/JosuIru/nuevo-ser/releases/download/tema-uno-roto-' . $version . '/';
+	return array( 'tag_name' => 'tema-uno-roto-' . $version, 'draft' => false, 'prerelease' => false, 'published_at' => '', 'body' => '', 'assets' => array(
+		array( 'name' => 'tema-uno-roto-' . $version . '.zip', 'browser_download_url' => $base . 'tema-uno-roto-' . $version . '.zip', 'size' => 1 ),
+		array( 'name' => 'tema-uno-roto-' . $version . '.zip.sha256', 'browser_download_url' => $base . 'tema-uno-roto-' . $version . '.zip.sha256', 'size' => 1 ),
+	) );
+}
+$mezcla = array( release_plugin( '0.22.0' ), release_tema( '0.2.0' ), release_tema( '0.1.5' ) );
+afirmar( '0.2.0', NS_Actualizaciones::elegir_release( $mezcla, 'tema-uno-roto-' )['version'] ?? null, 'Elige el release del tema por su prefijo' );
+afirmar( '0.22.0', NS_Actualizaciones::elegir_release( $mezcla )['version'] ?? null, 'Los releases del tema no cuentan para el plugin' );
+afirmar( true, NS_Actualizaciones::es_paquete_del_plugin( 'https://github.com/JosuIru/nuevo-ser/releases/download/tema-uno-roto-0.2.0/tema-uno-roto-0.2.0.zip' ), 'Comprueba también los zips del tema' );
+afirmar( false, NS_Actualizaciones::es_paquete_del_plugin( 'https://github.com/JosuIru/nuevo-ser/releases/download/tema-uno-roto-0.2.0/tema-uno-roto-0.3.0.zip' ), 'El zip tiene que ser de la versión de su tag' );
+afirmar( true, isset( NS_Actualizaciones::TEMAS['uno-roto'] ), 'El tema Uno Roto se actualiza desde aquí' );
+
 if ( $fallos ) {
 	exit( 1 );
 }

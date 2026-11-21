@@ -119,6 +119,8 @@ class NS_Descargas_Apk {
 				'prerelease'   => ! empty( $release['prerelease'] ),
 				'published_at' => $release['published_at'] ?? '',
 				'assets'       => $assets,
+				// Las notas, sólo de los releases del plugin (para «Ver detalles» de la actualización).
+				'body'         => 0 === strpos( (string) ( $release['tag_name'] ?? '' ), 'nuevo-ser-core-' ) ? substr( (string) ( $release['body'] ?? '' ), 0, 4000 ) : '',
 			);
 		}
 		return $compactos;

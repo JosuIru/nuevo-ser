@@ -5,7 +5,7 @@
  * Description: Backend compartido de la Colección Nuevo Ser Kids: sync, auth y tutor IA
  *              para Uno Roto y futuros juegos. Expone /wp-json/nuevo-ser/v1/* (canónico)
  *              y /wp-json/uno-roto/v1/* (alias deprecado, vivo hasta v1.5) con JWT propios.
- * Version:     0.20.0
+ * Version:     0.21.0
  * Author:      Equipo Colección Nuevo Ser
  * Author URI:  https://coleccion-nuevo-ser.gailu.net/
  * License:     GPL-2.0-or-later
@@ -14,6 +14,7 @@
  * Requires PHP: 8.1
  * Requires at least: 6.4
  * Replaces: uno-roto-core
+ * Update URI: https://github.com/JosuIru/nuevo-ser
  *
  * @package NuevoSerCore
  */
@@ -22,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'NS_CORE_VERSION', '0.20.0' );
+define( 'NS_CORE_VERSION', '0.21.0' );
 define( 'NS_CORE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'NS_CORE_URL', plugin_dir_url( __FILE__ ) );
 
@@ -70,6 +71,7 @@ require_once NS_CORE_DIR . 'includes/class-ns-fosiles-admin.php';
 require_once NS_CORE_DIR . 'includes/class-ns-juegos-web.php';
 require_once NS_CORE_DIR . 'includes/class-ns-descargas-apk.php';
 require_once NS_CORE_DIR . 'includes/class-ns-instalador-juegos-web.php';
+require_once NS_CORE_DIR . 'includes/class-ns-actualizaciones.php';
 
 register_activation_hook( __FILE__, array( 'NS_Activacion', 'activar' ) );
 register_deactivation_hook( __FILE__, array( 'NS_Activacion', 'desactivar' ) );
@@ -79,6 +81,8 @@ add_action( 'rest_api_init', array( 'NS_Endpoints', 'registrar' ) );
 add_action( 'init', array( 'NS_Juegos_Web', 'registrar' ) );
 add_action( 'init', array( 'NS_Descargas_Apk', 'registrar' ) );
 add_action( 'uroto_cron_purga_tutor', array( 'NS_Activacion', 'ejecutar_purga_tutor' ) );
+// Fuera de is_admin(): WordPress también busca actualizaciones desde su cron.
+NS_Actualizaciones::registrar();
 
 if ( is_admin() ) {
 	NS_Admin::registrar();

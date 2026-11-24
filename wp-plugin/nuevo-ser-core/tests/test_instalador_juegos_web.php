@@ -75,6 +75,7 @@ afirmar( '0.1.0', NS_Instalador_Juegos_Web::elegir_build( $releases_taller, 'el-
 afirmar( null, NS_Instalador_Juegos_Web::elegir_build( $releases_taller, 'el' ), 'el prefijo «el» no se queda con El Taller' );
 afirmar( array( 'taller', 'El Taller', 'el_taller' ), NS_Instalador_Juegos_Web::PAGINAS['el-taller'] ?? null, 'El Taller tiene página /taller/ con [el_taller]' );
 afirmar( true, isset( NS_Juegos_Web::JUEGOS['el-taller'] ), 'El Taller es un juego web' );
+afirmar( true, isset( NS_Juegos_Web::JUEGOS['el-taller-radio'] ), 'La radio de El Taller se instala como otro juego web' );
 afirmar( true, NS_Juegos_Web::es_apaisado( 'el-taller' ), 'El Taller va a todo el ancho' );
 afirmar( false, NS_Juegos_Web::es_apaisado( 'uno-roto' ), 'Uno Roto sigue en columna de móvil' );
 foreach ( array( 'index.html', 'sw.js', 'assets/index-mKeKT5lK.js', 'manifest.webmanifest' ) as $ruta ) {

@@ -26,9 +26,12 @@ class NS_Juegos_Web {
 
 	/** Juegos con versión web desplegable. */
 	const JUEGOS = array(
-		'uno-roto'      => 'Uno Roto',
-		'las-versiones' => 'Las Versiones',
-		'el-taller'     => 'El Taller',
+		'uno-roto'        => 'Uno Roto',
+		'las-versiones'   => 'Las Versiones',
+		'el-taller'       => 'El Taller',
+		// Las canciones de la radio del mundo abierto de El Taller (≈180 MB): van aparte para no
+		// bajarlas con cada versión. El Taller las busca al lado, en ../el-taller-radio/.
+		'el-taller-radio' => 'El Taller: canciones de la radio',
 	);
 
 	/**

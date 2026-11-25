@@ -73,6 +73,14 @@ afirmar( null, NS_Instalador_Juegos_Web::leer_sha256( 'Not Found' ), 'sin hash, 
 $releases_taller = array( release( 'web-el-taller-0.1.0', array( 'el-taller-web-0.1.0.zip', 'el-taller-web-0.1.0.zip.sha256' ) ) );
 afirmar( '0.1.0', NS_Instalador_Juegos_Web::elegir_build( $releases_taller, 'el-taller' )['version'] ?? null, 'El Taller se elige por su tag' );
 afirmar( null, NS_Instalador_Juegos_Web::elegir_build( $releases_taller, 'el' ), 'el prefijo «el» no se queda con El Taller' );
+// GitHub las devuelve ordenadas por la fecha del commit y, si es el mismo, por el tag como texto: «1.0.90» antes que «1.0.103».
+$desordenadas = array(
+	release( 'web-el-taller-1.0.90', array( 'el-taller-web-1.0.90.zip', 'el-taller-web-1.0.90.zip.sha256' ) ),
+	release( 'web-el-taller-1.0.58', array( 'el-taller-web-1.0.58.zip', 'el-taller-web-1.0.58.zip.sha256' ) ),
+	release( 'web-el-taller-1.0.103', array( 'el-taller-web-1.0.103.zip', 'el-taller-web-1.0.103.zip.sha256' ) ),
+	release( 'web-el-taller-1.0.104', array( 'el-taller-web-1.0.104.zip' ) ),
+);
+afirmar( '1.0.103', NS_Instalador_Juegos_Web::elegir_build( $desordenadas, 'el-taller' )['version'] ?? null, 'la versión más alta con zip y sha256, aunque no venga la primera' );
 afirmar( array( 'taller', 'El Taller', 'el_taller' ), NS_Instalador_Juegos_Web::PAGINAS['el-taller'] ?? null, 'El Taller tiene página /taller/ con [el_taller]' );
 afirmar( true, isset( NS_Juegos_Web::JUEGOS['el-taller'] ), 'El Taller es un juego web' );
 afirmar( true, isset( NS_Juegos_Web::JUEGOS['el-taller-radio'] ), 'La radio de El Taller se instala como otro juego web' );

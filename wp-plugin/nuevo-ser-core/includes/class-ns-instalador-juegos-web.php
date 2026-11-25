@@ -67,13 +67,16 @@ class NS_Instalador_Juegos_Web {
 	// =================================================================
 
 	/**
-	 * El build web más reciente de [juego] entre los releases (el más
-	 * nuevo primero, como los devuelve la API de GitHub).
+	 * El build web de versión más alta de [juego] entre los releases. No vale
+	 * fiarse del orden de la API de GitHub: ordena por la fecha del commit al que
+	 * apunta el tag, y con el mismo commit desempata por el nombre del tag como
+	 * texto (así «1.0.90» salía antes que «1.0.103»).
 	 *
 	 * @return array|null url, url_sha256, version, tamano, fecha; o null.
 	 */
 	public static function elegir_build( array $releases, string $juego ): ?array {
 		$prefijo = 'web-' . $juego . '-';
+		$mejor   = null;
 		foreach ( $releases as $release ) {
 			if ( ! is_array( $release ) || ! empty( $release['draft'] ) || ! empty( $release['prerelease'] ) ) {
 				continue;
@@ -98,17 +101,21 @@ class NS_Instalador_Juegos_Web {
 				}
 			}
 			// Sin sha256 no se instala: es lo que garantiza que el zip llegó entero.
-			if ( null !== $zip && null !== $sha256 ) {
-				return array(
+			if ( null === $zip || null === $sha256 ) {
+				continue;
+			}
+			$version = substr( $tag, strlen( $prefijo ) );
+			if ( null === $mejor || version_compare( $version, $mejor['version'], '>' ) ) {
+				$mejor = array(
 					'url'        => (string) $zip['browser_download_url'],
 					'url_sha256' => $sha256,
-					'version'    => substr( $tag, strlen( $prefijo ) ),
+					'version'    => $version,
 					'tamano'     => (int) ( $zip['size'] ?? 0 ),
 					'fecha'      => (string) ( $release['published_at'] ?? '' ),
 				);
 			}
 		}
-		return null;
+		return $mejor;
 	}
 
 	/** Primer hash sha256 (64 hex) de un fichero `.sha256` («<hash>  <nombre>»), o null. */
